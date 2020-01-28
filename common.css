@@ -1,0 +1,100 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #bbe1fa
+}
+h1 {
+    font-family: "Ubuntu", sans-serif;
+    font-weight:bolder
+}
+h3 {
+    font-family: "Ubuntu", sans-serif;
+    font-weight:bolder
+}
+.profile-back{
+    background-color:#3282b8;
+   
+}
+.profile {
+    margin-top: 25px;
+    border-radius: 50%; 
+    border-width: 2px; 
+    border: 5px solid #000000
+}
+.profile-text{
+    padding-bottom: 25px;
+    font-size: 24px
+}
+
+footer {
+    background-color: #1b262c;
+    
+    
+}
+
+.footer-text {
+    font-size: 24px!important;
+    color: white;
+    font-family: "Inconsolata", sans-serif;
+}
+
+.portfolio-img-container {
+    position: relative;
+    width: 100%;
+}
+.portfolio-img{
+    opacity: 1;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.portfolio-img-overlay{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.portfolio-img-overlay-text{
+    transition: .5s ease;
+    background-color: rgb(73, 77, 73);
+    color: white;
+    font-size: 18px;
+    padding: 8px 8px;
+    position: relative;
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+}
+
+.portfolio-img-overlay-text:hover{
+    background-color: rgb(206, 206, 206);
+    color: black;
+    font-size: 18px;
+    padding: 8px 8px;
+    position: relative;
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.portfolio-img-container:hover .portfolio-img {
+    opacity: 0.3;
+}
+  
+.portfolio-img-container:hover .portfolio-img-overlay{
+    opacity: 1;
+}
+  
+body p {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    color: #091f2e
+}
