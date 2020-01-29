@@ -1,15 +1,14 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #bbe1fa
-}
-h1 {
     font-family: "Ubuntu", sans-serif;
-    font-weight:bolder
+    background-color: #bbe1fa;
+    font-size: 18px;
+    color: #091f2e;
 }
-h3 {
-    font-family: "Ubuntu", sans-serif;
-    font-weight:bolder
+
+h1, h3 {
+    font-weight: bold
 }
+
 .profile-back{
     background-color:#3282b8;
    
@@ -81,6 +80,11 @@ footer {
     text-align: center;
 }
 
+.portfolio-img-overlay-link {
+    display: block; 
+    height:100%;
+}
+
 a {
     text-decoration: none;
 }
@@ -91,10 +95,4 @@ a {
   
 .portfolio-img-container:hover .portfolio-img-overlay{
     opacity: 1;
-}
-  
-body p {
-    font-family: "Ubuntu", sans-serif;
-    font-size: 16px;
-    color: #091f2e
 }
