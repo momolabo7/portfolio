@@ -4,9 +4,6 @@ import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 
-function test(skillsArray) {
-    
-}
 function SkillColumn({title, skillsArray}) {
     return (
         <div className="w3-content w3-third"> 

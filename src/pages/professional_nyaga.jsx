@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import imgNyaga from 'img/nyaga.png'
+import imgNyaga from 'img/professional/main/nyaga.jpg'
 
 function Content() {
     return (

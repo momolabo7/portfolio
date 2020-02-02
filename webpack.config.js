@@ -7,7 +7,11 @@ const pageNames = [
   "index",
   "professional",
   "professional_lecturer",
-  "professional_nyaga"
+  "professional_nyaga",
+  "professional_akb48",
+  "professional_gundam_heroes",
+  "professional_rtk13",
+  "professional_taishi",
 ]
 
 const htmlWebPackPlugins = [];

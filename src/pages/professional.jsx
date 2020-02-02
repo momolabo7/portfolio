@@ -4,8 +4,13 @@ import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import WorkLinkButtonImage from 'components/WorkLinkButtonImage'
-import imgLecturer from 'img/lecturer.png'
-import imgNyaga from 'img/nyaga.png'
+
+import imgLecturer from 'img/professional/button/lecturer.jpg'
+import imgNyaga from 'img/professional/button/nyaga.jpg'
+import imgAKB48 from 'img/professional/button/akb48.jpg'
+import imgRTK13 from 'img/professional/button/rtk13.jpg'
+import imgTaishi from 'img/professional/button/taishi.jpg'
+import imgGundam from 'img/professional/button/gundam_heroes.jpg'
 
 function Content() {
     return (
@@ -30,8 +35,11 @@ function Content() {
             </div>
             <div className="w3-display-container w3-center w3-padding-16">
                 <h3 className="w3-wide w3-center">- Game Development Projects -</h3>
-                <WorkLinkButtonImage title="Nobunyaga's Ambition" link="professional_nyaga.html" img={imgNyaga} />
-
+                <WorkLinkButtonImage title="Nobunaga's Ambition: Taishi"        link="professional_taishi.html" img={imgTaishi} />
+                <WorkLinkButtonImage title="Romance of the Three Kingdoms 13"   link="professional_rtk13.html" img={imgRTK13} />
+                <WorkLinkButtonImage title="Gundam Heroes"                      link="professional_gundam_heroes.html" img={imgGundam} />
+                <WorkLinkButtonImage title="AKB48's Ambition"                   link="professional_akb48.html" img={imgAKB48} />
+                <WorkLinkButtonImage title="Nobunyaga's Ambition"               link="professional_nyaga.html" img={imgNyaga} />
             </div>
         </div>
     )
