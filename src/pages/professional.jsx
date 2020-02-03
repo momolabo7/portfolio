@@ -14,7 +14,7 @@ import imgGundam from 'img/professional/button/gundam_heroes.jpg'
 
 function Content() {
     return (
-        <div className="w3-content content">
+        <>
             <div className="w3-container w3-center w3-padding-16 section1">
                 <h1 className="w3-wide w3-center">Professional Work</h1>
                 <p className="w3-content w3-center">
@@ -41,7 +41,7 @@ function Content() {
                 <ButtonLink title="AKB48's Ambition"                    link="professional_akb48.html"          img={imgAKB48} addClass="w3-third"/>
                 <ButtonLink title="Nobunyaga's Ambition"                link="professional_nyaga.html"          img={imgNyaga} addClass="w3-third"/>
             </div>
-        </div>
+        </>
     )
 }
 

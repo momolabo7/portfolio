@@ -1,20 +1,16 @@
 body {
     font-family: "Ubuntu", sans-serif;
-    background-color: #bbe1fa;
+    background-color: #000000;
     font-size: 18px;
     color: #091f2e;
 }
 
 .section1 {
     background-color: #bbe1fa;
-    padding-left: 200px;
-    padding-right: 200px;
 }
 
 .section2 {
     background-color: #9ed6fc;
-    padding-left: 200px;
-    padding-right: 200px;
 }
 
 h1, h3 {
@@ -42,23 +38,22 @@ h1, h3 {
 
 footer {
     background-color: #1b262c;
+    font-family: "Inconsolata", sans-serif;
+    color: white;
 }
 
 .footer-text {
     font-size: 24px;
-    color: white;
-    font-family: "Inconsolata", sans-serif;
 }
 
 .footer-copyright-text {
     font-size: 20px;
     color: white;
-    font-family: "Inconsolata", sans-serif;
+    
 }
 
 .work-button-link-container {
-    position: relative;
-    
+    position: relative;    
 }
 
 .work-button-link-a {
@@ -69,7 +64,6 @@ footer {
     width: 100%;
     display: block;
     height: auto;
-    min-width: 260px;
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
@@ -77,30 +71,22 @@ footer {
 }
 
 .work-button-link-overlay {
-    opacity: 0.7;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #000000;
+    background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.5), rgba(0,0,0,0), rgba(0,0,0,0));
+    color: white;
     width: 100%;
-    height: 20%;
+    height: 100%;
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .work-button-link-text {
-    color: white;
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    right: 0;
-    width: 100%;
-    text-align: center;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    top: 5%;
 }
 
 /*

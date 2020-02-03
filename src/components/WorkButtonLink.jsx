@@ -9,8 +9,10 @@ function WorkButtonLink({title, link, img, addClass}) {
             <a className="work-button-link-a" href={link}>
                 <div class="work-button-link-container">
                     <img className="w3-round-large work-button-link-img" loading="lazy" src={img} />
-                    <div class="work-button-link-overlay"></div>
-                    <h3 class="work-button-link-text">{title}</h3>
+                    <div class="work-button-link-overlay">
+                        <h3 class="work-button-link-text">{title}</h3>
+                    </div>
+                    
                 </div>
             </a>
         </div>
