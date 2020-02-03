@@ -5,6 +5,14 @@ body {
     color: #091f2e;
 }
 
+.section1 {
+    background-color: #bbe1fa;
+}
+
+.section2 {
+    background-color: #9ed6fc;
+}
+
 h1, h3 {
     font-weight: bold
 }
@@ -53,6 +61,7 @@ footer {
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
+    border: 2px solid #000000
 }
 
 .portfolio-img-overlay{

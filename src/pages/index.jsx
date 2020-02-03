@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import ButtonImage from 'components/WorkLinkButtonImage'
+import imgProfessional from 'img/index/professional.jpg'
 
 function SkillColumn({title, skillsArray}) {
     return (
@@ -22,12 +24,9 @@ function SkillColumn({title, skillsArray}) {
 }
 
 function Content() {
-
-
-
     return (
-        <div className="w3-content content">
-            <div className="w3-container w3-center w3-padding-16">
+        <>
+            <div className="w3-container w3-center w3-padding-16 section1">
                 <h1 className="w3-wide w3-center">About Me</h1>
                 <p>
                     Hi! I'm Gerald Wong, a Lecturer currently employed by DigiPen Institute of Techology Singapore.<br />
@@ -36,7 +35,9 @@ function Content() {
                     On top of that, I enjoy teaching people about technology and its application.<br />
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16">
+
+
+            <div className="w3-container w3-center w3-padding-16 section2">
                 <h1 className="w3-wide w3-center">Notable Skills</h1>
 
                 <SkillColumn title="Technologies" skillsArray={[
@@ -70,11 +71,24 @@ function Content() {
                         "Mentored Juniors",
                         "Led Teams",
                         "JLPT N3",
+                        "Games Development",
+                        "Taught university students",
                         "Lived in Japan",
-                        "Games Development"
+                        
+                    
                     ]} />
             </div>
-            <div className="w3-container w3-center w3-padding-16">
+            
+            
+            <div className="w3-container w3-padding-16 section1">
+                <h1 className="w3-wide w3-center ">Works</h1>
+                <ButtonImage title="Professional Works" link="professional.html" img={imgProfessional} />
+                <ButtonImage title="Coming Soon!" link="" img={imgProfessional} />
+                <ButtonImage title="Coming Soon!" link="" img={imgProfessional} />
+            </div>
+
+
+            <div className="w3-container w3-center w3-padding-16 section2">
                 <h1 className="w3-wide w3-center">Hobbies</h1>
                 <p>
                     During my free time, I spend my time exploring and applying new technologies to small personal projects.<br />
@@ -82,7 +96,7 @@ function Content() {
                     Currently, I am learning to draw pixel art by myself.
                 </p>
             </div>
-        </div>
+        </>
     )
 }
 

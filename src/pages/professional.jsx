@@ -14,8 +14,8 @@ import imgGundam from 'img/professional/button/gundam_heroes.jpg'
 
 function Content() {
     return (
-        <div className="w3-content content">
-            <div className="w3-container w3-center w3-padding-16">
+        <div className="w3-content content ">
+            <div className="w3-container w3-center w3-padding-16 section1">
                 <h1 className="w3-wide w3-center">Professional Work</h1>
                 <p className="w3-content w3-center">
                     I have spent more than 5 years as a Games Developer and nearly 2 years as a Lecturer of Computer Science<br />
@@ -29,11 +29,11 @@ function Content() {
                     Click to find out more information about how I am involved in them!
                 </p>
             </div>
-            <div className="w3-display-container w3-center w3-padding-16">
+            <div className="w3-display-container w3-center w3-padding-16 section2">
                 <h3 className="w3-wide w3-center">- Lecturing -</h3>
                 <WorkLinkButtonImage title="Lecturer in DigiPen Singapore" link="professional_lecturer.html" img={imgLecturer} />
             </div>
-            <div className="w3-display-container w3-center w3-padding-16">
+            <div className="w3-display-container w3-center w3-padding-16 section2">
                 <h3 className="w3-wide w3-center">- Game Development Projects -</h3>
                 <WorkLinkButtonImage title="Nobunaga's Ambition: Taishi"        link="professional_taishi.html" img={imgTaishi} />
                 <WorkLinkButtonImage title="Romance of the Three Kingdoms 13"   link="professional_rtk13.html" img={imgRTK13} />
