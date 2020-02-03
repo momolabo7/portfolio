@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import WorkLinkButtonImage from 'components/WorkLinkButtonImage'
+import ButtonLink from 'components/WorkButtonLink'
 
 import imgLecturer from 'img/professional/button/lecturer.jpg'
 import imgNyaga from 'img/professional/button/nyaga.jpg'
@@ -14,7 +14,7 @@ import imgGundam from 'img/professional/button/gundam_heroes.jpg'
 
 function Content() {
     return (
-        <div className="w3-content content ">
+        <div className="w3-content content">
             <div className="w3-container w3-center w3-padding-16 section1">
                 <h1 className="w3-wide w3-center">Professional Work</h1>
                 <p className="w3-content w3-center">
@@ -29,17 +29,17 @@ function Content() {
                     Click to find out more information about how I am involved in them!
                 </p>
             </div>
-            <div className="w3-display-container w3-center w3-padding-16 section2">
-                <h3 className="w3-wide w3-center">- Lecturing -</h3>
-                <WorkLinkButtonImage title="Lecturer in DigiPen Singapore" link="professional_lecturer.html" img={imgLecturer} />
+            <div className="w3-container w3-center w3-padding-16 section2">
+                <h1 className="w3-wide w3-center">Lecturing</h1>
+                <ButtonLink title="Lecturer at DigiPen Singapore" link="professional_lecturer.html" img={imgLecturer} />
             </div>
-            <div className="w3-display-container w3-center w3-padding-16 section2">
-                <h3 className="w3-wide w3-center">- Game Development Projects -</h3>
-                <WorkLinkButtonImage title="Nobunaga's Ambition: Taishi"        link="professional_taishi.html" img={imgTaishi} />
-                <WorkLinkButtonImage title="Romance of the Three Kingdoms 13"   link="professional_rtk13.html" img={imgRTK13} />
-                <WorkLinkButtonImage title="Gundam Heroes"                      link="professional_gundam_heroes.html" img={imgGundam} />
-                <WorkLinkButtonImage title="AKB48's Ambition"                   link="professional_akb48.html" img={imgAKB48} />
-                <WorkLinkButtonImage title="Nobunyaga's Ambition"               link="professional_nyaga.html" img={imgNyaga} />
+            <div className="w3-container w3-center w3-padding-16 section2">
+                <h1 className="w3-wide w3-center">Game Development Projects</h1>
+                <ButtonLink title="Nobunaga's Ambition: Taishi"         link="professional_taishi.html"         img={imgTaishi} addClass="w3-third"/>
+                <ButtonLink title="RTK13"                               link="professional_rtk13.html"          img={imgRTK13} addClass="w3-third"/>
+                <ButtonLink title="Gundam Heroes"                       link="professional_gundam_heroes.html"  img={imgGundam} addClass="w3-third"/>
+                <ButtonLink title="AKB48's Ambition"                    link="professional_akb48.html"          img={imgAKB48} addClass="w3-third"/>
+                <ButtonLink title="Nobunyaga's Ambition"                link="professional_nyaga.html"          img={imgNyaga} addClass="w3-third"/>
             </div>
         </div>
     )

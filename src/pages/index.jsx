@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import ButtonImage from 'components/WorkLinkButtonImage'
+import ButtonLink from 'components/WorkButtonLink'
 import imgProfessional from 'img/index/professional.jpg'
 
 function SkillColumn({title, skillsArray}) {
@@ -82,9 +82,11 @@ function Content() {
             
             <div className="w3-container w3-padding-16 section1">
                 <h1 className="w3-wide w3-center ">Works</h1>
-                <ButtonImage title="Professional Works" link="professional.html" img={imgProfessional} />
-                <ButtonImage title="Coming Soon!" link="" img={imgProfessional} />
-                <ButtonImage title="Coming Soon!" link="" img={imgProfessional} />
+                <div className="w3-row">
+                    <ButtonLink title="Professional Works" link="professional.html" img={imgProfessional} addClass="w3-third" />
+                    <ButtonLink title="Coming Soon!" link="" img={imgProfessional} addClass="w3-third" />
+                    <ButtonLink title="Coming Soon!" link="" img={imgProfessional} addClass="w3-third" />
+                </div>
             </div>
 
 
