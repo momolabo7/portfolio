@@ -3,41 +3,42 @@ import ReactDOM from 'react-dom';
 import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import imgLecturer from 'img/professional/main/lecturer.jpg'
+import imgNyaga from 'img/professional/main/nyaga.jpg'
 
 function Content() {
     return (
-        <div className="w3-content content">
-            <div className="w3-container w3-center w3-padding-16">
-                <h1 className="w3-wide w3-center">Lecturer in DigiPen Singapore</h1>
-                <img className="w3-round-xxlarge" loading="lazy" src={imgLecturer} /> 
-                <p className="w3-content w3-padding-16">
-                    I spent close to 2 years working in <b><a href="https://www.digipen.edu.sg/">DigiPen Institute of Technology, Singapore</a></b> as a full-time Lecturer in the Department of Computer Science.
-                    My main responsibility is to conduct classes for <a href="https://www.digipen.edu.sg/admissions/undergraduate-degree-programs"><b>Undergraduate</b></a> and <a href="https://www.digipen.edu.sg/academics/continuing-education"><b>Attach and Train</b></a> modules.
-                </p>
-                <h3 className="w3-wide w3-center"> Topics Taught </h3>
+        <>
+            <div className="w3-container w3-center w3-padding-16 section1">
+                <h1 className="w3-wide w3-center ">AKB48's Ambition</h1>
+                <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgNyaga} /> 
                 <p>
-                    C/C++ Programming Language<br />
-                    C# Programming Language<br />
-                    Software Design Patterns<br />
-                    Data Structures and Algorithms<br />
-                    Object Oriented Programming<br />
-                    Unity3D Development<br />
-                    Game Development Pipelines and Techniques<br />
-                    Applied Mathematics for Electronic Engineering<br />
+                    <a href="https://www.gamecity.ne.jp/akb48/"><b>Nobunyaga's Ambition (のぶニャがの野望)</b></a> is a browser-based game by Koei Tecmo<br />
+                    It is based on Japan's Sengoku Period, with its characters anthropomorphized as cats.<br />
+                    The main game is in Japanese and has been localized into Traditional Chinese, Simplified Chinese and English.<br />
+                    In Japan, it's avaliable on several platforms such as Yahoo!mobage, myGameCity, dGame, niconico, mixi and colopl.<br />
+                    Overseas, it's avaliable on Wasabii (Taiwan) and Blue Panda (China).<br />
+                    It also has webview applications on iOS and Android.<br />
+                    <br />
+                    I was part of the Singapore team for more than 2 years.<br />
                 </p>
-                <br />
-                <h3 className="w3-wide w3-center">Other Responsibilities</h3>
+            </div>
+            <div className="w3-container w3-center w3-padding-16 section2">
+                <h3 className="w3-wide w3-center">Responsibilities</h3>
                 <p>
-                    Involved in outreach programs, teaching high school students game development<br />
-                    Conducted interviews for potential lecturers joining the school<br />
-                    Conducted admission interviews for <b>Undergraduate</b> and <b>Attach and Train</b> programs<br />
-                    Developed and improved modules<br />
+                    Lead localization subteam<br />
+                    In charge of code merging and branching<br />
+                    Performed weekly maintenance<br />
+                    Liased with Japanese, Taiwanese and Chinese counterparts<br />
+                    Scheduled tasks for team members<br />
+                    Mentored and guided juniors<br />
+                    Wrote tools to increase productivity<br />
+                    Developed gameplay content<br />
+                    Developed push notifications for iOS and Android versions<br />
                 </p>
             </div>
 
         
-        </div>
+        </>
     )
 }
 
