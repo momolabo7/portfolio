@@ -12,7 +12,7 @@ function Content() {
                 <h1 className="w3-wide w3-center ">Nobunyaga's Ambition</h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgNyaga} /> 
                 <p>
-                    <a href="https://www.gamecity.ne.jp/nobunyaga/"><b>Nobunyaga's Ambition (のぶニャがの野望)</b></a> is a browser-based game by Koei Tecmo<br />
+                    <a href="https://www.gamecity.ne.jp/nobunyaga/"><b>Nobunyaga's Ambition (のぶニャがの野望)</b></a> is a browser-based game by Koei Tecmo.<br />
                     It is based on Japan's Sengoku Period, with its characters anthropomorphized as cats.<br />
                     The main game is in Japanese and has been localized into Traditional Chinese, Simplified Chinese and English.<br />
                     In Japan, it's avaliable on several platforms such as Yahoo!mobage, myGameCity, dGame, niconico, mixi and colopl.<br />
@@ -26,6 +26,7 @@ function Content() {
                 <h3 className="w3-wide w3-center">Responsibilities</h3>
                 <p>
                     Lead localization subteam<br />
+                    Resolved bugs reported by customers<br />
                     In charge of code merging and branching<br />
                     Performed weekly maintenance<br />
                     Liased with Japanese, Taiwanese and Chinese counterparts<br />
