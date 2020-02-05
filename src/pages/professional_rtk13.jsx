@@ -28,7 +28,9 @@ function Content() {
                     Converted user input to cater for half-width English characters.<br />
                     In charge of porting to Xbox One and figuring out XDK. <br />
                     Discussed with designers, artists and programmers about visual bugs due to localization.<br />
+                    Mentored and guided juniors who are new to the company and team.<br />
                     Resolved bugs reported by customers.<br />
+                    Ensured code quality.<br />
                 </p>
             </div>
 
