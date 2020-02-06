@@ -5,6 +5,7 @@ const baseTemplate = "./src/base_template.html"
 
 const pageNames = [
   "index",
+
   "professional",
   "professional_lecturer",
   "professional_nyaga",
@@ -12,6 +13,8 @@ const pageNames = [
   "professional_gundam_heroes",
   "professional_rtk13",
   "professional_taishi",
+
+  "hobby"
 ]
 
 const htmlWebPackPlugins = [];
