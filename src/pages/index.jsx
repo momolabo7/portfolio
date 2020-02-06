@@ -5,6 +5,8 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ButtonLink from 'components/WorkButtonLink'
 import imgProfessional from 'img/index/professional.jpg'
+import imgHobby from 'img/index/hobby.jpg'
+import imgSchool from 'img/index/school.jpg'
 
 function SkillColumn({title, skillsArray}) {
     return (
@@ -83,13 +85,15 @@ function Content() {
             <div className="w3-container w3-padding-16 section1">
                 <h1 className="w3-wide w3-center ">Works</h1>
                 <div className="w3-row">
-                    <ButtonLink title="Professional Works" link="professional.html" img={imgProfessional} />
+                    <ButtonLink title="Professional Works" link="professional.html" img={imgProfessional}  addClass="w3-third"/>
+                    <ButtonLink title="Hobby Projects" link="hobby.html" img={imgHobby} addClass="w3-third" />
+                    <ButtonLink title="Coming Soon..." link="#" img={imgSchool} addClass="w3-third" />
                 </div>
             </div>
 
 
             <div className="w3-container w3-center w3-padding-16 section2">
-                <h1 className="w3-wide w3-center">Hobbies</h1>
+                <h1 className="w3-wide w3-center">Outside of work</h1>
                 <p>
                     During my free time, I spend my time exploring and applying new technologies to small personal projects.<br />
                     Outside of programming, I would occasionally play the piano, write fiction, play computer games and stream.<br />
