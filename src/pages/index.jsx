@@ -87,7 +87,7 @@ function Content() {
                 <div className="w3-row">
                     <ButtonLink title="Professional Works" link="professional.html" img={imgProfessional}  addClass="w3-third"/>
                     <ButtonLink title="Hobby Projects" link="hobby.html" img={imgHobby} addClass="w3-third" />
-                    <ButtonLink title="Coming Soon..." link="#" img={imgSchool} addClass="w3-third" />
+                    <ButtonLink title="School Projects" link="#" img={imgSchool} addClass="w3-third" />
                 </div>
             </div>
 
