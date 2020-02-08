@@ -20,7 +20,6 @@ function ExplodeLinks(links)
             )
         }
     }
-
     return (<>{ret}</>)
 }
 

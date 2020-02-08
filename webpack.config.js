@@ -14,7 +14,14 @@ const pageNames = [
   "professional_rtk13",
   "professional_taishi",
 
-  "hobby"
+  "hobby",
+
+  "school",
+  "school_dotsncircles",
+  "school_hit",
+  "school_echolight",
+  "school_nightmare",
+  "school_godsloveme"
 ]
 
 const htmlWebPackPlugins = [];
