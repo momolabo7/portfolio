@@ -8,7 +8,7 @@ import img from 'img/school/main/banner_hit.jpg'
 function Content() {
     return (
         <>
-            <div className="w3-container w3-center w3-padding-16 section1">
+            <div className="w3-container w3-center w3-padding-16 section-title">
                 <h1 className="w3-wide w3-center ">Heavy Indestructable Tanks</h1>
 
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={img} /> 
@@ -22,7 +22,7 @@ function Content() {
                 </p>
             </div>
 
-            <div className="w3-container w3-center w3-padding-16 section2">
+            <div className="w3-container w3-center w3-padding-16 section-content">
                 <h3 className="w3-wide w3-center">Responsibilities</h3>
                 <p>
                     Technical Lead.

@@ -1,16 +1,28 @@
 body {
     font-family: "Ubuntu", sans-serif;
-    background-color: #000000;
+    background-color:rgb(220, 251, 255);
     font-size: 18px;
-    color: #091f2e;
+    color: rgb(37, 37, 37);
 }
 
-.section1 {
-    background-color: #bbe1fa;
+.section-title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid;
 }
 
-.section2 {
-    background-color: #9ed6fc;
+.container {
+    width: 80%;
+    margin: auto;
+}
+.section-content {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+
+.no-margin {
+    margin: 0
 }
 
 h1, h3 {
@@ -22,7 +34,7 @@ h1, h3 {
 }
 
 .profile-back{
-    background-color:#3282b8;
+    background-color:#1e80b4;
     padding-top: 25px;
 }
 .profile {
@@ -90,67 +102,3 @@ footer {
     color: white;
     text-align: center;
 }
-
-/*
-.portfolio-img-container {
-    position: relative;
-    width: 100%;
-}
-.portfolio-img{
-    opacity: 1;
-    height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
-    border: 2px solid #000000
-}
-
-.portfolio-img-overlay{
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-.portfolio-img-overlay-text{
-    transition: .5s ease;
-    background-color: rgb(73, 77, 73);
-    color: white;
-    font-size: 18px;
-    padding: 8px 8px;
-    position: relative;
-    margin: 0 auto;
-    width: 40%;
-    text-align: center;
-}
-
-.portfolio-img-overlay-text:hover{
-    background-color: rgb(206, 206, 206);
-    color: black;
-    font-size: 18px;
-    padding: 8px 8px;
-    position: relative;
-    margin: 0 auto;
-    width: 40%;
-    text-align: center;
-    
-}
-
-.portfolio-img-overlay-link {
-    display: block; 
-    height:100%;
-}
-
-a:hover {
-    color: grey
-}
-
-.portfolio-img-container:hover .portfolio-img {
-    opacity: 0.3;
-}
-  
-.portfolio-img-container:hover .portfolio-img-overlay{
-    opacity: 1;
-}*/

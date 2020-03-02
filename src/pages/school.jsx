@@ -22,7 +22,7 @@ const projects = [
 function Content() {
     return (
         <>
-            <div className="w3-container w3-center w3-padding-16 section1">
+            <div className="w3-container w3-center w3-padding-16 section-title">
                 <h1 className="w3-wide w3-center">School Projects</h1>
                 <p className="w3-content w3-center">
                     These are some of my notable projects that I have done as a student while studying for my Bachalor of Science in Computer Science in Game Design degree (whew what a mouthful!).<br />
@@ -30,7 +30,7 @@ function Content() {
                     Click on them to find out more!<br />
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section2">
+            <div className="w3-container w3-center w3-padding-16 section-content">
                 <h1 className="w3-wide w3-center">Projects</h1>
                 {
                     projects.map((project) => {

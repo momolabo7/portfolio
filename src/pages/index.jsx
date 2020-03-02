@@ -11,8 +11,8 @@ import imgSchool from 'img/index/school.jpg'
 function SkillColumn({title, skillsArray}) {
     return (
         <div className="w3-content w3-third"> 
-            <h2 className="w3-wide w3-center"><u>{title}</u></h2>
-            <p>
+            <h2 className="w3-wide w3-center no-margin"><b>{title}</b></h2>
+            <p className="no-margin">
                 {skillsArray.map((skill) => {
                     return (
                         <React.Fragment key={skill}>
@@ -27,9 +27,12 @@ function SkillColumn({title, skillsArray}) {
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section1">
-                <h1 className="w3-wide w3-center">About Me</h1>
+        <div className = "container">
+            <div className="w3-container section-title">
+                <h1 className="w3-wide w3-center no-margin">About Me</h1>
+            </div>
+
+            <div className="w3-container w3-center section-content">
                 <p>
                     Hi! I'm Gerald Wong, a Lecturer currently employed by DigiPen Institute of Techology Singapore.<br />
                     At heart, I am a Software Engineer with specialization in games development and its industry.<br />
@@ -37,10 +40,24 @@ function Content() {
                     On top of that, I enjoy teaching people about technology and its application.<br />
                 </p>
             </div>
+            <div className="w3-container section-title ">
+                <h1 className="w3-wide w3-center no-margin">Works</h1>
+            </div>
+            <div className="w3-container  section-content">
+               
+                <div className="w3-row">
+                    <ButtonLink title="Professional Works" link="professional.html" img={imgProfessional}  addClass="w3-third"/>
+                    <ButtonLink title="Hobby Projects" link="hobby.html" img={imgHobby} addClass="w3-third" />
+                    <ButtonLink title="School Projects" link="#" img={imgSchool} addClass="w3-third" />
+                </div>
+            </div>
 
+            <div className="w3-container section-title">
+                <h1 className="w3-wide w3-center no-margin">Skills</h1>
+            </div>
 
-            <div className="w3-container w3-center w3-padding-16 section2">
-                <h1 className="w3-wide w3-center">Notable Skills</h1>
+            <div className="w3-container w3-center  section-content">
+                
 
                 <SkillColumn title="Technologies" skillsArray={[
                         "Visual Studios",
@@ -81,26 +98,7 @@ function Content() {
                     ]} />
             </div>
             
-            
-            <div className="w3-container w3-padding-16 section1">
-                <h1 className="w3-wide w3-center ">Works</h1>
-                <div className="w3-row">
-                    <ButtonLink title="Professional Works" link="professional.html" img={imgProfessional}  addClass="w3-third"/>
-                    <ButtonLink title="Hobby Projects" link="hobby.html" img={imgHobby} addClass="w3-third" />
-                    <ButtonLink title="School Projects" link="#" img={imgSchool} addClass="w3-third" />
-                </div>
-            </div>
-
-
-            <div className="w3-container w3-center w3-padding-16 section2">
-                <h1 className="w3-wide w3-center">Outside of work</h1>
-                <p>
-                    During my free time, I spend my time exploring and applying new technologies to small personal projects.<br />
-                    Outside of programming, I would occasionally play the piano, write fiction, play computer games and stream.<br />
-                    Currently, I am learning to draw pixel art by myself.
-                </p>
-            </div>
-        </>
+        </div>
     )
 }
 

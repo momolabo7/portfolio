@@ -39,14 +39,14 @@ function SimpleLink({title, desc, links})
 function Content() {
     return (
         <>
-            <div className="w3-container w3-center w3-padding-16 section1">
+            <div className="w3-container w3-center w3-padding-16 section-title">
                 <h1 className="w3-wide w3-center">Hobby Projects</h1>
                 <p className="w3-content w3-center">
                     Here are projects that I do during my free time for leisure and self-improvement!<br/>
                     Most of my projects' source code are publically avaliable in GitLab <a href="https://gitlab.com/momodevelop">here</a>.<br/>
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section2">
+            <div className="w3-container w3-center w3-padding-16 section-content">
                 <h3 className="w3-wide w3-center">Games and Simulations</h3>
                 <SimpleLink title="Malony" desc="Unity3D Game" links={[
                     ["https://gitlab.com/momodevelop/mallory", "git"],

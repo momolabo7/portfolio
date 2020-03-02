@@ -7,7 +7,7 @@ import Footer from 'components/Footer'
 function Content() {
     return (
         <>
-            <div className="w3-container w3-center w3-padding-16 section1">
+            <div className="w3-container w3-center w3-padding-16 section-title">
                 <h1 className="w3-wide w3-center ">Gods Only Love Me</h1>
                 <iframe width="800" height="400" src="https://www.youtube.com/embed/HTAWzQmVXto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p>
@@ -20,7 +20,7 @@ function Content() {
                 </p>
             </div>
 
-            <div className="w3-container w3-center w3-padding-16 section2">
+            <div className="w3-container w3-center w3-padding-16 section-content">
                 <h3 className="w3-wide w3-center">Responsibilities</h3>
                 <p>
                     Lead Designer.<br/>
