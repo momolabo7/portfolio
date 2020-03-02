@@ -1,6 +1,6 @@
 body {
     font-family: "Ubuntu", sans-serif;
-    background-color:rgb(194, 248, 255);
+    background-color:#94daff;
     font-size: 18px;
     color: rgb(37, 37, 37);
 }
@@ -69,8 +69,23 @@ footer {
     
 }
 
-.work-button-link-container {
-    position: relative;    
+.button-resume {
+    font-family: "Ubuntu", sans-serif;
+    background-color:rgb(245, 245, 245);
+    font-size: 24px;
+    color: rgb(37, 37, 37);
+    border-color: black;
+    cursor: pointer;
+}
+
+.button-resume:hover {
+    background-color:rgb(110, 110, 110);
+    color: rgb(245, 245, 245);
+    border-color: black;
+}
+
+.work-button-container {
+    padding: 8px;
 }
 
 .work-button-link-a {
@@ -82,9 +97,9 @@ footer {
     display: block;
     height: auto;
     max-width: 360px;
+    border: 2px solid #4d4d4d;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid #4d4d4d
 }
 
 .work-button-link-overlay {
@@ -92,9 +107,9 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
+    top: 0;
     background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.5), rgba(0,0,0,0), rgba(0,0,0,0));
-
-    width: 100%;
+    width: 95%;
     height: 100%;
     max-width: 360px;
     margin-left: auto;

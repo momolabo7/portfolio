@@ -7,8 +7,8 @@ import imgNyaga from 'img/professional/main/nyaga.jpg'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section-content">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-wide w3-center ">Nobunyaga's Ambition</h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgNyaga} /> 
                 <p>
@@ -22,8 +22,10 @@ function Content() {
                     I was part of the Singapore team for more than 2 years.<br />
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section-content">
-                <h3 className="w3-wide w3-center">Responsibilities</h3>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Lead localization subteam<br />
                     Resolved bugs reported by customers<br />
@@ -39,7 +41,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 

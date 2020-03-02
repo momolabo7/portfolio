@@ -8,10 +8,10 @@ import imgTaishi from 'img/professional/main/taishi.jpg'
 function Content() {
     return (
         <div className="container">
-            <div className="w3-container w3-center section-title">
+            <div className="w3-container w3-center">
                 <h1 className="w3-wide w3-center">Nobunaga's Ambition: Taishi</h1>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section-content">
+            <div className="w3-container w3-center w3-padding-16">
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgTaishi} /> 
                 <p>
                     <b>Nobunaga's Ambition: Taishi</b> is a AAA title by Koei Tecmo.<br />
@@ -24,7 +24,7 @@ function Content() {
             <div className="w3-container w3-center section-title">
                 <h1 className="w3-wide w3-center">Responsibilities</h1>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section-content">
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Introduced CD/CI (Jenkins) to the team and subsequently to the company, improving team productivity.<br />
                     Discussed with designers, artists and programmers about visual bugs due to localization.<br />

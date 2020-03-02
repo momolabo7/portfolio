@@ -7,8 +7,8 @@ import imgAKB from 'img/professional/main/akb48.jpg'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section-title">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-wide w3-center ">AKB48's Ambition</h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgAKB} /> 
                 <p>
@@ -20,8 +20,10 @@ function Content() {
                     I was transfered to the overseas Japan team to work on this project for more than a year for training.<br />
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section-content">
-                <h3 className="w3-wide w3-center">Responsibilities</h3>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Performed weekly maintenance<br />
                     Resolved bugs reported by customers<br />
@@ -33,7 +35,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 

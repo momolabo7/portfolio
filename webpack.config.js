@@ -6,7 +6,6 @@ const baseTemplate = "./src/base_template.html"
 const pageNames = [
   "index",
 
-  "professional",
   "professional_lecturer",
   "professional_nyaga",
   "professional_akb48",
@@ -14,9 +13,6 @@ const pageNames = [
   "professional_rtk13",
   "professional_taishi",
 
-  "hobby",
-
-  "school",
   "school_dotsncircles",
   "school_hit",
   "school_echolight",
@@ -50,7 +46,7 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|pdf)$/,
         use: ["file-loader"],
       }
     ]
@@ -60,7 +56,8 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, './src/components/'),
       img: path.resolve(__dirname, './src/img/'),
-      css: path.resolve(__dirname, './src/css/')
+      css: path.resolve(__dirname, './src/css/'),
+      downloads: path.resolve(__dirname, './src/downloads/')
     }
   },
 

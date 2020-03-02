@@ -7,8 +7,8 @@ import img from 'img/school/main/banner_hit.jpg'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section-title">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-wide w3-center ">Heavy Indestructable Tanks</h1>
 
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={img} /> 
@@ -21,9 +21,10 @@ function Content() {
                 The game is mostly coded from ground up using C/C++. Only the FMOD library is used.<br/>
                 </p>
             </div>
-
-            <div className="w3-container w3-center w3-padding-16 section-content">
-                <h3 className="w3-wide w3-center">Responsibilities</h3>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Technical Lead.
                     Created the Physics and Collision Engine. <br/>
@@ -34,7 +35,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 

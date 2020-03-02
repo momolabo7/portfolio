@@ -6,8 +6,8 @@ import Footer from 'components/Footer'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section-title">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-wide w3-center ">Gods Only Love Me</h1>
                 <iframe width="800" height="400" src="https://www.youtube.com/embed/HTAWzQmVXto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p>
@@ -19,9 +19,10 @@ function Content() {
                 The motivation for this project is to delve into mobile games development, because we recognized that mobiles apps were becoming the next big thing.<br/>
                 </p>
             </div>
-
-            <div className="w3-container w3-center w3-padding-16 section-content">
-                <h3 className="w3-wide w3-center">Responsibilities</h3>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Lead Designer.<br/>
                     Determined the direction, flow and objectives of the project.<br/>
@@ -31,7 +32,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 

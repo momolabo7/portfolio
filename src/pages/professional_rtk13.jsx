@@ -7,8 +7,8 @@ import imgRTK from 'img/professional/main/rtk13.jpg'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section-content">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-center ">Romance of the Three Kingdoms 13 with Power Up Kit </h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgRTK} /> 
                 <p>
@@ -20,8 +20,10 @@ function Content() {
                     
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section-content">
-                <h3 className="w3-wide w3-center">Responsibilities</h3>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Lead the team for Korean localization, programmer for English localization<br />
                     Introduced CD/CI (Jenkins) to the team and subsequently to the company, improving team productivity.<br />
@@ -35,7 +37,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 
