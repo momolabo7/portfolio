@@ -13,9 +13,8 @@ body {
     margin-bottom: 8px;
     border-bottom: 1px solid;
 }
-.section {
-    padding-top: 48px;
-}
+.section {}
+
 .container {
     width: 80%;
     margin: auto;
@@ -23,6 +22,10 @@ body {
 .section-content {
     padding-top: 16px;
     padding-bottom: 16px;
+}
+
+.w3-padding-8 {
+    padding: 8px;
 }
 
 

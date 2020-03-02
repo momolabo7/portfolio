@@ -13,7 +13,7 @@ function ExplodeLinks(links)
         // add comma if not last element
         if(i < links.length - 1) {
             ret.push(
-                <>,&nbsp;</>
+                <React.Fragment key={href +","}>,&nbsp;</React.Fragment>
             )
         }
     }
