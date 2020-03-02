@@ -23,6 +23,7 @@ import imgGundam from 'img/professional/button/gundam_heroes.jpg'
 import imgMallory from 'img/personal/mallory.jpg'
 import imgKarusDream from 'img/personal/karus_dream.jpg'
 import imgPathfinding from 'img/personal/pathfinding.jpg'
+import imgSudoku from 'img/personal/sudoku.jpg'
 import pdfResume from 'downloads/resume.pdf'
 
 
@@ -95,18 +96,20 @@ function Content() {
                         <ImgButtonLink imgTitle="Mallory" imgSrc={imgMallory}  linkTitle="Unity3D Game" links={[
                             ["https://gitlab.com/momodevelop/mallory", "git"],
                             ["https://momohoudai.itch.io/mallory", "site"]
-                        ]} className="w3-col s12 m6 l4"/>
+                        ]} className="w3-col s12 m6 l3"/>
                         
                         <ImgButtonLink imgTitle="Karu's Dream" imgSrc={imgKarusDream}  linkTitle="SDL2 Game" links={[
                             ["https://gitlab.com/momodevelop/mallory", "git"],
                             ["https://momohoudai.itch.io/mallory", "site"]
-                        ]} className="w3-col s12 m6 l4"/>
+                        ]} className="w3-col s12 m6 l3"/>
                         
                         <ImgButtonLink imgTitle="Pathfinding Visualizer" imgSrc={imgPathfinding}  linkTitle="ReactJS Sim" links={[
                             ["https://gitlab.com/momodevelop/react-pathfinding-visualizer", "git"],
                             ["https://momodevelop.gitlab.io/react-pathfinding-visualizer/", "site"]
-                        ]} className="w3-col s12 m6 l4"/>
-                       
+                        ]} className="w3-col s12 m6 l3"/>
+                        <ImgButtonLink imgTitle="PySudoku" imgSrc={imgSudoku}  linkTitle="Python Game" links={[
+                            ["https://gitlab.com/momodevelop/python-sudoku", "git"],
+                        ]} className="w3-col s12 m6 l3"/>
                      </div>
                     
                       <h3 className="w3-wide w3-center">Libraries</h3>
