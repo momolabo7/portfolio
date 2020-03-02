@@ -53,7 +53,7 @@ function Content() {
     return (
         <div className = "container">
             <div className="w3-padding-8" id="about">&nbsp;</div>
-            <div className="section" id="about">
+            <div className="section">
                 <Title title="About Me"/>
 
                 <div className="w3-container w3-center">
@@ -67,7 +67,7 @@ function Content() {
             </div>
 
             <div className="w3-padding-8" id="portfolio">&nbsp;</div>
-            <div className="section" id="portfolio">
+            <div className="section">
                
                 <Title title="Portfolio - Professional Projects"/>
                 <div className="w3-container w3-center">       
@@ -152,9 +152,9 @@ function Content() {
                 </div>
             </div>
 
-            <div className="w3-hide-large w3-padding-16" id="skills">&nbsp;</div>
+            <div className="w3-padding-16" id="skills">&nbsp;</div>
 
-            <div className="section" id="skills">
+            <div className="section">
                 <Title title="Skills" />
                 <div  className="w3-container w3-center w3-padding-16"> 
                     <form method="get" action={pdfResume}>
