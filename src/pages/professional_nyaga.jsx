@@ -8,7 +8,7 @@ import imgNyaga from 'img/professional/main/nyaga.jpg'
 function Content() {
     return (
         <>
-            <div className="w3-container w3-center w3-padding-16 section-title">
+            <div className="w3-container w3-center w3-padding-16 section-content">
                 <h1 className="w3-wide w3-center ">Nobunyaga's Ambition</h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgNyaga} /> 
                 <p>

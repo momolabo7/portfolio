@@ -11,6 +11,7 @@ import imgHit from 'img/school/button/hit.jpg'
 import imgNightmare from 'img/school/button/nightmare.jpg'
 import imgEcholight from 'img/school/button/echolight.jpg'
 
+
 const projects = [
     ["Dots and Circles", "school_dotsncircles.html", imgDnC],
     ["Nightmare", "school_nightmare.html", imgNightmare],

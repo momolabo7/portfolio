@@ -8,7 +8,7 @@ import imgRTK from 'img/professional/main/rtk13.jpg'
 function Content() {
     return (
         <>
-            <div className="w3-container w3-center w3-padding-16 section-title">
+            <div className="w3-container w3-center w3-padding-16 section-content">
                 <h1 className="w3-center ">Romance of the Three Kingdoms 13 with Power Up Kit </h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgRTK} /> 
                 <p>
@@ -25,10 +25,10 @@ function Content() {
                 <p>
                     Lead the team for Korean localization, programmer for English localization<br />
                     Introduced CD/CI (Jenkins) to the team and subsequently to the company, improving team productivity.<br />
-                    Converted user input to cater for half-width English characters.<br />
                     In charge of porting to Xbox One and figuring out XDK. <br />
                     Discussed with designers, artists and programmers about visual bugs due to localization.<br />
                     Mentored and guided juniors who are new to the company and team.<br />
+                    Implemented several localization-related features. <br/>
                     Resolved bugs reported by customers.<br />
                     Ensured code quality.<br />
                 </p>
