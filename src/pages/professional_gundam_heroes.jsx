@@ -7,8 +7,8 @@ import imgGundam from 'img/professional/main/gundam_heroes.jpg'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section1">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-wide w3-center ">Gundam Heroes</h1>
                 <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgGundam} /> 
                 <p>
@@ -20,8 +20,10 @@ function Content() {
                     My team is in charge of implementing features outside of the actual game like lobbies, guild, player stats, etc.<br />
                 </p>
             </div>
-            <div className="w3-container w3-center w3-padding-16 section2">
-                <h3 className="w3-wide w3-center">Responsibilities</h3>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
                     Lead team based in Singapore.<br />
                     Implemented several out-of-game features.<br />
@@ -32,7 +34,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 

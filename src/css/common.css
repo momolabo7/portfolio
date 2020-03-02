@@ -1,19 +1,39 @@
 body {
     font-family: "Ubuntu", sans-serif;
-    background-color: #000000;
+    background-color:#94daff;
     font-size: 18px;
-    color: #091f2e;
+    color: rgb(37, 37, 37);
 }
 
-.section1 {
-    background-color: #bbe1fa;
+.navbar {
+    width: 80%
+}
+.section-title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid;
+}
+.section {}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+.section-content {
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
-.section2 {
-    background-color: #9ed6fc;
+.w3-padding-8 {
+    padding: 8px;
 }
 
-h1, h3 {
+
+.no-margin {
+    margin: 0
+}
+
+h1, h2, h3 {
     font-weight: bold
 }
 
@@ -22,7 +42,7 @@ h1, h3 {
 }
 
 .profile-back{
-    background-color:#3282b8;
+    background-color:#1e80b4;
     padding-top: 25px;
 }
 .profile {
@@ -52,8 +72,23 @@ footer {
     
 }
 
-.work-button-link-container {
-    position: relative;    
+.button-resume {
+    font-family: "Ubuntu", sans-serif;
+    background-color:rgb(245, 245, 245);
+    font-size: 24px;
+    color: rgb(37, 37, 37);
+    border-color: black;
+    cursor: pointer;
+}
+
+.button-resume:hover {
+    background-color:rgb(110, 110, 110);
+    color: rgb(245, 245, 245);
+    border-color: black;
+}
+
+.work-button-container {
+    padding: 8px;
 }
 
 .work-button-link-a {
@@ -64,10 +99,10 @@ footer {
     width: 100%;
     display: block;
     height: auto;
-    max-width: 480px;
+    max-width: 360px;
+    border: 2px solid #4d4d4d;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid #4d4d4d
 }
 
 .work-button-link-overlay {
@@ -75,11 +110,11 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
+    top: 0;
     background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.5), rgba(0,0,0,0), rgba(0,0,0,0));
-
-    width: 100%;
+    width: 95%;
     height: 100%;
-    max-width: 480px;
+    max-width: 360px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -89,68 +124,6 @@ footer {
     top: 5%;
     color: white;
     text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
 }
-
-/*
-.portfolio-img-container {
-    position: relative;
-    width: 100%;
-}
-.portfolio-img{
-    opacity: 1;
-    height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
-    border: 2px solid #000000
-}
-
-.portfolio-img-overlay{
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-.portfolio-img-overlay-text{
-    transition: .5s ease;
-    background-color: rgb(73, 77, 73);
-    color: white;
-    font-size: 18px;
-    padding: 8px 8px;
-    position: relative;
-    margin: 0 auto;
-    width: 40%;
-    text-align: center;
-}
-
-.portfolio-img-overlay-text:hover{
-    background-color: rgb(206, 206, 206);
-    color: black;
-    font-size: 18px;
-    padding: 8px 8px;
-    position: relative;
-    margin: 0 auto;
-    width: 40%;
-    text-align: center;
-    
-}
-
-.portfolio-img-overlay-link {
-    display: block; 
-    height:100%;
-}
-
-a:hover {
-    color: grey
-}
-
-.portfolio-img-container:hover .portfolio-img {
-    opacity: 0.3;
-}
-  
-.portfolio-img-container:hover .portfolio-img-overlay{
-    opacity: 1;
-}*/

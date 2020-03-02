@@ -7,8 +7,8 @@ import imgLecturer from 'img/professional/main/lecturer.jpg'
 
 function Content() {
     return (
-        <>
-            <div className="w3-container w3-center w3-padding-16 section1">
+        <div className="container">
+            <div className="w3-container w3-center w3-padding-16">
                 <h1 className="w3-wide w3-center">Lecturer in DigiPen Singapore</h1>
                 <img className="w3-round-xxlarge" loading="lazy" src={imgLecturer} /> 
                 <p className="w3-content w3-padding-16 ">
@@ -37,7 +37,7 @@ function Content() {
             </div>
 
         
-        </>
+        </div>
     )
 }
 

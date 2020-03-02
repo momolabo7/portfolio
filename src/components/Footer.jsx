@@ -12,7 +12,7 @@ function Footer() {
             <p className="footer-copyright-text">
                 © 2020 by Gerald Wong. 
             </p> 
-            
+        
         </footer>
     )
     

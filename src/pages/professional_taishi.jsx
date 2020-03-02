@@ -3,36 +3,34 @@ import ReactDOM from 'react-dom';
 import 'css/common.css';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import imgLecturer from 'img/professional/main/lecturer.jpg'
+import imgTaishi from 'img/professional/main/taishi.jpg'
 
 function Content() {
     return (
-        <div className="w3-content content">
+        <div className="container">
+            <div className="w3-container w3-center">
+                <h1 className="w3-wide w3-center">Nobunaga's Ambition: Taishi</h1>
+            </div>
             <div className="w3-container w3-center w3-padding-16">
-                <h1 className="w3-wide w3-center">Lecturer in DigiPen Singapore</h1>
-                <img className="w3-round-xxlarge" loading="lazy" src={imgLecturer} /> 
-                <p className="w3-content w3-padding-16">
-                    I spent close to 2 years working in <b><a href="https://www.digipen.edu.sg/">DigiPen Institute of Technology, Singapore</a></b> as a full-time Lecturer in the Department of Computer Science.
-                    My main responsibility is to conduct classes for <a href="https://www.digipen.edu.sg/admissions/undergraduate-degree-programs"><b>Undergraduate</b></a> and <a href="https://www.digipen.edu.sg/academics/continuing-education"><b>Attach and Train</b></a> modules.
-                </p>
-                <h3 className="w3-wide w3-center"> Topics Taught </h3>
+                <img className="w3-round-xxlarge w3-border w3-border-black" loading="lazy" src={imgTaishi} /> 
                 <p>
-                    C/C++ Programming Language<br />
-                    C# Programming Language<br />
-                    Software Design Patterns<br />
-                    Data Structures and Algorithms<br />
-                    Object Oriented Programming<br />
-                    Unity3D Development<br />
-                    Game Development Pipelines and Techniques<br />
-                    Applied Mathematics for Electronic Engineering<br />
+                    <b>Nobunaga's Ambition: Taishi</b> is a AAA title by Koei Tecmo.<br />
+                    It is a historical simulation strategy game based on the Warring States of Japan.<br/>
+                    It is avaliable on PC and PS4.<br />
+                    My team is involved in localizing the game into English.<br />
+                    
                 </p>
-                <br />
-                <h3 className="w3-wide w3-center">Other Responsibilities</h3>
+            </div>
+            <div className="w3-container w3-center section-title">
+                <h1 className="w3-wide w3-center">Responsibilities</h1>
+            </div>
+            <div className="w3-container w3-center w3-padding-16">
                 <p>
-                    Involved in outreach programs, teaching high school students game development<br />
-                    Conducted interviews for potential lecturers joining the school<br />
-                    Conducted admission interviews for <b>Undergraduate</b> and <b>Attach and Train</b> programs<br />
-                    Developed and improved modules<br />
+                    Introduced CD/CI (Jenkins) to the team and subsequently to the company, improving team productivity.<br />
+                    Discussed with designers, artists and programmers about visual bugs due to localization.<br />
+                    Mentored and guided juniors who are new to the company and team.<br />
+                    Implemented several localization-related features. <br/>
+                    Ensured code quality.<br />
                 </p>
             </div>
 
