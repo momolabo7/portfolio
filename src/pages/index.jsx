@@ -116,10 +116,13 @@ function Content() {
                     </div>
                     
                     <h3 className="w3-wide w3-center">Libraries</h3>
+                        <SimpleLink title="Lego Allocators" desc="C++ memory allocators" links={[
+                            ["https://gitlab.com/momodevelop/cpp-lego-allocators", "git"],
+                        ]} />
                         <SimpleLink title="Simpool" desc="A simple object pool for Unity3D" links={[
                             ["https://gitlab.com/momodevelop/unity_simpool", "git"],
                         ]} />
-                        <SimpleLink title="C++ Generic Easing Functions" desc="templated easing functions" links={[
+                        <SimpleLink title="Generic Easing Functions" desc="C++ templated easing functions" links={[
                             ["https://gitlab.com/momodevelop/cpp-generic-easing-functions", "git"],
                         ]} />
                         <h3 className="w3-wide w3-center">Chat Bots</h3>
@@ -128,10 +131,12 @@ function Content() {
                         ]} />
 
                         <SimpleLink title="CocBot" desc="CoC TRPG Utility Discord Bot" links={[
-                            ["https://gitlab.com/momodevelop/discord-coc-bot", "git"],
+                            ["https://gitlab.com/momodevelop/discordgo-coc-bot", "golang-git"],
+                            ["https://gitlab.com/momodevelop/discord-coc-bot", "nodeJS-git"],
                         ]} />
                         <SimpleLink title="NecronicaBot" desc="Necronica TRPG Utility Discord Bot" links={[
-                            ["https://gitlab.com/momodevelop/discord-necronica-bot", "git"],
+                            ["https://gitlab.com/momodevelop/discordgo-necronica-bot", "golang-git"],
+                            ["https://gitlab.com/momodevelop/discord-necronica-bot", "nodeJS-git"],
                         ]} />
                         <SimpleLink title="SuiBot" desc="Utility Discord Bot for friends" links={[
                             ["https://gitlab.com/momodevelop/discordgo-sui-bot", "golang-git"],
