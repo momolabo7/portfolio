@@ -26,6 +26,7 @@ import imgPathfinding from 'img/personal/pathfinding.jpg'
 import imgSudoku from 'img/personal/sudoku.jpg'
 import imgNpuzzle from 'img/personal/npuzzle.jpg'
 import imgFlocking from 'img/personal/flocking.jpg'
+import imgUnknown from 'img/unknown.jpg'
 import pdfResume from 'downloads/resume.pdf'
 
 
@@ -39,6 +40,7 @@ const schoolProjects = [
 
 
 const proProjects = [
+    ["Untitled Game", "#", imgUnknown],
     ["Nobunaga's Ambition: Taishi", "professional_taishi.html", imgTaishi],
     ["RTK13", "professional_rtk13.html", imgRTK13],
     ["Gundam Heroes", "professional_gundam_heroes.html", imgGundam],
@@ -98,14 +100,18 @@ function Content() {
                     <div className="w3-container w3-center w3-padding-16">
                     <h3 className="w3-wide w3-center">Games and Simulations</h3>
                     <div className="w3-row w3-padding-16">
+                        <ImgButtonLink imgTitle="Handmade Engine" imgSrc={imgUnknown}  linkTitle="2D Game Engine From Scratch" links={[
+                            ["https://gitlab.com/momodevelop/dots-and-circles", "git"],
+                        ]} className="w3-col s12 m6 l4 w3-padding-bottom-16"/>
+
                         <ImgButtonLink imgTitle="Mallory" imgSrc={imgMallory}  linkTitle="Unity3D Game" links={[
                             ["https://gitlab.com/momodevelop/mallory", "git"],
                             ["https://momohoudai.itch.io/mallory", "site"]
                         ]} className="w3-col s12 m6 l4 w3-padding-bottom-16"/>
                         
                         <ImgButtonLink imgTitle="Karu's Dream" imgSrc={imgKarusDream}  linkTitle="ECS SDL2 Game" links={[
-                            ["https://gitlab.com/momodevelop/mallory", "git"],
-                            ["https://momohoudai.itch.io/mallory", "site"]
+                            ["https://gitlab.com/momodevelop/game-karu-dream", "git"],
+                            ["https://momohoudai.itch.io/karudream", "site"]
                         ]} className="w3-col s12 m6 l4 w3-padding-bottom-16"/>
                         
                         <ImgButtonLink imgTitle="Pathfinding Visualizer" imgSrc={imgPathfinding}  linkTitle="ReactJS Sim" links={[
@@ -188,7 +194,7 @@ function Content() {
                             "SVN/GIT",
                             "ReactJS",
                             "NodeJS",
-                            "Linux environment",
+                            "Linux environments",
                             "PS4/XBone development",
                             "Microsoft Office"
                         ]} className="w3-third" />
@@ -196,13 +202,14 @@ function Content() {
                     <ColumnList title="Langauges" skillsArray={[
                         "C/C++", 
                         "C#",
+                        "Golang",
                         "Java",
                         "HTML5/CSS/JS",
                         "Python",
-                        "Golang",
                         "MySQL",
                         "PHP",
                         "Typescript",
+                        "Rust"
                         ]}  className="w3-third"/>
 
                     <ColumnList title="Others" skillsArray={[
