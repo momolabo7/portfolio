@@ -73,7 +73,7 @@ function Content() {
             <div className="w3-padding-8" id="portfolio">&nbsp;</div>
             <div className="section">
                
-                <Title title="Portfolio - Professional Projects"/>
+                <Title title="Professional Projects"/>
                 <div className="w3-container w3-center">       
                     <div className="w3-container w3-center w3-padding-16 w3-row ">
                         {
@@ -85,7 +85,7 @@ function Content() {
                     </div>
                 </div>
             
-                <Title title="Portfolio - Student Projects" />
+                <Title title="Student Projects" />
                 <div className="w3-container w3-center">           
                     <div className="w3-container w3-center w3-padding-16 w3-row">
                         {
@@ -96,7 +96,7 @@ function Content() {
                         }
                     </div>
                 </div>
-                <Title title="Portfolio - Personal Projects"/>
+                <Title title="Personal Projects"/>
                     <div className="w3-container w3-center w3-padding-16">
                     <h3 className="w3-wide w3-center">Games and Simulations</h3>
                     <div className="w3-row w3-padding-16">
@@ -132,44 +132,10 @@ function Content() {
                             ["https://gitlab.com/momodevelop/python-sudoku", "git"],
                         ]} className="w3-col s12 m6 l4 w3-padding-bottom-16"/>
                     </div>
-                    
-                    <h3 className="w3-wide w3-center">Libraries</h3>
-                        <SimpleLink title="Lego Allocators" desc="C++ memory allocators" links={[
-                            ["https://gitlab.com/momodevelop/cpp-lego-allocators", "git"],
-                        ]} />
-                        <SimpleLink title="Simpool" desc="A simple object pool for Unity3D" links={[
-                            ["https://gitlab.com/momodevelop/unity_simpool", "git"],
-                        ]} />
-                        <SimpleLink title="Generic Easing Functions" desc="C++ templated easing functions" links={[
-                            ["https://gitlab.com/momodevelop/cpp-generic-easing-functions", "git"],
-                        ]} />
-                        <h3 className="w3-wide w3-center">Chat Bots</h3>
-                        <SimpleLink title="KaruBot" desc="Splatoon 2 Utility Discord Bot" links={[
-                            ["https://gitlab.com/momodevelop/discord-karu-bot", "git"],
-                        ]} />
-
-                        <SimpleLink title="CocBot" desc="CoC TRPG Utility Discord Bot" links={[
-                            ["https://gitlab.com/momodevelop/discordgo-coc-bot", "golang-git"],
-                            ["https://gitlab.com/momodevelop/discord-coc-bot", "nodeJS-git"],
-                        ]} />
-                        <SimpleLink title="NecronicaBot" desc="Necronica TRPG Utility Discord Bot" links={[
-                            ["https://gitlab.com/momodevelop/discordgo-necronica-bot", "golang-git"],
-                            ["https://gitlab.com/momodevelop/discord-necronica-bot", "nodeJS-git"],
-                        ]} />
-                        <SimpleLink title="SuiBot" desc="Utility Discord Bot for friends" links={[
-                            ["https://gitlab.com/momodevelop/discordgo-sui-bot", "golang-git"],
-                            ["https://gitlab.com/momodevelop/discord-sui-bot", "nodeJS-git"],
-                        ]} />                
-                        <SimpleLink title="SuiBot" desc="Utility Telegram Bot for friends" links={[
-                            ["https://gitlab.com/momodevelop/telegram-sui-bot", "git"],
-                        ]} />
-                        <SimpleLink title="YuuBot" desc="Random Animal Image Discord Bot friends" links={[
-                            ["https://gitlab.com/momodevelop/discord-yuu-bot", "git"],
-                        ]} />
-                   <br />
+ 
                 </div>
 
-                <Title title="Portfolio - Others"/>
+                <Title title="Others"/>
                 <div className="w3-container w3-center w3-padding-16">
                     <ImgButton title="Lecturer at DigiPen Singapore" link="professional_lecturer.html" img={imgLecturer} />
                 </div>
