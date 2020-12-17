@@ -4,20 +4,31 @@ const favIcon = "./src/favicon.ico"
 const baseTemplate = "./src/base_template.html"
 
 const pageNames = [
-  "index",
+    "index",
+    "about",
 
-  "professional_lecturer",
-  "professional_nyaga",
-  "professional_akb48",
-  "professional_gundam_heroes",
-  "professional_rtk13",
-  "professional_taishi",
+    "projects",
+    "projects_flocking",
+    "projects_npuzzle",
+    "projects_handmade_dnc",
+    "projects_mallory",
+    "projects_karus_dream",
+    "projects_pathfinding",
 
-  "school_dotsncircles",
-  "school_hit",
-  "school_echolight",
-  "school_nightmare",
-  "school_godsloveme"
+    "industry",
+    "industry_lecturer",
+    "industry_nyaga",
+    "industry_akb48",
+    "industry_gundam_heroes",
+    "industry_rtk13",
+    "industry_taishi",
+
+    "student",
+    "student_dotsncircles",
+    "student_hit",
+    "student_echolight",
+    "student_nightmare",
+    "student_godsloveme",
 ]
 
 const htmlWebPackPlugins = [];
@@ -48,6 +59,10 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif|pdf)$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.md$/i,
+        use: 'raw-loader'
       }
     ]
   },
@@ -57,7 +72,8 @@ module.exports = {
       components: path.resolve(__dirname, './src/components/'),
       img: path.resolve(__dirname, './src/img/'),
       css: path.resolve(__dirname, './src/css/'),
-      downloads: path.resolve(__dirname, './src/downloads/')
+      downloads: path.resolve(__dirname, './src/downloads/'),
+      md: path.resolve(__dirname, './src/md/')
     }
   },
 

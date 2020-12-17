@@ -1,13 +1,15 @@
 import React from 'react'
-import Navbar from 'components/Navbar'
-import Profile from 'components/Profile'
+import profilePic from 'img/profile_pic.jpg'
 
-function Header() {
+function Header({title}) {
     return (
-        <>
-            <Navbar/>
-            <Profile/>
-        </>
+        <div className="profile">
+            <a href="index.html">
+                <img className="profile-img-back" src={profilePic} loading="lazy"/>
+            </a>
+            <div className="profile-text">Gerald's Stuff</div>
+            <div className="profile-subtext">{title}</div>
+        </div>
     )
     
 }

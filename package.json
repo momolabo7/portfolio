@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "The project is up here! https://momodevelop.gitlab.io/portfolio",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "react-markdown": "^5.0.3"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
@@ -12,6 +14,7 @@
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "raw-loader": "^4.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "style-loader": "^1.1.3",

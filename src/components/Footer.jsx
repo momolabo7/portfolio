@@ -3,14 +3,12 @@ import React from 'react'
 
 function Footer() {
     return (
-        <footer className="w3-container w3-padding-16 w3-center w3-large">
-            <p className="footer-text">Powered by Gitlab! 
-            <br /> 
-            (and written by myself)
-            <br />
-            </p>
+        <footer>
+            <p className="footer-text">Stay Connected!</p>
+            
+            <p>TODO:contact here</p>
             <p className="footer-copyright-text">
-                © 2020 by Gerald Wong. 
+                © 2020 Gerald Wong 
             </p> 
         
         </footer>
