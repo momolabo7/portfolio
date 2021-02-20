@@ -106,7 +106,6 @@ footer {
 .showcase-embed {
     position: relative;
     margin: 0 auto;
-    max-width: 50em;
     padding-bottom: 28em;
 }
 .showcase-embed iframe {
