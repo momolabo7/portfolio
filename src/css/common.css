@@ -84,9 +84,11 @@ footer {
 
 .showcase-img-wrapper {
     height: auto;
-    position: relative; 
+    position: relative;
+/*
     max-width: 50rem;
     margin: 0 auto;
+    */
 }
 
 .showcase-img {
@@ -103,8 +105,10 @@ footer {
 .showcase-text {
    font-size: 1.3em; 
    line-height: 1.5;
+/*   
    max-width: 52rem;
    margin: 0 auto;
+   */
    padding: 0 1rem;
 }
 
@@ -122,4 +126,12 @@ footer {
     height: 100%;
 }
 
+@media screen and (min-width:1200px){
+    .container {
+        color: #dadada;
+        font-family: "Ubuntu", sans-serif;
+        max-width: 50rem;
+        margin: 0 auto;
+    }
+}
 
