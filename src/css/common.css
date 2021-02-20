@@ -48,19 +48,19 @@ body {
 }
 
 .profile {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding-top: 2em;
+    padding-bottom: 2em;
     margin: auto;
     text-align: center;
 }
 
 .profile-text{
-    font-size: 1.75em;
+    font-size: 3em;
     color: #dadada;
 }
 
 .profile-subtext {
-    font-size: 1.3em;
+    font-size: 2.7em;
     color: #888888;
 }
 
@@ -130,6 +130,23 @@ footer {
        font-size: 1.3em; 
        line-height: 1.5;
        padding: 0 1rem;
+    }
+
+    .profile {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        margin: auto;
+        text-align: center;
+    }
+
+    .profile-text{
+        font-size: 1.75em;
+        color: #dadada;
+    }
+
+    .profile-subtext {
+        font-size: 1.3em;
+        color: #888888;
     }
 
 }
