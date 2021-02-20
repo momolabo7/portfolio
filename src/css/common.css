@@ -2,6 +2,9 @@ body {
     background-color:#0f0f0f;
 }
 
+h1 {
+    font-size: 4em;
+}
 
 .container {
     color: #dadada;
@@ -71,10 +74,6 @@ footer {
     text-align: center;
 }
 
-.footer-text {
-    font-size: 24px;
-}
-
 .footer-copyright-text {
     font-size: 2em;
     color: white;
@@ -117,6 +116,10 @@ footer {
 
 /* Desktops */
 @media screen and (min-width:1200px){
+    h1 {
+        font-size: 2em;
+    }
+
     .container {
         color: #dadada;
         font-family: "Ubuntu", sans-serif;
