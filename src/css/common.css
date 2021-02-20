@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-    font-size: 3.2rem;
+    font-size: 3.5rem;
 }
 
 .container {
@@ -96,7 +96,7 @@ footer {
 
 .showcase-text {
    font-size: 3rem; 
-   line-height: 3rem;
+   line-height: 4rem;
    padding: 0 2rem;
 }
 
