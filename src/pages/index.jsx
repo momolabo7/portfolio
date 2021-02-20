@@ -20,13 +20,13 @@ function Content() {
     return (
         <div className="container">
             <div className="split"/>
-            <TopicButton title="Projects" link="projects.html" img={ ImgProjects } />    
+            <TopicButton title="Personal Projects" link="projects.html" img={ ImgProjects } />    
+            <div className="split"/>
+            <TopicButton title="About" link="about.html" img={ ImgAbout } />
             <div className="split"/>
             <TopicButton title="Industry Works" link="industry.html" img={ ImgIndustry } />
             <div className="split"/>
             <TopicButton title="Student Works" link="student.html" img={ ImgSchool } />
-            <div className="split"/>
-            <TopicButton title="About" link="about.html" img={ ImgAbout } />
         </div>
     )
 }
