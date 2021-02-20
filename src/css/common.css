@@ -85,10 +85,6 @@ footer {
 .showcase-img-wrapper {
     height: auto;
     position: relative;
-/*
-    max-width: 50rem;
-    margin: 0 auto;
-    */
 }
 
 .showcase-img {
@@ -99,16 +95,11 @@ footer {
     font-family: "Inconsolata", sans-serif;
     color: white;
     text-align: center;
-
 }
 
 .showcase-text {
-   font-size: 1.3em; 
+   font-size: 2em; 
    line-height: 1.5;
-/*   
-   max-width: 52rem;
-   margin: 0 auto;
-   */
    padding: 0 1rem;
 }
 
@@ -133,5 +124,13 @@ footer {
         max-width: 50rem;
         margin: 0 auto;
     }
+
+    .showcase-text {
+       font-size: 1.3em; 
+       line-height: 1.5;
+       padding: 0 1rem;
+    }
+
 }
+
 
