@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 2rem;
 }
 
 .container {
@@ -47,12 +47,12 @@ h1 {
 .profile-img-back{
     border-radius: 50%; 
     border: 2px solid #555555;
-    width: 20em;
+    width: 15rem;
 }
 
 .profile {
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     margin: auto;
     text-align: center;
 }
@@ -74,7 +74,7 @@ footer {
 }
 
 .footer-copyright-text {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     color: white;
     
 }
@@ -95,15 +95,15 @@ footer {
 }
 
 .showcase-text {
-   font-size: 3em; 
-   line-height: 1.5;
+   font-size: 2rem; 
+   line-height: 3rem;
    padding: 0 2rem;
 }
 
 .showcase-embed {
     position: relative;
     margin: 0 auto;
-    padding-bottom: 28em;
+    padding-bottom: 28rem;
 }
 .showcase-embed iframe {
     position: absolute;
@@ -116,7 +116,7 @@ footer {
 /* Desktops */
 @media screen and (min-width:1200px){
     h1 {
-        font-size: 2em;
+        font-size: 2.5rem;
     }
 
     .container {
@@ -127,25 +127,25 @@ footer {
     }
 
     .showcase-text {
-       font-size: 1.3em; 
-       line-height: 1.5;
+       font-size: 1.3rem; 
+       line-height: 2rem;
        padding: 0 1rem;
     }
 
     .profile-text{
-        font-size: 1.75em;
+        font-size: 1.75rem;
         color: #dadada;
     }
 
     .profile-subtext {
-        font-size: 1.3em;
+        font-size: 1.3rem;
         color: #888888;
     }
 
     .profile-img-back{
         border-radius: 50%; 
-        border: 2px solid #555555;
-        width: 10em;
+        border: 0.25rem solid #555555;
+        width: 10rem;
     }
 
     .topic-button-text {
@@ -159,7 +159,7 @@ footer {
     }
 
     .footer-copyright-text {
-        font-size: 1.5em;
+        font-size: 1.5rem;
         color: white;
         
     }
