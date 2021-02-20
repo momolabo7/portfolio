@@ -9,4 +9,4 @@ Pathfinding algorithms:
 * Dijkstra
 * A Star
 
-[git](https://gitlab.com/momodevelop/html) - [play](https://momodevelop.gitlab.io/html5-flocking/)
+[git](https://gitlab.com/momodevelop/html5-pathfinding-visualizer) - [play](https://momodevelop.gitlab.io/html5-pathfinding-visualizer/)
