@@ -1,5 +1,5 @@
 body {
-    background-color:#090909;
+    background-color:#1f1f1f;
 }
 
 
@@ -117,6 +117,7 @@ footer {
     height: 100%;
 }
 
+/* Desktops */
 @media screen and (min-width:1200px){
     .container {
         color: #dadada;
