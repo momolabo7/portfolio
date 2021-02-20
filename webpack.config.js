@@ -66,6 +66,7 @@ module.exports = {
       }
     ]
   },
+  stats: { children: false },
   resolve: {
     extensions: ['html', '.js', '.jsx'],
     alias: {
