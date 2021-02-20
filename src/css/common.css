@@ -122,12 +122,4 @@ footer {
     height: 100%;
 }
 
-@media(min-width:1200px){
-    .container {
-        color: #dadada;
-        font-family: "Ubuntu", sans-serif;
-        max-width: 50rem;
-        margin: 0 auto;
-    }
-}
 
