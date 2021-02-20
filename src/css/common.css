@@ -2,18 +2,10 @@ body {
     background-color:#090909;
 }
 
+
 .container {
     color: #dadada;
     font-family: "Ubuntu", sans-serif;
-    max-width: 50rem;
-    margin: 0 auto;
-}
-
-@media only screen and(min-width: 2000px) {
-    .container {
-        color: #dadada;
-        font-family: "Ubuntu", sans-serif;
-    }
 }
 
 .split {
@@ -129,3 +121,13 @@ footer {
     width: 100%;
     height: 100%;
 }
+
+@media(min-width:1200px){
+    .container {
+        color: #dadada;
+        font-family: "Ubuntu", sans-serif;
+        max-width: 50rem;
+        margin: 0 auto;
+    }
+}
+
