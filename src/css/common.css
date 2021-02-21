@@ -1,10 +1,16 @@
 body {
-    background-color:#0f0f0f;
+    background-color: #0f0f0f;
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 1.75rem;
 }
+
+p, ul {
+   font-size: 1.25rem; 
+   line-height: 1.75rem;
+}
+
 
 .container {
     color: #dadada;
@@ -31,14 +37,15 @@ h1 {
 }
 
 .topic-button-text {
-    font-size: 6rem;
+    font-size: 3rem;
     position: relative;
     font-family: "Ubuntu", sans-serif;
     margin: 0 auto;
-    padding: 16rem 2rem 16rem 2rem;
+    padding: 8rem 2rem 8rem 2rem;
     text-align: center;
     text-shadow: 0 0.2rem 0.4rem #000;
 }
+
 
 .topic-button {
     text-decoration: none;
@@ -47,7 +54,6 @@ h1 {
 .profile-img-back{
     border-radius: 50%; 
     border: 0.25rem solid #555555;
-    width: 15rem;
 }
 
 .profile {
@@ -58,12 +64,12 @@ h1 {
 }
 
 .profile-text{
-    font-size: 4rem;
+    font-size: 2rem;
     color: #dadada;
 }
 
 .profile-subtext {
-    font-size: 2.7em;
+    font-size: 1.5rem;
     color: #888888;
 }
 
@@ -74,7 +80,7 @@ footer {
 }
 
 .footer-copyright-text {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: white;
     
 }
@@ -95,8 +101,6 @@ footer {
 }
 
 .showcase-text {
-   font-size: 3rem; 
-   line-height: 4rem;
    padding: 0 2rem;
 }
 
@@ -118,7 +122,11 @@ footer {
     h1 {
         font-size: 2.5rem;
     }
-
+    
+    p {
+       font-size: 1.3rem; 
+       line-height: 2rem;
+    }
     .container {
         color: #dadada;
         font-family: "Ubuntu", sans-serif;
@@ -127,8 +135,6 @@ footer {
     }
 
     .showcase-text {
-       font-size: 1.3rem; 
-       line-height: 2rem;
        padding: 0 1rem;
     }
 
@@ -142,11 +148,6 @@ footer {
         color: #888888;
     }
 
-    .profile-img-back{
-        border-radius: 50%; 
-        border: 0.25rem solid #555555;
-        width: 10rem;
-    }
 
     .topic-button-text {
         font-size: 2.5rem;
