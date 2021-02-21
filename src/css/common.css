@@ -11,7 +11,15 @@ p, ul {
    line-height: 1.75rem;
 }
 
+a {
+   text-decoration: none;
+   border-bottom: 0.2rem solid #b5cfe6; 
+}
 
+a:hover {
+   text-decoration: none;
+   border-bottom: 0.2rem solid #E6B5CF; 
+}
 .container {
     color: #dadada;
     font-family: "Ubuntu", sans-serif;
@@ -46,7 +54,6 @@ p, ul {
     text-shadow: 0 0.2rem 0.4rem #000;
 }
 
-
 .topic-button {
     text-decoration: none;
 }
@@ -77,6 +84,8 @@ footer {
     font-family: "Inconsolata", sans-serif;
     color: white;
     text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .footer-copyright-text {
@@ -109,6 +118,7 @@ footer {
     margin: 0 auto;
     padding-bottom: 28rem;
 }
+
 .showcase-embed iframe {
     position: absolute;
     top: 0;
