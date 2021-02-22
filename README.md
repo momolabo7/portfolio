@@ -1,2 +1,2 @@
 It's hosted! 
-https://momodevelop.gitlab.io/portfolio/
+https://momodevelop.github.io/portfolio/
