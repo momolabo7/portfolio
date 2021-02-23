@@ -1,21 +1,31 @@
-{{ partial "main-begin" }}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">      
+        <link rel="stylesheet" href="/css/common.css">
+    </head>
+    <body>
 
-<div class="profile">
-    <a href="index.html">
-        <img class="profile-img-back" src="/img/profile.jpg" loading="lazy"/>
-    </a>
-    <div class="profile-text">Gerald's Stuff</div>
-    <div class="profile-subtext">{{ block "title" . }}{{end}}</div>
-</div>
+    <div class="profile">
+        <a href="index.html">
+            <img class="profile-img-back" src="/img/profile.jpg" loading="lazy"/>
+        </a>
+        <div class="profile-text">Gerald's Stuff</div>
+        <div class="profile-subtext">{{ block "title" . }}{{end}}</div>
+    </div>
 
 
-{{ block "main" .}} {{end}}
+    {{ block "main" .}} {{end}}
 
 
-<footer>
-    <p className="footer-copyright-text">
-        © 2020 Gerald Wong 
-    </p> 
-</footer>
+    <footer>
+        <p className="footer-copyright-text">
+            © 2021 Gerald Wong | Powered By Hugo | v1.0
+        </p> 
+    </footer>
 
-{{ partial "main-end" }}
+</body>
+</html>
