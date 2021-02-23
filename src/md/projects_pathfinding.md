@@ -9,4 +9,4 @@ Pathfinding algorithms:
 * Dijkstra
 * A Star
 
-[git](https://gitlab.com/momodevelop/react-pathfinding-visualizer) - [play](https://momodevelop.gitlab.io/react-pathfinding-visualizer/)
+[git](https://github.com/momodevelop/pathfinding-visualizer) - [play](https://momodevelop.github.io/pathfinding-visualizer/)

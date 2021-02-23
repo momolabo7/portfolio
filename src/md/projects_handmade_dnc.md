@@ -2,4 +2,4 @@ In the spirit of Handmade, this project is my attempt to write a game and a game
 
 The target game will be similar to the **Dots and Circles** student game I made with another friend. It will run on Windows although I hope to run it on Linux and even Raspberry Pi if possible. 
 
-[git](https://gitlab.com/momodevelop/dots-and-circles)
+[git](https://github.com/momodevelop/dots-and-circles)
