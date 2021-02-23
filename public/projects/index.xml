@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Personal Projects on Gerald&#39;s Website</title>
+    <link>http://example.org/projects/</link>
+    <description>Recent content in Personal Projects on Gerald&#39;s Website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://example.org/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flocking</title>
+      <link>http://example.org/projects/flocking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/projects/flocking/</guid>
+      <description>This is a flocking demo written in the very fun to use p5.js over a weekend. It is only tested on Chrome, so some features might not be avaliable on other browsers.
+git - play</description>
+    </item>
+    
+    <item>
+      <title>Handmade DnC</title>
+      <link>http://example.org/projects/dnc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/projects/dnc/</guid>
+      <description>In the spirit of Handmade, this project is my attempt to write a game and a game engine with as few libraries as possible. Libraries will only be used after thorough evaluation (e.g. cmaths is useful because it deals with intrinsics) but otherwise, everything else will be written from scratch.
+The target game will be similar to the Dots and Circles student game I made with another friend. It will run on Windows although I hope to run it on Linux and even Raspberry Pi if possible.</description>
+    </item>
+    
+    <item>
+      <title>Karu&#39;s Dream</title>
+      <link>http://example.org/projects/karus-dream/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/projects/karus-dream/</guid>
+      <description>Karu&amp;rsquo;s Dream is a game prototype written in C++17 using SDL2 with the EnTT library. It is a game where you play as Karu, trapped in a nightmare, a nightmare where he can only move left and right, and jump; he cannot stop. Monsters will appear from the sides to eat him and touching them is fatal. Equipped with only a sword, try to defeat as many monsters as possible!</description>
+    </item>
+    
+    <item>
+      <title>Mallory</title>
+      <link>http://example.org/projects/mallory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/projects/mallory/</guid>
+      <description>Mallory is a simple game prototype I made in Unity. It is an endless vertical jumping platformer, where players try to climb as high as they can and leave their mark!
+The motivation is to explore procedurally generated levels and also using Unity as an engine.
+I will probably create a more optimal desktop version some time in the future.
+git - play</description>
+    </item>
+    
+    <item>
+      <title>N-Puzzle</title>
+      <link>http://example.org/projects/npuzzle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/projects/npuzzle/</guid>
+      <description>This small project is simply an N-Puzzle demo and solver written in HTML5 using PhaserJS. The goal was to mostly to explore creating games in web-browser space, dealing with variable resolution changes and limitations with Javascript.
+The amazing random artworks were created by @hikaika_guu.
+Perhaps I&amp;rsquo;ll release a more optimized native version that can handle variable NxM puzzles one day&amp;hellip;
+git - play</description>
+    </item>
+    
+    <item>
+      <title>Pathfinding Visualizer</title>
+      <link>http://example.org/projects/pathfinding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/projects/pathfinding/</guid>
+      <description>This is a pathfinding visualizer and maze generator I wrote for my lectures related to data structures. It is written in ReactJS.
+Maze generation algorithms:
+ Recursive Division  Pathfinding algorithms:
+ Depth First Search Breadth First Search Dijkstra A Star  git - play</description>
+    </item>
+    
+  </channel>
+</rss>
