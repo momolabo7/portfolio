@@ -1,0 +1,44 @@
+{{ define "title" }} {{ .Title }} {{ end }} 
+
+{{ define "main" }}
+
+<div class="container">
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/projects/dnc" 
+        "Img" "/img/projects/btn-dnc.jpg"
+        "Text" "Handmade DnC"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/projects/karus-dream" 
+        "Img" "/img/projects/btn-karus-dream.jpg"
+        "Text" "Karu's Dream"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/projects/mallory" 
+        "Img" "/img/projects/btn-mallory.jpg"
+        "Text" "Mallory"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/projects/pathfinding-visualizer" 
+        "Img" "/img/projects/btn-pathfinding-visualizer.jpg"
+        "Text" "Pathfinding Visualizer"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/projects/flocking" 
+        "Img" "/img/projects/btn-flocking.jpg"
+        "Text" "Flocking Demo"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/projects/npuzzle" 
+        "Img" "/img/projects/btn-npuzzle.jpg"
+        "Text" "N-Puzzle Demo"
+    )}} 
+</div>
+
+{{ end }}

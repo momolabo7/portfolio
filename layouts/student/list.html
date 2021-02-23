@@ -1,0 +1,43 @@
+{{ define "title" }} {{ .Title }} {{ end }} 
+
+{{ define "main" }}
+
+<div class="container">
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/student/nightmare" 
+        "Img" "/img/student/btn-nightmare.jpg"
+        "Text" "Nightmare"
+        "Pos" "center"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/student/dnc" 
+        "Img" "/img/student/btn-dnc.jpg"
+        "Text" "Dots and Circles"
+        "Pos" "center"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/student/echolight" 
+        "Img" "/img/student/btn-echolight.jpg"
+        "Text" "Echolight"
+        "Pos" "center"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/student/hit" 
+        "Img" "/img/student/btn-hit.jpg"
+        "Text" "HIT"
+        "Pos" "center"
+    )}} 
+    <div class="split"></div>
+    {{ partial "main-topic-button" (dict 
+        "Link" "/student/gods" 
+        "Img" "/img/student/btn-gods.jpg"
+        "Text" "Gods Only Love Me"
+        "Pos" "center"
+    )}} 
+</div>
+
+{{ end }}

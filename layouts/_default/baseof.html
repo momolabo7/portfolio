@@ -1,0 +1,21 @@
+{{ partial "main-begin" }}
+
+<div class="profile">
+    <a href="index.html">
+        <img class="profile-img-back" src="/img/profile.jpg" loading="lazy"/>
+    </a>
+    <div class="profile-text">Gerald's Stuff</div>
+    <div class="profile-subtext">{{ block "title" . }}{{end}}</div>
+</div>
+
+
+{{ block "main" .}} {{end}}
+
+
+<footer>
+    <p className="footer-copyright-text">
+        © 2020 Gerald Wong 
+    </p> 
+</footer>
+
+{{ partial "main-end" }}
