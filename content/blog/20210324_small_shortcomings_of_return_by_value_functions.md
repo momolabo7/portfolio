@@ -57,7 +57,9 @@ struct string {
     int Count;
 };
 string CreateString(char* Buffer, int Cap) {
-    
+    string Ret = {};
+    Ret.Data = Buffer;
+    Ret.Cap = Cap;
 };
 
 struct foo {
@@ -87,7 +89,9 @@ struct string {
     int Count;
 };
 string CreateString(char* Buffer, int Cap) {
-    
+    string Ret = {};
+    Ret.Data = Buffer;
+    Ret.Cap = Cap;
 };
 
 struct foo {
