@@ -1,3 +1,6 @@
 baseURL = "https://geraldwong.net"
 languageCode = "en-us"
 title = "Gerald's Website"
+
+[params]
+  mainSections = ["blog"] 

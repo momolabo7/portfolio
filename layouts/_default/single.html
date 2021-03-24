@@ -1,8 +1,13 @@
 {{ define "title" }} {{ .Title }} {{ end }} 
 {{ define "main" }} 
-<div class="container">
-	<div class="showcase-text">
-		{{ .Content }}
-	</div>
+
+<div class="blog-container">
+
+    <div class="blog-body">
+        <p class="blog-content-body">
+            {{ .Content }}
+        </p>
+    </div>
 </div>
+
 {{ end }}
