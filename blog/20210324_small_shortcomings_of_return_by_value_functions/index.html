@@ -27,7 +27,9 @@ InitV2f(<span style=color:#f92672>&amp;</span>Vec, <span style=color:#ae81ff>1.f
     <span style=color:#66d9ef>int</span> Count;
 };
 string <span style=color:#a6e22e>CreateString</span>(<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> Buffer, <span style=color:#66d9ef>int</span> Cap) {
-    
+    string Ret <span style=color:#f92672>=</span> {};
+    Ret.Data <span style=color:#f92672>=</span> Buffer;
+    Ret.Cap <span style=color:#f92672>=</span> Cap;
 };
 
 <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>foo</span> {
@@ -50,7 +52,9 @@ foo <span style=color:#a6e22e>CreateFoo</span>() {
     <span style=color:#66d9ef>int</span> Count;
 };
 string <span style=color:#a6e22e>CreateString</span>(<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> Buffer, <span style=color:#66d9ef>int</span> Cap) {
-    
+    string Ret <span style=color:#f92672>=</span> {};
+    Ret.Data <span style=color:#f92672>=</span> Buffer;
+    Ret.Cap <span style=color:#f92672>=</span> Cap;
 };
 
 <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>foo</span> {
