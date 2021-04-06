@@ -1,5 +1,5 @@
 ---
-title: "Small shortcomings of return by value functions"
+title: "Shortcomings of return by value 'C-style constructors'"
 date: 2021-03-24T12:00:00+08:00
 authors:
   - Gerald Wong
