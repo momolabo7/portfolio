@@ -4,6 +4,7 @@ title = "Gerald's Website"
 
 [params]
   mainSections = ["blog"] 
+  custom_css = ["css/common.css"]
 
 [markup]
   [markup.highlight]
