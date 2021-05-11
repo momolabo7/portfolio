@@ -2,6 +2,13 @@ body {
     background-color: #0f0f0f;
 }
 
+code.has-jax {
+    -webkit-font-smoothing: antialiased;
+    background: inherit !important;
+    border: none !important;
+    font-size: 100%;
+}
+
 pre, code {
     font-size: 1.3rem;
     padding-left: 0.1rem;
