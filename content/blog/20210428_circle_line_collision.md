@@ -1,5 +1,5 @@
 ---
-title: "Circle-Finite Line Collision"
+title: "Circle to Finite Line Collision"
 date: 2021-04-28T12:00:00+08:00
 authors:
   - Gerald Wong
@@ -11,22 +11,25 @@ Recently, I had to derive this particular collision detection algorithm for my b
 
 <!--more-->
 
-(PS, maybe one day I'll use latex to make the notations easier to read)
+## Scenario
+- We are given a line `$ l $` where `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` represents the start and end point of the line segment respectively. 
 
-Note that this article does not take into account collision responses; its goal is simply to check if the objects involved are colliding (but perhaps it is possible to derive the variables needed for collision response from this algorithm).
+- We are also given a circle, defined by its origin at point `$ \dot{c} $` and its radius `$ r $`. 
 
-Also, a disclaimer here is that, we assume that whoever is reading the article is familiar with Linear Algebra or at least vector-related math. I won't go into details of vector-specific operators such as projection and dot product. That is hopefully for another article for another time.
-
-## Circle-Finite Line Collision Check
-
-We are given a line `$ l $` where `$ \dot{m} $` and `$ \dot{n} $` represents the start and end point of the line segment respectively. We are also given a circle which an origin at point `$ \dot{c} $` with radius `$ r $`. Determine whether the circle is colliding with the line.
+- The goal is to determine whether the circle is colliding with the line.
 
 ![](/img/blog_img/20210428_circle_line_collision/1.jpg)
 
-The general idea is to find the point on the line `$ l $` which will be the shortest distance from the line `$ c $`. We will call this point `$ \dot{s} $`, and the shortest distance `$ d $`. Next, we need to figure out whether this point `$\dot{s}$` exists within our line segment. Finally, we figure out if `$ d $` is greater than `$ r $`. If it is not, it means that it is intersecting. For all other cases, it does not intersect. In other words:
+## General strategy
+The general idea is to find the point on the line `$ l $` which will be the shortest distance from the origin of the circle `$ \dot{c} $`. We will call this point `$ \dot{s} $`, and the shortest distance `$ d $`. 
 
+Next, we need to figure out whether this point `$\dot{s}$` exists within our line segment. 
+
+Finally, we figure out if `$ d $` is greater than `$ r $`. If it is not, it means that it is intersecting. For all other cases, it does not intersect. 
+
+In other words:
 - Find `$ \dot{s} $` and `$d$`.
-- Check if `$ \dot{s} $` exists within our line. If it is not, we are not intersecting
+- Check if `$ \dot{s} $` exists within our line. If it is not, we are not intersecting.
 - Check if `$d$` is greater than `$r$`. If it is not, we are intersecting.
 
 ![](/img/blog_img/20210428_circle_line_collision/2.jpg)
@@ -35,45 +38,44 @@ There is a small caveat we need to cover before we continue, regarding checking 
 
 ![](/img/blog_img/20210428_circle_line_collision/3.jpg)
 
-Thankfully, this is conceptually easy to solve. We extend our line ends (`$ \dot{m} $` and `$ \dot{n} $`) by a factor of  `$r$`. We update our list:
+Thankfully, this is conceptually easy to solve. We extend our line ends (`$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`) by a factor of  `$r$`. We update our list:
 
-- Extend `$ \dot{m} $` and `$ \dot{n} $` line segment end points by `$r$`
+- Extend `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` line segment end points by `$r$`
 - Find `$ \dot{s} $` and `$d$`.
 - Check if `$ \dot{s} $` exists within our line. If it is not, we are not intersecting
 - Check if `$d$` is greater than `$r$`. If it is not, we are intersecting.
 
-## Extend line segment start and end points by a factor of the circle's radius
+## Extend $ \dot{l_{min}} $ and $ \dot{l_{max}} $ by a factor of $ r $
 
-First, we need to find the unit vector to extend `$ \dot{m} $` and `$ \dot{n} $`. First, get the vector `$ \vec{v} $` that goes from `$ \dot{m} $` to `$ \dot{n} $` by subtracting `$ \dot{m} $` from `$ \dot{n} $` :
+First, we need to find the unit vector to extend `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`. First, get the vector `$ \vec{v} $` that goes from `$ \dot{l_{min}} $` to `$ \dot{l_{max}} $` by subtracting `$ \dot{l_{min}} $` from `$ \dot{l_{max}} $` :
 
+$ \vec{v} = \dot{l_{max}} - \dot{l_{min}} $  
 
-$ \vec{v} = \dot{n} - \dot{m} $  
-
-then we normalize it to get the unit vector `$ \hat{v} $`, where `$|\vec{v}|$` is the magnitude/length of `$ \vec{v} $`:
+Then, we normalize it to get the unit vector `$ \hat{v} $`. We get it by dividing `$\vec{v}$` by `$|\vec{v}|$`, where `$|\vec{v}|$` is the magnitude/length of `$ \vec{v} $`:
 
 $ \hat{v} = \dfrac{\vec{v}}{|\vec{v}|} $
 
-Since `$\hat{v}$` is the unit vector of `$ \vec{v} $`, we simply multiply it with `$r$` to get the amount to translate `$ \dot{m} $` and `$ \dot{n} $` to 'extend' the line. Thus, our new `$ \dot{m} $` and `$ \dot{n} $` (which we will denote as `$ \dot{m'} $` and `$ \dot{n'} $`) will be:
+Since `$\hat{v}$` is the unit vector of `$ \vec{v} $`, we simply multiply it with `$r$` to get the amount to translate `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` to 'extend' the line. Thus, our new `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` (which we will denote as `$ \dot{l_{min}'} $` and `$ \dot{l_{max}'} $`) will be:
 
-$ \dot{m'} = \dot{m} - (\hat{v} * r) $
+$ \dot{l_{min}'} = \dot{l_{min}} - (\hat{v} * r) $
 
-$ \dot{n'} = \dot{n} + (\hat{v} * r) $
+$ \dot{l_{max}'} = \dot{l_{max}} + (\hat{v} * r) $
 
-## Find the point that is the shortest distance from the line to the circle
+## Find the point $ \dot{s} $
 
-For those familiar with vector arithmetic, to find the point `$ \dot{s} $`, it is simply the projection of the vector formed by `$ (\dot{c} - \dot{m}) $` onto `$ \vec{v} $`. I would suggest those not familiar with projection to give it a look. Anyway, the formula is simply:
+For those familiar with vector arithmetic, to find the point `$ \dot{s} $`, it is simply the projection of the vector formed by `$ (\dot{c} - \dot{l_{min}}) $` onto `$ \vec{v} $`. I would suggest those not familiar with projection to give it a look. Anyway, the formula is simply:
 
 
-$ \dot{s} = \dfrac{((\dot{c} - \dot{m}) ・\vec{v} }{\vec{|v|}}  *  \hat{v} + \dot{m} $
+$ \dot{s} = \dfrac{((\dot{c} - \dot{l_{min}}) ・\vec{v} }{\vec{|v|}}  *  \hat{v} + \dot{l_{min}} $
 
-## Check if s is within our line
+## Check if $ \dot{s} $ is between $ \dot{l_{min}} $ and $ \dot{l_{max}} $
 
-This is easier than it looks. Imaging that we have a line formed by `$ \dot{m} + t(v) $`, where `$t$` represents a scalar value such that if it is 0, we will get `$ \dot{m} $` and if it is 1, we will get `$ \dot{n} $`. 
+This is easier than it looks. Imaging that we have a line formed by `$ \dot{l_{min}} + t(v) $`, where `$t$` represents a scalar value such that if it is 0, we will get `$ \dot{l_{min}} $` and if it is 1, we will get `$ \dot{l_{max}} $`. 
 
 In other words, `$t$` is a ratio. Also, since we already know that `$ \dot{s} $` is definitely on the line, it means that we can safely say that there exists a `$t$` such that:
 
 
-$ \dot{m} + t(\vec{v}) = \dot{s} $
+$ \dot{l_{min}} + t(\vec{v}) = \dot{s} $
 
 
 We can then choose any element of `$\vec{v}$` to find `$t$`. Note that the element that you choose from  `$ \vec{v} $` must not be 0. 
