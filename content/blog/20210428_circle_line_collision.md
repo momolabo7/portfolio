@@ -38,7 +38,7 @@ There is a small caveat we need to cover before we continue, regarding checking 
 
 ![](/img/blog_img/20210428_circle_line_collision/3.jpg)
 
-Thankfully, this is conceptually easy to solve. We extend our line ends (`$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`) by a factor of  `$r$`. We update our list:
+Thankfully, this is conceptually easy to solve. We extend our line ends, `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`, by a factor of  `$r$`. We update our list:
 
 - Extend `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` line segment end points by `$r$`
 - Find `$ \dot{s} $` and `$d$`.
