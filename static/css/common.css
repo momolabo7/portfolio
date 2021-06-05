@@ -156,7 +156,8 @@ footer {
 
 .blog-body img {
     margin: 0 auto;
-    display: block
+    display: block;
+    max-width: 100%;
 }
 
 .blog-container {
