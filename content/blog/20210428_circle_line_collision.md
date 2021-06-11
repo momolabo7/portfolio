@@ -104,9 +104,12 @@ $ r^2 = r * r $
 
 If `$d^2$` < `$r^2$`, then we have a collision!
 
-## Conclusion
+## Extra: Moving circle vs static circle
 
-Now that we have this, hopefully we can expend it to deal with other problems such as moving circles against moving circles, which will be covered in another article soon.
+Now that we have this, we can expend this concept to deal with moving circle vs static circle. What we have visually is something like the following:
 
+(image here)
+
+If we think about it, 
 
 

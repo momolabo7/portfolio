@@ -15,6 +15,5 @@ I enjoy working on most software engineering aspects of a project. I have develo
 # I'm a lecturer
 I currently teach at a tertiary level, currently serving my 3rd year as a lecturer at DigiPen Institute of Technology, Singapore. 
 
-The topics I teach were mostly related to my experience in the industry, which revolves around games development, software engineering and programming.
-
+The topics I teach include games development, software engineering and programming topics.
 
