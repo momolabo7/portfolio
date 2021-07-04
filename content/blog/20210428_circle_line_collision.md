@@ -1,6 +1,6 @@
 ---
 title: "Circle to Finite Line Collision"
-date: 2021-04-28T12:00:00+08:00
+date: 2021-07-04T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
@@ -104,12 +104,33 @@ $ r^2 = r * r $
 
 If `$d^2$` < `$r^2$`, then we have a collision!
 
-## Extra: Moving circle vs static circle
+## Extra 1: Moving circle vs static circle
 
 Now that we have this, we can expend this concept to deal with moving circle vs static circle. What we have visually is something like the following:
 
-(image here)
+![](/img/blog_img/20210428_circle_line_collision/4.jpg)
 
-If we think about it, 
+As far as collision detection is concerned, we can simply add the moving circle's radius `$r_1$` to the static circle's radius `$r_2$` and get the diagram below:
+
+![](/img/blog_img/20210428_circle_line_collision/5.jpg)
+
+And we can just apply our circle and line algorithm!
+
+## Extra 2: Moving circle vs Moving circle
+
+Now for the last bit: What if we have two moving circles?
+
+![](/img/blog_img/20210428_circle_line_collision/6.jpg)
+
+Just like the algorithm we did for 'moving circle vs static circle', we try to link the problem back to collision between a circle and a line. This means that we have to make one of the circles static. 
+
+In this case, we choose to make `$\dot{c_2}$` static. For this, we simply add the _reverse_ of it's velocity `$\vec{v_2}$` to the moving circle's velocity `$\vec{v_1}$`. It's a little unintuitive to think about especially when the circles can move at all kinds of direction (the diagram is the a simplistic example), but it is related to the idea 'relative motion'. 
+
+![](/img/blog_img/20210428_circle_line_collision/7.jpg)
+
+One way to think about it is to imagine that `$\dot{c_1}` and `$\dot{c_2}` are moving trains, and that you are on, in this case, `$\dot{c_2}$`. What you would feel, even though the train is moving, is that you are still, and when you see the train `$\dot{c_1}` approaching, it is moving with the combined velocity of itself and the reverse of your train (i.e. it's seems to be moving a lot faster than it should).
+
+Now that we have a moving circle and a static circle, we can simply add the moving circle's radius `$r_1$` to the static circle's radius `$r_2$`, just like what we did in 'moving circle vs static circle'!
 
 
+![](/img/blog_img/20210428_circle_line_collision/8.jpg)
