@@ -1,4 +1,42 @@
-<html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://www.w3schools.com/w3css/4/w3.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Inconsolata"><link rel=stylesheet href=/css/common.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>Gerald's Website</title><script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div class=profile><a href=/><img class=profile-img-back src=/img/profile.jpg loading=lazy></a><div class=profile-text>Gerald's Stuff</div><div class=profile-subtext>Blog</div></div><div class=blog-container><div class=blog-body><h1 class=blog-content-title>Shortcomings of return by value 'C-style constructors'</h1><h4 class=blog-content-date><time datetime=2021-03-24T12:00:00+08:00>Mar 24, 2021</time></h4><p class=blog-content-body><p>Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value.</p><p>There are generally two simple ways to modify an object in C/C++ through plain functions.</p><p>Returning by value:</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=https://www.w3schools.com/w3css/4/w3.css>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Inconsolata">
+<link rel=stylesheet href=/css/common.css>
+<link rel="shortcut icon" type=image/png href=/img/favicon.png>
+<title>Gerald's Website</title>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<div class=profile>
+<a href=/>
+<img class=profile-img-back src=/img/profile.jpg loading=lazy>
+</a>
+<div class=profile-text>Gerald's Stuff</div>
+<div class=profile-subtext> Blog </div>
+</div>
+<div class=blog-container>
+<div class=blog-body>
+<h1 class=blog-content-title>
+Shortcomings of return by value 'C-style constructors'
+</h1>
+<h4 class=blog-content-date>
+<time datetime=2021-03-24T12:00:00+08:00>
+Mar 24, 2021
+</time>
+</h4>
+<p class=blog-content-body>
+<p>Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value.</p>
+<p>There are generally two simple ways to modify an object in C/C++ through plain functions.</p>
+<p>Returning by value:</p>
+<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -8,7 +46,9 @@
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:navy;font-weight:700>struct</span> v2f {
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:navy;font-weight:700>struct</span> v2f {
     <span style=color:navy;font-weight:700>float</span> x, y; 
 };
 
@@ -18,7 +58,12 @@ v2f CreateV2f(<span style=color:navy;font-weight:700>float</span> x, <span style
 
 <span style=color:#080;font-style:italic>// Usage
 </span><span style=color:#080;font-style:italic></span>v2f Vec = CreateV2f(<span style=color:#00f>1.f</span>, <span style=color:#00f>2.f</span>);
-</code></pre></td></tr></table></div></div><p>Modifying by pointer:</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>Modifying by pointer:</p>
+<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -30,7 +75,9 @@ v2f CreateV2f(<span style=color:navy;font-weight:700>float</span> x, <span style
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:navy;font-weight:700>struct</span> v2f {
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:navy;font-weight:700>struct</span> v2f {
     <span style=color:navy;font-weight:700>float</span> x, y; 
 };
 
@@ -42,7 +89,14 @@ v2f CreateV2f(<span style=color:navy;font-weight:700>float</span> x, <span style
 <span style=color:#080;font-style:italic>// Usage
 </span><span style=color:#080;font-style:italic></span>v2f Vec = {};
 InitV2f(&amp;Vec, <span style=color:#00f>1.f</span>, <span style=color:#00f>2.f</span>);
-</code></pre></td></tr></table></div></div><p>We can spend hours arguing about which one is better, but optimization and code readability aside, we can all agree that both functions generally does the same thing, at a relatively good speed.</p><p>So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable.</p><p>However I found an interesting shortcoming of the &lsquo;Return by value method&rsquo;. Consider the scenario:</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>We can spend hours arguing about which one is better, but optimization and code readability aside, we can all agree that both functions generally does the same thing, at a relatively good speed.</p>
+<p>So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable.</p>
+<p>However I found an interesting shortcoming of the &lsquo;Return by value method&rsquo;. Consider the scenario:</p>
+<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -67,7 +121,9 @@ InitV2f(&amp;Vec, <span style=color:#00f>1.f</span>, <span style=color:#00f>2.f<
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
 </span><span style=color:#080;font-style:italic></span><span style=color:navy;font-weight:700>struct</span> string {
     <span style=color:navy;font-weight:700>char</span>* Data;
     <span style=color:navy;font-weight:700>int</span> Cap;
@@ -92,7 +148,13 @@ foo CreateFoo() {
     <span style=color:#080;font-style:italic>// Ret.Str.Data will be pointing to an invalid address 
 </span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// after this function is called!
 </span><span style=color:#080;font-style:italic></span>}
-</code></pre></td></tr></table></div></div><p>After calling <code>CreateFoo()</code>, the object&rsquo;s <code>Str.Data</code> member will be pointing at an invalid address. Thinking about it, C++ constructors will never have this issue because you are modifying <code>this</code> (However, I have a lot of things against C++ constructors, which I might go into another article when I can).</p><p>Thankfully, the pointer version will not have the issue:</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>After calling <code>CreateFoo()</code>, the object&rsquo;s <code>Str.Data</code> member will be pointing at an invalid address. Thinking about it, C++ constructors will never have this issue because you are modifying <code>this</code> (However, I have a lot of things against C++ constructors, which I might go into another article when I can).</p>
+<p>Thankfully, the pointer version will not have the issue:</p>
+<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -112,7 +174,9 @@ foo CreateFoo() {
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
 </span><span style=color:#080;font-style:italic></span><span style=color:navy;font-weight:700>struct</span> string {
     <span style=color:navy;font-weight:700>char</span>* Data;
     <span style=color:navy;font-weight:700>int</span> Cap;
@@ -132,4 +196,16 @@ string CreateString(<span style=color:navy;font-weight:700>char</span>* Buffer, 
 <span style=color:navy;font-weight:700>void</span> CreateFoo(foo* Foo) {
     Foo-&gt;Str = CreateString(Foo-&gt;Buffer, <span style=color:#00f>256</span>);
 }
-</code></pre></td></tr></table></div></div><p>It&rsquo;s interesting because I genuinely thought that both methods are interchangable in all situations, and that the differences between them only boils down to what I feel about low-level optimization and preferences in readability.</p></p></div></div><footer><p classname=footer-copyright-text>Powered By Hugo | v1.2 | © 2021 Gerald Wong</p></footer></body></html>
+</code></pre></td></tr></table>
+</div>
+</div><p>It&rsquo;s interesting because I genuinely thought that both methods are interchangable in all situations, and that the differences between them only boils down to what I feel about low-level optimization and preferences in readability.</p>
+</p>
+</div>
+</div>
+<footer>
+<p classname=footer-copyright-text>
+Powered By Hugo | v1.2 | © 2021 Gerald Wong
+</p>
+</footer>
+</body>
+</html>
