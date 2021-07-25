@@ -30,6 +30,8 @@ This is personal list of links I use for inspiration and gamedev which I have pe
 - [floating point comparison](https://floating-point-gui.de/errors/comparison/)
 - [stb](https://github.com/nothings/stb): Useful single header C/C++ libraries for various things 
 - [puff.c](https://github.com/madler/zlib/blob/master/contrib/puff/puff.c): Useful reference for implementing your own zlib decompression
+- [Fonts and Layout](https://simoncozens.github.io/fonts-and-layout/): Good reference for font-related terminologies
+
 
 ### Gameplay
 - [maze generation algorithms](http://www.astrolog.org/labyrnth/algrithm.htm)
