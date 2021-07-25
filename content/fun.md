@@ -32,7 +32,6 @@ This is personal list of links I use for inspiration and gamedev which I have pe
 - [puff.c](https://github.com/madler/zlib/blob/master/contrib/puff/puff.c): Useful reference for implementing your own zlib decompression
 - [Fonts and Layout](https://simoncozens.github.io/fonts-and-layout/): Good reference for font-related terminologies
 
-
 ### Gameplay
 - [maze generation algorithms](http://www.astrolog.org/labyrnth/algrithm.htm)
 - [moving circles collision detection](https://www.gamasutra.com/view/feature/131424/pool_hall_lessons_fast_accurate_.php?print=1) 
@@ -41,6 +40,7 @@ This is personal list of links I use for inspiration and gamedev which I have pe
 ### OpenGL
 - [Basic resources to get started](https://learnopengl.com/)
 - [Guide to DSA functions](https://github.com/fendevel/Guide-to-Modern-OpenGL-Functions#glcreatebuffers)
+- [Projection Matrix](http://www.songho.ca/opengl/gl_projectionmatrix.html): Legit derivation of OpenGL's projection matrix. Good reference if we want to write our own version.
 
 ### Design patterns and refactoring
 - [Game Programming Patterns](https://gameprogrammingpatterns.com/): For my OOP related problems
