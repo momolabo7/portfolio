@@ -9,4 +9,4 @@ Karu's Dream is a game prototype written in C++17 using SDL2 with the EnTT libra
 The motivation of this project is to explore modern C++ features, the SDL2 library and coding a game using the Entity-Component-System paradigm. Everything else is coded from scratch.
 
 [git](https://github.com/momodevelop/karus-dream) -
-[play](https://momohoudai.itch.io/karudream)
+[play](https://momodevelop.itch.io/karudream)
