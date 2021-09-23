@@ -1,5 +1,5 @@
 ---
-title: "Shortcomings of return by value 'C-style constructors'"
+title: "A small shortcoming of return-by-value"
 date: 2021-03-24T12:00:00+08:00
 authors:
   - Gerald Wong
@@ -7,11 +7,11 @@ tags:
   - Documentation
 ---
 
-Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value. 
+Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value. This was when I was still trying to keep things consistant in my project and went for a functional-programming style.
 
 <!--more-->
 
-There are generally two simple ways to modify an object in C/C++ through plain functions.
+Consider that there are generally two simple ways to modify an object in C/C++ through plain functions.
 
 Returning by value:
 ```cpp
@@ -45,34 +45,34 @@ InitV2f(&Vec, 1.f, 2.f);
 
 We can spend hours arguing about which one is better, but optimization and code readability aside, we can all agree that both functions generally does the same thing, at a relatively good speed.
 
-So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable. 
+So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable. I ended up just going for the return-by-value style because copy elision is a thing. I did not profile the performance differences between the two styles so call it 'premature optimization' if you will, but I just wanted some consistency in my code. 
 
-However I found an interesting shortcoming of the 'Return by value method'. Consider the scenario:
+However I found a _slightly_ unexpected shortcoming of the return-by-value method. Consider the scenario:
 
 ```cpp
 // Simple lightweight 'string' object.
-struct string {
-    char* Data;
-    int Cap;
-    int Count;
+struct String {
+    char* data;
+    int cap;
+    int count;
 };
-string CreateString(char* Buffer, int Cap) {
-    string Ret = {};
-    Ret.Data = Buffer;
-    Ret.Cap = Cap;
-};
-
-struct foo {
-    u8 Buffer[256];
-    string Str; 
+String CreateString(char* buffer, int cap) {
+    String ret = {};
+    ret.data = buffer;
+    ret.cap = cap;
 };
 
-foo CreateFoo() {
-    foo Ret = {};
-    Ret.Str = CreateString(Ret.Buffer, 256);
+struct StringWithBuffer {
+    u8 buffer[256];
+    String str; 
+};
 
-    return Ret;
-    // Ret.Str.Data will be pointing to an invalid address 
+StringWithBuffer CreateStringWithBuffer() {
+    StringWithBuffer ret = {};
+    ret.str = CreateString(ret.buffer, 256);
+
+    return tet;
+    // ret.str.data will be pointing to an invalid address 
     // after this function is called!
 }
 ```
