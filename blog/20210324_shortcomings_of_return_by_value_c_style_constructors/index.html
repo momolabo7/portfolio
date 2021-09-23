@@ -23,7 +23,7 @@
 <div class=blog-container>
 <div class=blog-body>
 <h1 class=blog-content-title>
-Shortcomings of return by value 'C-style constructors'
+A small shortcoming of return-by-value
 </h1>
 <h4 class=blog-content-date>
 <time datetime=2021-03-24T12:00:00+08:00>
@@ -31,8 +31,8 @@ Mar 24, 2021
 </time>
 </h4>
 <p class=blog-content-body>
-<p>Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value.</p>
-<p>There are generally two simple ways to modify an object in C/C++ through plain functions.</p>
+<p>Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value. This was when I was still trying to keep things consistant in my project and went for a functional-programming style.</p>
+<p>Consider that there are generally two simple ways to modify an object in C/C++ through plain functions.</p>
 <p>Returning by value:</p>
 <div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
@@ -92,8 +92,8 @@ InitV2f(&amp;Vec, <span style=color:#00f>1.f</span>, <span style=color:#00f>2.f<
 </code></pre></td></tr></table>
 </div>
 </div><p>We can spend hours arguing about which one is better, but optimization and code readability aside, we can all agree that both functions generally does the same thing, at a relatively good speed.</p>
-<p>So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable.</p>
-<p>However I found an interesting shortcoming of the &lsquo;Return by value method&rsquo;. Consider the scenario:</p>
+<p>So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable. I ended up just going for the return-by-value style because copy elision is a thing. I did not profile the performance differences between the two styles so call it &lsquo;premature optimization&rsquo; if you will, but I just wanted some consistency in my code.</p>
+<p>However I found a <em>slightly</em> unexpected shortcoming of the return-by-value method. Consider the scenario:</p>
 <div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
 <pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
@@ -124,28 +124,28 @@ InitV2f(&amp;Vec, <span style=color:#00f>1.f</span>, <span style=color:#00f>2.f<
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
 <pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
-</span><span style=color:#080;font-style:italic></span><span style=color:navy;font-weight:700>struct</span> string {
-    <span style=color:navy;font-weight:700>char</span>* Data;
-    <span style=color:navy;font-weight:700>int</span> Cap;
-    <span style=color:navy;font-weight:700>int</span> Count;
+</span><span style=color:#080;font-style:italic></span><span style=color:navy;font-weight:700>struct</span> String {
+    <span style=color:navy;font-weight:700>char</span>* data;
+    <span style=color:navy;font-weight:700>int</span> cap;
+    <span style=color:navy;font-weight:700>int</span> count;
 };
-string CreateString(<span style=color:navy;font-weight:700>char</span>* Buffer, <span style=color:navy;font-weight:700>int</span> Cap) {
-    string Ret = {};
-    Ret.Data = Buffer;
-    Ret.Cap = Cap;
-};
-
-<span style=color:navy;font-weight:700>struct</span> foo {
-    u8 Buffer[<span style=color:#00f>256</span>];
-    string Str; 
+String CreateString(<span style=color:navy;font-weight:700>char</span>* buffer, <span style=color:navy;font-weight:700>int</span> cap) {
+    String ret = {};
+    ret.data = buffer;
+    ret.cap = cap;
 };
 
-foo CreateFoo() {
-    foo Ret = {};
-    Ret.Str = CreateString(Ret.Buffer, <span style=color:#00f>256</span>);
+<span style=color:navy;font-weight:700>struct</span> StringWithBuffer {
+    u8 buffer[<span style=color:#00f>256</span>];
+    String str; 
+};
 
-    <span style=color:navy;font-weight:700>return</span> Ret;
-    <span style=color:#080;font-style:italic>// Ret.Str.Data will be pointing to an invalid address 
+StringWithBuffer CreateStringWithBuffer() {
+    StringWithBuffer ret = {};
+    ret.str = CreateString(ret.buffer, <span style=color:#00f>256</span>);
+
+    <span style=color:navy;font-weight:700>return</span> tet;
+    <span style=color:#080;font-style:italic>// ret.str.data will be pointing to an invalid address 
 </span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// after this function is called!
 </span><span style=color:#080;font-style:italic></span>}
 </code></pre></td></tr></table>
