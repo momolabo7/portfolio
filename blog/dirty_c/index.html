@@ -1,0 +1,77 @@
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=https://www.w3schools.com/w3css/4/w3.css>
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Inconsolata">
+<link rel=stylesheet href=/css/common.css>
+<link rel="shortcut icon" type=image/png href=/img/favicon.png>
+<title>Gerald's Website</title>
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
+</head>
+<body>
+<div class=profile>
+<a href=/>
+<img class=profile-img-back src=/img/profile.jpg loading=lazy>
+</a>
+<div class=profile-text>Gerald's Stuff</div>
+<div class=profile-subtext> Blog </div>
+</div>
+<div class=blog-container>
+<div class=blog-body>
+<h1 class=blog-content-title>
+Dirty C/C++
+</h1>
+<h4 class=blog-content-date>
+<time datetime=2021-09-24T12:00:00+08:00>
+Sep 24, 2021
+</time>
+</h4>
+<p class=blog-content-body>
+<p>Here is a collection of cool snippets of C/C++ code. Updated regularly. Used to show superiority and implode the minds of my students. Also to use in my own code, of course, whenever viable.</p>
+<h2 id=offset-of-struct-member>Offset of struct member</h2>
+<p>You can include a whole library to get the <code>offsetof</code> macro, or you can just do this!</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=kt>int</span> <span class=n>offset</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=o>&amp;</span><span class=p>((</span><span class=n>StructName</span><span class=o>*</span><span class=p>)</span><span class=mi>0</span><span class=p>)</span><span class=o>-&gt;</span><span class=n>Member</span><span class=p>;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=checking-endian-ness>Checking endian-ness</h2>
+<p>Cute hack to check for endian-ness on run-time.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=kt>int</span> <span class=n>n</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+<span class=kt>bool</span> <span class=n>is_little_endian</span> <span class=o>=</span> <span class=p>(</span><span class=o>*</span><span class=p>(</span><span class=kt>char</span><span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>n</span> <span class=o>==</span> <span class=mi>1</span><span class=p>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>To be honest though, you should do this on compile time, and you should not be lazy and use for compiler specific defines.</p>
+<h2 id=if-x-or-y-is-less-than-zero>if x or y is less than zero</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=kt>bool</span> <span class=n>is_either_less_than_zero</span> <span class=o>=</span> <span class=p>(</span><span class=n>x</span> <span class=o>|</span> <span class=n>y</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=heading></h3>
+</p>
+</div>
+</div>
+<footer>
+<p classname=footer-copyright-text>
+Powered By Hugo | v1.2 | © 2021 Gerald Wong
+</p>
+</footer>
+</body>
+</html>

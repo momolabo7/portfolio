@@ -34,171 +34,186 @@ Mar 24, 2021
 <p>Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value. This was when I was still trying to keep things consistant in my project and went for a functional-programming style.</p>
 <p>Consider that there are generally two simple ways to modify an object in C/C++ through plain functions.</p>
 <p>Returning by value:</p>
-<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
 </span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:navy;font-weight:700>struct</span> v2f {
-    <span style=color:navy;font-weight:700>float</span> x, y; 
-};
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=k>struct</span> <span class=nc>v2f</span> <span class=p>{</span>
+    <span class=kt>float</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>;</span> 
+<span class=p>};</span>
 
-v2f CreateV2f(<span style=color:navy;font-weight:700>float</span> x, <span style=color:navy;font-weight:700>float</span> y) {
-    <span style=color:navy;font-weight:700>return</span> v2f { x, y };
-}
+<span class=n>v2f</span> <span class=nf>CreateV2f</span><span class=p>(</span><span class=kt>float</span> <span class=n>x</span><span class=p>,</span> <span class=kt>float</span> <span class=n>y</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=n>v2f</span> <span class=p>{</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=p>};</span>
+<span class=p>}</span>
 
-<span style=color:#080;font-style:italic>// Usage
-</span><span style=color:#080;font-style:italic></span>v2f Vec = CreateV2f(<span style=color:#00f>1.f</span>, <span style=color:#00f>2.f</span>);
+<span class=c1>// Usage
+</span><span class=c1></span><span class=n>v2f</span> <span class=n>Vec</span> <span class=o>=</span> <span class=n>CreateV2f</span><span class=p>(</span><span class=mf>1.f</span><span class=p>,</span> <span class=mf>2.f</span><span class=p>);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Modifying by pointer:</p>
-<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
 </span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:navy;font-weight:700>struct</span> v2f {
-    <span style=color:navy;font-weight:700>float</span> x, y; 
-};
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=k>struct</span> <span class=nc>v2f</span> <span class=p>{</span>
+    <span class=kt>float</span> <span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>;</span> 
+<span class=p>};</span>
 
-<span style=color:navy;font-weight:700>void</span> InitV2f(v2f* Vec, <span style=color:navy;font-weight:700>float</span> x, <span style=color:navy;font-weight:700>float</span> y) {
-    Vec-&gt;x = x;
-    Vec-&gt;y = y;
-}
+<span class=kt>void</span> <span class=nf>InitV2f</span><span class=p>(</span><span class=n>v2f</span><span class=o>*</span> <span class=n>Vec</span><span class=p>,</span> <span class=kt>float</span> <span class=n>x</span><span class=p>,</span> <span class=kt>float</span> <span class=n>y</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>Vec</span><span class=o>-&gt;</span><span class=n>x</span> <span class=o>=</span> <span class=n>x</span><span class=p>;</span>
+    <span class=n>Vec</span><span class=o>-&gt;</span><span class=n>y</span> <span class=o>=</span> <span class=n>y</span><span class=p>;</span>
+<span class=p>}</span>
 
-<span style=color:#080;font-style:italic>// Usage
-</span><span style=color:#080;font-style:italic></span>v2f Vec = {};
-InitV2f(&amp;Vec, <span style=color:#00f>1.f</span>, <span style=color:#00f>2.f</span>);
+<span class=c1>// Usage
+</span><span class=c1></span><span class=n>v2f</span> <span class=n>Vec</span> <span class=o>=</span> <span class=p>{};</span>
+<span class=n>InitV2f</span><span class=p>(</span><span class=o>&amp;</span><span class=n>Vec</span><span class=p>,</span> <span class=mf>1.f</span><span class=p>,</span> <span class=mf>2.f</span><span class=p>);</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>We can spend hours arguing about which one is better, but optimization and code readability aside, we can all agree that both functions generally does the same thing, at a relatively good speed.</p>
 <p>So I have been using both styles interchangably for awhile now. Some scenarios, I feel like the first method is better while other times, the second feels better. Generally, it felt like both methods are interchangable. I ended up just going for the return-by-value style because copy elision is a thing. I did not profile the performance differences between the two styles so call it &lsquo;premature optimization&rsquo; if you will, but I just wanted some consistency in my code.</p>
 <p>However I found a <em>slightly</em> unexpected shortcoming of the return-by-value method. Consider the scenario:</p>
-<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
 </span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
-</span><span style=color:#080;font-style:italic></span><span style=color:navy;font-weight:700>struct</span> String {
-    <span style=color:navy;font-weight:700>char</span>* data;
-    <span style=color:navy;font-weight:700>int</span> cap;
-    <span style=color:navy;font-weight:700>int</span> count;
-};
-String CreateString(<span style=color:navy;font-weight:700>char</span>* buffer, <span style=color:navy;font-weight:700>int</span> cap) {
-    String ret = {};
-    ret.data = buffer;
-    ret.cap = cap;
-};
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=c1>// Simple lightweight &#39;string&#39; object.
+</span><span class=c1></span><span class=k>struct</span> <span class=nc>String</span> <span class=p>{</span>
+    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>cap</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>count</span><span class=p>;</span>
+<span class=p>};</span>
+<span class=n>String</span> <span class=nf>CreateString</span><span class=p>(</span><span class=kt>char</span><span class=o>*</span> <span class=n>buffer</span><span class=p>,</span> <span class=kt>int</span> <span class=n>cap</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>String</span> <span class=n>ret</span> <span class=o>=</span> <span class=p>{};</span>
+    <span class=n>ret</span><span class=p>.</span><span class=n>data</span> <span class=o>=</span> <span class=n>buffer</span><span class=p>;</span>
+    <span class=n>ret</span><span class=p>.</span><span class=n>cap</span> <span class=o>=</span> <span class=n>cap</span><span class=p>;</span>
+<span class=p>};</span>
 
-<span style=color:navy;font-weight:700>struct</span> StringWithBuffer {
-    u8 buffer[<span style=color:#00f>256</span>];
-    String str; 
-};
+<span class=k>struct</span> <span class=nc>StringWithBuffer</span> <span class=p>{</span>
+    <span class=n>u8</span> <span class=n>buffer</span><span class=p>[</span><span class=mi>256</span><span class=p>];</span>
+    <span class=n>String</span> <span class=n>str</span><span class=p>;</span> 
+<span class=p>};</span>
 
-StringWithBuffer CreateStringWithBuffer() {
-    StringWithBuffer ret = {};
-    ret.str = CreateString(ret.buffer, <span style=color:#00f>256</span>);
+<span class=n>StringWithBuffer</span> <span class=nf>CreateStringWithBuffer</span><span class=p>()</span> <span class=p>{</span>
+    <span class=n>StringWithBuffer</span> <span class=n>ret</span> <span class=o>=</span> <span class=p>{};</span>
+    <span class=n>ret</span><span class=p>.</span><span class=n>str</span> <span class=o>=</span> <span class=n>CreateString</span><span class=p>(</span><span class=n>ret</span><span class=p>.</span><span class=n>buffer</span><span class=p>,</span> <span class=mi>256</span><span class=p>);</span>
 
-    <span style=color:navy;font-weight:700>return</span> tet;
-    <span style=color:#080;font-style:italic>// ret.str.data will be pointing to an invalid address 
-</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// after this function is called!
-</span><span style=color:#080;font-style:italic></span>}
-</code></pre></td></tr></table>
+    <span class=k>return</span> <span class=n>ret</span><span class=p>;</span> 
+<span class=p>}</span>
+
+<span class=c1>// Usage
+</span><span class=c1></span><span class=n>StringWithBuffer</span> <span class=n>foo</span> <span class=o>=</span> <span class=n>CreateStringWithBuffer</span><span class=p>();</span>
+<span class=c1>// foo.str.data will not point to foo.str.buffer!
+</span></code></pre></td></tr></table>
 </div>
-</div><p>After calling <code>CreateFoo()</code>, the object&rsquo;s <code>Str.Data</code> member will be pointing at an invalid address. Thinking about it, C++ constructors will never have this issue because you are modifying <code>this</code> (However, I have a lot of things against C++ constructors, which I might go into another article when I can).</p>
+</div><p>After calling <code>CreateStringWithBuffer()</code>, <code>foo.str.data</code> member will be pointing at an invalid address and not <code>foo.buffer</code>! This is obvious when you work out what happened step by step. Within <code>CreateStringWithBuffer()</code>, <code>ret.str.data</code> would end up correctly pointing to <code>ret.buffer</code>. However, <code>ret</code> is actually a temporary object, so <code>ret.buffer</code> will naturally become invalid after the function is done. It&rsquo;s obvious after pointing it out, but I think it&rsquo;s fair to say that most of us thought that there would not be a problem with <code>CreateStringWithBuffer()</code>, because it looks so straightforward and simple.</p>
+<p>Thinking about it, C++ constructors will never have this issue because you are modifying <code>this</code> and returns a reference to itself. (However, I have a lot of things against C++ constructors, which I might go into another article when I can).</p>
 <p>Thankfully, the pointer version will not have the issue:</p>
-<div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4>
-<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
-</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
 </span></code></pre></td>
-<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#080;font-style:italic>// Simple lightweight &#39;string&#39; object.
-</span><span style=color:#080;font-style:italic></span><span style=color:navy;font-weight:700>struct</span> string {
-    <span style=color:navy;font-weight:700>char</span>* Data;
-    <span style=color:navy;font-weight:700>int</span> Cap;
-    <span style=color:navy;font-weight:700>int</span> Count;
-};
-string CreateString(<span style=color:navy;font-weight:700>char</span>* Buffer, <span style=color:navy;font-weight:700>int</span> Cap) {
-    string Ret = {};
-    Ret.Data = Buffer;
-    Ret.Cap = Cap;
-};
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=c1>// Simple lightweight &#39;string&#39; object.
+</span><span class=c1></span><span class=k>struct</span> <span class=nc>String</span> <span class=p>{</span>
+    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>cap</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>count</span><span class=p>;</span>
+<span class=p>};</span>
+<span class=n>String</span> <span class=nf>CreateString</span><span class=p>(</span><span class=kt>char</span><span class=o>*</span> <span class=n>buffer</span><span class=p>,</span> <span class=kt>int</span> <span class=n>cap</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>String</span> <span class=n>ret</span> <span class=o>=</span> <span class=p>{};</span>
+    <span class=n>ret</span><span class=p>.</span><span class=n>data</span> <span class=o>=</span> <span class=n>buffer</span><span class=p>;</span>
+    <span class=n>ret</span><span class=p>.</span><span class=n>cap</span> <span class=o>=</span> <span class=n>cap</span><span class=p>;</span>
+<span class=p>};</span>
 
-<span style=color:navy;font-weight:700>struct</span> foo {
-    u8 Buffer[<span style=color:#00f>256</span>];
-    string Str; 
-};
+<span class=k>struct</span> <span class=nc>StringWithBuffer</span> <span class=p>{</span>
+    <span class=n>u8</span> <span class=n>buffer</span><span class=p>[</span><span class=mi>256</span><span class=p>];</span>
+    <span class=n>String</span> <span class=n>str</span><span class=p>;</span> 
+<span class=p>};</span>
 
-<span style=color:navy;font-weight:700>void</span> CreateFoo(foo* Foo) {
-    Foo-&gt;Str = CreateString(Foo-&gt;Buffer, <span style=color:#00f>256</span>);
-}
-</code></pre></td></tr></table>
+<span class=kt>void</span> <span class=nf>CreateStringWithBuffer</span><span class=p>(</span><span class=n>StringWithBuffer</span><span class=o>*</span> <span class=n>Foo</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>Foo</span><span class=o>-&gt;</span><span class=n>Str</span> <span class=o>=</span> <span class=n>CreateString</span><span class=p>(</span><span class=n>Foo</span><span class=o>-&gt;</span><span class=n>Buffer</span><span class=p>,</span> <span class=mi>256</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=c1>// Usage
+</span><span class=c1></span><span class=n>StringWithBuffer</span> <span class=n>foo</span> <span class=o>=</span> <span class=p>{};</span>
+<span class=n>CreateStringWithBuffer</span><span class=p>(</span><span class=o>&amp;</span><span class=n>foo</span><span class=p>);</span>
+<span class=c1>// foo.str.data correctly points to foo.str.buffer!
+</span></code></pre></td></tr></table>
 </div>
-</div><p>It&rsquo;s interesting because I genuinely thought that both methods are interchangable in all situations, and that the differences between them only boils down to what I feel about low-level optimization and preferences in readability.</p>
+</div><p>In the end, I really shouldn&rsquo;t have cared that much.</p>
 </p>
 </div>
 </div>
