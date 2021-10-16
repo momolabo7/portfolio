@@ -2,6 +2,9 @@ baseURL = "https://geraldwong.net"
 languageCode = "en-us"
 title = "Gerald's Website"
 
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
 [params]
   mainSections = ["blog"] 
   custom_css = ["css/common.css"]
@@ -17,5 +20,5 @@ title = "Gerald's Website"
     lineNos = true
     lineNumbersInTable = true
     noClasses = true
-    style = "borland"
+    style = "dracula"
     tabWidth = 4

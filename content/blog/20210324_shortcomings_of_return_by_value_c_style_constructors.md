@@ -71,37 +71,46 @@ StringWithBuffer CreateStringWithBuffer() {
     StringWithBuffer ret = {};
     ret.str = CreateString(ret.buffer, 256);
 
-    return tet;
-    // ret.str.data will be pointing to an invalid address 
-    // after this function is called!
+    return ret; 
 }
+
+// Usage
+StringWithBuffer foo = CreateStringWithBuffer();
+// foo.str.data will not point to foo.str.buffer!
 ```
 
-After calling `CreateFoo()`, the object's `Str.Data` member will be pointing at an invalid address. Thinking about it, C++ constructors will never have this issue because you are modifying `this` (However, I have a lot of things against C++ constructors, which I might go into another article when I can).   
+After calling `CreateStringWithBuffer()`, `foo.str.data` member will be pointing at an invalid address and not `foo.buffer`! This is obvious when you work out what happened step by step. Within `CreateStringWithBuffer()`, `ret.str.data` would end up correctly pointing to `ret.buffer`. However, `ret` is actually a temporary object, so `ret.buffer` will naturally become invalid after the function is done. It's obvious after pointing it out, but I think it's fair to say that most of us thought that there would not be a problem with `CreateStringWithBuffer()`, because it looks so straightforward and simple. 
+
+Thinking about it, C++ constructors will never have this issue because you are modifying `this` and returns a reference to itself. (However, I have a lot of things against C++ constructors, which I might go into another article when I can).   
 
 Thankfully, the pointer version will not have the issue:
 
 ```cpp
 // Simple lightweight 'string' object.
-struct string {
-    char* Data;
-    int Cap;
-    int Count;
+struct String {
+    char* data;
+    int cap;
+    int count;
 };
-string CreateString(char* Buffer, int Cap) {
-    string Ret = {};
-    Ret.Data = Buffer;
-    Ret.Cap = Cap;
-};
-
-struct foo {
-    u8 Buffer[256];
-    string Str; 
+String CreateString(char* buffer, int cap) {
+    String ret = {};
+    ret.data = buffer;
+    ret.cap = cap;
 };
 
-void CreateFoo(foo* Foo) {
+struct StringWithBuffer {
+    u8 buffer[256];
+    String str; 
+};
+
+void CreateStringWithBuffer(StringWithBuffer* Foo) {
     Foo->Str = CreateString(Foo->Buffer, 256);
 }
+
+// Usage
+StringWithBuffer foo = {};
+CreateStringWithBuffer(&foo);
+// foo.str.data correctly points to foo.str.buffer!
 ```
 
-It's interesting because I genuinely thought that both methods are interchangable in all situations, and that the differences between them only boils down to what I feel about low-level optimization and preferences in readability.
+In the end, I really shouldn't have cared that much. 
