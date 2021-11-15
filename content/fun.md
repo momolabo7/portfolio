@@ -32,6 +32,7 @@ This is personal list of links I use for inspiration and gamedev which I have pe
 - [puff.c](https://github.com/madler/zlib/blob/master/contrib/puff/puff.c): Useful reference for implementing your own zlib decompression
 - [Fonts and Layout](https://simoncozens.github.io/fonts-and-layout/): Good reference for font-related terminologies
 - [CRC](https://barrgroup.com/embedded-systems/how-to/crc-calculation-c-code): Good reference about CRC
+- [RNG](https://www.pcg-random.org/posts/bounded-rands.html): RNG in practice.
 
 ### Gameplay
 - [maze generation algorithms](http://www.astrolog.org/labyrnth/algrithm.htm)
