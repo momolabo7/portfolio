@@ -1,6 +1,6 @@
 ---
 title: "Byte Alignment Notes"
-date: 2021-03-24T12:00:00+08:00
+date: 2021-11-18T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
