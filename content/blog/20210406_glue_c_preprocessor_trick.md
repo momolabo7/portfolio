@@ -4,7 +4,7 @@ date: 2021-04-06T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - Documentation
+  - Programming
 ---
 
 Macro tricks are rare to find nowadays. Sometimes, I would code and _know_ of a trick but had forgotten how to go about implementing it because they can look as arcane as Template Metaprogramming. Hopefully, I can document some of my knowledge of these tricks in this blog. Here, I will introduce what I call the 'Glue' macro trick. 

@@ -4,7 +4,7 @@ date: 2021-11-18T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - Documentation
+  - Programming
 ---
 
 When dealing with raw memory directly, there might come the need to align your memory to the nearest of some power of 2.
