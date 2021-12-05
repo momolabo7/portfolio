@@ -1,11 +1,14 @@
 ---
-title: "Handmade DnC"
+title: "Dots and Circles"
 ---
 
 {{<showcase-img `/img/projects/show-dnc.jpg`>}}
 
-In the spirit of Handmade, this project is my attempt to write a game and a game engine with as few libraries as possible. Libraries will only be used after thorough evaluation (e.g. cmaths is useful because it deals with intrinsics) but otherwise, everything else will be written from scratch.
+Be a Dot! Be a Circle!&nbsp;Be anything you want, just avoid what you are not! 
 
-The target game will be similar to the **Dots and Circles** student game I made with another friend. It will run on Windows although I hope to run it on Linux and even Raspberry Pi if possible. 
+[Dots and Circles](https://momodevelop.itch.io/dots-and-circles) is an experimental Bullet Hell game that uses mouse as movement. Collect as many bullets as you can to see how much you can score!
 
-[git](https://github.com/momodevelop/dots-and-circles)
+- Move around with the mouse
+- **Left click** to change between being a Dot or a Circle.
+
+This game and its engine is written from scratch with the 'handmade' philosophy. Almost everything is coded from ground up in C/C++ for reasons mostly educational. The only code not written by me are therenderer APIs, OS APIs, a couple of stb and standard&nbsp;library headers.&nbsp; 
