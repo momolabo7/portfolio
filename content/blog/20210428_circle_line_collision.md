@@ -128,7 +128,7 @@ In this case, we choose to make `$\dot{c_2}$` static. For this, we simply add th
 
 ![](/img/blog_img/20210428_circle_line_collision/7.jpg)
 
-One way to think about it is to imagine that `$\dot{c_1}` and `$\dot{c_2}` are moving trains, and that you are on, in this case, `$\dot{c_2}$`. What you would feel, even though the train is moving, is that you are still, and when you see the train `$\dot{c_1}` approaching, it is moving with the combined velocity of itself and the reverse of your train (i.e. it's seems to be moving a lot faster than it should).
+One way to think about it is to imagine that `$\dot{c_1}$` and `$\dot{c_2}$` are moving trains, and that you are on, in this case, `$\dot{c_2}$`. What you would feel, even though the train is moving, is that you are still, and when you see the train `$\dot{c_1}$` approaching, it is moving with the combined velocity of itself and the reverse of your train (i.e. it's seems to be moving a lot faster than it should).
 
 Now that we have a moving circle and a static circle, we can simply add the moving circle's radius `$r_1$` to the static circle's radius `$r_2$`, just like what we did in 'moving circle vs static circle'!
 
