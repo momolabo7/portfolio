@@ -7,142 +7,24 @@
 <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Inconsolata">
 <link rel=stylesheet href=/css/common.css>
 <link rel="shortcut icon" type=image/png href=/img/favicon.png>
-<title>Gerald's Website</title>
-<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:['script','noscript','style','textarea','pre']}},window.addEventListener('load',a=>{document.querySelectorAll("mjx-container").forEach(function(a){a.parentElement.classList+='has-jax'})})</script>
+<title>Gerald's Website</title><script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script>
-</head>
-<body>
+</head><body>
 <div class=profile>
 <a href=/>
 <img class=profile-img-back src=/img/profile.jpg loading=lazy>
 </a>
-<div class=profile-text>Gerald's Stuff</div>
-<div class=profile-subtext> Blog </div>
-</div>
-<div class=blog-container>
+<div class=profile-text>Gerald's Stuff</div><div class=profile-subtext> Blog </div></div><div class=blog-container>
 <div class=blog-body>
 <h1 class=blog-content-title>
 Perspective Projection Matrix
-</h1>
-<h4 class=blog-content-date>
+</h1><h4 class=blog-content-date>
 <time datetime=2021-08-01T12:00:00+08:00>
 Aug 1, 2021
 </time>
-</h4>
-<p class=blog-content-body>
-<p>I was searching around internet for a full derivation for the 3D Perspective Projection Matrix to apply to my handmade software renderer and I was surprised by how little information I could find about it. That prompted me to write this post, to document the derivation of the matrix, at least in my own eyes.</p>
-<p><img src=/img/blog_img/20210801_perspective_projection_matrix/1.jpg alt></p>
-<p>I&rsquo;m not going to go through the whole graphics pipeline here. For those who already understand the graphics pipeline but isn&rsquo;t sure how to derive the perspective projection matrix, essentially what we want is to transform whatever&rsquo;s within the world space&rsquo;s &lsquo;frustum box&rsquo; in the left side into the NDC space&rsquo;s &lsquo;box&rsquo; on the right side.</p>
-<p>The frustum box are defined with $l$, $r$, $t$, $b$, $n$, $f$, which represents left, right, top, bottom, near and far values of a frustum. Note that $l$, $r$, $b$, $t$​​ define the near-clip plane of the frustum to project to. Some tutorials like to use the far-clip plane and I couldn&rsquo;t understand why.</p>
-<p>We are also going to assume that both the world space and NDC space are in left-hand coordinates, which means that the higher the z value, the further from origin we are. We are also going to assume that the NDC box in our case is defined with the ranges [-1, 1] for each axis. This means that <code>$l$</code> needs to map to -1, $r$ needs to map to 1, $b$​ needs to map to -1, etc.</p>
-<p>If, for whatever reason, your world space and NDC space are in different-handed coordinates from each other (like OpenGL-centric tutorials where world is in right-hand and NDC is in left-hand), you can&rsquo;t plug in my final matrix. If your NDC values are different, you can&rsquo;t plug in my final matrix as well. Instead you have to rederive the matrix using your values. Don&rsquo;t worry, the steps you have to go through is the same.</p>
-<p>So here&rsquo;s the problem statement: Given a point in the world space $\dot{w} $​​, find the corresponding point in NDC space $\dot{m}$​​.</p>
-<h2 id=find-dotp-which-is-dote-projected-onto-the-near-clip-plane>Find $\dot{p}$, which is $\dot{e}$​ projected onto the near clip plane</h2>
-<p>We are start off with a cross section of the world space&rsquo;s frustum below.</p>
-<p><img src=/img/blog_img/20210801_perspective_projection_matrix/2.jpg alt></p>
-<p>We first must find the projected point on the near-clip plane $ \dot{p} = \begin{bmatrix} p_x \\ p_y \\ p_z \end{bmatrix}$​​​.</p>
-<p>$ p_z $ is trivial and simply $ n $.</p>
-<p>Through the ratio of similar triangles, we can observe that:</p>
-<p>$ \dfrac{p_y}{w_y} = \dfrac{n}{w_z} $​​</p>
-<p>Thus $ p_y = \dfrac{n \cdot w_y }{w_z}$​</p>
-<p>Deriving $ p_x $​ will be similar.</p>
-<p>$ p_x = \dfrac{n \cdot w_x }{w_z}$​</p>
-<p>Putting it all together:</p>
-<p>$ \dot{p} = \begin{bmatrix} \dfrac{n \cdot w_x }{w_z} \\ \dfrac{n \cdot w_y }{w_z} \\ n\end{bmatrix}$​​​​​​.</p>
-<p>From here, we will focus on trying to get $\dot{m}$, which is $\dot{w}$ in mapped into NDC space. We will first solve for $m_x$ and $m_y$. Doing this is a simple scale and translation. The translation is in case $[l, r]$ or $[t, b]$ are not symmetrical. For example, when $l = -100$ and $r = 150$. If they are symmetrical, say $l = -100$ and $r = 100$, then you can ignore the translation step.</p>
-<p>$m_x = \dfrac{1 - (-1)}{r - l} \cdot p_x + A$​​ <em>(where $A$​​​​ is the translation)</em></p>
-<p>$m_x = \dfrac{2}{r - l} \cdot p_x + A$​​​</p>
-<p>Solve for $A$ by substituting $p_x = r$ and $m_x = 1$ (you can do $p_x = l$ and $m_x = -1$). Basically we already know these values at certain points on the plane and since the points are all linearly related, the $A$ for $p_x = r$ and $m_x = 1$ can be used for all $p_x$ and $m_x$.</p>
-<p>$1 = \dfrac{2r}{r-l} + A$</p>
-<p>$A = 1 - \dfrac{2r}{r-l} $</p>
-<p>$A = \dfrac{r-l}{r-1} - \dfrac{2r}{r-l} $</p>
-<p>$A = \dfrac{r-l-2r}{r-1}$</p>
-<p>$A = \dfrac{-l-r}{r-1}$</p>
-<p>$A = -\dfrac{r+l}{r-1}$</p>
-<p>Going back to solving $m_x$​​, we substitute $A$​ and $p_x$​​​ to get:</p>
-<p>$m_x = \dfrac{2}{r - l} p_x + A$</p>
-<p>$m_x = \dfrac{2}{r - l} \cdot \dfrac{n \cdot w_x }{w_z} -\dfrac{r+l}{r-1} $</p>
-<p>$m_x = \dfrac{2nw_x}{(r - l)(w_z)} -\dfrac{(r+l)(w_z)}{(r-1)(w_z)} $​​​</p>
-<p>$m_x = \dfrac{2n}{(r - l)(w_z)} \cdot w_x -\dfrac{r+l}{(r-1)(w_z)} \cdot w_z $​</p>
-<p>$m_x = \dfrac{\dfrac{2n}{r - l} \cdot w_x -\dfrac{r+l}{r-1} \cdot w_z}{w_z} $​​</p>
-<p>$m_y$ would be the same, but with $w_y$, $b$ and $t$ instead.</p>
-<p>$m_y = \dfrac{\dfrac{2n}{t - b} \cdot w_y -\dfrac{t+b}{t-b} \cdot w_z}{w_z} $​​</p>
-<p>We will need it in this form to form the matrix.</p>
-<h2 id=bringing-out-the-matrix>Bringing out the matrix</h2>
-<p>At this point, we have to consider putting some of our formula into a matrix, because then, we can concatenate other transforms together. (This means that if you are not using matrices to do your transforms, then you can directly apply the formulas individually and ignore this section). So we want something like this:</p>
-<p>$ \begin{bmatrix}? & ? & ? \\ ? & ? & ? \\ ? & ? & ? \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \end{bmatrix} = \begin{bmatrix} m_x \\ m_y \\ m_z \end{bmatrix}$</p>
-<p>Unfortunately, we can&rsquo;t express our current form of $m_x$ and $m_y$​ into this form. There is no way to represent the division by $w_z$​ in matrix form. What we do to solve this is essentially a <em>hack</em>. We will store the $w_z$ somewhere else, then we will divide all values by it <strong>after</strong> we apply the matrix. This step is known as the <strong>perspective divide</strong>. Where do we store $w_z$? Well, we will add a new dimension to $\dot{m}$ and store it under $m_w$. This means that we now have this:</p>
-<p>$ \begin{bmatrix}? &?& ?& ? \\ ?& ?& ?& ? \\ ? &? &? &? \\ ? &?& ?& ? \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} m_x \\ m_y \\ m_z \\ m_w \end{bmatrix}$</p>
-<p>Wait, doesn&rsquo;t this mean that $\dot{m}$​ is no longer in NDC space? Good point. To keep things consistent from here on out, we will retain that $\dot{m}$​​​ is still in NDC space, which is the space <strong>after</strong> perspective divide. We will call the space <strong>before</strong> the perspective as &lsquo;clip space&rsquo;. We will call the point $\dot{w}$​ transformed into clip space $\dot{c}$​. We rewrite our equation:</p>
-<p>$\begin{bmatrix}? &?& ?& ? \\ ?& ?& ?& ? \\ ? &? &? &? \\ ? &?& ?& ? \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \dot{c} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​</p>
-<p>and when $\dot{c}$​ is divided by $c_w$​, you will get $\dot{m}$​ .</p>
-<p>$\begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}/c_w = \begin{bmatrix} m_x \\ m_y \\ m_z \\ 1\end{bmatrix}$</p>
-<p>Note that $m_w$ after the perspective divide step is now $1$​.</p>
-<p>Also note that this works perfectly with affine transformations (like translation) because it is 4x4. That is, it fits perfectly with our scale/rotation/translation matrices that we do before applying this matrix. Below is an example of scaling, and translating a point before applying our perspective projection matrix.</p>
-<p>$ \begin{bmatrix}?& ? &? &? \\ ?& ? &?& ? \\ ?& ?& ? &? \\ ? &? &?& ? \end{bmatrix}\begin{bmatrix}1 &0 &0 & t_x \\ 0& 1& 0 &t_y \\ 0& 0& 1& t_z \\ 0& 0& 0& 1 \end{bmatrix} \begin{bmatrix}s_x &0 &0 & 0 \\ 0& s_y& 0 &0 \\ 0& 0& s_z& 0 \\ 0& 0& 0& 1 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​</p>
-<p>How lucky can a hack get!</p>
-<p>Well, now we have to find our values for our matrix. We will first make it such that we store $w_z$ into $m_w$​</p>
-<p>$ \begin{bmatrix}? &?& ?& ? \\ ?& ?& ?& ? \\ ? &? &? &? \\ 0 &0& 1& 0 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​</p>
-<p>Since we are going to do <strong>perspective divide</strong>, i.e. $c_x$​​​​​​, $c_y$​​​​​​, $c_z$​​​​​​, is going to be divided by $c_w$​​​​​​ (which is going to be $w_z$​​​​​​), we can ignore all division by $w_z$​​​​​​. Thus, our $c_x$​​​​​​ and $c_y$​​​​​ now looks like this:</p>
-<p>$c_x = \dfrac{2n}{r - l} \cdot w_x -\dfrac{r+l}{r-1} \cdot w_z $​​​​</p>
-<p>$c_y = \dfrac{2n}{t - b} \cdot w_y -\dfrac{t+b}{t-b} \cdot w_z $​</p>
-<p>These can be expressed in our matrix:</p>
-<p>$ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\ 0& \dfrac{2n}{t - b}& -\dfrac{t+b}{t-b}& 0 \\ ? &? &? &? \\ 0 &0& 1& 0 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​</p>
-<p>Nice, have 4 more values to go!</p>
-<h2 id=what-about-c_z>What about $c_z$​​​?</h2>
-<p>$c_z$​​ is going to be a little different. We can&rsquo;t use the method we used for $c_x$​​ and $c_y$​​ because we are projecting $\dot{w}$​​ onto the near-clip plane. Projecting any $w_z$​​ into the near clip plan results in $n$​​ itself. We kind of want to keep $w_z$​​ so that we can identify the depth value of each point.</p>
-<p>How about we keep the $w_z$ value and set it to $c_z$?</p>
-<p>The problem with that is the <strong>perspective divide</strong>. When we set $c_z$​​ = $w_z$​​, after the perspective divide, we are going to end up with $w_z/w_z = 1$​​!</p>
-<p>So the question is: is there a way to set $c_z$​​ such that after perspective divide, we will still retain some information of the z-values of each point in $\dot{m}$​​? It&rsquo;s even better if we can reverse the perspective divide from $\dot{m}$​ to get back $\dot{c}$​​​, in order to do clipping.</p>
-<p>Consider that $m_z$ can be written like this:</p>
-<p>$ m_z = \dfrac{c_z}{w_z}$​​</p>
-<p>We can write this in terms of $c_z$, since that&rsquo;s the variable we are interested in:</p>
-<p>$ c_z = m_z w_z $​</p>
-<p>We look at our matrix again:</p>
-<p>$ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\ 0& \dfrac{2n}{t - b}& -\dfrac{t+b}{t-b}& 0 \\ A & B & C & D \\ 0 &0& 1& 0 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​​​</p>
-<p>Combining the equations above, this means that:</p>
-<p>$ Aw_x + Bw_y + Cw_z + D = c_z = m_z w_z$</p>
-<p>We can set $A$​​​ and $B$​​​ to $0$​ because we can determine that $w_x$​ and $w_y$​ should not have any effect on $m_z$​​​​.</p>
-<p>This means that we only need to find $C$​ and $D$​ such that:</p>
-<p>$m_z w_z = c_z = Cw_z + D$​​</p>
-<p>We can then plug in our known values $n$​ and $f$​ into $w_z$​.</p>
-<p>We also know that when $w_z = n$, $m_z = w_z^2 = -1$. Likewise for $w_z = f$, $m_z = w_z^2 = 1$. This is similar to us trying to map $l$ to -1, $r$ to 1, $b$ to -1, etc. This is simply adding constraints to the quadratic equation, in order for the curve will line up such that $C$ and $D$ the same when $w_z = n$ and $w_z = f$.</p>
-<p>We then get the following two equations, and we then solve for $C$​​​ and $D$​​​​.</p>
-<p>$Cn + D = (-1)(n)$​​​​​​</p>
-<p>$Cf + D = (1)(f)$​​​​​​​</p>
-<p>Express $C$ in terms of $n$</p>
-<p>$Cn = -n - D$​​</p>
-<p>$C = \dfrac{-n - D}{n}$​​</p>
-<p>Substitute the $C$​​ in terms of $n$​​ into the formula for expressed in $f$​​ and find $D$​</p>
-<p>$ \dfrac{-n - D}{n}f + D = f $​</p>
-<p>$ \dfrac{-fn - fD}{n} + \dfrac{Dn}{n} = f $</p>
-<p>$ -fn - fD + Dn = fn $</p>
-<p>$ -fD + Dn = fn + fn$​</p>
-<p>$ D(-f + n) = 2fn$</p>
-<p>$ D = \dfrac{2fn}{-f + n}$</p>
-<p>$ D = \dfrac{2fn}{-f + n}$</p>
-<p>$ D = -\dfrac{2fn}{f - n}$</p>
-<p>Then substitute this back into the formula expressed in $n$ to find $C$</p>
-<p>$Cn -\dfrac{2fn}{f - n} = -n$​</p>
-<p>$Cn = -n + \dfrac{2fn}{f-n}$​​</p>
-<p>$C = -1 + \dfrac{2f}{f - n}$​</p>
-<p>$C = -\dfrac{f-n}{f-n} + \dfrac{2f}{f-n}$​​​</p>
-<p>$C = \dfrac{-f+n}{f-n} + \dfrac{2f}{f-n}$</p>
-<p>$C = \dfrac{-f+n + 2f}{f-n}$​</p>
-<p>$C = \dfrac{f+n}{f-n}$​</p>
-<p>Plus $C$ and $D$ into our matrix and we are done!</p>
-<p>$ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\ 0& \dfrac{2n}{t - b}& -\dfrac{t+b}{t-b}& 0 \\ 0 & 0 & \dfrac{f+n}{f-n} & -\dfrac{2fn}{f - n} \\ 0 &0& 1& 0 \end{bmatrix}\begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$</p>
-<p>One thing to note is that there is an interesting side effect when $w_z$​​​ is mapped to $c_z$​​. The mapping itself is non-linear, unlike what we did with $w_x$​​ and $w_y$​​​. If you plug in values for $w_z$​, you will notice that the corresponding $c_z$​ would look something like this:</p>
-<p><img src=/img/blog_img/20210801_perspective_projection_matrix/3.jpg alt></p>
-<p>Notice that it&rsquo;s a curve. This has an interesting effect. It means that points nearer to the near-clip-plane will have better precision than pointers nearer to the far clip plane. This is important to note only because of floating point precision issues: faces nearer to the far-clip plane will end up with a higher chance of z-fighting.</p>
-</p>
-</div>
-</div>
-<footer>
+</h4><p class=blog-content-body>
+<p>I was searching around internet for a full derivation for the 3D Perspective Projection Matrix to apply to my handmade software renderer and I was surprised by how little information I could find about it. That prompted me to write this post, to document the derivation of the matrix, at least in my own eyes.</p><p><img src=/img/blog_img/20210801_perspective_projection_matrix/1.jpg alt></p><p>I&rsquo;m not going to go through the whole graphics pipeline here. For those who already understand the graphics pipeline but isn&rsquo;t sure how to derive the perspective projection matrix, essentially what we want is to transform whatever&rsquo;s within the world space&rsquo;s &lsquo;frustum box&rsquo; in the left side into the NDC space&rsquo;s &lsquo;box&rsquo; on the right side.</p><p>The frustum box are defined with $l$, $r$, $t$, $b$, $n$, $f$, which represents left, right, top, bottom, near and far values of a frustum. Note that $l$, $r$, $b$, $t$​​ define the near-clip plane of the frustum to project to. Some tutorials like to use the far-clip plane and I couldn&rsquo;t understand why.</p><p>We are also going to assume that both the world space and NDC space are in left-hand coordinates, which means that the higher the z value, the further from origin we are. We are also going to assume that the NDC box in our case is defined with the ranges [-1, 1] for each axis. This means that <code>$l$</code> needs to map to -1, $r$ needs to map to 1, $b$​ needs to map to -1, etc.</p><p>If, for whatever reason, your world space and NDC space are in different-handed coordinates from each other (like OpenGL-centric tutorials where world is in right-hand and NDC is in left-hand), you can&rsquo;t plug in my final matrix. If your NDC values are different, you can&rsquo;t plug in my final matrix as well. Instead you have to rederive the matrix using your values. Don&rsquo;t worry, the steps you have to go through is the same.</p><p>So here&rsquo;s the problem statement: Given a point in the world space $\dot{w} $​​, find the corresponding point in NDC space $\dot{m}$​​.</p><h2 id=find-dotp-which-is-dote-projected-onto-the-near-clip-plane>Find $\dot{p}$, which is $\dot{e}$​ projected onto the near clip plane</h2><p>We are start off with a cross section of the world space&rsquo;s frustum below.</p><p><img src=/img/blog_img/20210801_perspective_projection_matrix/2.jpg alt></p><p>We first must find the projected point on the near-clip plane $ \dot{p} = \begin{bmatrix} p_x \\ p_y \\ p_z \end{bmatrix}$​​​.</p><p>$ p_z $ is trivial and simply $ n $.</p><p>Through the ratio of similar triangles, we can observe that:</p><p>$ \dfrac{p_y}{w_y} = \dfrac{n}{w_z} $​​</p><p>Thus $ p_y = \dfrac{n \cdot w_y }{w_z}$​</p><p>Deriving $ p_x $​ will be similar.</p><p>$ p_x = \dfrac{n \cdot w_x }{w_z}$​</p><p>Putting it all together:</p><p>$ \dot{p} = \begin{bmatrix} \dfrac{n \cdot w_x }{w_z} \\ \dfrac{n \cdot w_y }{w_z} \\ n\end{bmatrix}$​​​​​​.</p><p>From here, we will focus on trying to get $\dot{m}$, which is $\dot{w}$ in mapped into NDC space. We will first solve for $m_x$ and $m_y$. Doing this is a simple scale and translation. The translation is in case $[l, r]$ or $[t, b]$ are not symmetrical. For example, when $l = -100$ and $r = 150$. If they are symmetrical, say $l = -100$ and $r = 100$, then you can ignore the translation step.</p><p>$m_x = \dfrac{1 - (-1)}{r - l} \cdot p_x + A$​​ <em>(where $A$​​​​ is the translation)</em></p><p>$m_x = \dfrac{2}{r - l} \cdot p_x + A$​​​</p><p>Solve for $A$ by substituting $p_x = r$ and $m_x = 1$ (you can do $p_x = l$ and $m_x = -1$). Basically we already know these values at certain points on the plane and since the points are all linearly related, the $A$ for $p_x = r$ and $m_x = 1$ can be used for all $p_x$ and $m_x$.</p><p>$1 = \dfrac{2r}{r-l} + A$</p><p>$A = 1 - \dfrac{2r}{r-l} $</p><p>$A = \dfrac{r-l}{r-1} - \dfrac{2r}{r-l} $</p><p>$A = \dfrac{r-l-2r}{r-1}$</p><p>$A = \dfrac{-l-r}{r-1}$</p><p>$A = -\dfrac{r+l}{r-1}$</p><p>Going back to solving $m_x$​​, we substitute $A$​ and $p_x$​​​ to get:</p><p>$m_x = \dfrac{2}{r - l} p_x + A$</p><p>$m_x = \dfrac{2}{r - l} \cdot \dfrac{n \cdot w_x }{w_z} -\dfrac{r+l}{r-1} $</p><p>$m_x = \dfrac{2nw_x}{(r - l)(w_z)} -\dfrac{(r+l)(w_z)}{(r-1)(w_z)} $​​​</p><p>$m_x = \dfrac{2n}{(r - l)(w_z)} \cdot w_x -\dfrac{r+l}{(r-1)(w_z)} \cdot w_z $​</p><p>$m_x = \dfrac{\dfrac{2n}{r - l} \cdot w_x -\dfrac{r+l}{r-1} \cdot w_z}{w_z} $​​</p><p>$m_y$ would be the same, but with $w_y$, $b$ and $t$ instead.</p><p>$m_y = \dfrac{\dfrac{2n}{t - b} \cdot w_y -\dfrac{t+b}{t-b} \cdot w_z}{w_z} $​​</p><p>We will need it in this form to form the matrix.</p><h2 id=bringing-out-the-matrix>Bringing out the matrix</h2><p>At this point, we have to consider putting some of our formula into a matrix, because then, we can concatenate other transforms together. (This means that if you are not using matrices to do your transforms, then you can directly apply the formulas individually and ignore this section). So we want something like this:</p><p>$ \begin{bmatrix}? & ? & ? \\ ? & ? & ? \\ ? & ? & ? \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \end{bmatrix} = \begin{bmatrix} m_x \\ m_y \\ m_z \end{bmatrix}$</p><p>Unfortunately, we can&rsquo;t express our current form of $m_x$ and $m_y$​ into this form. There is no way to represent the division by $w_z$​ in matrix form. What we do to solve this is essentially a <em>hack</em>. We will store the $w_z$ somewhere else, then we will divide all values by it <strong>after</strong> we apply the matrix. This step is known as the <strong>perspective divide</strong>. Where do we store $w_z$? Well, we will add a new dimension to $\dot{m}$ and store it under $m_w$. This means that we now have this:</p><p>$ \begin{bmatrix}? &?& ?& ? \\ ?& ?& ?& ? \\ ? &? &? &? \\ ? &?& ?& ? \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} m_x \\ m_y \\ m_z \\ m_w \end{bmatrix}$</p><p>Wait, doesn&rsquo;t this mean that $\dot{m}$​ is no longer in NDC space? Good point. To keep things consistent from here on out, we will retain that $\dot{m}$​​​ is still in NDC space, which is the space <strong>after</strong> perspective divide. We will call the space <strong>before</strong> the perspective as &lsquo;clip space&rsquo;. We will call the point $\dot{w}$​ transformed into clip space $\dot{c}$​. We rewrite our equation:</p><p>$\begin{bmatrix}? &?& ?& ? \\ ?& ?& ?& ? \\ ? &? &? &? \\ ? &?& ?& ? \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \dot{c} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​</p><p>and when $\dot{c}$​ is divided by $c_w$​, you will get $\dot{m}$​ .</p><p>$\begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}/c_w = \begin{bmatrix} m_x \\ m_y \\ m_z \\ 1\end{bmatrix}$</p><p>Note that $m_w$ after the perspective divide step is now $1$​.</p><p>Also note that this works perfectly with affine transformations (like translation) because it is 4x4. That is, it fits perfectly with our scale/rotation/translation matrices that we do before applying this matrix. Below is an example of scaling, and translating a point before applying our perspective projection matrix.</p><p>$ \begin{bmatrix}?& ? &? &? \\ ?& ? &?& ? \\ ?& ?& ? &? \\ ? &? &?& ? \end{bmatrix}\begin{bmatrix}1 &0 &0 & t_x \\ 0& 1& 0 &t_y \\ 0& 0& 1& t_z \\ 0& 0& 0& 1 \end{bmatrix} \begin{bmatrix}s_x &0 &0 & 0 \\ 0& s_y& 0 &0 \\ 0& 0& s_z& 0 \\ 0& 0& 0& 1 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​</p><p>How lucky can a hack get!</p><p>Well, now we have to find our values for our matrix. We will first make it such that we store $w_z$ into $m_w$​</p><p>$ \begin{bmatrix}? &?& ?& ? \\ ?& ?& ?& ? \\ ? &? &? &? \\ 0 &0& 1& 0 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​</p><p>Since we are going to do <strong>perspective divide</strong>, i.e. $c_x$​​​​​​, $c_y$​​​​​​, $c_z$​​​​​​, is going to be divided by $c_w$​​​​​​ (which is going to be $w_z$​​​​​​), we can ignore all division by $w_z$​​​​​​. Thus, our $c_x$​​​​​​ and $c_y$​​​​​ now looks like this:</p><p>$c_x = \dfrac{2n}{r - l} \cdot w_x -\dfrac{r+l}{r-1} \cdot w_z $​​​​</p><p>$c_y = \dfrac{2n}{t - b} \cdot w_y -\dfrac{t+b}{t-b} \cdot w_z $​</p><p>These can be expressed in our matrix:</p><p>$ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\ 0& \dfrac{2n}{t - b}& -\dfrac{t+b}{t-b}& 0 \\ ? &? &? &? \\ 0 &0& 1& 0 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​</p><p>Nice, have 4 more values to go!</p><h2 id=what-about-c_z>What about $c_z$​​​?</h2><p>$c_z$​​ is going to be a little different. We can&rsquo;t use the method we used for $c_x$​​ and $c_y$​​ because we are projecting $\dot{w}$​​ onto the near-clip plane. Projecting any $w_z$​​ into the near clip plan results in $n$​​ itself. We kind of want to keep $w_z$​​ so that we can identify the depth value of each point.</p><p>How about we keep the $w_z$ value and set it to $c_z$?</p><p>The problem with that is the <strong>perspective divide</strong>. When we set $c_z$​​ = $w_z$​​, after the perspective divide, we are going to end up with $w_z/w_z = 1$​​!</p><p>So the question is: is there a way to set $c_z$​​ such that after perspective divide, we will still retain some information of the z-values of each point in $\dot{m}$​​? It&rsquo;s even better if we can reverse the perspective divide from $\dot{m}$​ to get back $\dot{c}$​​​, in order to do clipping.</p><p>Consider that $m_z$ can be written like this:</p><p>$ m_z = \dfrac{c_z}{w_z}$​​</p><p>We can write this in terms of $c_z$, since that&rsquo;s the variable we are interested in:</p><p>$ c_z = m_z w_z $​</p><p>We look at our matrix again:</p><p>$ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\ 0& \dfrac{2n}{t - b}& -\dfrac{t+b}{t-b}& 0 \\ A & B & C & D \\ 0 &0& 1& 0 \end{bmatrix} \begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$​​​​</p><p>Combining the equations above, this means that:</p><p>$ Aw_x + Bw_y + Cw_z + D = c_z = m_z w_z$</p><p>We can set $A$​​​ and $B$​​​ to $0$​ because we can determine that $w_x$​ and $w_y$​ should not have any effect on $m_z$​​​​.</p><p>This means that we only need to find $C$​ and $D$​ such that:</p><p>$m_z w_z = c_z = Cw_z + D$​​</p><p>We can then plug in our known values $n$​ and $f$​ into $w_z$​.</p><p>We also know that when $w_z = n$, $m_z = w_z^2 = -1$. Likewise for $w_z = f$, $m_z = w_z^2 = 1$. This is similar to us trying to map $l$ to -1, $r$ to 1, $b$ to -1, etc. This is simply adding constraints to the quadratic equation, in order for the curve will line up such that $C$ and $D$ the same when $w_z = n$ and $w_z = f$.</p><p>We then get the following two equations, and we then solve for $C$​​​ and $D$​​​​.</p><p>$Cn + D = (-1)(n)$​​​​​​</p><p>$Cf + D = (1)(f)$​​​​​​​</p><p>Express $C$ in terms of $n$</p><p>$Cn = -n - D$​​</p><p>$C = \dfrac{-n - D}{n}$​​</p><p>Substitute the $C$​​ in terms of $n$​​ into the formula for expressed in $f$​​ and find $D$​</p><p>$ \dfrac{-n - D}{n}f + D = f $​</p><p>$ \dfrac{-fn - fD}{n} + \dfrac{Dn}{n} = f $</p><p>$ -fn - fD + Dn = fn $</p><p>$ -fD + Dn = fn + fn$​</p><p>$ D(-f + n) = 2fn$</p><p>$ D = \dfrac{2fn}{-f + n}$</p><p>$ D = \dfrac{2fn}{-f + n}$</p><p>$ D = -\dfrac{2fn}{f - n}$</p><p>Then substitute this back into the formula expressed in $n$ to find $C$</p><p>$Cn -\dfrac{2fn}{f - n} = -n$​</p><p>$Cn = -n + \dfrac{2fn}{f-n}$​​</p><p>$C = -1 + \dfrac{2f}{f - n}$​</p><p>$C = -\dfrac{f-n}{f-n} + \dfrac{2f}{f-n}$​​​</p><p>$C = \dfrac{-f+n}{f-n} + \dfrac{2f}{f-n}$</p><p>$C = \dfrac{-f+n + 2f}{f-n}$​</p><p>$C = \dfrac{f+n}{f-n}$​</p><p>Plus $C$ and $D$ into our matrix and we are done!</p><p>$ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\ 0& \dfrac{2n}{t - b}& -\dfrac{t+b}{t-b}& 0 \\ 0 & 0 & \dfrac{f+n}{f-n} & -\dfrac{2fn}{f - n} \\ 0 &0& 1& 0 \end{bmatrix}\begin{bmatrix} w_x \\ w_y \\ w_z \\ 1 \end{bmatrix} = \begin{bmatrix} c_x \\ c_y \\ c_z \\ c_w \end{bmatrix}$</p><p>One thing to note is that there is an interesting side effect when $w_z$​​​ is mapped to $c_z$​​. The mapping itself is non-linear, unlike what we did with $w_x$​​ and $w_y$​​​. If you plug in values for $w_z$​, you will notice that the corresponding $c_z$​ would look something like this:</p><p><img src=/img/blog_img/20210801_perspective_projection_matrix/3.jpg alt></p><p>Notice that it&rsquo;s a curve. This has an interesting effect. It means that points nearer to the near-clip-plane will have better precision than pointers nearer to the far clip plane. This is important to note only because of floating point precision issues: faces nearer to the far-clip plane will end up with a higher chance of z-fighting.</p></p></div></div><footer>
 <p classname=footer-copyright-text>
 Powered By Hugo | v1.2 | © 2021 Gerald Wong
-</p>
-</footer>
-</body>
-</html>
+</p></footer></body></html>
