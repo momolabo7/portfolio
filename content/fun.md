@@ -8,7 +8,7 @@ This is personal list of links I use for inspiration and gamedev which I have pe
 - [Handmade Hero](https://hero.handmade.network/episode/code): Stream that captures win32 low-level game engine development from scratch with minimal libraries used.
 - [Jonathan Blow](https://https://www.twitch.tv/j_blow/): Stream of the creator of Braid, The Witness and the JAI programming language
 - [Chinnykian](https://www.twitch.tv/chinykian): Singaporean indie game developer  
-- [Momodevelop](https://www.twitch.tv/momodevelop): My stream
+- [momohoudai](https://www.twitch.tv/momohoudai): My stream
 - [Computerphile](https://www.youtube.com/channel/UC9-y-6csu5WGm29I7JiwpnA): Generally good videos on anything computers
 - [Numberphile](https://www.youtube.com/user/numberphile): Generally good videos on anything math
 
@@ -50,4 +50,4 @@ This is personal list of links I use for inspiration and gamedev which I have pe
 - [Sementic Compression](https://caseymuratori.com/blog_0015): For my refactoring problems
 
 ### Others
-- [momodevelop](https://geraldwong.net/blog/): My own blog!
+- [momohoudai](https://geraldwong.net/blog/): My own blog!

@@ -11,5 +11,5 @@ The amazing random artworks were created by [@hikaika_guu](https://twitter.com/h
 Perhaps I'll release a more optimized native version that can handle variable NxM puzzles one day...
 
 
-[git](https://github.com/momodevelop/html5-npuzzle) - 
-[play](https://momodevelop.github.io/html5-npuzzle/)
+[git](https://github.com/momohoudai/html5-npuzzle) - 
+[play](https://momohoudai.github.io/html5-npuzzle/)

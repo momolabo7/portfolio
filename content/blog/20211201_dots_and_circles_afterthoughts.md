@@ -7,7 +7,7 @@ tags:
   - Documentation
 ---
 
-Alright, the game is [out on itch.io](https://momodevelop.itch.io/dots-and-circles) for free! Now that some time has passed and a handful of people have played the game, I felt that there is no better time then to jot down my experiences developing this small arcade game, lest I forget (again).
+Alright, the game is [out on itch.io](https://momohoudai.itch.io/dots-and-circles) for free! Now that some time has passed and a handful of people have played the game, I felt that there is no better time then to jot down my experiences developing this small arcade game, lest I forget (again).
 
 <!--more-->
 

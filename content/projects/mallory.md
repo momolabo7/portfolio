@@ -10,5 +10,5 @@ The motivation is to explore procedurally generated levels and also using Unity 
 
 I will probably create a more optimal desktop version some time in the future.
 
-[git](https://github.com/momodevelop/unity-mallory) - 
-[play](https://momodevelop.itch.io/mallory)
+[git](https://github.com/momohoudai/unity-mallory) - 
+[play](https://momohoudai.itch.io/mallory)

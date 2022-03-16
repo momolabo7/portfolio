@@ -6,7 +6,7 @@ title: "Dots and Circles"
 
 Be a Dot! Be a Circle!&nbsp;Be anything you want, just avoid what you are not! 
 
-[Dots and Circles](https://momodevelop.itch.io/dots-and-circles) is an experimental Bullet Hell game that uses mouse as movement. Collect as many bullets as you can to see how much you can score!
+[Dots and Circles](https://momohoudai.itch.io/dots-and-circles) is an experimental Bullet Hell game that uses mouse as movement. Collect as many bullets as you can to see how much you can score!
 
 - Move around with the mouse
 - **Left click** to change between being a Dot or a Circle.

@@ -15,4 +15,4 @@ Pathfinding algorithms:
 * Dijkstra
 * A Star
 
-[git](https://github.com/momodevelop/pathfinding-visualizer) - [play](https://momodevelop.github.io/pathfinding-visualizer/)
+[git](https://github.com/momohoudai/pathfinding-visualizer) - [play](https://momohoudai.github.io/pathfinding-visualizer/)
