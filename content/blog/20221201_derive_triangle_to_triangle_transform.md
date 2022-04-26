@@ -1,5 +1,5 @@
 ---
-title: "Triangle to Triangle transformation"
+title: "Deriving Triangle to Triangle transformation matrix"
 date: 2022-04-25T23:00:00+08:00
 authors:
   - Gerald Wong
@@ -37,7 +37,7 @@ $ A\dot{s2} = \dot{d2}$
 
 It might be possible to solve this using good old simultenous equations but we can actually use matrices to figure this out. 
 
-First, we will redefine $ S $ into a 3x3 matrix like so:
+First, we will redefine $ S $ into a 3x3 matrix by setting 1 in each vertices' 3rd component like so:
 
 $ S = \begin{bmatrix}\dot{s0} & \dot{s1} & \dot{s2} \end{bmatrix} = \begin{bmatrix}{s0_{x}} & {s1_{x}} & {s2_{x}} \\\ {s0_{y}} & {s1_{y}} & {s2_{y}} \\\ 1 & 1 & 1 \end{bmatrix} $
 
@@ -79,8 +79,156 @@ Once we do that, we can then set $\dot{d3}$ as $\dot{s3}$ and find $A$ via the s
 
 $ A = DS^{-1} $
 
+## A concrete example
+
+Just so that we can iron out any issues with the explantions above, let's look at an example in the context of my project.
+
+Currently, I have decided that the vertices that represents triangle $S$ is going to be the following:
+
+$ \dot{s0} = \begin{bmatrix} 0 \\\ 0 \\\ 0 \end{bmatrix} $
+$ \dot{s1} = \begin{bmatrix} 0 \\\ 1 \\\ 0 \end{bmatrix} $
+$ \dot{s2} = \begin{bmatrix} 1 \\\ 0 \\\ 0 \end{bmatrix} $
+
+These vertices are stored on the GPU and will be reused to form other triangle shapes required by the project. 
+
+We then need to form the 4x4 matrix $S$, but before that, we will have to pick a $ \dot{s3} $ such that there exists an $S^{-1}$. 
+For my use case I decided to define $ \dot{s3} $ as follows:
+
+$ \dot{s3} = \begin{bmatrix} 1 \\\ 1 \\\ 1 \end{bmatrix} $
+
+This will allow us to construct the $S$. We do what we did in the 2D version, but set the 4th component to 1 instead of the 3rd component:
+
+$ S = \begin{bmatrix}\dot{s0} & \dot{s1} & \dot{s2} & \dot{s3} \end{bmatrix} = \begin{bmatrix} 0 && 0 && 1 && 1\\\ 0 && 1 && 0 && 1 \\\ 0 && 0 && 0 && 1 \\\ 1 && 1 && 1 && 1 \end{bmatrix}$
+
+And this will give us $S^{-1}$:
+
+$S^{-1} = 
+\begin{bmatrix} 
+  0 && 0 && 1 && 1\\\ 
+  0 && 1 && 0 && 1 \\\ 
+  0 && 0 && 0 && 1 \\\ 
+  1 && 1 && 1 && 1 
+\end{bmatrix}^{-1} = 
+\begin{bmatrix} 
+  -1 && -1 && 1 && 1 \\\ 
+  0 && 1 && -1 && 0 \\\ 
+  1 && 0 && -1 && 0 \\\ 
+  0 && 0 && 1 && 0 
+\end{bmatrix}  
+$
+
+Then let's say I want to render a triangle with these points:
+
+$ \dot{d0} = \begin{bmatrix} 5 \\\ 3 \\\ -1 \end{bmatrix} $
+$ \dot{d1} = \begin{bmatrix} 4 \\\ 5 \\\ -2 \end{bmatrix} $
+$ \dot{d2} = \begin{bmatrix} 2 \\\ 13 \\\ 10 \end{bmatrix} $
+
+We just need to form the 4x4 matrix $D$, with $\dot{d3}$ being equal to $\dot{s3}$.
+
+$D = 
+\begin{bmatrix} 
+  5 && 4  && 2  && 1\\\ 
+  3 && 5  && 13  && 1 \\\ 
+  -1 && -2 && 10  && 1 \\\ 
+  1 && 1  &&  1  && 1 
+\end{bmatrix}
+$
+
+And with this, we can now find $A$: 
+
+$ A = DS^{-1} $
+
+$ A = 
+\begin{bmatrix} 
+  5 && 4  && 2  && 1\\\ 
+  3 && 5  && 13  && 1 \\\ 
+  -1 && -2 && 10  && 1 \\\ 
+  1 && 1  &&  1  && 1 
+\end{bmatrix}
+\begin{bmatrix} 
+  -1 && -1 && 1 && 1 \\\ 
+  0 && 1 && -1 && 0 \\\ 
+  1 && 0 && -1 && 0 \\\ 
+  0 && 0 && 1 && 0 
+\end{bmatrix}  $
 
 
+$ A = 
+\begin{bmatrix} 
+  -3 && -1 && 0 && 5 \\\ 
+  10 && 2 && -14 && 3 \\\ 
+  11 && -1 && -8 && -1 \\\ 
+  0 && 0 && 0 && 1 
+\end{bmatrix} $
+
+
+Always remember to double check if this actually works.
+For this case, we can apply $A$ onto all the vertices of the triangle $S$ and see if we get the vertices of triangle $D$, ignoring the 4th component one we are done with our multiplication.
+
+$A \dot{s0} = 
+\begin{bmatrix} 
+  -3 && -1 && 0 && 5 \\\ 
+  10 && 2 && -14 && 3 \\\ 
+  11 && -1 && -8 && -1 \\\ 
+  0 && 0 && 0 && 1 
+\end{bmatrix}
+\begin{bmatrix} 
+  0  \\\ 
+  0  \\\ 
+  0 \\\ 
+  1 
+\end{bmatrix} =
+\begin{bmatrix} 
+  5  \\\ 
+  3  \\\ 
+  -1 \\\ 
+  1 
+\end{bmatrix} =
+\dot{d0}$
+
+$A \dot{s1} = 
+\begin{bmatrix} 
+  -3 && -1 && 0 && 5 \\\ 
+  10 && 2 && -14 && 3 \\\ 
+  11 && -1 && -8 && -1 \\\ 
+  0 && 0 && 0 && 1 
+\end{bmatrix}
+\begin{bmatrix} 
+  0  \\\ 
+  1  \\\ 
+  0 \\\ 
+  1 
+\end{bmatrix} =
+\begin{bmatrix} 
+  4  \\\ 
+  5  \\\ 
+  -2 \\\ 
+  1 
+\end{bmatrix} =
+\dot{d1}$
+
+$A \dot{s2} = 
+\begin{bmatrix} 
+  -3 && -1 && 0 && 5 \\\ 
+  10 && 2 && -14 && 3 \\\ 
+  11 && -1 && -8 && -1 \\\ 
+  0 && 0 && 0 && 1 
+\end{bmatrix}
+\begin{bmatrix} 
+  1  \\\ 
+  0  \\\ 
+  0  \\\ 
+  1 
+\end{bmatrix} =
+\begin{bmatrix} 
+  2  \\\ 
+  13  \\\ 
+  10 \\\ 
+  1 
+\end{bmatrix} =
+\dot{d2}$
+
+Hooray! Looks like it works :)
 
 
 
