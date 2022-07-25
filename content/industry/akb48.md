@@ -1,5 +1,5 @@
 ---
-title: "Gundam Heroes"
+title: "AKB48の野望"
 ---
 
 {{<showcase-img `/img/industry/show-akb48.jpg`>}}

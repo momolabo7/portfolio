@@ -1,13 +1,18 @@
-{{ define "title" }} {{ .Title }} {{ end }} 
-{{ define "main" }} 
+{{ define "mathjax"}} {{ partial "mathjax.html" . }} {{ end }}
 
-<div class="blog-container">
+{{ define "main" }}
 
-    <div class="blog-body">
-        <p class="blog-content-body">
-            {{ .Content }}
-        </p>
-    </div>
+<div class="blog-body">
+
+    <h1 class="blog-content-title">
+        {{ .Title }}
+    </h1>
+
+    <p class="blog-content-body">
+        {{ .Content }}
+    </p>
 </div>
 
 {{ end }}
+
+
