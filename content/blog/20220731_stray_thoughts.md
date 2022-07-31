@@ -1,0 +1,54 @@
+---
+title: "I tried Stray"
+date: 2022-07-31T13:40:00+08:00
+authors:
+  - Gerald Wong
+---
+
+I just played this game called 'Stray' over the week just to check out what all the hype was about. 
+Before I go on, I would like to say that it's a pretty decent game. 
+I can see why there are people who loved and hate it. 
+Here I'm just going to pen down thoughts I find about the game. 
+
+Sorry about the word vomit in advance, and of course, spoilers from here on!
+
+<!--more-->
+
+The UI design of the game starts of minimalistic and that kind of fell off as the game progresses.
+I fully emphathize that it is very difficult to have a truely 'minimalistic' UI but still, I think they can do a bit better. 
+
+I really loved the setting and the design of the robots in the game. 
+The cats are really cute and the animations were done well.
+The designers clearly put alot of care into the cats.
+ 
+I'm a bit disappoint over some of the details though.
+For example, I was able to trip a person once, but never again. 
+In this way, it felt like every event I experienced in the game felt too scripted and static.
+
+Gameplay was generally okay. 
+
+It was actually surprisingly difficult to predict what kind of 'level' the game is going to throw at me next, which is good because I did not lose interest throughout the game. 
+This is probably attributed to the vastly different genre that each level represents (i.e. runners, 'parkouring', exploration, stealth...beat 'em up?).
+
+The basic parkour gameplay felt a LOT like Assassin's Creed, so I didn't feel any 'magic' in that regard. 
+If anything it felt like a less dynamic version of Assassin's Creed's implementation. 
+This was when I realized that AC is made in 2007; almost 15 years ago? 
+We have really come a long way. 
+But then again, people love cats so...that makes it better I guess?
+
+Okay now for things I couldn't stand.
+
+Maybe it's just me but I wasn't sure why I needed to help the robots. 
+All I was interested in was returning to the three cats that abandoned me, which I didn't and that made me felt that there is no closure to the game (yes yes, there's a closure to the setting, but meow! I have to get back at my bros!)
+
+I also tilted at every uneven steps the game had. 
+They clearly have the collision of a slope, so that kind of broke immersion for me in an otherwise beautiful world. 
+
+Finally, I cannot understand why are there conviniently placed 'platforms' on every two steps of a ladder. I understand that it helps the player proceed but c'mon, it felt so lazy.
+
+I think that's all I have to say about Stray. 
+Good game. Good music. Good experience. Definitely worth the buy in my opinion. 
+The developers wanted to make an adventure game with a cat main character and they did it.
+I look forward to their next game.
+
+
