@@ -83,11 +83,11 @@ We can then choose any element of `$\vec{v}$` to find `$t$`. Note that the eleme
 I.e. if `$ v_x = 0 $`, use `$ v_y $` instead, etc. There won't be a case where all elements of `$\vec{v}$` is 0 because...that wouldn't form us the line `$l$` anymore.
 
 
-$ m_x + t(v_x) = s_x $
+$ \dot{l_{min}}_x + t(v_x) = s_x $
 
-$ t(v_x) = s_x - m_x $
+$ t(v_x) = s_x - \dot{l_{min}}_x $
 
-$ t = \dfrac{(s_x - m_x)}{v_x} $
+$ t = \dfrac{(s_x - \dot{l_{min}}_x)}{v_x} $
 
 
 If `$t$` is lesser than 0 or greater than 1, we are not colliding. Otherwise, we go to the final section.
