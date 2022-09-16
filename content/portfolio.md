@@ -1,9 +1,6 @@
 ---
 title: "Portfolio"
 ---
-It's always hard to decide 
-something something chronological order. 
-
 I started in Koei Tecmo Singapore, where I worked as a full-stack web developer for the localization team in [Nobunyaga's Ambition](/industry/nyaga).  
 
 I was then transfered to Japan to be a web developer for [AKB48's Ambition](/industry/akb48). 
