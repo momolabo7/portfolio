@@ -47,19 +47,19 @@ Thankfully, this is conceptually easy to solve. We extend our line ends, `$ \dot
 
 ## Extend $ \dot{l_{min}} $ and $ \dot{l_{max}} $ by a factor of $ r $
 
-First, we need to find the unit vector to extend `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`. First, get the vector `$ \vec{v} $` that goes from `$ \dot{l_{min}} $` to `$ \dot{l_{max}} $` by subtracting `$ \dot{l_{min}} $` from `$ \dot{l_{max}} $` :
+First, we need to find the unit vector to extend `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`. First, get the vector `$ \vec{e} $` that goes from `$ \dot{l_{min}} $` to `$ \dot{l_{max}} $` by subtracting `$ \dot{l_{min}} $` from `$ \dot{l_{max}} $` :
 
-$ \vec{v} = \dot{l_{max}} - \dot{l_{min}} $  
+$ \vec{e} = \dot{l_{max}} - \dot{l_{min}} $  
 
-Then, we normalize it to get the unit vector `$ \hat{v} $`. We get it by dividing `$\vec{v}$` by `$|\vec{v}|$`, where `$|\vec{v}|$` is the magnitude/length of `$ \vec{v} $`:
+Then, we normalize it to get the unit vector `$ \hat{v} $`. We get it by dividing `$\vec{e}$` by `$|\vec{e}|$`, where `$|\vec{v}|$` is the magnitude/length of `$ \vec{e} $`:
 
-$ \hat{v} = \dfrac{\vec{v}}{|\vec{v}|} $
+$ \hat{v} = \dfrac{\vec{e}}{|\vec{e}|} $
 
-Since `$\hat{v}$` is the unit vector of `$ \vec{v} $`, we simply multiply it with `$r$` to get the amount to translate `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` to 'extend' the line. Thus, our new `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` (which we will denote as `$ \dot{l_{min}'} $` and `$ \dot{l_{max}'} $`) will be:
+Since `$\hat{e}$` is the unit vector of `$ \vec{e} $`, we simply multiply it with `$r$` to get the amount to translate `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` to 'extend' the line. Thus, our new `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` (which we will denote as `$ \dot{l_{min}'} $` and `$ \dot{l_{max}'} $`) will be:
 
-$ \dot{l_{min}'} = \dot{l_{min}} - (\hat{v} * r) $
+$ \dot{l_{min}'} = \dot{l_{min}} - (\hat{e} * r) $
 
-$ \dot{l_{max}'} = \dot{l_{max}} + (\hat{v} * r) $
+$ \dot{l_{max}'} = \dot{l_{max}} + (\hat{e} * r) $
 
 ## Find the point $ \dot{s} $
 
@@ -70,7 +70,7 @@ $ \dot{s} = \dfrac{((\dot{c} - \dot{l_{min}}) ・\vec{v} }{\vec{|v|}}  *  \hat{v
 
 ## Check if $ \dot{s} $ is between $ \dot{l_{min}} $ and $ \dot{l_{max}} $
 
-This is easier than it looks. Imaging that we have a line formed by `$ \dot{l_{min}} + t(v) $`, where `$t$` represents a scalar value such that if it is 0, we will get `$ \dot{l_{min}} $` and if it is 1, we will get `$ \dot{l_{max}} $`. 
+This is easier than it looks. Imaging that we have a line formed by `$ \dot{l_{min}} + t(\vec{v}) $`, where `$t$` represents a scalar value such that if it is 0, we will get `$ \dot{l_{min}} $` and if it is 1, we will get `$ \dot{l_{max}} $`. 
 
 In other words, `$t$` is a ratio. Also, since we already know that `$ \dot{s} $` is definitely on the line, it means that we can safely say that there exists a `$t$` such that:
 

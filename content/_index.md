@@ -8,14 +8,17 @@ This is my home page! I am a software engineer with a passion for teaching. My s
 # I'm a programmer
 I have been programming for 13 years. I have spent a total of around 6 professional years in the game industry. 5 of them were spent in Koei Tecmo Singapore and 1 was in Udream Entertainment. 
 
-My experience in the industry includes console, web and mobile titles. I have experience in both development and operational cycles of several titles, and have lead teams in those environments. 
+I have worked on several console, web and mobile titles. I have experience working on and leading teams in both development and servicing environments for these titles. 
 
-I enjoy working on most software engineering aspects of a project. I have developed content for frontend, planned/setup the infrastructure for backend, and came up with build systems and tools for the various projects I'm involved in. 
+I have developed content for frontend, maintained the infrastructure for backend systems, and came up with build systems and tools that improve developer's workflow for the projects I'm involved in. 
 
 # I'm a lecturer
-I currently teach at a tertiary level, currently serving my 3rd year as a lecturer at DigiPen Institute of Technology, Singapore. 
+I currently teach as a lecturer at DigiPen Institute of Technology, Singapore. 
 
-The topics I teach include games development, software engineering and programming topics.
+There, I teach topics related to games development, software engineering and programming. I also run project modules for up to 280 freshmen where they form teams learn to develop a software application from idealization to implementation.
+
+Outside of teaching, I develop teaching materials and graded items for modules that I am involved in, write and maintain several in-house tools that improve the workflow of managing them, as well as writing and maintaining in-house software libraries that are used by students in their project modules.
+
 
 
 
