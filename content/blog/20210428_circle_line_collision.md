@@ -61,6 +61,8 @@ $ \dot{l_{min}'} = \dot{l_{min}} - (\hat{e} * r) $
 
 $ \dot{l_{max}'} = \dot{l_{max}} + (\hat{e} * r) $
 
+![](/img/blog_img/20210428_circle_line_collision/9.jpg)
+
 ## Find the point $ \dot{s} $
 
 For those familiar with vector arithmetic, to find the point `$ \dot{s} $`, it is simply the projection of the vector formed by `$ (\dot{c} - \dot{l_{min}}) $` onto `$ \vec{v} $`. I would suggest those not familiar with projection to give it a look. Anyway, the formula is simply:
