@@ -1,5 +1,5 @@
 ---
-title: "I tried Stray"
+title: "Thoughts on 'Stray'"
 date: 2022-07-31T13:40:00+08:00
 authors:
   - Gerald Wong
@@ -15,12 +15,12 @@ Sorry about the word vomit in advance, and of course, spoilers from here on!
 <!--more-->
 
 The UI design of the game starts of minimalistic and that kind of fell off as the game progresses.
-I fully emphathize that it is very difficult to have a truely 'minimalistic' UI but still, I think they can do a bit better. 
+I fully empathize that it is very difficult to have a truly 'minimalistic' UI but still, I think they can do a bit better. 
 
 I really loved the setting and the design of the robots in the game. 
 The cats are really cute and the animations were done well.
-The designers clearly put alot of care into the cats.
- 
+The designers clearly put a lot of care into the cats.
+
 I'm a bit disappoint over some of the details though.
 For example, I was able to trip a person once, but never again. 
 In this way, it felt like every event I experienced in the game felt too scripted and static.
@@ -44,11 +44,11 @@ All I was interested in was returning to the three cats that abandoned me, which
 I also tilted at every uneven steps the game had. 
 They clearly have the collision of a slope, so that kind of broke immersion for me in an otherwise beautiful world. 
 
-Finally, I cannot understand why are there conviniently placed 'platforms' on every two steps of a ladder. I understand that it helps the player proceed but c'mon, it felt so lazy.
+Finally, I cannot understand why are there conveniently placed 'platforms' on every two steps of a ladder. I understand that it helps the player proceed but c'mon, it felt so lazy.
 
-I think that's all I have to say about Stray. 
-Good game. Good music. Good experience. Definitely worth the buy in my opinion. 
-The developers wanted to make an adventure game with a cat main character and they did it.
+I think that's all I have to say about Stray. Good game. Good music. Good experience. Definitely worth the buy in my opinion. The developers wanted to make an adventure game with a cat main character and they did it.
+
 I look forward to their next game.
 
+I give this game a meow out of 10.
 
