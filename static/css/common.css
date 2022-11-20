@@ -1,7 +1,8 @@
 body{
   background-color: #161612;
   font-family: "Liberation Mono", monospace;
-  color: #A08563; 
+  color: #aa9374;
+  /*color: #A08563;*/
 }
 
 h1, h2, h3, h4, h5 {
