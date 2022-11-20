@@ -21,8 +21,16 @@ I don't doubt that different people will have different ways of exploring the wo
 
 The different areas in the game are rather well made. Each area has their own unique issues, problems and people. In each area, you learn the origin of the place through your exploration via bits of pieces of information either from talking to NPCs, looking at the aesthetics of the place or even descriptions when you highlight certain key objects in the world. They all make sense and tie in to the overarching world that is the desolate wasteland of Fallout. 
 
-My only complaint is that each area felt very isolated from each other. I don't remember many quests that requires me to travel around the world. In general, the quests usually starts and ends in the same area.
+What I really liked is that at the end of the day, despite killing mob bosses, nuking a cathedral, thwarting an oppressive mutants armies, you are not some god of the wasteland or something. 
+Even though you felt like  changed the course of history for the future of the Fallout series, but you are not celebrated as a hero. 
+And if you think about it, what exactly did you change in the grand scheme of things?
 
-The last thing I really liked is that at the end of the day after accomplishing so many things, you are not some god of the wasteland or something. You just get out there, find a water chip, return home and have an ending that isn't really good or bad. 
+Not much really.
 
-I give this game a refreshing out of 10!
+You return home with the water chip only to get banished. 
+Wars go on. Blood continues to shed. 
+Even though there's hope that what you did in the game lead to a slightly better future, who really is it beneficial for?
+
+It's as they said in the opening cutscene: "War never changes."
+
+I give this game an 'old but refreshing' out of 10!
