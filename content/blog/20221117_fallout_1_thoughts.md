@@ -1,5 +1,5 @@
 ---
-title: "Thoughts on Fallout '1'"
+title: "Thoughts on Fallout 1"
 date: 2022-11-17T14:44:00+08:00
 authors:
   - Gerald Wong
