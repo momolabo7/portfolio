@@ -235,11 +235,12 @@ docker stop [CONTAINER ID OR NAME]
 docker stop ($docker ps -a -q)
 ```
 
-Compose: setups up a container and runs it.
+Compose: setups up a bunch of container and...does a bunch of things.
 Docker Compose needs a YML file to run.
+By default, it runes docker-compose.yml in the current directory.
 
 ```sh
-docker compose -f given_yml.yml up -d 
+docker compose up -d 
 ```
 
 
