@@ -9,6 +9,21 @@ pygmentsUseClasses = true
   mainSections = ["blog"] 
   custom_css = ["css/common.css"]
 
+[security]
+  enableInlineShortcodes = false
+
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^asciidoctor$']
+    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+)$']
+
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$']
+
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
+
+
 [markup]
   [markup.highlight]
     anchorLineNos = false
@@ -17,8 +32,8 @@ pygmentsUseClasses = true
     hl_Lines = ""
     lineAnchors = ""
     lineNoStart = 1
-    lineNos = true
-    lineNumbersInTable = false
+    lineNos = false
+    lineNumbersInTable = true
     noClasses = true
     style = "dracula"
     tabWidth = 2
