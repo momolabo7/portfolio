@@ -1,5 +1,5 @@
 ---
-title: "A small shortcoming of return-by-value"
+title: "Return To Obra Dinn thoughts"
 date: 2023-04-02T12:00:00+08:00
 authors:
   - Gerald Wong
