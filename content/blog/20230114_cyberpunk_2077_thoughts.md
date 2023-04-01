@@ -3,7 +3,10 @@ title: "Cyberpunk 2077 thoughts"
 date: 2023-01-14T12:00:00+08:00
 authors:
   - Gerald Wong
+tags:
+  - game_reviews
 ---
+
 I finally took the time to complete Cyberpunk 2077 today. 
 It's been a while since I played an open world western RPG. 
 I believe the last one I played was Skyrim when it first released in 2011. 

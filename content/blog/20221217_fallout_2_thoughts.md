@@ -3,6 +3,8 @@ title: "Thoughts on Fallout 2"
 date: 2022-12-30T14:44:00+08:00
 authors:
   - Gerald Wong
+tags:
+  - game_reviews
 ---
 
 I played Fallout 2 in 2022 and here are my thoughts.
