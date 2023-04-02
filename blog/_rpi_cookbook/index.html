@@ -45,7 +45,7 @@ After you log in, enter the command below display the list of groups you are und
 </span></span></code></pre></div><p>Remove containers</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>docker rm <span class=o>[</span>CONTAINER ID OR NAME...<span class=o>]</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># Example: removing all containers</span>
-</span></span><span class=line><span class=cl>docker rm <span class=o>(</span><span class=nv>$docker</span> ps -a -q<span class=o>)</span>
+</span></span><span class=line><span class=cl>docker rm <span class=k>$(</span>docker ps -a -q<span class=k>)</span>
 </span></span></code></pre></div><p>List all images</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>docker images -a
 </span></span></code></pre></div><p>Remove images.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>docker rmi <span class=o>[</span>Images...<span class=o>]</span>
 </span></span><span class=line><span class=cl>
@@ -54,7 +54,7 @@ After you log in, enter the command below display the list of groups you are und
 </span></span></code></pre></div><p>Stop container.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>docker stop <span class=o>[</span>CONTAINER ID OR NAME<span class=o>]</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># Example: stops all containers</span>
-</span></span><span class=line><span class=cl>docker stop <span class=o>(</span><span class=nv>$docker</span> ps -a -q<span class=o>)</span>
+</span></span><span class=line><span class=cl>docker stop <span class=k>$(</span>docker ps -a -q<span class=k>)</span>
 </span></span></code></pre></div><p>Compose: setups up a bunch of container and&mldr;does a bunch of things.
 Docker Compose needs a YML file to run.
 By default, it runes docker-compose.yml in the current directory.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>docker compose up -d 
