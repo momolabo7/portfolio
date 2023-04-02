@@ -9,9 +9,9 @@ tags:
 
 I played Fallout 2 in 2022 and here are my thoughts.
 
-<!--more-->
-
 Like Fallout 1, I have also played Fallout 2 as a kid. Just like Fallout 1, it's so refreshing to play it in 2022.
+
+<!--more-->
 
 The formula they used for storytelling seemed to be similar Fallout 1. You start off as a nobody, go out there to explore the wasteland, found a big threat, solve the big threat and return as a nobody. 
 
