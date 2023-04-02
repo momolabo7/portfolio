@@ -212,7 +212,7 @@ Remove containers
 docker rm [CONTAINER ID OR NAME...]
 
 # Example: removing all containers
-docker rm ($docker ps -a -q)
+docker rm $(docker ps -a -q)
 ```
 
 List all images
@@ -233,7 +233,7 @@ Stop container.
 docker stop [CONTAINER ID OR NAME]
 
 # Example: stops all containers
-docker stop ($docker ps -a -q)
+docker stop $(docker ps -a -q)
 ```
 
 Compose: setups up a bunch of container and...does a bunch of things.
