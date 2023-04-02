@@ -9,9 +9,10 @@ tags:
 
 I played Fallout 1 in 2022 and here are my thoughts.
 
-<!--more-->
+Now, let me give a disclaimer and say that I have played Fallout 1 as a kid when the game is still in a CD. 
+I remember positive emotions playing the game but all I remembered as an adult before playing it again was that you are the Vault Dweller from Vault 13 and you need to find a water chip within some kind of a time limit. 
 
-Now, let me give a disclaimer and say that I have played Fallout 1 as a kid when the game is still in a CD. I remember positive emotions playing the game but all I remembered as an adult before playing it again was that you are the Vault Dweller from Vault 13 and you need to find a water chip within some kind of a time limit. 
+<!--more-->
 
 One thing that's refreshing, as expected, is the lack of any guidance that littered modern games today. There is no tutorial, no quest markers, no compasses, nothing. In the areas you visit, exploration is the first thing I would instinctively do, which allows me to pick up the details of the map. 
 
