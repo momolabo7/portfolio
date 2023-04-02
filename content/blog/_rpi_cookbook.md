@@ -4,17 +4,18 @@ date: 2023-03-12T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - Programming
+  - programming
 ---
 
 I figured that I might as well save a Raspberry PI cookbook somewhere.
 
+
 <!-- more -->
+
 
 Note that these are for Raspberry PI OS.
 Some of these will work on other Linux distributions (especially Debian since Raspbian derives from it). 
 te that these are for Raspberry PI OS.
-
 
 But you know, Linux being linux and distributions being distributions, not all of them will work for everything. 
 Since I only use Raspberry PI right now, I'll just stick to the commands being for the Raspberry PI.
