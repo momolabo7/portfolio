@@ -244,12 +244,31 @@ By default, it runes docker-compose.yml in the current directory.
 docker compose up -d 
 ```
 
+# systemd.service
+
+systemd.service is a way to manage your application into services in Debian/Ubuntu based Linux. 
+Simply write create a file with a .service extention containing content like this:
+
+```sh
+[Unit]
+Description=My discord bot service
+After=network.target
+
+[Service]
+ExecStart=/command/to/execute
+WorkingDirectory=/home/place/to/execute
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
 
 
-# SAMBA 
+[Install]
+WantedBy=multi-user.target
+```
 
-This is mostly used for file sharing between computers (and to a certain extent; backup).
+Toss it into `/etc/systemd/your_app.service`, and you could be able to use it like a service.
 
-TODO
-
+```sh
+systemctl start your_app
+```
 
