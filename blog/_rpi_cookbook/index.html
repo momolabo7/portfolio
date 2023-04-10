@@ -58,4 +58,20 @@ After you log in, enter the command below display the list of groups you are und
 </span></span></code></pre></div><p>Compose: setups up a bunch of container and&mldr;does a bunch of things.
 Docker Compose needs a YML file to run.
 By default, it runes docker-compose.yml in the current directory.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>docker compose up -d 
-</span></span></code></pre></div><h1 id=samba>SAMBA</h1><p>This is mostly used for file sharing between computers (and to a certain extent; backup).</p><p>TODO</p></p></div></div><footer>Powered By Hugo | v2.0 | © 2022 Gerald Wong</footer></body></html>
+</span></span></code></pre></div><h1 id=systemdservice>systemd.service</h1><p>systemd.service is a way to manage your application into services in Debian/Ubuntu based Linux.
+Simply write create a file with a .service extention containing content like this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl><span class=o>[</span>Unit<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>Description</span><span class=o>=</span>My discord bot service
+</span></span><span class=line><span class=cl><span class=nv>After</span><span class=o>=</span>network.target
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>Service<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>ExecStart</span><span class=o>=</span>/command/to/execute
+</span></span><span class=line><span class=cl><span class=nv>WorkingDirectory</span><span class=o>=</span>/home/place/to/execute
+</span></span><span class=line><span class=cl><span class=nv>StandardOutput</span><span class=o>=</span>inherit
+</span></span><span class=line><span class=cl><span class=nv>StandardError</span><span class=o>=</span>inherit
+</span></span><span class=line><span class=cl><span class=nv>Restart</span><span class=o>=</span>always
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>Install<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>WantedBy</span><span class=o>=</span>multi-user.target
+</span></span></code></pre></div><p>Toss it into <code>/etc/systemd/your_app.service</code>, and you could be able to use it like a service.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>systemctl start your_app
+</span></span></code></pre></div></p></div></div><footer>Powered By Hugo | v2.0 | © 2022 Gerald Wong</footer></body></html>
