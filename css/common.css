@@ -16,9 +16,19 @@ h2 {
   color: #669799;
 }
 
-
 hr {
   border: 1px solid grey;
+}
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  margin: 25px 0;
+}
+
+
+td, th {
+  padding: 0.5rem;
 }
 
 code.has-jax {

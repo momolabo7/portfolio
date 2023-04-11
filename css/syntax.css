@@ -1,8 +1,8 @@
-/* Background */ .bg { color: #ebdbb2; background-color: #282828; }
-/* PreWrapper */ .chroma { color: #ebdbb2; background-color: #282828; }
+/* Background */ .bg { color: #baa78e; background-color: #161612; }
+/* PreWrapper */ .chroma { color: #baa78e; background-color: #202020; }
 /* Other */ .chroma .x {  }
 /* Error */ .chroma .err {  }
-/* CodeLine */ .chroma .cl {  }
+/* CodeLine */ .chroma .cl { padding-left: 1rem; padding-right: 1rem; }
 /* LineLink */ .chroma .lnlinks { outline: none; text-decoration: none; color: inherit }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
@@ -10,12 +10,12 @@
 /* LineNumbersTable */ .chroma .lnt { white-space: pre; -webkit-user-select: none; user-select: none; margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #756d59 }
 /* LineNumbers */ .chroma .ln { white-space: pre; -webkit-user-select: none; user-select: none; margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #756d59 }
 /* Line */ .chroma .line { display: flex; }
-/* Keyword */ .chroma .k { color: #fe8019 }
-/* KeywordConstant */ .chroma .kc { color: #fe8019 }
-/* KeywordDeclaration */ .chroma .kd { color: #fe8019 }
-/* KeywordNamespace */ .chroma .kn { color: #fe8019 }
-/* KeywordPseudo */ .chroma .kp { color: #fe8019 }
-/* KeywordReserved */ .chroma .kr { color: #fe8019 }
+/* Keyword */ .chroma .k { color: #ac881a }
+/* KeywordConstant */ .chroma .kc { color: #ac881a }
+/* KeywordDeclaration */ .chroma .kd { color: #ac881a }
+/* KeywordNamespace */ .chroma .kn { color: #ac881a }
+/* KeywordPseudo */ .chroma .kp { color: #ac881a }
+/* KeywordReserved */ .chroma .kr { color: #ac881a }
 /* KeywordType */ .chroma .kt { color: #fabd2f }
 /* Name */ .chroma .n {  }
 /* NameAttribute */ .chroma .na { color: #b8bb26; font-weight: bold }
@@ -61,8 +61,8 @@
 /* LiteralNumberInteger */ .chroma .mi { color: #d3869b }
 /* LiteralNumberIntegerLong */ .chroma .il { color: #d3869b }
 /* LiteralNumberOct */ .chroma .mo { color: #d3869b }
-/* Operator */ .chroma .o { color: #fe8019 }
-/* OperatorWord */ .chroma .ow { color: #fe8019 }
+/* Operator */ .chroma .o { color: #ac881a }
+/* OperatorWord */ .chroma .ow { color: #ac881a }
 /* Punctuation */ .chroma .p {  }
 /* Comment */ .chroma .c { color: #928374; font-style: italic }
 /* CommentHashbang */ .chroma .ch { color: #928374; font-style: italic }
