@@ -9,11 +9,12 @@ tags:
 
 I was playing with Excel recently and for the hundredth time got stumped by how to use the INDEX/MATCH combo.
 For the hundredth time in the past years, I open the same damn website and the same damn explanation which took awhile because my brain actually needed to work to understand what's going on. 
+
+<!-- more -->
+
 I didn't want to understand. 
 I just want it to work.
 Yes, brain is smol.
-
-<!-- more -->
 
 So here I'm just gonna drop how to use it.
 Below is table A.  

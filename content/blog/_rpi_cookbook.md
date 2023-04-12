@@ -9,9 +9,7 @@ tags:
 
 I figured that I might as well save a Raspberry PI cookbook somewhere.
 
-
 <!-- more -->
-
 
 Note that these are for Raspberry PI OS.
 Some of these will work on other Linux distributions (especially Debian since Raspbian derives from it). 
