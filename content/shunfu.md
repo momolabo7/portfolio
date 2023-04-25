@@ -64,6 +64,15 @@ The main way to solve this is to use the heavy duty vacuum located at the balcon
 Once you fix up the vacuum, insert the pipe into the vacuum and wrap a piece of cloth around it to maximaze the suck.
 You can always call aircon servicing; they will end up doing the exact same thing for around S$50.
 
+## Aircon Servicing
+
+This is the one we currently use:
+
+* Name: AireMax Aircon Pte Ltd.
+* Phone: 83131211
+* Email: info@airemaxsg.com
+
+
 ## Where is the letter box key?
 
 It's the one with the long wooden block attached to the key chain.

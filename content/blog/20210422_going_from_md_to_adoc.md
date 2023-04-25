@@ -1,6 +1,6 @@
 ---
 title: "Going from Markdown to Asciidoc"
-date: 2023-04-122T14:44:00+08:00
+date: 2023-04-22T14:44:00+08:00
 authors:
   - Gerald Wong
 tags:
