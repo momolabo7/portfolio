@@ -11,7 +11,7 @@ Here I'll pin down my thought process of changing my work's documentations from 
 I have been switching endlessly back and forth between them and it's getting really annoying because I just want to do my work at some point.
 Hopefully after writing this, I will never look back until maybe 5 years later.
 
-<!-- more -->
+<!--more-->
 
 Moving to a different tool is always a tricky affair. 
 There's never a perfect tool, because needs are always specific.

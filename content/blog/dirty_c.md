@@ -4,7 +4,7 @@ date: 2021-09-24T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - Documentation
+  - programming
 ---
 
 Here is a collection of cool snippets of C/C++ code. Updated regularly. Used to show superiority and implode the minds of my students. Also to use in my own code, of course, whenever viable. 
@@ -30,5 +30,7 @@ To be honest though, you should do this on compile time, and you should not be l
 bool is_either_less_than_zero = (x | y) < 0;
 ```
 
-###
+## Flatten to a boolean
+
+In C, there are no booleans, so it is quite common to see 
 
