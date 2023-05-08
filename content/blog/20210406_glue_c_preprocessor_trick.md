@@ -1,10 +1,11 @@
 ---
 title: "[C/C++] The 'Glue' Preprocessor Trick"
 date: 2021-04-06T12:00:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - programming
+  - tech
 ---
 
 Macro tricks are rare to find nowadays. 

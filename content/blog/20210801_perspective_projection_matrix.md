@@ -4,7 +4,7 @@ date: 2021-08-01T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - Math
+  - tech
 ---
 
 I was searching around internet for a full derivation for the 3D Perspective Projection Matrix to apply to my handmade software renderer and I was surprised by how little information I could find about it. That prompted me to write this post, to document the derivation of the matrix, at least in my own eyes.

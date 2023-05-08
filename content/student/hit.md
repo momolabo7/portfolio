@@ -1,5 +1,7 @@
 ---
 title: "HIT"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/student/show-hit.jpg`>}}

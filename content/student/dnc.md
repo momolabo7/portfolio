@@ -1,5 +1,7 @@
 ---
 title: "Dots and Circles"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/student/show-dnc.jpg`>}}

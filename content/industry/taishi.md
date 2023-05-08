@@ -1,5 +1,7 @@
 ---
 title: "Nobunaga's Ambition: Taishi"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/industry/show-taishi.jpg`>}}

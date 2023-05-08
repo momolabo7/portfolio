@@ -1,10 +1,11 @@
 ---
 title: "Dots and Circles Afterthoughts"
 date: 2021-12-01T23:00:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - Documentation
+  - tech
 ---
 
 Alright, the game is [out on itch.io](https://momohoudai.itch.io/dots-and-circles) for free! Now that some time has passed and a handful of people have played the game, I felt that there is no better time then to jot down my experiences developing this small arcade game, lest I forget (again).

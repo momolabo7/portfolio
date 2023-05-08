@@ -1,6 +1,7 @@
 ---
 title: "Deriving Triangle to Triangle transformation matrix"
 date: 2022-04-25T23:00:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:

@@ -1,6 +1,7 @@
 ---
 title: "Japan is really something"
 date: 2023-05-02T21:20:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
@@ -15,7 +16,7 @@ I thought that it would be fun to list down some random things that I personally
 
 * Things are taken quite seriously here. Serious things are taken even more seriously. I once received an email with a very formal PDF document attached, just to inform me that they are charged my credit card. 
 * Vending machines sell all kinds of stuff. I love their canned corn soup. I have also seen SIM cards. And some stuff which I probably shouldn't mention in public ^^;
-* Recycling is not only strict, but also different depending on city and prefecture.
+* Recycling is not only strict, but also different depending on city and prefecture. It is also generally a pain in the ass for the consumer, to the point where you deconstruct an item because buying it. For example, I try not to buy, say, milk cartons with plastic stuff on it. 
 * It baffles me everytime how beer is the same cost is sake and wine.
 * Living in Japan lets you experience some of the coolest and dated technologies at the same time. You might run into cashiers that swallows big notes and dispense change, yet use a stamp for verification instead of signatures.  
 * DIY and customization options here are abundant, so much so that if you have problems making decisions, you might have choice paralysis while staying here!

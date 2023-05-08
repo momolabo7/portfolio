@@ -1,10 +1,11 @@
 ---
 title: "Thoughts on Fallout 1"
 date: 2022-11-17T14:44:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - game_reviews
+  - design
 ---
 
 I played Fallout 1 in 2022 and here are my thoughts.

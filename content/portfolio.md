@@ -1,5 +1,6 @@
 ---
 title: "Portfolio"
+nav: Portfolio
 ---
 I started in Koei Tecmo Singapore, where I worked as a full-stack web developer for the localization team in [Nobunyaga's Ambition](/industry/nyaga).  
 

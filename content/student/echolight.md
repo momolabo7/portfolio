@@ -1,5 +1,7 @@
 ---
 title: "Echolight"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/student/show-echolight.jpg`>}}

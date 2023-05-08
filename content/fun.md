@@ -1,6 +1,10 @@
 ---
+
 title: "Fun Links"
+nav: Fun
+
 ---
+
 # What is this
 This is personal list of links I use for inspiration and gamedev which I have personally evaluated and deemed useful or interesting. Thus, a lot of these drive how I work, program and think.
 

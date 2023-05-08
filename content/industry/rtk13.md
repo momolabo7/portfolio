@@ -1,5 +1,7 @@
 ---
 title: "Romance of the Three Kingdom 13"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/industry/show-rtk13.jpg`>}}

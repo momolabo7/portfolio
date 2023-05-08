@@ -1,5 +1,7 @@
 ---
 title: "N-Puzzle"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/projects/show-npuzzle.jpg`>}}

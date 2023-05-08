@@ -1,5 +1,7 @@
 ---
 title: "Nobunyaga's Ambition"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/industry/show-nyaga.jpg`>}}

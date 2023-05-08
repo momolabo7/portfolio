@@ -5,6 +5,10 @@ title = "Gerald's Website"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
+[taxonomies]
+  tag = "tags"
+
+
 [params]
   mainSections = ["blog"] 
   custom_css = ["css/common.css"]

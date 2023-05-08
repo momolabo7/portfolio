@@ -1,10 +1,11 @@
 ---
 title: "Cyberpunk 2077 thoughts"
 date: 2023-01-14T12:00:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - game_reviews
+  - design
 ---
 
 I finally took the time to complete Cyberpunk 2077 today. 

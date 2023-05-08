@@ -1,5 +1,7 @@
 ---
 title: "Flocking"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/projects/show-flocking.jpg`>}}

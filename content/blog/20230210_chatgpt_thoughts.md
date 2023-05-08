@@ -1,8 +1,11 @@
 ---
 title: "I tried ChatGPT"
 date: 2023-02-10T12:00:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
+tags:
+  - tech
 ---
 
 I have been spending an unhealthy amount of time for the past 3 weeks playing around with ChatGPT instead of doing my work. 

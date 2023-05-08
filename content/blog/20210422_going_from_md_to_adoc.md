@@ -4,7 +4,7 @@ date: 2023-04-22T14:44:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - programming
+  - tech
 ---
 
 Here I'll pin down my thought process of changing my work's documentations from Markdown to Asciidoc. 

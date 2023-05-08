@@ -1,36 +1,33 @@
 {{ define "title" }} {{ .Title }} {{ end }} 
 {{ define "main" }}
 
+<!--<div> hello </div>-->
 <div class="blog-container">
     <div class="blog-body">
-
-        {{ $pages := where .RegularPages "Type" "in" .Site.Params.mainSections }}
-        
-
-        {{ $paginator := .Paginate $pages }}
-        {{ range $paginator.Pages }}
-        <article class="blog-list-content">
+        {{ range .Pages }}
+         <article class="blog-list-content">
             <header>
-                <h1 class="blog-list-content-title"><a href="{{ .RelPermalink }}"> {{.Title}} </a></h1>
-                <h4 class="blog-list-content-date">
-                    <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-                        {{ .Lastmod.Format "Jan 2, 2006" }}
-                    </time>
-                </h4>
+                <div class="blog-title"><a href="{{ .RelPermalink }}"> {{.Title}} </a></h1>
+                <div class="blog-date-tag-wrapper">
+                    <div class="blog-date">
+                        <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+                            {{ .Lastmod.Format "Jan 2, 2006" }}
+                        </time>
+                    </div>
+                    <div class="blog-tag">{{ index ( .Params.tags) 0 }} </div>
+                </div>
             </header>
-            <section>
+            <div class="blog-body">
                 {{ .Summary }}
-            </section>
+            </div>
 
             <hr class="blog-list-content-seperator">
         </article>
-        
-
+             
         {{ end }}
 
-  
     </div>
-    
+
 </div>
 
 {{ end }}

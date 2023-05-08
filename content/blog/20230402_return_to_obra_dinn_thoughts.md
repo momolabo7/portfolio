@@ -1,10 +1,11 @@
 ---
 title: "Return To Obra Dinn thoughts"
 date: 2023-04-02T12:31:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - game_reviews
+  - design
 ---
 
 I had this game for awhile now in my Steam library, but like all games on it, I never took managed to allocate time for it until a friend speaks about it. 

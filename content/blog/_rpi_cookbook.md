@@ -4,7 +4,7 @@ date: 2023-03-12T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - programming
+  - tech
 ---
 
 I figured that I might as well save a Raspberry PI cookbook somewhere.

@@ -1,5 +1,7 @@
 ---
 title: "Nightmare"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/student/show-nightmare.jpg`>}}

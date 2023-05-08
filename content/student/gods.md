@@ -1,5 +1,7 @@
 ---
 title: "Gods Only Love Me"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/student/show-gods.jpg`>}}

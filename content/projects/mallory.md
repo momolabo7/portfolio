@@ -1,5 +1,7 @@
 ---
 title: "Mallory"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/projects/show-mallory.jpg`>}}

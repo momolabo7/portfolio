@@ -1,5 +1,7 @@
 ---
 title: "Paper Heroes"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/industry/show-paper-heroes.jpg`>}}

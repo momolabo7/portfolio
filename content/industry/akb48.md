@@ -1,5 +1,7 @@
 ---
 title: "AKB48の野望"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/industry/show-akb48.jpg`>}}

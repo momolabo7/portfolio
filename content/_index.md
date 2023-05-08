@@ -1,5 +1,6 @@
 ---
 title: "Home"
+nav: Home
 ---
 # Hey, I'm Gerald!
 

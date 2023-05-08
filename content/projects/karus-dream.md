@@ -1,5 +1,7 @@
 ---
 title: "Karu's Dream"
+nav: Portfolio
+
 ---
 
 {{<showcase-img `/img/projects/show-karus-dream.jpg`>}}

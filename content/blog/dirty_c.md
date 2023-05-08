@@ -4,7 +4,7 @@ date: 2021-09-24T12:00:00+08:00
 authors:
   - Gerald Wong
 tags:
-  - programming
+  - tech
 ---
 
 Here is a collection of cool snippets of C/C++ code. Updated regularly. Used to show superiority and implode the minds of my students. Also to use in my own code, of course, whenever viable. 

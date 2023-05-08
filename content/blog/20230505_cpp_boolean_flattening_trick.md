@@ -1,10 +1,11 @@
 ---
 title: "[C/C++] Flatten integer to 0/1"
 date: 2023-05-05T13:25:00+08:00
+nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - programming
+  - tech
 ---
 
 This is a quick trick to 'flatten' an integer into a 1 or 0.
@@ -32,7 +33,7 @@ Does the statement above use more instruction because it is a conditional?
 
 Don't worry, my friend.
 I got you covered.
-I'm a good engineer who at least have the decency to check `godbolt.com`:
+I'm a good engineer who at least have the decency to check against [Godbolt]():
 
 ```cpp
 #include <stdio.h>
@@ -60,7 +61,7 @@ int main() {
 }
 ```
 
-And turns out, in all relevant compilers today (GCC, Clang and MSVC), they all give the same instructions:
+And turns out, in all relevant compilers today (GCC, Clang and MSVC), they all give the same instructions.
 
 Here is Clang:
 ```asm
