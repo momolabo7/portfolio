@@ -4,20 +4,25 @@ body {
   color: #aa9374;
   /*color: #A08563;*/
 }
-
-h1, h3, h4, h5 {
+h3, h4, h5 {
   font-family: "Liberation Mono", monospace;
   color: #6B8E23; 
 }
 
-h2 {
+h1 {
   font-size: 1.75rem;
+  font-family: "Liberation Mono", monospace;
+  color: #6B8E23;
+}
+
+h2 {
+  font-size: 1.5rem;
   font-family: "Liberation Mono", monospace;
   color: #669799;
 }
 
 hr {
-  border: 1px solid grey;
+  border: 0.1rem solid grey;
 }
 
 table, th, td {
@@ -25,7 +30,6 @@ table, th, td {
   border-collapse: collapse;
   margin: 25px 0;
 }
-
 
 td, th {
   padding: 0.5rem;
@@ -39,8 +43,8 @@ code.has-jax {
 }
 
 
-pre, code {
-  font-size: 1.25rem;
+code {
+  font-size: 1rem;
   /*overflow-x: auto;*/
   word-break: break-word;
   white-space: pre-wrap;
@@ -48,9 +52,7 @@ pre, code {
 
 
 p, ul {
- font-size: 1.1rem; 
- line-height: 2rem;
- margin-top: 0;
+ font-size: 1rem; 
 }
 
 a {
@@ -74,16 +76,20 @@ a:hover {
 .nav {
   text-align: center;
   font-size: 1.5rem;
-  
+  color: #a26ca2;
 }
 
 .nav>a {
   padding-left: 1rem;
   padding-right: 1rem;
   color: #a26ca2;
-
 }
 
+.nav-target {
+  text-decoration: underline;
+  text-decoration-thickness: 0.2rem;
+  text-decoration-skip-ink: none;
+}
 
 /* Unused? */
 .split {
@@ -151,8 +157,16 @@ footer {
     font-size: 0.75rem;
 }
 
+
+
+/******************
+ * BLOG 
+ ******************/
 .blog-body {
-margin: 0 auto;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
   max-width: 50rem;
 }
 
@@ -162,46 +176,51 @@ margin: 0 auto;
   max-width: 100%;
 }
 
-
-.blog-content-title {
+.blog-title {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #AAAA44;
 }
 
-.blog-content-date {
+
+.blog-date-tag-wrapper {
+  overflow: hidden;
+  font-size: 1.25rem;
+  margin-bottom: -1rem; /* HACK?! */
+}
+
+.blog-date {
   color: #a55a5a;
+  float: left;
   margin: 0;
 }
 
-
-.blog-list-content-title {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  color: #AAAA44;
-}
-
-.blog-list-content-title {
+.blog-tag {
+  color: #888888;
   margin: 0;
+  float: left;
+  padding-left: 1rem;
 }
+
 
 .blog-list-content>section>p>a {
   color: #83a598;
+  font-size: 1rem;
 }
 
 .blog-body>p>a, .blog-body>ul>li>a {
   color: #83a598;
 }
 
-
-.blog-list-content-date {
-  color: #a55a5a;
-  margin: 0;
-}
-
 .blog-list-content-seperator {
-  border: 1px lined rgb(80, 80, 80);
+  border: 0.1rem dashed rgb(90, 90, 90);
+  margin-top: 0;
 }
+
+.showcase-img-wrapper {
+  padding-bottom: 1rem ;
+}
+
 
 /* Code */
 /* Background */ .chroma { color: #D0AE85; background-color: #121212 }

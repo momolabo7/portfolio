@@ -3,7 +3,7 @@
 <a href=/blog>Blog</a>
 <a href=/portfolio>Portfolio</a>
 <a href=/fun>Fun</a>
-<a href=https://twitter.com/momohoudai>Twitter</a></div><hr><div class=blog-body><h1 class=blog-content-title>My Raspberry PI Cookbook</h1><h4 class=blog-content-date><time datetime=2023-03-12T12:00:00+08:00>Mar 12, 2023</time></h4><p class=blog-content-body><p>I figured that I might as well save a Raspberry PI cookbook somewhere.</p><p>Note that these are for Raspberry PI OS.
+<a href=https://twitter.com/momohoudai>Twitter</a></div><hr><div class=blog-body><div class=blog-title>My Raspberry PI Cookbook</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2023-03-12T12:00:00+08:00>Mar 12, 2023</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>I figured that I might as well save a Raspberry PI cookbook somewhere.</p><p>Note that these are for Raspberry PI OS.
 Some of these will work on other Linux distributions (especially Debian since Raspbian derives from it).
 te that these are for Raspberry PI OS.</p><p>But you know, Linux being linux and distributions being distributions, not all of them will work for everything.
 Since I only use Raspberry PI right now, I&rsquo;ll just stick to the commands being for the Raspberry PI.</p><p>I will update this cookbook every now and then when I play with my PI.</p><h1 id=user>User</h1><p>Check what groups the current user is under</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>groups
@@ -75,4 +75,4 @@ Simply write create a file with a .service extention containing content like thi
 </span></span><span class=line><span class=cl><span class=o>[</span>Install<span class=o>]</span>
 </span></span><span class=line><span class=cl><span class=nv>WantedBy</span><span class=o>=</span>multi-user.target
 </span></span></code></pre></div><p>Toss it into <code>/etc/systemd/your_app.service</code>, and you could be able to use it like a service.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>systemctl start your_app
-</span></span></code></pre></div></p></div></div><footer>Powered By Hugo | v2.0 | © 2022 Gerald Wong</footer></body></html>
+</span></span></code></pre></div></div></div></div><footer>Powered By Hugo | v2.0 | © 2022 Gerald Wong</footer></body></html>
