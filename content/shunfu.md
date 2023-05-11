@@ -4,6 +4,50 @@ title: "Shunfu FAQs"
 This is basically a survival guide to our house, in a form of an FAQ.
 Hopefully you guys enjoy the stay here :) 
 
+
+# Where is Gerald physically?
+
+
+{{<rawhtml>}}
+
+Gerald is currently in Japan!
+
+<div id="countdown"></div>
+<script>
+      // Set the date to count down to (YYYY-MM-DD HH:MM:SS)
+      const countDownDate = new Date("2023-05-23T00:00:00").getTime();
+
+      // Update the countdown every second
+      const countdownTimer = setInterval(function() {
+
+        // Get the current date and time
+        const now = new Date().getTime();
+
+        // Calculate the remaining time
+        const distance = countDownDate - now;
+
+        // Calculate days, hours, minutes, and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Construct the remaining time string
+        const countdownString = `${days} days ${hours} hours ${minutes} mins ${seconds} seconds`;
+         
+
+        // Set the text of the countdown div to the remaining time string
+        document.getElementById("countdown").innerText = "Gerald will be in Singapore in: " + countdownString;
+
+        // If the countdown is finished, display a message
+        if (distance < 0) {
+          clearInterval(countdownTimer);
+          document.getElementById("countdown").innerText = "";
+        }
+      }, 1000);
+</script>
+{{</rawhtml>}}
+
 # House maintainance
 
 ## Dock lock keeps making beeping sounds!
