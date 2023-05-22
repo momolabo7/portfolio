@@ -29,7 +29,7 @@
             <a href="/">Home</a>
           {{ end }}
 
-          {{ if (eq $.Params.nav "Blog") }} 
+          {{ if or (eq $.Params.nav "Blog") (eq $.Type "tags")}} 
             <a class="nav-target" href="/blog">Blog</a>
           {{ else }}
             <a href="/blog">Blog</a>
@@ -49,6 +49,36 @@
 
           <a href="https://twitter.com/momohoudai">Twitter</a>
         </div>
+
+
+        {{ if or (eq $.Params.nav "Blog") (eq $.Type "tags") }} 
+          <div class="tag-nav">
+          {{ if (eq $.Params.nav "Blog") }} 
+              <a class="tag-nav-target" href="/blog">all</a>
+          {{ else }}
+              <a href="/blog">all</a>
+          {{ end }} 
+
+          {{ if (eq $.Data.Term "tech") }} 
+              <a class="tag-nav-target" href="/tags/tech">tech</a>
+          {{ else }}
+              <a href="/tags/tech">tech</a>
+          {{ end }} 
+
+          {{ if (eq $.Data.Term "irl") }} 
+              <a class="tag-nav-target" href="/tags/irl">irl</a>
+          {{ else }}
+              <a href="/tags/irl">irl</a>
+          {{ end }} 
+
+          {{ if (eq $.Data.Term "design") }} 
+              <a class="tag-nav-target" href="/tags/design">design</a>
+          {{ else }}
+              <a href="/tags/design">design</a>
+          {{ end }} 
+          </div>
+        {{ end }}
+
         <hr>
 
         {{ block "main" .}} {{end}}

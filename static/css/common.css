@@ -73,10 +73,27 @@ a:hover {
   padding-right: 1rem;
 }
 
+.tag-nav {
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.tag-nav-target {
+  text-decoration: underline;
+  text-decoration-thickness: 0.2rem;
+  text-decoration-skip-ink: none;
+}
+
+.tag-nav>a {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #888888;
+}
+
 .nav {
   text-align: center;
   font-size: 1.5rem;
-  color: #a26ca2;
 }
 
 .nav>a {
@@ -85,6 +102,9 @@ a:hover {
   color: #a26ca2;
 }
 
+.tag-hr {
+  border: 0.01rem dotted grey;
+}
 .nav-target {
   text-decoration: underline;
   text-decoration-thickness: 0.2rem;
