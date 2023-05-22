@@ -9,11 +9,10 @@ If you are Gerald, please do these things.
 
 * VISA Application
   * [x] Passport 
-  * [ ] Application form
+  * [x] Application form
   * [ ] Photo on application form
-  * [ ] Photocopy of NRIC
+  * [x] Photocopy of NRIC
   * [x] COE
-
 
 * [ ] Book flight for Fall 2023 trimester: 
   * [ ] 30 Sep - 21 Oct
