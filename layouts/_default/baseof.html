@@ -23,59 +23,22 @@
         </div>
         
         <div class="nav">
-          {{ if (eq $.Params.nav "Home") }} 
-            <a class="nav-target" href="/">Home</a>
-          {{ else }}
-            <a href="/">Home</a>
-          {{ end }}
-
-          {{ if or (eq $.Params.nav "Blog") (eq $.Type "tags")}} 
-            <a class="nav-target" href="/blog">Blog</a>
-          {{ else }}
-            <a href="/blog">Blog</a>
-          {{ end }}
-
-          {{ if (eq $.Params.nav "Portfolio") }} 
-            <a class="nav-target" href="/portfolio">Portfolio</a>
-          {{ else }}
-            <a href="/portfolio">Portfolio</a>
-          {{ end }}
-
-          {{ if (eq $.Params.nav "Fun") }} 
-            <a class="nav-target" href="/fun">Fun</a>
-          {{ else }}
-            <a href="/fun">Fun</a>
-          {{ end }}
-
+          {{ partial "nav-item.html" (dict "name" "Home" "highlight" (eq $.Params.nav "Home") "highlight_class" "nav-target" "goto" "/" )}}
+          {{ partial "nav-item.html" (dict "name" "Blog" "highlight" (or (eq $.Params.nav "Blog") (eq $.Type "tags")) "highlight_class" "nav-target" "goto" "/blog") }}
+          {{ partial "nav-item.html" (dict "name" "Portfolio" "highlight" (eq $.Params.nav "Portfolio") "highlight_class" "nav-target" "goto" "/portfolio") }}
+          {{ partial "nav-item.html" (dict "name" "Fun" "highlight" (eq $.Params.nav "Fun") "highlight_class" "nav-target" "goto" "/fun") }}
           <a href="https://twitter.com/momohoudai">Twitter</a>
         </div>
 
 
         {{ if or (eq $.Params.nav "Blog") (eq $.Type "tags") }} 
           <div class="tag-nav">
-          {{ if (eq $.Params.nav "Blog") }} 
-              <a class="tag-nav-target" href="/blog">all</a>
-          {{ else }}
-              <a href="/blog">all</a>
-          {{ end }} 
+            {{ partial "nav-item.html" (dict "name" "all" "highlight" (eq $.Params.nav "Blog") "highlight_class" "tag-nav-target" "goto" "/blog" )}}
+            {{ partial "nav-item.html" (dict "name" "tech" "highlight" (eq $.Data.Term "tech") "highlight_class" "tag-nav-target" "goto" "/tags/tech" )}}
+            {{ partial "nav-item.html" (dict "name" "irl" "highlight" (eq $.Data.Term "irl") "highlight_class" "tag-nav-target" "goto" "/tags/irl" )}}
+            {{ partial "nav-item.html" (dict "name" "design" "highlight" (eq $.Data.Term "design") "highlight_class" "tag-nav-target" "goto" "/tags/design" )}}
 
-          {{ if (eq $.Data.Term "tech") }} 
-              <a class="tag-nav-target" href="/tags/tech">tech</a>
-          {{ else }}
-              <a href="/tags/tech">tech</a>
-          {{ end }} 
 
-          {{ if (eq $.Data.Term "irl") }} 
-              <a class="tag-nav-target" href="/tags/irl">irl</a>
-          {{ else }}
-              <a href="/tags/irl">irl</a>
-          {{ end }} 
-
-          {{ if (eq $.Data.Term "design") }} 
-              <a class="tag-nav-target" href="/tags/design">design</a>
-          {{ else }}
-              <a href="/tags/design">design</a>
-          {{ end }} 
           </div>
         {{ end }}
 
