@@ -42,8 +42,9 @@ If you are not Gerald, hi.
   * velkoz - shiv
   * shen then jarven - sorc spat 
 
-## Yasuo Ionia
+## Yasuo Ionia (ionia)
 
+* Actually quite flexible, don't have to do yasuo. Can flex to sorc with lux/ahri?
 * 4 star build
 * 6 ionia/2challenger: shen(tank), taric, irelia, sett | yasuo(adc) | jhin, ahri(apc), +1
   * if leftover AP items: +1 is lux
@@ -53,7 +54,7 @@ If you are not Gerald, hi.
 * yasuo items -> BT, EoN, TR
 * shen is tank
 
-## Karma reroll
+## Karma reroll (invoker)
 
 * I think viegar is best legend?
 * 3 star reroll build
@@ -62,9 +63,16 @@ If you are not Gerald, hi.
 * invoker emblem is good, can allow "ice ice baby" trait 
 * karma items: GB/lifeleech + 2 AP items
 
-## Void reroll
+## Void reroll (void)
 
 * Legend: urf
 * late: sej(tank), reksai, belveth, cho, kass | yasuo | velkoz, kaisa(apc)
 * kaisa items: GRB, GB, +1 AP 
 
+## Ekko reroll (piltover)
+
+* Go for it if have AP items + early piltover
+* 3 star roll down comp
+* Ekko (carry 1), Katarina (carry 2) , Vi, Sej, Liss |  Ashe, Heimer, 
+* Tank item on the rest
+* carry items -> HOJ, +2 AP items except AA (which is last resort)
