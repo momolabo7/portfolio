@@ -1,5 +1,5 @@
 ---
-title: "Dots and Circles Afterthoughts"
+title: "Dots and Circles Dev Postmorterm"
 date: 2021-12-01T23:00:00+08:00
 nav: Blog
 authors:
