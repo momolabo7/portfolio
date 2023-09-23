@@ -26,7 +26,6 @@
           {{ partial "nav-item.html" (dict "name" "Home" "highlight" (eq $.Params.nav "Home") "highlight_class" "nav-target" "goto" "/" )}}
           {{ partial "nav-item.html" (dict "name" "Blog" "highlight" (or (eq $.Params.nav "Blog") (eq $.Type "tags")) "highlight_class" "nav-target" "goto" "/blog") }}
           {{ partial "nav-item.html" (dict "name" "Portfolio" "highlight" (eq $.Params.nav "Portfolio") "highlight_class" "nav-target" "goto" "/portfolio") }}
-          {{ partial "nav-item.html" (dict "name" "Fun" "highlight" (eq $.Params.nav "Fun") "highlight_class" "nav-target" "goto" "/fun") }}
           <a href="https://twitter.com/momohoudai">Twitter</a>
         </div>
 
