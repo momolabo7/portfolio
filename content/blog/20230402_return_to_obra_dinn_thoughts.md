@@ -1,5 +1,5 @@
 ---
-title: "Return To Obra Dinn thoughts"
+title: "Thoughts on Return To Obra Dinn"
 date: 2023-04-02T12:31:00+08:00
 nav: Blog
 authors:

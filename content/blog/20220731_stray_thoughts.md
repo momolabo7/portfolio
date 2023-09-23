@@ -1,5 +1,5 @@
 ---
-title: "Thoughts on 'Stray'"
+title: "Thoughts on Stray"
 date: 2022-07-31T13:40:00+08:00
 nav: Blog
 authors:

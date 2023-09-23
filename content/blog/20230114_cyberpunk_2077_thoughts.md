@@ -1,5 +1,5 @@
 ---
-title: "Cyberpunk 2077 thoughts"
+title: "Thoughts on Cyberpunk 2077"
 date: 2023-01-14T12:00:00+08:00
 nav: Blog
 authors:
