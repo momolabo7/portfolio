@@ -26,7 +26,7 @@
           {{ partial "nav-item.html" (dict "name" "Home" "highlight" (eq $.Params.nav "Home") "highlight_class" "nav-target" "goto" "/" )}}
           {{ partial "nav-item.html" (dict "name" "Blog" "highlight" (or (eq $.Params.nav "Blog") (eq $.Type "tags")) "highlight_class" "nav-target" "goto" "/blog") }}
           {{ partial "nav-item.html" (dict "name" "Portfolio" "highlight" (eq $.Params.nav "Portfolio") "highlight_class" "nav-target" "goto" "/portfolio") }}
-          <a href="https://twitter.com/momohoudai">Twitter</a>
+          <a href="https://twitter.com/momohoudai">X</a>
         </div>
 
 
@@ -36,6 +36,7 @@
             {{ partial "nav-item.html" (dict "name" "tech" "highlight" (eq $.Data.Term "tech") "highlight_class" "tag-nav-target" "goto" "/tags/tech" )}}
             {{ partial "nav-item.html" (dict "name" "irl" "highlight" (eq $.Data.Term "irl") "highlight_class" "tag-nav-target" "goto" "/tags/irl" )}}
             {{ partial "nav-item.html" (dict "name" "design" "highlight" (eq $.Data.Term "design") "highlight_class" "tag-nav-target" "goto" "/tags/design" )}}
+            {{ partial "nav-item.html" (dict "name" "logs" "highlight" (eq $.Data.Term "logs") "highlight_class" "tag-nav-target" "goto" "/tags/logs" )}}
 
 
           </div>

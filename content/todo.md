@@ -4,8 +4,6 @@ title: "TODO"
 
 If you are not Gerald, hi. 
 
-# IRL
-
 Flights:
 
 * Fall 2023 Mid: 30th Sep - 21st Oct
@@ -14,3 +12,18 @@ Flights:
 * Spring 2024 End: TODO 
 
 
+Things to pack for flight home:
+
+* Mic + Cable
+* Camera 
+* Hard disk
+* Surface go + adapter 
+* Smol bag
+* Steamdeck + adapter
+* Cushions
+* Headphones
+
+Things to do before I fly:
+
+* Organize and save the grading script
+* Upload fvf and momogatari to github
