@@ -44,7 +44,7 @@ code.has-jax {
 
 
 code {
-  font-size: 1rem;
+  font-size: 1.2rem;
   /*overflow-x: auto;*/
   word-break: break-word;
   white-space: pre-wrap;
@@ -52,7 +52,7 @@ code {
 
 
 p, ul {
- font-size: 1rem; 
+ font-size: 1.2rem; 
 }
 
 a {

@@ -2,10 +2,11 @@
 <script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div class=container><div class=profile><h1>momo</h1><h2>just another place for me to talk about things i like</h2></div><div class=nav><a href=/>Home</a>
 <a class=nav-target href=/blog>Blog</a>
 <a href=/portfolio>Portfolio</a>
-<a href=https://twitter.com/momohoudai>Twitter</a></div><div class=tag-nav><a class=tag-nav-target href=/blog>all</a>
+<a href=https://twitter.com/momohoudai>X</a></div><div class=tag-nav><a class=tag-nav-target href=/blog>all</a>
 <a href=/tags/tech>tech</a>
 <a href=/tags/irl>irl</a>
-<a href=/tags/design>design</a></div><hr><div class=blog-body><div class=blog-title>Point on triangle algorithms</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2023-05-18T11:16:00+08:00>May 18, 2023</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>A game I&rsquo;m working on requires me to check if a point is overlapped by a triangle.
+<a href=/tags/design>design</a>
+<a href=/tags/logs>logs</a></div><hr><div class=blog-body><div class=blog-title>Point on triangle algorithms</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2023-05-18T11:16:00+08:00>May 18, 2023</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>A game I&rsquo;m working on requires me to check if a point is overlapped by a triangle.
 Being a dumb engineer who can&rsquo;t come up wiith his own algorithm, google gave me 3 algorithms.
 Here I&rsquo;m just going to share the algorithms and their performances.</p><p>Parametric:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=n>b32_t</span> <span class=nf>parametric</span><span class=p>(</span><span class=n>v2f_t</span> <span class=n>tp0</span><span class=p>,</span> <span class=n>v2f_t</span> <span class=n>tp1</span><span class=p>,</span> <span class=n>v2f_t</span> <span class=n>tp2</span><span class=p>,</span> <span class=n>v2f_t</span> <span class=n>pt</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=n>f32_t</span> <span class=n>denominator</span> <span class=o>=</span> <span class=p>(</span><span class=n>tp0</span><span class=p>.</span><span class=n>x</span><span class=o>*</span><span class=p>(</span><span class=n>tp1</span><span class=p>.</span><span class=n>y</span> <span class=o>-</span> <span class=n>tp2</span><span class=p>.</span><span class=n>y</span><span class=p>)</span> <span class=o>+</span> 
