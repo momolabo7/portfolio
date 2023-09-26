@@ -21,9 +21,13 @@ Things to pack for flight home:
 * Smol bag
 * Steamdeck + adapter
 * Cushions
-* Headphones
+
 
 Things to do before I fly:
 
 * Organize and save the grading script
 * Upload fvf and momogatari to github
+
+Things to do in SG: 
+
+* call OCBC why charge on unactivated CC
