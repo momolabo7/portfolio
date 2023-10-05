@@ -10,12 +10,12 @@ Hopefully you guys enjoy the stay here :)
 
 {{<rawhtml>}}
 
-Gerald is currently in Japan!
+Gerald is currently in Singapore!
 
 <div id="countdown"></div>
 <script>
       // Set the date to count down to (YYYY-MM-DD HH:MM:SS)
-      const countDownDate = new Date("2023-05-23T00:00:00").getTime();
+      const countDownDate = new Date("2023-06-03T00:00:00").getTime();
 
       // Update the countdown every second
       const countdownTimer = setInterval(function() {
@@ -37,7 +37,7 @@ Gerald is currently in Japan!
          
 
         // Set the text of the countdown div to the remaining time string
-        document.getElementById("countdown").innerText = "Gerald will be in Singapore in: " + countdownString;
+        document.getElementById("countdown").innerText = "Gerald will be in Japan in: " + countdownString;
 
         // If the countdown is finished, display a message
         if (distance < 0) {

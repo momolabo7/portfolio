@@ -12,6 +12,21 @@ Slay the spire logs here!
 
 <!--more-->
 
+# #6 | 20231001 | Ironclad | A0
+
+Okay act 1. Act 2 somehow got Corruption +  Dead Branch + Runic Pyramid. Super drunk with power.
+Always take Corruption though. Using it on non-defend skill cards is somehow ridiculous. 
+This is also the first time I tied Sever Soul, which I thought is a dead card. It is less dead than I expected.
+
+# #5 | 20230930 | Ironclad | A0 | Around act 2
+
+Took pandora's box and suddenly I have zero defends. Played extremely poorly in Act 1 overall. 
+
+Lesson learnt: Don't Pandora Box all your defends away.
+
+# #4 | 20230930 | Ironclad | A0 | F57
+
+This is a Runic Pyramid run. The deck size ended up a bit big, but we had 2 Offerings and 1 Battle Trance, allowing us to quickly get Demon Form. Getting Uppercut at the last minute was quite clutch to remove the artifact buffs on the last few bosses. After this run, I'm pretty sure I rank Runic Pyramid above most energy giving relics. 
 
 # #3 | 20230917 | Ironclad | A0 | F56
 
@@ -94,8 +109,14 @@ Armaments
 Wounded Strike
 * Wounds are fake.
 
+Rage
+* Block!
 
-## Okay I guess
+Seeing Red
+* Free energy kinda.
+
+
+## Sometimes helpful 
 
 Metalicise
 * Decent. Surprised how many times it edges out a blocking round.
@@ -110,16 +131,32 @@ Double Tap
 * It's strong only when you have lots of acceleration, card draw, energy and a good card to use with. 
 * Note that it can do Whirlwind twice, which is insane.
 
+Brutality
+* Not bad. Might want to take if desperate or if there are too many cards in hand?
 
-## Take if desperate
+Sever Soul
+* Better than you think. Just be careful not to exhaust too many blocks away.
+
+## Very situational
 
 Rampage
 
 Berzerk
+* 
+
+Body Slam
+* Only when you have block. Otherwise sus.
 
 
+## Almost never
 
-## Sus
+Rapture
+* Jorbs ranks this really low. Maybe because there are not enough cards that activate it? That would make sense.
+
 
 ##
 
+# Jorb's tier list
+
+[Relics](https://tiermaker.com/list/video-games/all-slay-the-spire-relics-447199/2469220)
+[Ironclad](https://tiermaker.com/list/video-games/slay-the-spire-ironclad-cards-tier-list-351287/2469070)
