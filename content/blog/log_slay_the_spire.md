@@ -12,7 +12,13 @@ Slay the spire logs here!
 
 <!--more-->
 
-# #6 | 20231001 | Ironclad | A0
+
+# #7 | 20231013 | Ironclad | A0 | F55
+
+Felt like I played really well, but didn't have any form of infinite scaling. 
+Almost beat the heart but ultimately did not. Might need to think about how to get infnite scaling...
+
+# #6 | 20231001 | Ironclad | A0 | F57
 
 Okay act 1. Act 2 somehow got Corruption +  Dead Branch + Runic Pyramid. Super drunk with power.
 Always take Corruption though. Using it on non-defend skill cards is somehow ridiculous. 
