@@ -9,6 +9,7 @@ h3, h4, h5 {
   color: #6B8E23; 
 }
 
+
 h1 {
   font-size: 1.9rem;
   font-family: "Liberation Mono", monospace;
@@ -64,6 +65,7 @@ a:hover {
   text-decoration: none;
   border-bottom: 0.1rem solid; 
 }
+
 
 
 .container {
@@ -157,10 +159,21 @@ a:hover {
   text-align: center;
 }
 
+@keyframes skew {
+  0% { transform: skewX(-15deg); }
+  5% { transform: skewX(15deg); }
+  10% { transform: skewX(-15deg); }
+  15% { transform: skewX(15deg); }
+  20% { transform: skewX(0deg); }
+  100% { transform: skewX(0deg); }
+}
 .profile>h1 {
   color: #bc8a34;
   font-size: 4rem;
   margin-bottom: -0.5rem;
+  animation-name: skew;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
 }
 
 .profile>h2{
