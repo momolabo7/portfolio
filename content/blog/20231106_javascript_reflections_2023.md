@@ -11,9 +11,6 @@ tags:
 Recently, I have been writing quite a bit of Javascript for a couple of side-projects. 
 I was a little inspired to attempt to write simple webapps without the use of any frameworks. 
 One of them is avaliable here: [FvF](https://momohoudai.github.io/fvf/).
-
-I also have been using Google Sheets and did a heavy amount AppScript stuff for another one of my side-projects.
-
 This post is just some personal reflections going back to use vanilla Javascript/CSS in 2023.
 
 <!--more-->
