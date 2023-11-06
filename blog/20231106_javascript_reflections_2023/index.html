@@ -1,0 +1,58 @@
+<html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=https://www.w3schools.com/w3css/4/w3.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Inconsolata"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Code+Pro"><link rel=stylesheet href=/css/common.css><link rel=stylesheet href=/css/syntax.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>Gerald's Website</title>
+<script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div class=container><div class=profile><h1>momo</h1><h2>just another place for me to talk about things i like</h2></div><div class=nav><a href=/>Home</a>
+<a class=nav-target href=/blog>Blog</a>
+<a href=/portfolio>Portfolio</a>
+<a href=https://twitter.com/momohoudai>X</a></div><div class=tag-nav><a class=tag-nav-target href=/blog>all</a>
+<a href=/tags/tech>tech</a>
+<a href=/tags/irl>irl</a>
+<a href=/tags/design>design</a>
+<a href=/tags/logs>logs</a></div><hr><div class=blog-body><div class=blog-title>Reflections on using Javascript in 2023</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2023-11-06T08:00:00+08:00>Nov 6, 2023</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>Recently, I have been writing quite a bit of Javascript for a couple of side-projects.
+I was a little inspired to attempt to write simple webapps without the use of any frameworks.
+One of them is avaliable here: <a href=https://momohoudai.github.io/fvf/>FvF</a>.</p><p>I also have been using Google Sheets and did a heavy amount AppScript stuff for another one of my side-projects.</p><p>This post is just some personal reflections going back to use vanilla Javascript/CSS in 2023.</p><p>So just some context.
+I&rsquo;m not unfamiliar with web development, which makes up a chunk of my professional career.
+I&rsquo;m not unfamiliar with Javascript pre and post ES6, having done projects in both versions.
+I&rsquo;m not unfamiliar with the insanity that is Javascript frameworks, Typescript and all that.</p><p>I think one of the best and worst things about modern Javascript is that there are many ways to express something.
+I feel like there is a lot of syntax bloat in it.
+There are new syntaxes, some of which kind of overlap with old syntax.
+One example of this is differences between <code>for in</code> vs <code>for of</code>.</p><p>They both work for arrays&mldr;</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Both of these print the same thing
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>x</span> <span class=k>in</span> <span class=nx>arr</span><span class=p>)</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>x</span> <span class=k>of</span> <span class=nx>arr</span><span class=p>)</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span></code></pre></div><p>&mldr;but not so for other data structures:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>s</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Set</span><span class=p>([</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Both of these print different things!
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>x</span> <span class=k>in</span> <span class=nx>s</span><span class=p>)</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>x</span> <span class=k>of</span> <span class=nx>s</span><span class=p>)</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span></code></pre></div><p>Suddenly when you loop through something like a Set, you will have to use <code>for of</code>.
+Now, I know the difference between them, but the question is whether it is right to have them both exist at the same time?
+Backwards compatibility? Sure but&mldr;do you really need to take up a new keyword?</p><p>At some point, it feels eeriely similar to how I feel when I use modern C++.
+There are lots of ways to express one thing, with slight naunces and edge cases that works in one way but not in another.</p><p>One thing that I welcome and I think is interesting to note is Destructuring Assignments.
+I hated this in C++ where you can write code like this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;tuple&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=k>auto</span> <span class=nf>foo</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>struct</span> <span class=nc>wtf</span> <span class=p>{</span> <span class=kt>int</span> <span class=n>a</span><span class=p>,</span> <span class=kt>int</span> <span class=n>b</span><span class=p>;</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=n>wtf</span> <span class=p>{</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>auto</span> <span class=p>[</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>]</span> <span class=o>=</span> <span class=n>foo</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// do what you need with x,y 
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></div><p>&mldr;because you are losing type information in a statically typed language.
+It annoys me that without an IDE, I cannot immediately figure out what <code>x</code> and <code>y</code> is when I read them.
+This goes into a rant about the introduction and usage of the <code>auto</code> in C++, which I won&rsquo;t go into in this post.</p><p>However, considering that the idea of <code>auto</code> is natural in Javascript (i.e. all variables are variant types), Destructuring Assignments at least <em>felt</em> more natural.
+I really like how it ties with the rest (&mldr;) operator.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>many_things</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=mi>4</span><span class=p>,</span><span class=mi>5</span><span class=p>,</span><span class=mi>6</span><span class=p>,</span><span class=mi>7</span><span class=p>,</span><span class=mi>8</span><span class=p>,</span><span class=mi>9</span><span class=p>,</span><span class=mi>10</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>things</span> <span class=p>[</span><span class=nx>first</span><span class=p>,</span> <span class=nx>second</span><span class=p>,</span> <span class=nx>third</span><span class=p>,</span> <span class=p>...</span><span class=nx>fourth</span><span class=p>]</span> <span class=o>=</span> <span class=nx>many_things</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// first is 1
+</span></span></span><span class=line><span class=cl><span class=c1>// second is 2
+</span></span></span><span class=line><span class=cl><span class=c1>// third is 3
+</span></span></span><span class=line><span class=cl><span class=c1>// fourth is [4,5,6,7,8,9,10]
+</span></span></span></code></pre></div><p>Of course, there&rsquo;s more you can do with destructuring than just this, but generally I feel that Javascript&rsquo;s implementation feels more natural.
+Perhaps it&rsquo;s the combination of how variant types are the base type of the language coupled with a consistent syntax.<br>This made me wonder if there is a more natural way to do with in statically typed languages&mldr;</p><p>(PS: How destructuring works in Rust is probably better than C++ IMO but I also hated it.
+To be honest, I haven&rsquo;t given enough thought on how to do it on statically typed languages in a clean way).</p><p>One last thing to note is that it is actually not that hard to get things done in vanilla Javascript.
+Technically speaking, everything you need is already provided by the browser.
+I was recommended to use some crazy library and framework to do an image gallery with a zoomable/draggable lightbox, but turns out it wasn&rsquo;t difficult to write one without any libraries.
+A few webapps later, I have written a small framework of my own that I will be bringing to different webapp projects.
+I like to give mad props to TSoding&rsquo;s incredibly simple <a href=https://github.com/tsoding/grecha.js>grecha.js</a> which taught me a few interesting tricks despite the small amount of lines it has!</p></div></div></div><footer>Powered By Hugo | v2.0 | © 2022 Gerald Wong</footer></body></html>
