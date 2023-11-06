@@ -43,11 +43,13 @@ INDEX(
   <the_table_of_mappings_at_B>, 
   MATCH(
     <the_cell_value_to_lookup_at_A>, 
-    <the_column_to_lookup_at_B>,
+    <the_column_range_to_lookup_at_B>,
     0),
   <index_of_column_from_table_of_mappings>
 )
 ```
+
+
 
 Hopefully I won't mess it up again.
 
