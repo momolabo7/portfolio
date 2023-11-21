@@ -1,6 +1,6 @@
 ---
-title: "Reflections on using Javascript in 2023"
-date: 2023-11-06T08:00:00+08:00
+title: "Thoughts on Persona 4 Golden"
+date: 2023-11-21T08:00:00+08:00
 nav: Blog
 authors:
   - Gerald Wong
@@ -52,6 +52,21 @@ For example, I felt that some characters had not much depth to them because they
 
 Maybe, just maybe, that's why the first-year characters seemed more interesting than the second-year characters; they were the later ones to be introduced and by then, the writer has a lot of room to play with.
 
-Other than that, another thing I noticed is that the earlier trash mob fights are more interesting than P3P's. 
-We got over the pokemon-style strategy of just finding all elements to deal with enemy weaknesses really fast. 
-Status debuffs and buffs felt much more effective in P4G than P3P, which is good!
+Other than that, another thing I noticed is that the dungeon mob fights are more interesting than P3P's. 
+Maybe the pacing is a lot better.
+I remember that in P3P, you can spend at least half the game playing with enemy elemental weaknesses (because it's so strong), and suddenly the game throws you one with no weakness.
+P4G got over elemental weaknessess really early and started doing more status effects, which is good!
+
+In generla, the biggest gripe I have is that the story generally has some pacing issues
+I was also a little mad at some last minute 'reveals' the game has that tempts me into playing New Game+. 
+
+Otherwise, it has been a generally good experience playing the game! 
+
+Now on to the second playthrough!
+
+
+
+
+
+
+
