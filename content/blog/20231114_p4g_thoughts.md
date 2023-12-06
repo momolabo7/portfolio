@@ -8,12 +8,13 @@ tags:
   - tech
 ---
 
-<!--more-->
 
 This post is just going to be some ramblings I have after completing Persona 4 Golden in 2023.
 Let's get the easy stuff out of the way first. The game has amazing music, UI, art style and theme.
 The team has always been excellent in these aspects and are often brought up in case studies in my classes.
 With that out of the way, here are my thoughts on my playthrough.
+
+<!--more-->
 
 As a disclaimer, this is just my first playthrough. 
 Here's some context before I put my thoughts:
@@ -21,6 +22,7 @@ Here's some context before I put my thoughts:
 - I followed a guide for awhile then decided to do things my own.
 - I played lots of P3P, so I'm familiar with some of the mechanics.
 - I did not manage to max all social links, so I won't be focusing commenting about characters *yet*. If I made any comments about them it's hopefully just from the main story.
+
 
 Alright, let's talk gameplay.
 
