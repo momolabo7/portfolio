@@ -1,6 +1,6 @@
 ---
 title: "A small shortcoming of return-by-value"
-date: 2099-11-28T12:00:00+08:00
+date: 2023-11-28T12:00:00+08:00
 nav: Blog
 authors:
   - Gerald Wong
