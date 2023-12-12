@@ -1,6 +1,6 @@
 ---
-title: "A small shortcoming of return-by-value"
-date: 2023-11-28T12:00:00+08:00
+title: "Overlay Pixel Shader Transforms"
+date: 2023-12-12T12:00:00+08:00
 nav: Blog
 authors:
   - Gerald Wong
@@ -8,7 +8,7 @@ tags:
   - tech
 ---
 
-This post is just to document for my own reference the math that went behind the transformations (scale, rotate, translate) of the overlay pixel shader I wrote for Reshade.
+This post is just to document for my own reference the math that went behind the transformations (scale, rotate, translate) of the overlay pixel shader I wrote for Reshade [here](https://github.com/momohoudai/momo_reshade).
 It turns out that it was a little more tricky than I initially expected.
 
 <!--more-->
@@ -85,7 +85,7 @@ The first thing to understand is that if we simply double the screen buffer $ \v
 where 'x' is the part covered by the overlay
 ```
 
-Intuitively you would think that halfing would produce this result instead of doubling, but if you consider how UV works, you will realize that the opposite is actually true. 
+Intuitively you would think that halving would produce this result instead of doubling, but if you consider how UV works, you will realize that the opposite is actually true. 
 
 As an example, let's say we are at the halfway mark of the screen buffer, at 0.5 (It doesn't matter whether we are talking about width or height; the same concept can be applied to both).
 At 0.5 of the screen buffer, the parts of the overlay's texture we want to sample are the ends of the overlay. 
@@ -101,6 +101,7 @@ With that in mind, we can simply derive the the matrix that transform $ \vec{b} 
 All we have to do is to figure out the function f() such that:
 
 $ 
+S\vec{b} = 
 \begin{bmatrix} f(s_x) & 0 & 0 \\\ 0 & f(s_y) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 1 \\\  1 \\\ 1 \end{bmatrix}
@@ -109,6 +110,7 @@ $
 That is, given 0.5 as input for $ s_x $ and $ s_y $, figure out:
 
 $ 
+S\vec{b} = 
 \begin{bmatrix} f(0.5) & 0 & 0 \\\ 0 & f(0.5) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 1 \\\  1 \\\ 1 \end{bmatrix}
@@ -117,6 +119,7 @@ $
 Turn out this is simply:
 
 $ 
+S\vec{b} = 
 \begin{bmatrix} 1/0.5 & 0 & 0 \\\ 0 & 1/0.5 & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 1 \\\  1 \\\ 1     \end{bmatrix}
@@ -125,6 +128,7 @@ $
 And thus our final scale matrix is:
 
 $ 
+S\vec{b} = 
 \begin{bmatrix} 1/s_x & 0 & 0 \\\ 0 & 1/s_y & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 1 \\\  1 \\\ 1 \end{bmatrix}
@@ -132,34 +136,7 @@ $
 
 
 Thus if we want the overlay to be half the screen's width and height such that it's covering a quarter of the screen, both $ s_x $ and $ s_y $  would need to be 0.5 (representing half), which will in turn evaluate to 2, which is what we want!
-Kind of counter intuiaive since suddenly this looks like an inverse scale matrix instead of the normal scale matrix, but the math does check out!
-
-The last part of the ingredient is scaling the overlay to the exact pixel size. 
-This is trival now that we have our 'scale' matrix. 
-Let's say for width, we intuitively want to divide by the full buffer width before multiplying by the target of the overlay. 
-With our matrix, we will set that as $ s_x $ and the matrix will reverse the operation such that it's correct!
-
-Okay, let's watch it in action. Say my buffer width and height is both 100 pixels and my target texture width is both 50 pixles.
-We simply do:
-
-$ s_x = 50 / 100 = 0.5 $
-
-$ s_y = 50 / 100 = 0.5 $
-
-We apply the matrix onto...say when given screen buffer's UV $ \vec{b} $ is at the midpoint of the screen:
-
-$ \vec{b} = \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} $
-
-
-
-$ 
-\begin{bmatrix} 1/0.5 & 0 & 0 \\\ 0 & 1/0.5 & 0 \\\ 0 & 0 & 1 \end{bmatrix} \vec{b} = \vec{o} $
-
-$ 
-\begin{bmatrix} 1/0.5 & 0 & 0 \\\ 0 & 1/0.5 & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
-\begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =  \begin{bmatrix} 1 \\\ 1 \\\ 1  \end{bmatrix} $
-
-Which is correct! Horray!
+Kind of counter intuitive since suddenly this looks like an inverse scale matrix instead of the normal scale matrix, but the math does check out!
 
 # Translation
 
@@ -204,6 +181,7 @@ This is looks like just a trival translation, but what's interesting is that, li
 Similar to the scale matrix example above, we want to find the translation matrix that does this:
 
 $ 
+T\vec{b} = 
 \begin{bmatrix} 1 & 0 & f(t_x) \\\ 0 & 1 & f(t_y) \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 0 \\\  0 \\\ 1 \end{bmatrix}
@@ -212,6 +190,7 @@ $
 Let's try by substituting the values we have for $ t_x $ and $ t_y $:
 
 $ 
+T\vec{b} = 
 \begin{bmatrix} 1 & 0 & f(0.5) \\\ 0 & 1 & f(0.5) \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 0 \\\  0 \\\ 1 \end{bmatrix}
@@ -220,6 +199,7 @@ $
 We can then figure out f() and find our translation matrix:
 
 $ 
+T\vec{b} = 
 \begin{bmatrix} 0 & 0 & -0.5 \\\ 0 & 0 & -0.5 \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 0 \\\  0 \\\ 1     \end{bmatrix}
@@ -228,6 +208,7 @@ $
 Which bring us to our final matrix:
 
 $ 
+T\vec{b} = 
 \begin{bmatrix} 0 & 0 & -t_x \\\ 0 & 0 & -t_y \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} 0.5 \\\ 0.5 \\\ 1  \end{bmatrix} =
 \begin{bmatrix} 0 \\\  0 \\\ 1     \end{bmatrix}
@@ -239,7 +220,7 @@ Rotation was really weird to figure out.
 Let's think about rotation for a bit.
 When we rotate, say, an image regularly 90 degrees, the aspect ratio actually changes. 
 
-So say something that's 4:2 like this:
+So say we want to rotate and objects that's 4:2 like this:
 
 ```cpp
 xxxx
@@ -255,8 +236,14 @@ xy
 xy
 ```
 
-This behaviour does not apply to UVs. 
-If you have a 3:2 texture with it's UV rotated, it will still be 4:2!
+This is happens when we apply our standard rotation matrix onto our overlay as if it's a quad:
+
+$
+R(\theta) = \begin{bmatrix} cos(\theta) & -sin(\theta) & 0 \\\ sin(\theta) & cos(\theta) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
+$
+
+This rotational behaviour, however, does not apply to UVs. 
+If you have a 3:2 texture with it's UV rotated, it will still be 3:2!
 So basically if we rotate a texture's UV by 90 degrees, we will get something like this:
 
 ```cpp
@@ -265,30 +252,26 @@ xxyy
 ```
 
 Okay the ascii drawing above doesn't paint the full picture.
-I'm too lazy to draw an image and upload it but imagine that after rotating, not only is the image rotated, it is squished and stretched to fill the original image's width and height.
+Imagine that after rotating, not only is the image rotated, it is squished and stretched to fill the original image's width and height!
 
-This is, of course, after applying the good old rotation matrix:
-
-$
-\begin{bmatrix} cos(\theta) & -sin(\theta) & 0 \\\ sin(\theta) & cos(\theta) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
-$
-
-This means that not only do we have to rotate, we technically have to do some kind of scaling as well. 
+This means that not only do we have to rotate, we have to do some kind of scaling as well. 
 At 0, and 180 degrees, we want to maintain the original aspect ratio, but at 90 and 270, it should be the scaled such that the aspect ratio reverses! 
 That is, at 0 degrees, if we were at 4:2 ratio, then at 90 degrees, we need to apply a scale such that it becomes 2:4.
 (In between degrees will need to scale accordingly too of course).
 
-Thankfully, we coud make use of how the rotation matrix work. 
-Remember how cosine and sin works. 
+First, let's solve the rotation part.
+Thankfully, we could make use of how the rotation matrix work. 
+Remember how cosine and sine works. 
 For our example, we need to know that:
 
-$ cos(0) $ gives 1, $ cos(90) $ gives 0
+$ cos(0) $ -> 1, $ cos(90) $ -> 0
 
-$ sin(0) $ gives 0, $ sin(90) $ gives 1
+$ sin(0) $ -> 0, $ sin(90) $ -> 1
 
-Next, observe what happens when we multiply the rotation maxtrix to a UV point:
+Next, observe what happens when we multiply the standard counter-clockwise rotation matrix to a UV point:
 
 $ 
+R(\theta)\vec{b} = 
 \begin{bmatrix} cos(\theta) & -sin(\theta) & 0 \\\ sin(\theta) & cos(\theta) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
 \begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix} =
 \begin{bmatrix} x cos(\theta) - y sin(\theta) \\\ x sin(\theta) + y cos(\theta) \\\ 1 \end{bmatrix}
@@ -297,6 +280,7 @@ $
 At 0 degrees, this would be:
 
 $ 
+R(0)\vec{b} = 
 \begin{bmatrix} x cos(0) - y sin(0) \\\ x sin(0) + y cos(0) \\\ 1 \end{bmatrix} = 
 \begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix}
 $
@@ -305,73 +289,69 @@ Obviously nothing changed.
 How about 180 degrees?
 
 $ 
+R(180)\vec{b} = 
 \begin{bmatrix} x cos(180) - y sin(180) \\\ x sin(180) + y cos(180) \\\ 1 \end{bmatrix} = 
 \begin{bmatrix} -x \\\ -y \\\ 1 \end{bmatrix}
 $
 
 This is correct; the UV will be flipped only on the x and y axis.
-Note that we are rotating about the origin so it does go offscreen, so you do have to do some translation to bring the UV back to the range of 0 - 1.
+Note that we are rotating about the origin so it does go offscreen, so we would need to do some translation to get to back onscreen. 
+That part's trivial; we simply concatenate a translation matrix after this rotation matrix.
+For now, we focus on the **direction** the UVs are traversing for the overlay.
 
-$
-\begin{bmatrix} 0 & 0 & 1 \\\ 0 & 0 & 1 \\\ 0 & 0 & 1 \end{bmatrix} 
-\begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix}  =
-\begin{bmatrix} -x + 1 \\\ -y + 1 \\\ 1 \end{bmatrix}
-$
-
-This means that:
-
-When Screen buffer's UV = $ \begin{bmatrix} 0 \\\ 0 \end{bmatrix} $ ->  Texture's UV = $ \begin{bmatrix} 1 \\\ 1 \end{bmatrix} $.
-
-When Screen buffer's UV = $ \begin{bmatrix} 0.5 \\\ 0.5 \end{bmatrix} $ ->  Texture's UV = $ \begin{bmatrix} 0.5 \\\ 0.5 \end{bmatrix} $.
-
-When Screen buffer's UV = $ \begin{bmatrix} 1 \\\ 1 \end{bmatrix} $ ->  Texture's UV = $ \begin{bmatrix} 0 \\\ 0 \end{bmatrix} $.
-
-This will give us an upside down texture on the screen, which is correct!
-
-
-Okay now for the exciting part, 90 degrees:
+Next, let's look at 90 degrees:
 
 $ 
+R(90)\vec{b} = 
 \begin{bmatrix} x cos(90) - y sin(90) \\\ x sin(90) + y cos(90) \\\ 1 \end{bmatrix} = 
 \begin{bmatrix} -y \\\ x \\\ 1 \end{bmatrix}
 $
 
-Because we rotate it clockwise from the origin (yes, we used a counter-clockwise matrix but remember that x goes left and y goes down), we will have to translate left so that it is on the screen.
+This means that as we move along top-left to the bottom-right of the screen, we sample the overlay starting from the top-right to the bottom-left.
+
+This is correct in the sense that we managed to rotate the overlay. 
+However, we still have the issue of scaling.
+It is bound to the original aspect ratio, so what we end up is the overlay being squished on the y-axis and stretched on the x-axis (at least, in the case where the width is greater than the height).
+
+Remember that when we rotate the overlay
+
+The solution is simple in concept: We need to scale such that we flip the aspect ratio when we rotate 90 degrees (and 270 degrees), and not flip when it's 0 degrees (and 180 degrees).
+In a way, if we can solve the matrix to work for both 0 and 90 degrees, it should work for any other intermediary angle (spoiler: it does, can you varify with all other degrees of rotation).
+
+Basically, what we want is that when it's 0 or 180 degree, we don't want it scaled in any particular way:
 
 $
-\begin{bmatrix} 0 & 0 & 1 \\\ 0 & 0 & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
-\begin{bmatrix} -y \\\ x \\\ 1 \end{bmatrix}  =
-\begin{bmatrix} -y + 1 \\\ x \\\ 1 \end{bmatrix}
+R(0)\vec{b} = 
+\begin{bmatrix} ?cos(0) & -?sin(0) & 0 \\\ ?sin(0) & ?cos(0) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
+\begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix} =
+\begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix}
 $
 
-Let's imagine what happens. 
-
-When Screen buffer's UV = $ \begin{bmatrix} 0 \\\ 0 \end{bmatrix} $ ->  Texture's UV = $ \begin{bmatrix} 1 \\\ 0 \end{bmatrix} $.
-
-When Screen buffer's UV = $ \begin{bmatrix} 0.5 \\\ 0.5 \end{bmatrix} $ ->  Texture's UV = $ \begin{bmatrix} 0.5 \\\ 0.5 \end{bmatrix} $.
-
-When Screen buffer's UV = $ \begin{bmatrix} 1 \\\ 1 \end{bmatrix} $ ->  Texture's UV = $ \begin{bmatrix} 0 \\\ 1 \end{bmatrix} $.
-
-The math checks out; the texture does get rotated but remember that this is wrong. 
-It is bound to the original aspect ratio, so what we end up is a texture that's squished on the y-axis and stretched on the x-axis!
-
-The solution is simple in concept: We need to scale such that we flip the aspect ratio for the 90 degrees case. 
-If we solve this, it will work for any other intermediary angle (I can solve for 30 degrees or 45 degrees but this article has run long enough).
-
-Here's how I see the problem and solve it.
-We look at the 90 degree case again, ignoring the translation matrix for now:
-
-$ 
-\begin{bmatrix} -y \\\ x \\\ 1 \end{bmatrix}
-$
-
-Ideally, we want it to be:
+But when it's 90 degrees it needs to be:
 
 $
-\begin{bmatrix} -y / b_w * b_h \\\ x \\\ 1 \end{bmatrix}
+R(90)\vec{b} = 
+\begin{bmatrix} ?cos(90) & -?sin(90) & 0 \\\ ?sin(90) & ?cos(90) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
+\begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix} =
+\begin{bmatrix} -yb_h / b_w \\\ xb_w/b_h  \\\ 1 \end{bmatrix}
 $
 
+Note that we are scaling by the screen buffer's aspect ratio, NOT the overlay's! 
+This is because we are transforming the screen buffer's UV.
 
+Because of how sine and cosine work, we can actually use their properties to create some sort of a conditional effect! 
+For example, let's say we multiple $ x $ by $ cos(\theta) $ and $ y $ by $ sin(\theta) $, when $\theta$ is 0, we get $ x $ and when $\theta$ is 1, we get $ y $!
+
+With that in mind, we can solve for our new matrix $ R(\theta) $:
+
+$
+R(\theta)\vec{b} = 
+\begin{bmatrix} cos(\theta) & -b_hsin(\theta)/b_w & 0 \\\ b_wsin(\theta)/b_h & cos(\theta) & 0 \\\ 0 & 0 & 1 \end{bmatrix} 
+\begin{bmatrix} x \\\ y \\\ 1 \end{bmatrix} =
+\begin{bmatrix} x cos(\theta) - yb_hsin(\theta)/b_w \\\ xb_wsin(\theta)/b_h + y cos(\theta) \\\ 1 \end{bmatrix}
+$
+
+And that's it! 
 
 
 
