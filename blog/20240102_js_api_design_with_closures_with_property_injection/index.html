@@ -6,7 +6,7 @@
 <a href=/tags/tech>tech</a>
 <a href=/tags/irl>irl</a>
 <a href=/tags/design>design</a>
-<a href=/tags/logs>logs</a></div><hr><div class=blog-body><div class=blog-title>Weirdest Shit Ever</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2024-01-02T12:00:00+08:00>Jan 2, 2024</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>This is probably one of the wierdest things I had to wrap my head around Javascript recently.
+<a href=/tags/logs>logs</a></div><hr><div class=blog-body><div class=blog-title>[JS] API Design with Closures and Property Injection?</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2024-01-02T12:00:00+08:00>Jan 2, 2024</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>This is probably one of the wierdest things I had to wrap my head around Javascript recently.
 It&rsquo;s a combination of how closures work, functions being first class objects and that you can add properties into objects.</p><p>Consider this function <code>foo()</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>foo</span><span class=p>()</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kd>function</span> <span class=nx>boo</span><span class=p>()</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>goo</span><span class=p>();</span>
