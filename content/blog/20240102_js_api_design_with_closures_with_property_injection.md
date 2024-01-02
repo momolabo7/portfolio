@@ -1,5 +1,5 @@
 ---
-title: "Weirdest Shit Ever"
+title: "[JS] API Design with Closures and Property Injection?"
 date: 2024-01-02T12:00:00+08:00
 nav: Blog
 authors:
