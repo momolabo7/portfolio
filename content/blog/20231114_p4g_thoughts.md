@@ -1,6 +1,6 @@
 ---
 title: "Thoughts on Persona 4 Golden"
-date: 2023-11-06T08:00:00+08:00
+date: 2024-12-31T08:00:00+08:00
 nav: Blog
 authors:
   - Gerald Wong
@@ -8,12 +8,13 @@ tags:
   - design
 ---
 
-<!--more-->
 
 This post is just going to be some ramblings I have after completing Persona 4 Golden in 2023.
 Let's get the easy stuff out of the way first. The game has amazing music, UI, art style and theme.
 The team has always been excellent in these aspects and are often brought up in case studies in my classes.
 With that out of the way, here are my thoughts on my playthrough.
+
+<!--more-->
 
 As a disclaimer, this is just my first playthrough. 
 Here's some context before I put my thoughts:
