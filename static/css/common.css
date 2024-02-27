@@ -1,24 +1,24 @@
 body {
   background-color: #161612;
-  font-family: "Liberation Mono", monospace;
+  font-family: "Source Code Pro", monospace;
   color: #aa9374;
   /*color: #A08563;*/
 }
 h3, h4, h5 {
-  font-family: "Liberation Mono", monospace;
+  font-family: "Source Code Pro", monospace;
   color: #6B8E23; 
 }
 
 
 h1 {
   font-size: 1.9rem;
-  font-family: "Liberation Mono", monospace;
+  font-family: "Source Code Pro", monospace;
   color: #6B8E23;
 }
 
 h2 {
   font-size: 1.25rem;
-  font-family: "Liberation Mono", monospace;
+  font-family: "Source Code Pro", monospace;
   color: #aaaaaa;
 }
 
@@ -183,7 +183,7 @@ a:hover {
 }
 
 footer {
-    font-family: "Liberation Mono", monospace;
+    font-family: "Source Code Pro", monospace;
     text-align: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
