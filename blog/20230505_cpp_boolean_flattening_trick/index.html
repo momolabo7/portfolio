@@ -5,8 +5,7 @@
 <a href=https://twitter.com/momohoudai>X</a></div><div class=tag-nav><a class=tag-nav-target href=/blog>all</a>
 <a href=/tags/tech>tech</a>
 <a href=/tags/irl>irl</a>
-<a href=/tags/design>design</a>
-<a href=/tags/logs>logs</a></div><hr><div class=blog-body><div class=blog-title>[C/C++] Flatten integer to 0/1</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2023-05-05T13:25:00+08:00>May 5, 2023</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>This is a quick trick to &lsquo;flatten&rsquo; an integer into a 1 or 0.
+<a href=/tags/design>design</a></div><hr><div class=blog-body><div class=blog-title>[C/C++] Flatten integer to 0/1</div><div class=blog-date-tag-wrapper><div class=blog-date><time datetime=2023-05-05T13:25:00+08:00>May 5, 2023</time></div><div class=blog-tag>tech</div></div><div class=blog-body><p>This is a quick trick to &lsquo;flatten&rsquo; an integer into a 1 or 0.
 This is probably a trick that only works in C/C++ because of how the not (!) operator works with integers.
 While it&rsquo;s usefulness is dubious in C++, it might be useful in C.</p><p>The trick is simply this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=n>x</span> <span class=o>=</span> <span class=o>!!</span><span class=n>x</span><span class=p>;</span>
 </span></span></code></pre></div><p>When <code>x</code> is 0, x will remain 0.
