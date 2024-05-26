@@ -1,6 +1,6 @@
 
 ---
-title: "Thoughts on Unity charging for runtime"
+title: "Unity charging for runtime"
 date: 2023-09-20T12:00:00+08:00
 nav: Blog
 authors:
