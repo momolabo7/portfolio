@@ -18,6 +18,7 @@ pygmentsUseClasses = true
   homepage = "https://geraldwong.net"
 
 [params]
+
   mainSections = ["blog"] 
   custom_css = ["css/common.css"]
 

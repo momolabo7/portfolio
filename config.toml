@@ -3,42 +3,6 @@ languageCode = "en-us"
 title = "Gerald's Website"
 theme = "retromomo"
 
-pygmentsCodeFences = true
-pygmentsUseClasses = true
-
-[taxonomies]
-  tag = "tags"
 
 
-[params]
-  mainSections = ["blog"] 
-  custom_css = ["css/common.css"]
 
-[security]
-  enableInlineShortcodes = false
-
-  [security.exec]
-    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^asciidoctor$']
-    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+)$']
-
-  [security.funcs]
-    getenv = ['^HUGO_', '^CI$']
-
-  [security.http]
-    methods = ['(?i)GET|POST']
-    urls = ['.*']
-
-
-[markup]
-  [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
-    guessSyntax = false
-    hl_Lines = ""
-    lineAnchors = ""
-    lineNoStart = 1
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = true
-    style = "dracula"
-    tabWidth = 2
