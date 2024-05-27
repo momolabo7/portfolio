@@ -9,12 +9,12 @@
 For the hundredth time in the past years, I open the same damn website and the same damn explanation which took awhile because my brain actually needed to work to understand what&rsquo;s going on.</p><p>I didn&rsquo;t want to understand.
 I just want it to work.
 Yes, brain is smol.</p><p>So here I&rsquo;m just gonna drop how to use it.
-Below is table A.</p><table><thead><tr><th>name</th><th>letter</th><th>score</th></tr></thead><tbody><tr><td>ackbar</td><td>A</td><td>?</td></tr><tr><td>obi-wan</td><td>B</td><td>?</td></tr><tr><td>han solo</td><td>C</td><td>?</td></tr></tbody></table><p>I want to find the corresponding score to the letter.</p><p>Below is table B, which holds the mapping of letter to score:</p><table><thead><tr><th>letter</th><th>score</th></tr></thead><tbody><tr><td>A</td><td>90</td></tr><tr><td>B</td><td>80</td></tr><tr><td>C</td><td>70</td></tr></tbody></table><p>tl;dr, the formula to put for each row in the &ldquo;score&rdquo; column to get the corresponding score to the letter in the row is:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=n>INDEX</span><span class=p>(</span>
-</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=n>the_table_of_mappings_at_B</span><span class=o>&gt;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>  <span class=n>MATCH</span><span class=p>(</span>
-</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=n>the_cell_value_to_lookup_at_A</span><span class=o>&gt;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=n>the_column_range_to_lookup_at_B</span><span class=o>&gt;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>    <span class=mi>0</span><span class=p>),</span>
-</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=n>index_of_column_from_table_of_mappings</span><span class=o>&gt;</span>
-</span></span><span class=line><span class=cl><span class=p>)</span>
+Below is table A.</p><table><thead><tr><th>name</th><th>letter</th><th>score</th></tr></thead><tbody><tr><td>ackbar</td><td>A</td><td>?</td></tr><tr><td>obi-wan</td><td>B</td><td>?</td></tr><tr><td>han solo</td><td>C</td><td>?</td></tr></tbody></table><p>I want to find the corresponding score to the letter.</p><p>Below is table B, which holds the mapping of letter to score:</p><table><thead><tr><th>letter</th><th>score</th></tr></thead><tbody><tr><td>A</td><td>90</td></tr><tr><td>B</td><td>80</td></tr><tr><td>C</td><td>70</td></tr></tbody></table><p>tl;dr, the formula to put for each row in the &ldquo;score&rdquo; column to get the corresponding score to the letter in the row is:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>INDEX(
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&lt;</span>the_table_of_mappings_at_B<span style=color:#f92672>&gt;</span>, 
+</span></span><span style=display:flex><span>  MATCH(
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span>the_cell_value_to_lookup_at_A<span style=color:#f92672>&gt;</span>, 
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span>the_column_range_to_lookup_at_B<span style=color:#f92672>&gt;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&lt;</span>index_of_column_from_table_of_mappings<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>)
 </span></span></code></pre></div><p>Hopefully I won&rsquo;t mess it up again.</p></div></div></div><footer>Powered By Hugo | v2.0 | © 2024 Momoko Mopiko</footer></body></html>
