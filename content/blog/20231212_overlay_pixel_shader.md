@@ -82,7 +82,8 @@ The first thing to understand is that if we simply double the screen buffer $ \v
     |      |
     --------
           (1,1)
-where 'x' is the part covered by the overlay
+
+// where 'x' is the part covered by the overlay
 ```
 
 Intuitively you would think that halving would produce this result instead of doubling, but if you consider how UV works, you will realize that the opposite is actually true. 

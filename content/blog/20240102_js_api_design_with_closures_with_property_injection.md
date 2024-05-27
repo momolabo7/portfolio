@@ -36,7 +36,6 @@ f.boo(); // this won't run
 There is really no reason to expect that `goo()` exists...unless someone 'injects' `goo` into `boo` somehow like so:
 
 ```js
-
 let f = new foo();
 f.boo.goo = function() {
   console.log("Hello");

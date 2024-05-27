@@ -1,7 +1,43 @@
 baseURL = "https://geraldwong.net"
 languageCode = "en-us"
 title = "Gerald's Website"
-theme = "retromomo"
+
+
+[taxonomies]
+  tag = "tags"
+
+[author]
+  name = "Gerald Wong"
+  homepage = "https://geraldwong.net"
+
+[params]
+  mainSections = ["blog"] 
+  custom_css = ["css/common.css"]
+  math = true
+
+[security]
+  enableInlineShortcodes = false
+
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^asciidoctor$']
+    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+)$']
+
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$']
+
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
+
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = true
+    linenoStart = 1
+    codeFences = true
+    linenos = true
+    style = "gruvbox"
+    tabWidth = 2
 
 
 
