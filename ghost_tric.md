@@ -1,0 +1,3 @@
+- Good blend of insanely good and lazy (but funny) animations, leading to very memorable scenes.
+- Loved the pacing and plot twists
+- Shu Takumi is really good at showing things to the players blatantly THEN revisit 
