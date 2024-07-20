@@ -1,25 +1,35 @@
-body {
-  background-color: #161612;
-  font-family: "Source Code Pro", monospace;
-  color: #aa9374;
-  /*color: #A08563;*/
+:root {
+  --font: "Fira Mono", monospace;
+  --brown: #b4a084;
+  --green: #6b8e23;
+  --grey:  #bbbbbb; 
+  --black: #1c1c1c;
+  --aqua:  #83a598;
+  --yellow: #aaaa44; 
+  --orange: #bc8a34; 
 }
+
+
+body {
+  background-color: var(--black);
+  font-family: var(--font);
+  color: var(--brown);
+}
+
 h3, h4, h5 {
-  font-family: "Source Code Pro", monospace;
-  color: #6B8E23; 
 }
 
 
 h1 {
   font-size: 1.9rem;
-  font-family: "Source Code Pro", monospace;
-  color: #6B8E23;
+  font-family: var(--font);
+  color: var(--green);
 }
 
 h2 {
   font-size: 1.25rem;
-  font-family: "Source Code Pro", monospace;
-  color: #aaaaaa;
+  font-family: var(--font);
+  color: var(--grey);
 }
 
 hr {
@@ -58,7 +68,7 @@ p, ul {
 
 a {
   text-decoration: none;
-  color: #AAAA44;
+  color: var(--yellow)
 }
 
 a:hover {
@@ -90,7 +100,7 @@ a:hover {
 .tag-nav>a {
   padding-left: 1rem;
   padding-right: 1rem;
-  color: #83a598;
+  color: var(--aqua);
 }
 
 .nav {
@@ -107,6 +117,7 @@ a:hover {
 .tag-hr {
   border: 0.01rem dotted grey;
 }
+
 .nav-target {
   text-decoration: underline;
   text-decoration-thickness: 0.2rem;
@@ -167,8 +178,9 @@ a:hover {
   20% { transform: skewX(0deg); }
   100% { transform: skewX(0deg); }
 }
+
 .profile>h1 {
-  color: #bc8a34;
+  color: var(--orange);
   font-size: 4rem;
   margin-bottom: -0.5rem;
   animation-name: skew;
@@ -183,7 +195,7 @@ a:hover {
 }
 
 footer {
-    font-family: "Source Code Pro", monospace;
+    font-family: var(--font);
     text-align: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -212,7 +224,7 @@ footer {
 .blog-title {
   margin: 0;
   font-size: 2rem;
-  color: #AAAA44;
+  color: var(--yellow);
 }
 
 
@@ -237,12 +249,12 @@ footer {
 
 
 .blog-list-content>section>p>a {
-  color: #83a598;
+  color: var(--aqua);
   font-size: 1rem;
 }
 
 .blog-body>p>a, .blog-body>ul>li>a {
-  color: #83a598;
+  color: var(--aqua)
 }
 
 .blog-list-content-seperator {

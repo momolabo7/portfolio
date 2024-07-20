@@ -1,16 +1,16 @@
 
 ---
-title: "Primix Dev Postmorterm"
+title: "Lit Dev Postmorterm"
 date: 2023-08-29T23:00:00+08:00
 nav: Blog
 authors:
   - Gerald Wong
 tags:
-  - tech
+  - design
 ---
 
-Alright, the game is [out on itch.io](https://momohoudai.itch.io/primix) for free. 
-This is the 2nd game I have made using a rewrite of the engine I used in [dots and circles](https://momohoudai.itch.io/dots_and_circles).
+Alright, the game is [out on itch.io](https://momolabo.itch.io/lit) for free. 
+This is the 2nd game I have made using a rewrite of the engine I used in [dots and circles](https://momolabo.itch.io/dots_and_circles).
 
 <!--more-->
 
