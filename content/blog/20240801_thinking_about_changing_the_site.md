@@ -10,6 +10,8 @@ tags:
 
 I was looking at this very website recently and, for some strange reason, I felt a lot of feelings and thoughts about it. I don't exactly know what these feelings and thoughts are so many it's better to just articulate and put it out here as I try to process this.
 
+<!--more-->
+
 I guess I'll just get what I felt was good about the site out of the way first. The site is simple, has a clean-mobile friendly layout, organized and the pipeline to add posts into my blog is pretty nice.
 
 Okay, now on to the things that are bothering me...and there are a lot of them.
