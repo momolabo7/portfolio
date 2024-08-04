@@ -1,19 +1,27 @@
 :root {
   --font: "Fira Mono", monospace;
-  --brown: #b4a084;
-  --green: #6b8e23;
-  --grey:  #bbbbbb; 
-  --black: #1c1c1c;
-  --aqua:  #83a598;
-  --yellow: #aaaa44; 
-  --orange: #bc8a34; 
+
+  --bg0: #252423;
+  --bg1: #32302f;
+  --fg:  #ddc7a1;
+
+  --green:  #a9b665;
+  --grey:   #7c6f64; 
+  --black:  #1c1c1c;
+  --blue:   #7daea3;
+  --aqua:   #89b482;
+  --yellow: #d8a657; 
+  --orange: #e78a4e; 
+  --purple: #d3869b;
+  --pink: #dfa7d5;
+
 }
 
 
 body {
-  background-color: var(--black);
+  background-color: var(--bg1);
   font-family: var(--font);
-  color: var(--brown);
+  color: var(--fg);
 }
 
 h3, h4, h5 {
@@ -111,7 +119,7 @@ a:hover {
 .nav>a {
   padding-left: 1rem;
   padding-right: 1rem;
-  color: #a26ca2;
+  color: var(--purple);
 }
 
 .tag-hr {
