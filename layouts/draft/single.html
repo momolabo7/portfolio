@@ -1,0 +1,44 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/draft.css"> 
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="title" > momo </div>
+
+
+      <table>
+        <tbody>
+          <tr>
+            <td id="main_col">
+              <div id="about_box" class="box">
+                {{ with .GetPage "headless/about.md" }} 
+                <h2>{{ .Title }} </h2><br>
+                  {{ .Content }} 
+                {{ end }} 
+              </div>
+              <div id="project_box" class="box">
+                {{ with .GetPage "headless/projects.md" }} 
+                <h2>{{ .Title }} </h2><br>
+                  {{ .Content }} 
+                {{ end }} 
+              </div>
+            </td>
+            <td id="side_col">
+              <div id="link_box" class="box">
+                {{ with .GetPage "headless/links.md" }}
+                <h2>{{ .Title }} </h2>
+                  {{ .Content }} 
+                {{ end }}
+              </div>
+            </td>
+
+          
+            
+          </tr>
+        </tbody>
+      </table>
+  </body>
+</html>

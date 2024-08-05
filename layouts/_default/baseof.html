@@ -1,52 +1,20 @@
 <html lang="en">
-    
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <title>moom</title>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">      
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">      
-        <link rel="stylesheet" href="/css/common.css">
-        <link rel="stylesheet" href="/css/syntax.css">
-        <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
-        <title>Gerald's Website</title>
-        
-        {{ block "mathjax" .}} {{end}}
-    </head>
-    <body>
-      <div class="container">
-        <div class="profile">
-          <h1>momo</h1>
-          <h2>just another place for me to talk about things i like</h2>
-        </div>
-        
-        <div class="nav">
-          {{ partial "nav-item.html" (dict "name" "Home" "highlight" (eq $.Params.nav "Home") "highlight_class" "nav-target" "goto" "/" )}}
-          {{ partial "nav-item.html" (dict "name" "Blog" "highlight" (or (eq $.Params.nav "Blog") (eq $.Type "tags")) "highlight_class" "nav-target" "goto" "/blog") }}
-          {{ partial "nav-item.html" (dict "name" "Portfolio" "highlight" (eq $.Params.nav "Portfolio") "highlight_class" "nav-target" "goto" "/portfolio") }}
-          <a href="https://twitter.com/momohoudai">X</a>
-        </div>
+    {{ block "mathjax" .}} {{end}}
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="title">momo</div>
+      {{ block "main" .}} {{end}}
+    </div>
 
 
-        {{ if or (eq $.Params.nav "Blog") (eq $.Type "tags") }} 
-          <div class="tag-nav">
-            {{ partial "nav-item.html" (dict "name" "all" "highlight" (eq $.Params.nav "Blog") "highlight_class" "tag-nav-target" "goto" "/blog" )}}
-            {{ partial "nav-item.html" (dict "name" "tech" "highlight" (eq $.Data.Term "tech") "highlight_class" "tag-nav-target" "goto" "/tags/tech" )}}
-            {{ partial "nav-item.html" (dict "name" "irl" "highlight" (eq $.Data.Term "irl") "highlight_class" "tag-nav-target" "goto" "/tags/irl" )}}
-            {{ partial "nav-item.html" (dict "name" "design" "highlight" (eq $.Data.Term "design") "highlight_class" "tag-nav-target" "goto" "/tags/design" )}}
-
-
-          </div>
-        {{ end }}
-
-        <hr>
-
-        {{ block "main" .}} {{end}}
-      </div>
-
-    <footer>Powered By Hugo | v2.0 | © 2024 Momoko Mopiko </footer>
-
-</body>
+  </body>
 </html>

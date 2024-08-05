@@ -1,18 +1,38 @@
-{{ define "mathjax"}} {{ partial "mathjax.html" . }} {{ end }}
 
 {{ define "main" }}
 
-<div class="blog-body">
+<table>
+  <tbody>
+    <tr>
+      <td id="main_col">
+        <div id="about_box" class="box">
 
-    <h1 class="blog-title">
-        {{ .Title }}
-    </h1>
+          {{ with .GetPage "about.md" }} 
+          <h2>{{ .Title }} </h2><br>
+          {{ .Content }} 
+          {{ end }} 
+        </div>
+        <div id="project_box" class="box">
+          {{ with .GetPage "projects.md" }} 
+          <h2>{{ .Title }} </h2><br>
+          {{ .Content }} 
+          {{ end }} 
+        </div>
+      </td>
+      <td id="side_col">
+        <div id="link_box" class="box">
+          {{ with .GetPage "links.md" }}
+          <h2>{{ .Title }} </h2>
+          {{ .Content }} 
+          {{ end }}
+        </div>
+      </td>
 
-    <p class="blog-body">
-        {{ .Content }}
-    </p>
-</div>
 
-{{ end }}
 
+    </tr>
+  </tbody>
+</table>
+
+{{ end }} 
 

@@ -1,0 +1,30 @@
+{{ define "main" }}
+
+<div id="blog_box">
+  {{ range .Pages }}
+  <article id="blog-list-content">
+    <header>
+      <h1>
+        <a class="blog_title" href="{{ .RelPermalink }}"> {{.Title}} </a>
+      </h1>
+
+      <div class="blog_date">
+        <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+          {{ .Lastmod.Format "Jan 2, 2006" }}
+        </time>
+      </div>
+      <!-- <div class="blog_tag">{{ index ( .Params.tags) 0 }} </div> -->
+    </header>
+    <div class="blog_body">
+      {{ .Summary }}
+    </div>
+
+    <hr class="blog_list_divider">
+  </article>
+
+  {{ end }}
+
+</div>
+
+
+{{ end }}
