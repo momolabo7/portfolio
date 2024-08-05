@@ -1,0 +1,191 @@
+<html lang=en><head><meta charset=UTF-8><link rel=stylesheet href=/css/common.css><link rel=stylesheet href=/css/syntax.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title>
+<script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div id=container><div id=title>momo</div><div id=blog_box><div class=blog_title><h1>Overlay Pixel Shader Transforms</h1></div><div class=blog_date><time datetime=2023-12-12T12:00:00+08:00><h2>Dec 12, 2023</h2></time></div><div class=blog_body><p>This post is just to document for my own reference the math that went behind the transformations (scale, rotate, translate) of the overlay pixel shader I wrote for Reshade <a href=https://github.com/momohoudai/momo_reshade>here</a>.
+It turns out that it was a little more tricky than I initially expected.</p><p>The main point of this pixel shader is to allow users to freely place a texture on the screen.
+The idea is that this shade will eventually expand to allow blend modes, and then hopefully we can start using it like layers in Photoshop.</p><p>(I honestly have no idea if it&rsquo;s worth doing this, but hey, this is mostly for my education too because I have not written pixel shaders and to me it&rsquo;s a lacking part of my experience as a programmer that I want to fill for the longest time).</p><h1 id=understanding-the-parameters>Understanding the parameters</h1><p>The first thing is to understand what parameters I have avaliable to me.
+Since this is the pixel shader, the main things given to me are:</p><ul><li>Screen buffer width in pixels.</li><li>Screen buffer height in pixels.</li><li>Current UV coordinate that indicates the current pixel that is going through the shader.</li><li>A way to sample the overlay texture given a UV.</li></ul><p>The input parameters I have for the users are:</p><ul><li>Width of the overlay in pixels</li><li>Height of the overlay in pixels</li><li>X position of the overlay in pixels</li><li>Y position of the overlay in pixels</li><li>Rotation of the overlay in degrees.</li></ul><p>This means that the user can just say &ldquo;I want the a texture that is 100x100 px, at x = 100, y = 200, and rotated 90 degrees&rdquo;.</p><p>Seems like a trivial problem in any frontend work.
+You&rsquo;d usually apply a scale * rotation * translation matrix on all the vertices of your object (sprite, mesh or otherwise) and it will just work.</p><p>Except that I don&rsquo;t have my object or its vertices.
+Those don&rsquo;t exist anywhere in the pixel shader.</p><p>Basically, for each pixel on the screen buffer, I have to find the corresponding UV to sample out a color from the overlay texture.</p><p>We&rsquo;ll first define the screen buffer&rsquo;s UV given to us in the pixel shader as follows:</p><p>$ \vec{b} = \begin{bmatrix} s_u \\ s_v \\ 1 \end{bmatrix} $</p><p>As a recap, UV coordinates are normalized coordinates of a texture, with it&rsquo;s origin usually at the top left. U represents the value on the X axis going towards the right while V represents the value on the Y going downwards.</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-1>1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-2>2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-3>3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-4>4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-5>5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-6>6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-7>7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-0-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-8>8</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>(<span style=color:#d3869b>0</span>,<span style=color:#d3869b>0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span> 
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span>
+</span></span><span style=display:flex><span>          (<span style=color:#d3869b>1</span>,<span style=color:#d3869b>1</span>)
+</span></span></code></pre></td></tr></table></div></div><p>The aim of the transformation matrices we are doing to form will the current UV coordinates of the screen buffer and some how map it to the corresponding UV coordinates of the overlay texture.</p><h1 id=scale>Scale</h1><p>Scale is interesting but straightforward.
+The first thing to understand is that if we simply double the screen buffer $ \vec{b} $ and use the resultant UV to sample our overlay&rsquo;s texture, it will cover the upperleft quadrant of the screen.</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-1> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-2> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-3> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-4> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-5> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-6> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-7> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-8> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-9> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-1-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-10>10</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>(<span style=color:#d3869b>0</span>,<span style=color:#d3869b>0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span> 
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>xxx   <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>xxx   <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span>
+</span></span><span style=display:flex><span>          (<span style=color:#d3869b>1</span>,<span style=color:#d3869b>1</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#928374;font-style:italic>// where &#39;x&#39; is the part covered by the overlay
+</span></span></span></code></pre></td></tr></table></div></div><p>Intuitively you would think that halving would produce this result instead of doubling, but if you consider how UV works, you will realize that the opposite is actually true.</p><p>As an example, let&rsquo;s say we are at the halfway mark of the screen buffer, at 0.5 (It doesn&rsquo;t matter whether we are talking about width or height; the same concept can be applied to both).
+At 0.5 of the screen buffer, the parts of the overlay&rsquo;s texture we want to sample are the ends of the overlay.
+That is, when the UV we get from the screen buffer is at:</p><p>$ \vec{b} = \begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} $</p><p>Then we want to sample the overlay&rsquo;s texture&rsquo;s UV at:</p><p>$ \vec{o} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} $</p><p>With that in mind, we can simply derive the the matrix that transform $ \vec{b} $ to $ \vec{o} $.
+All we have to do is to figure out the function f() such that:</p><p>$
+S\vec{b} =
+\begin{bmatrix} f(s_x) & 0 & 0 \\ 0 & f(s_y) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+$</p><p>That is, given 0.5 as input for $ s_x $ and $ s_y $, figure out:</p><p>$
+S\vec{b} =
+\begin{bmatrix} f(0.5) & 0 & 0 \\ 0 & f(0.5) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+$</p><p>Turn out this is simply:</p><p>$
+S\vec{b} =
+\begin{bmatrix} 1/0.5 & 0 & 0 \\ 0 & 1/0.5 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+$</p><p>And thus our final scale matrix is:</p><p>$
+S\vec{b} =
+\begin{bmatrix} 1/s_x & 0 & 0 \\ 0 & 1/s_y & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+$</p><p>Thus if we want the overlay to be half the screen&rsquo;s width and height such that it&rsquo;s covering a quarter of the screen, both $ s_x $ and $ s_y $ would need to be 0.5 (representing half), which will in turn evaluate to 2, which is what we want!
+Kind of counter intuitive since suddenly this looks like an inverse scale matrix instead of the normal scale matrix, but the math does check out!</p><h1 id=translation>Translation</h1><p>The next matrix is one that &lsquo;moves&rsquo; the overlay.
+Assuming that the overlay start from origin like so:</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-1>1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-2>2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-3>3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-4>4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-5>5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-6>6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-7>7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-2-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-8>8</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>(<span style=color:#d3869b>0</span>,<span style=color:#d3869b>0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span> 
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>xxx   <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>xxx   <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span>
+</span></span><span style=display:flex><span>          (<span style=color:#d3869b>1</span>,<span style=color:#d3869b>1</span>)
+</span></span></code></pre></td></tr></table></div></div><p>Let&rsquo;s say we want to shift the overlay such that it start from the center, which would give us this:</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-1>1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-2>2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-3>3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-4>4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-5>5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-6>6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-7>7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-3-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-8>8</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>(<span style=color:#d3869b>0</span>,<span style=color:#d3869b>0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span> 
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>      <span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>   xxx<span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>|</span>   xxx<span style=color:#fe8019>|</span>
+</span></span><span style=display:flex><span>    <span style=color:#fe8019>--------</span>
+</span></span><span style=display:flex><span>          (<span style=color:#d3869b>1</span>,<span style=color:#d3869b>1</span>)
+</span></span></code></pre></td></tr></table></div></div><p>This means that when the given screen buffer UV is:</p><p>$ \vec{b} = \begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} $</p><p>we want to sample the overlay&rsquo;s UV at:</p><p>$ \vec{o} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} $</p><p>This is looks like just a trival translation, but what&rsquo;s interesting is that, like the scale matrix, we end up needing to do a reverse translation matrix.</p><p>Similar to the scale matrix example above, we want to find the translation matrix that does this:</p><p>$
+T\vec{b} =
+\begin{bmatrix} 1 & 0 & f(t_x) \\ 0 & 1 & f(t_y) \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+$</p><p>Let&rsquo;s try by substituting the values we have for $ t_x $ and $ t_y $:</p><p>$
+T\vec{b} =
+\begin{bmatrix} 1 & 0 & f(0.5) \\ 0 & 1 & f(0.5) \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+$</p><p>We can then figure out f() and find our translation matrix:</p><p>$
+T\vec{b} =
+\begin{bmatrix} 0 & 0 & -0.5 \\ 0 & 0 & -0.5 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+$</p><p>Which bring us to our final matrix:</p><p>$
+T\vec{b} =
+\begin{bmatrix} 0 & 0 & -t_x \\ 0 & 0 & -t_y \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \\ 0.5 \\ 1 \end{bmatrix} =
+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+$</p><h1 id=rotation>Rotation</h1><p>Rotation was really weird to figure out.
+Let&rsquo;s think about rotation for a bit.
+When we rotate, say, an image regularly 90 degrees, the aspect ratio actually changes.</p><p>So say we want to rotate and objects that&rsquo;s 4:2 like this:</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-4-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-1>1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-4-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-2>2</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>xxxx
+</span></span><span style=display:flex><span>yyyy
+</span></span></code></pre></td></tr></table></div></div><p>Once rotated, the aspect ratio will naturally change because&mldr;well it rotated!</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-5-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-1>1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-5-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-2>2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-5-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-3>3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-5-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-4>4</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>xy
+</span></span><span style=display:flex><span>xy
+</span></span><span style=display:flex><span>xy
+</span></span><span style=display:flex><span>xy
+</span></span></code></pre></td></tr></table></div></div><p>This is happens when we apply our standard rotation matrix onto our overlay as if it&rsquo;s a quad:</p><p>$
+R(\theta) = \begin{bmatrix} cos(\theta) & -sin(\theta) & 0 \\ sin(\theta) & cos(\theta) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+$</p><p>This rotational behaviour, however, does not apply to UVs.
+If you have a 3:2 texture with it&rsquo;s UV rotated, it will still be 3:2!
+So basically if we rotate a texture&rsquo;s UV by 90 degrees, we will get something like this:</p><div class=highlight><div style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-6-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-6-1>1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#756d59" id=hl-6-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-6-2>2</a>
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#ebdbb2;background-color:#282828;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-cpp data-lang=cpp><span style=display:flex><span>xxyy
+</span></span><span style=display:flex><span>xxyy
+</span></span></code></pre></td></tr></table></div></div><p>Okay the ascii drawing above doesn&rsquo;t paint the full picture.
+Imagine that after rotating, not only is the image rotated, it is squished and stretched to fill the original image&rsquo;s width and height!</p><p>This means that not only do we have to rotate, we have to do some kind of scaling as well.
+At 0, and 180 degrees, we want to maintain the original aspect ratio, but at 90 and 270, it should be the scaled such that the aspect ratio reverses!
+That is, at 0 degrees, if we were at 4:2 ratio, then at 90 degrees, we need to apply a scale such that it becomes 2:4.
+(In between degrees will need to scale accordingly too of course).</p><p>First, let&rsquo;s solve the rotation part.
+Thankfully, we could make use of how the rotation matrix work.
+Remember how cosine and sine works.
+For our example, we need to know that:</p><p>$ cos(0) $ -> 1, $ cos(90) $ -> 0</p><p>$ sin(0) $ -> 0, $ sin(90) $ -> 1</p><p>Next, observe what happens when we multiply the standard counter-clockwise rotation matrix to a UV point:</p><p>$
+R(\theta)\vec{b} =
+\begin{bmatrix} cos(\theta) & -sin(\theta) & 0 \\ sin(\theta) & cos(\theta) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} x \\ y \\ 1 \end{bmatrix} =
+\begin{bmatrix} x cos(\theta) - y sin(\theta) \\ x sin(\theta) + y cos(\theta) \\ 1 \end{bmatrix}
+$</p><p>At 0 degrees, this would be:</p><p>$
+R(0)\vec{b} =
+\begin{bmatrix} x cos(0) - y sin(0) \\ x sin(0) + y cos(0) \\ 1 \end{bmatrix} =
+\begin{bmatrix} x \\ y \\ 1 \end{bmatrix}
+$</p><p>Obviously nothing changed.
+How about 180 degrees?</p><p>$
+R(180)\vec{b} =
+\begin{bmatrix} x cos(180) - y sin(180) \\ x sin(180) + y cos(180) \\ 1 \end{bmatrix} =
+\begin{bmatrix} -x \\ -y \\ 1 \end{bmatrix}
+$</p><p>This is correct; the UV will be flipped only on the x and y axis.
+Note that we are rotating about the origin so it does go offscreen, so we would need to do some translation to get to back onscreen.
+That part&rsquo;s trivial; we simply concatenate a translation matrix after this rotation matrix.
+For now, we focus on the <strong>direction</strong> the UVs are traversing for the overlay.</p><p>Next, let&rsquo;s look at 90 degrees:</p><p>$
+R(90)\vec{b} =
+\begin{bmatrix} x cos(90) - y sin(90) \\ x sin(90) + y cos(90) \\ 1 \end{bmatrix} =
+\begin{bmatrix} -y \\ x \\ 1 \end{bmatrix}
+$</p><p>This means that as we move along top-left to the bottom-right of the screen, we sample the overlay starting from the top-right to the bottom-left.</p><p>This is correct in the sense that we managed to rotate the overlay.
+However, we still have the issue of scaling.
+It is bound to the original aspect ratio, so what we end up is the overlay being squished on the y-axis and stretched on the x-axis (at least, in the case where the width is greater than the height).</p><p>Remember that when we rotate the overlay</p><p>The solution is simple in concept: We need to scale such that we flip the aspect ratio when we rotate 90 degrees (and 270 degrees), and not flip when it&rsquo;s 0 degrees (and 180 degrees).
+In a way, if we can solve the matrix to work for both 0 and 90 degrees, it should work for any other intermediary angle (spoiler: it does, can you varify with all other degrees of rotation).</p><p>Basically, what we want is that when it&rsquo;s 0 or 180 degree, we don&rsquo;t want it scaled in any particular way:</p><p>$
+R(0)\vec{b} =
+\begin{bmatrix} ?cos(0) & -?sin(0) & 0 \\ ?sin(0) & ?cos(0) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} x \\ y \\ 1 \end{bmatrix} =
+\begin{bmatrix} x \\ y \\ 1 \end{bmatrix}
+$</p><p>But when it&rsquo;s 90 degrees it needs to be:</p><p>$
+R(90)\vec{b} =
+\begin{bmatrix} ?cos(90) & -?sin(90) & 0 \\ ?sin(90) & ?cos(90) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} x \\ y \\ 1 \end{bmatrix} =
+\begin{bmatrix} -yb_h / b_w \\ xb_w/b_h \\ 1 \end{bmatrix}
+$</p><p>Note that we are scaling by the screen buffer&rsquo;s aspect ratio, NOT the overlay&rsquo;s!
+This is because we are transforming the screen buffer&rsquo;s UV.</p><p>Because of how sine and cosine work, we can actually use their properties to create some sort of a conditional effect!
+For example, let&rsquo;s say we multiple $ x $ by $ cos(\theta) $ and $ y $ by $ sin(\theta) $, when $\theta$ is 0, we get $ x $ and when $\theta$ is 1, we get $ y $!</p><p>With that in mind, we can solve for our new matrix $ R(\theta) $:</p><p>$
+R(\theta)\vec{b} =
+\begin{bmatrix} cos(\theta) & -b_hsin(\theta)/b_w & 0 \\ b_wsin(\theta)/b_h & cos(\theta) & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\begin{bmatrix} x \\ y \\ 1 \end{bmatrix} =
+\begin{bmatrix} x cos(\theta) - yb_hsin(\theta)/b_w \\ xb_wsin(\theta)/b_h + y cos(\theta) \\ 1 \end{bmatrix}
+$</p><p>And that&rsquo;s it!</p></div></div></div></body></html>
