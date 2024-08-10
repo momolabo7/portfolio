@@ -1,5 +1,5 @@
 :root {
-  --font: "Fira Mono", monospace;
+  --font: "Source Code Pro", monospace;
 
   --bg0: #111111;
   --bg1: #222222;
@@ -18,12 +18,18 @@
 
   --text_strips_color1: #d0a8cf;
   --text_strips_color2: #c28dc0;
-
 }
 
-@font-face {
+@font-face 
+{
   font-family: "pixel nes";
   src: url("/font/pixel_nes.otf");
+}
+
+@font-face 
+{
+  font-family: "Source Code Pro";
+  src: url("/font/source_code_pro.ttf");
 }
 
 @keyframes text_strips 
