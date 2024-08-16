@@ -1,0 +1,56 @@
+<html lang=en><head><meta charset=UTF-8><link rel=stylesheet href=/css/construction.css><link rel=stylesheet href=/css/prism.css><script src=/js/prism.js></script><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title></head><body><div id=container><div id=title>tech</div><div class=box><h1>Point on triangle algorithms</h1><div><time datetime=2023-05-18T11:16:00+08:00><h2>May 18, 2023</h2></time></div><div><p>A game I&rsquo;m working on requires me to check if a point is overlapped by a triangle.
+Being a dumb engineer who can&rsquo;t come up wiith his own algorithm, google gave me 3 algorithms.
+Here I&rsquo;m just going to share the algorithms and their performances.</p><p>Parametric:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>b32_t <span style=color:#a6e22e>parametric</span>(v2f_t tp0, v2f_t tp1, v2f_t tp2, v2f_t pt) {
+</span></span><span style=display:flex><span>  f32_t denominator <span style=color:#f92672>=</span> (tp0.x<span style=color:#f92672>*</span>(tp1.y <span style=color:#f92672>-</span> tp2.y) <span style=color:#f92672>+</span> 
+</span></span><span style=display:flex><span>                     tp0.y<span style=color:#f92672>*</span>(tp2.x <span style=color:#f92672>-</span> tp1.x) <span style=color:#f92672>+</span> 
+</span></span><span style=display:flex><span>                     tp1.x<span style=color:#f92672>*</span>tp2.y <span style=color:#f92672>-</span> tp1.y<span style=color:#f92672>*</span>tp2.x);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t t1 <span style=color:#f92672>=</span> (pt.x<span style=color:#f92672>*</span>(tp2.y <span style=color:#f92672>-</span> tp0.y) <span style=color:#f92672>+</span> 
+</span></span><span style=display:flex><span>            pt.y<span style=color:#f92672>*</span>(tp0.x <span style=color:#f92672>-</span> tp2.x) <span style=color:#f92672>-</span> 
+</span></span><span style=display:flex><span>            tp0.x<span style=color:#f92672>*</span>tp2.y <span style=color:#f92672>+</span> tp0.y<span style=color:#f92672>*</span>tp2.x) <span style=color:#f92672>/</span> denominator;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t t2 <span style=color:#f92672>=</span> (pt.x<span style=color:#f92672>*</span>(tp1.y <span style=color:#f92672>-</span> tp0.y) <span style=color:#f92672>+</span> 
+</span></span><span style=display:flex><span>            pt.y<span style=color:#f92672>*</span>(tp0.x <span style=color:#f92672>-</span> tp1.x) <span style=color:#f92672>-</span> 
+</span></span><span style=display:flex><span>            tp0.x<span style=color:#f92672>*</span>tp1.y <span style=color:#f92672>+</span> tp0.y<span style=color:#f92672>*</span>tp1.x) <span style=color:#f92672>/</span> <span style=color:#f92672>-</span>denominator;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t s <span style=color:#f92672>=</span> t1 <span style=color:#f92672>+</span> t2;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> t1 <span style=color:#f92672>&amp;&amp;</span> t1 <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> t2 <span style=color:#f92672>&amp;&amp;</span> t2 <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> s <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Dot Product:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>b32_t <span style=color:#a6e22e>dot_product</span>(v2f_t tp0, v2f_t tp1, v2f_t tp2, v2f_t pt) {
+</span></span><span style=display:flex><span>  v2f_t vec0 <span style=color:#f92672>=</span> v2f_set(pt.x <span style=color:#f92672>-</span> tp0.x, pt.y <span style=color:#f92672>-</span> tp0.y);      
+</span></span><span style=display:flex><span>  v2f_t vec1 <span style=color:#f92672>=</span> v2f_set(pt.x <span style=color:#f92672>-</span> tp1.x, pt.y <span style=color:#f92672>-</span> tp1.y);      
+</span></span><span style=display:flex><span>  v2f_t vec2 <span style=color:#f92672>=</span> v2f_set(pt.x <span style=color:#f92672>-</span> tp2.x, pt.y <span style=color:#f92672>-</span> tp2.y);      
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  v2f_t n0 <span style=color:#f92672>=</span> v2f_set(tp1.y <span style=color:#f92672>-</span> tp0.y, <span style=color:#f92672>-</span>tp1.x <span style=color:#f92672>+</span> tp0.x);
+</span></span><span style=display:flex><span>  v2f_t n1 <span style=color:#f92672>=</span> v2f_set(tp2.y <span style=color:#f92672>-</span> tp1.y, <span style=color:#f92672>-</span>tp2.x <span style=color:#f92672>+</span> tp1.x);
+</span></span><span style=display:flex><span>  v2f_t n2 <span style=color:#f92672>=</span> v2f_set(tp0.y <span style=color:#f92672>-</span> tp2.y, <span style=color:#f92672>-</span>tp0.x <span style=color:#f92672>+</span> tp2.x);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  b32_t side0 <span style=color:#f92672>=</span> v2f_dot(n0,vec0) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0.f</span>;
+</span></span><span style=display:flex><span>  b32_t side1 <span style=color:#f92672>=</span> v2f_dot(n1,vec1) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0.f</span>;
+</span></span><span style=display:flex><span>  b32_t side2 <span style=color:#f92672>=</span> v2f_dot(n2,vec2) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0.f</span>;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> side0 <span style=color:#f92672>==</span> side1 <span style=color:#f92672>&amp;&amp;</span> side0 <span style=color:#f92672>==</span> side2;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Barycentric:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>b32_t <span style=color:#a6e22e>barycentric</span>(v2f_t tp0, v2f_t tp1, v2f_t tp2, v2f_t pt) {
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t denominator <span style=color:#f92672>=</span> ((tp1.y <span style=color:#f92672>-</span> tp2.y)<span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>                     (tp0.x <span style=color:#f92672>-</span> tp2.x) <span style=color:#f92672>+</span> (tp2.x <span style=color:#f92672>-</span> tp1.x)<span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>                     (tp0.y <span style=color:#f92672>-</span> tp2.y));
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t a <span style=color:#f92672>=</span> ((tp1.y <span style=color:#f92672>-</span> tp2.y)<span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>           (pt.x <span style=color:#f92672>-</span> tp2.x) <span style=color:#f92672>+</span> (tp2.x <span style=color:#f92672>-</span> tp1.x)<span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>           (pt.y <span style=color:#f92672>-</span> tp2.y)) <span style=color:#f92672>/</span> denominator;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t b <span style=color:#f92672>=</span> ((tp2.y <span style=color:#f92672>-</span> tp0.y)<span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>           (pt.x <span style=color:#f92672>-</span> tp2.x) <span style=color:#f92672>+</span> (tp0.x <span style=color:#f92672>-</span> tp2.x)<span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>           (pt.y <span style=color:#f92672>-</span> tp2.y)) <span style=color:#f92672>/</span> denominator;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  f32_t c <span style=color:#f92672>=</span> <span style=color:#ae81ff>1.f</span> <span style=color:#f92672>-</span> a <span style=color:#f92672>-</span> b;
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0.f</span> <span style=color:#f92672>&lt;=</span> a <span style=color:#f92672>&amp;&amp;</span> a <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1.f</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>0.f</span> <span style=color:#f92672>&lt;=</span> b <span style=color:#f92672>&amp;&amp;</span> b <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1.f</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>0.f</span> <span style=color:#f92672>&lt;=</span> c <span style=color:#f92672>&amp;&amp;</span> c <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1.f</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Of course, these could be written better but I&rsquo;m just writing it as the algorithm suggested without too much care.
+I didn&rsquo;t care about which one was faster until one day I ran a scene with tons of triangles on my Surface Go, which I eventually experienced some slowdown.
+That&rsquo;s when I decided to profile them.</p><p>These are the results on my Surface Book 2, with MSVC compiler:</p><table><thead><tr><th>Algorithm</th><th>Unoptimized</th><th>-O2</th></tr></thead><tbody><tr><td>Barycentric</td><td>~72 cycles</td><td>~27 cycles</td></tr><tr><td>Dot Product</td><td>~262 cycles</td><td>~27 cycles</td></tr><tr><td>Parametric</td><td>~100 cycles</td><td>~37 cycles</td></tr></tbody></table><p>It was interesting to see the results.
+At first I was surprised to see the Dot Product version so slow because it was what others claimed to be fast, but thankfully after optimization, it ended up being (one of the) fastest.</p></div></div></div></body></html>
