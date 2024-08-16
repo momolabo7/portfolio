@@ -1,11 +1,6 @@
 ---
 title: "[XLS] INDEX/MATCH tl;dr"
 date: 2023-04-10T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 I was playing with Excel recently and for the hundredth time got stumped by how to use the INDEX/MATCH combo.

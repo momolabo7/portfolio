@@ -1,11 +1,6 @@
 ---
 title: "[JS] API Design with Closures and Property Injection?"
 date: 2024-01-02T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 This is probably one of the wierdest things I had to wrap my head around Javascript recently. 

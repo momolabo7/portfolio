@@ -1,11 +1,6 @@
 ---
 title: "Deriving Triangle to Triangle transformation matrix"
 date: 2022-04-25T23:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - Documentation
 ---
 
 Here's how I derive the transformation matrix for getting from triangle A to triangle B to do shadows in my 2D engine.

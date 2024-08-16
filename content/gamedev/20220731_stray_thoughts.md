@@ -1,11 +1,6 @@
 ---
 title: "Thoughts on Stray"
 date: 2022-07-31T13:40:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - design
 ---
 
 I just played this game called 'Stray' over the week just to check out what all the hype was about. 

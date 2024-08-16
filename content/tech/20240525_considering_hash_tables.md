@@ -1,11 +1,6 @@
 ---
 title: "Considering Hash Tables"
 date: 2024-05-25T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 For a while, I've been meaning to write some kind of a hash table from scratch for my own projects. Surprisingly for my game projects so far, I had totally avoided use of hashes and managed to optimise my problems to use simple dense arrays. The closest I came to using hash tables was when I wrote my profiler which identifies entries by hardcoded strings (which I could cheat by using their addresses instead but that's another story).

@@ -1,11 +1,6 @@
 ---
 title: "Circle to Finite Line Collision"
 date: 2021-07-04T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 Recently, I had to derive this particular collision detection algorithm for my bullet hell genre game. It's an interesting algorithm that can be expanded to deal with the 'moving circle vs static circle' and 'moving circle vs moving circle' problems.  

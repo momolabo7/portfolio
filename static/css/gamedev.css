@@ -1,0 +1,97 @@
+:root {
+  --bg0: #6f8352;
+  --bg1: #505e3a;
+  --bg2: #f2e5bc;
+  --fg: #4f3829;
+  --grey: #555555;
+}
+
+@font-face 
+{
+  font-family: "pixel nes";
+  src: url("/font/pixel_nes.otf");
+}
+
+
+.list_date {
+  color: var(--grey);
+  text-align: end;
+}
+
+
+.list_title {
+  font-size: 24px;
+}
+
+
+.list_table {
+  width: 100%;
+}
+
+.list_table:hover {
+  background-color: coral;
+  cursor: pointer;
+  
+}
+
+.list_row {
+
+}
+
+body {
+  background: 
+    repeating-conic-gradient(var(--bg0) 0% 25%, var(--bg1) 0% 50%)
+    50% / 50px 50px;
+  color: var(--fg); 
+  font-family: "Verdana";
+}
+
+#list_box {
+  background: var(--bg2); 
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#single_box {
+  background: var(--bg2); 
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#title 
+{
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: var(--fg);
+  font-family: "pixel nes";
+  color: var(--bg2);
+  font-size: 100px;
+  text-align: center;
+}
+
+#about {
+  margin: 10px auto;
+  background: white;
+  border: 2px dashed black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#container {
+  width: 900px;
+  margin: 0px auto;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue)
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.list_list_divider {
+  border: 1.5px dashed grey;
+}

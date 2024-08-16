@@ -1,11 +1,6 @@
 ---
 title: "A small shortcoming of return-by-value"
 date: 2021-03-24T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 Recently, while coding on my personal C/C++ game engine project, I ran into a surprising shortcoming of functions that returns an object by value. This was when I was still trying to keep things consistant in my project and went for a functional-programming style.

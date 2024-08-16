@@ -1,11 +1,6 @@
 ---
 title: "Point on triangle algorithms"
 date: 2023-05-18T11:16:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 A game I'm working on requires me to check if a point is overlapped by a triangle.

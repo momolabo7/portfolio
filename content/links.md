@@ -2,7 +2,7 @@
 Title: Links
 ---
 
-✩ [yappings](yaps)
+✩ [yaps](yaps)
 
-✩ [gamedev]()
+✩ [gamedev](gamedev)
 

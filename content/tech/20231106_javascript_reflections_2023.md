@@ -1,11 +1,6 @@
 ---
 title: "Reflections on using Javascript in 2023"
 date: 2023-11-06T08:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 Recently, I have been writing quite a bit of Javascript for a couple of side-projects. 

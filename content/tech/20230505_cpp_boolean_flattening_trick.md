@@ -1,11 +1,6 @@
 ---
 title: "[C/C++] Flatten integer to 0/1"
 date: 2023-05-05T13:25:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 This is a quick trick to 'flatten' an integer into a 1 or 0.

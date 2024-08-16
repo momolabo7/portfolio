@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<div id="list_box">
+  {{ range .Pages }}
+  <table class="list_table">
+    <tr class="list_row" onclick="location.href='{{ .RelPermalink }}'">
+      <td>
+        <span class="list_title">
+          <b>{{.Title}}</b>
+        </span>
+      </td>
+      <td class="list_date">
+        <i><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+            {{ .Lastmod.Format "Jan 2, 2006" }}
+        </time></i>
+      </td>
+    </tr>
+  </table>
+
+
+  <hr class="list_divider">
+
+  {{ end }}
+
+</div>
+
+
+{{ end }}

@@ -1,11 +1,6 @@
 ---
 title: "Overlay Pixel Shader Transforms"
 date: 2023-12-12T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 This post is just to document for my own reference the math that went behind the transformations (scale, rotate, translate) of the overlay pixel shader I wrote for Reshade [here](https://github.com/momohoudai/momo_reshade).

@@ -1,11 +1,6 @@
 ---
 title: "Byte Alignment Notes"
 date: 2021-11-18T12:00:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - tech
 ---
 
 When dealing with raw memory directly, there might come the need to align your memory to the nearest of some power of 2.

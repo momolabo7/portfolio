@@ -3,16 +3,7 @@ languageCode = "en-us"
 title = "Gerald's Website"
 
 
-[taxonomies]
-  tag = "tags"
-
-[author]
-  name = "Gerald Wong"
-  homepage = "https://geraldwong.net"
-
 [params]
-  mainSections = ["blog"] 
-  custom_css = ["css/common.css"]
   math = true
 
 [security]
@@ -29,15 +20,6 @@ title = "Gerald's Website"
     methods = ['(?i)GET|POST']
     urls = ['.*']
 
-
-[markup]
-  [markup.highlight]
-    anchorLineNos = true
-    linenoStart = 1
-    codeFences = true
-    linenos = true
-    style = "gruvbox"
-    tabWidth = 2
 
 
 
