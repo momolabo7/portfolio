@@ -1,0 +1,16 @@
+
+
+
+{{ define "main" }}
+
+{{ range .Pages }}
+<div class="box">
+  <div class="box_header">
+    {{.Title}}
+  </div>
+  {{ .Content }}
+</div>
+
+{{ end }}
+
+{{ end }}

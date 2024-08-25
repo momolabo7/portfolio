@@ -1,19 +1,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/card.css">
+
     <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
     <title>moom</title>
-
-    {{ block "mathjax" .}} {{end}}
   </head>
 
   <body>
     <div id="container">
-      <div id="title">momo</div>
       {{ block "main" .}} {{end}}
     </div>
 
-
+    <script src="/js/card.js"></script>
   </body>
 </html>

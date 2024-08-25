@@ -34,10 +34,6 @@
   
 }
 
-.list_row {
-
-}
-
 body {
   background: 
     repeating-conic-gradient(var(--bg0) 0% 25%, var(--bg1) 0% 50%)

@@ -1,0 +1,5 @@
+---
+title: MBTI
+---
+
+INFP

@@ -1,0 +1,31 @@
+.box {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center; 
+  cursor: move;
+}
+
+.box_header
+{  
+  padding: 10px;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+
+body {
+  font-family: "Verdana";
+}
+
+#title {
+  font-size: 60px;
+  text-align: center;
+}
+
+#container {
+  width: 900px;
+  margin: 0px auto;
+}
+

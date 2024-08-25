@@ -1,5 +1,6 @@
 ---
-Title: Welcome
+title: Welcome
+type: main
 ---
 
 Welcome to my little slice of the internets. 

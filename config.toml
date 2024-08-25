@@ -1,10 +1,15 @@
-baseURL = "https://geraldwong.net"
-languageCode = "en-us"
-title = "Gerald's Website"
-
 
 [params]
   math = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$', '$$']]
+          inline = [['\(', '\)']]
 
 [security]
   enableInlineShortcodes = false

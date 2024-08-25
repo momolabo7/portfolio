@@ -6,3 +6,7 @@ Title: Links
 
 ✩ [gamedev](gamedev)
 
+✩ [card](card) 🚧
+
+✩ [tech](tech) 🚧
+
