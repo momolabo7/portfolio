@@ -1,16 +1,16 @@
 // Make the DIV element draggable:
-
-let boxes = document.getElementsByClassName("box");
+/*
+let cards = document.getElementsByClassName("card");
 
 let cur_x = 50;
 let cur_y = 50;
-for(let box of boxes)
+for(let card of cards)
 {
-  box.style.left = cur_x;
-  box.style.top = cur_y;
-  make_element_draggable(box);
+  card.style.left = cur_x;
+  card.style.top = cur_y;
+  make_element_draggable(card);
 
-  cur_x += box.offsetWidth + 10;
+  cur_x += card.offsetWidth + 10;
 }
 
 // TODO: spawn gives away from each other
@@ -58,4 +58,5 @@ function make_element_draggable(element)
 
 }
 
+//*/
 
