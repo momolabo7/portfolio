@@ -2,4 +2,4 @@
 title: MBTI
 ---
 
-INFP
+I'm INFP!

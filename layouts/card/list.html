@@ -3,14 +3,23 @@
 
 {{ define "main" }}
 
-{{ range .Pages }}
-<div class="box">
-  <div class="box_header">
-    {{.Title}}
+<div id="grid"> 
+
+  {{ range .Pages }}
+  <div class="card">
+    <div class="card_head"></div>
+    <div class="card_body">
+      <h2 class="card_title">
+        #{{.Title}}
+      </h2>
+      <br>
+      {{ .Content }}
+    </div>
   </div>
-  {{ .Content }}
+
+  {{ end }}
 </div>
 
-{{ end }}
+
 
 {{ end }}
