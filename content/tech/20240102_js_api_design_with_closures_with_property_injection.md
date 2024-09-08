@@ -1,5 +1,5 @@
 ---
-title: "[JS] API Design with Closures and Property Injection?"
+title: " JS API Design Thoughts"
 date: 2024-01-02T12:00:00+08:00
 ---
 
@@ -16,7 +16,6 @@ function foo() {
     this.goo();
   }
 }
-
 ```
 
 Now, logically if you run the code like so:
@@ -24,7 +23,6 @@ Now, logically if you run the code like so:
 ```js
 let f = new foo();
 f.boo(); // this won't run
-
 ```
 
 `f.boo()` will give an error, naturally. 

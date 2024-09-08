@@ -1,8 +1,9 @@
-
 [params]
   math = true
 
 [markup]
+  [markup.highlight]
+    codeFences = false
   [markup.goldmark]
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.passthrough]

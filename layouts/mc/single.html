@@ -6,11 +6,9 @@
   <h1>{{ .Title }}</h1>
 
   <div>
-    <h2>
-      <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-        {{ .Lastmod.Format "Jan 2, 2006" }}
-      </time>
-    </h2>
+    <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+      <h2>{{ .Lastmod.Format "Jan 2, 2006" }}</h2>
+    </time>
   </div>
 
   <!-- <div class="blog_tag">{{ index ( .Params.tags) 0 }} </div> -->

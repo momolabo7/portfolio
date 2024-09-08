@@ -1,5 +1,5 @@
 ---
-title: "[C/C++] Flatten integer to 0/1"
+title: "C++ Flatten integer to 0/1"
 date: 2023-05-05T13:25:00+08:00
 ---
 

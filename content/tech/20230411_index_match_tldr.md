@@ -1,5 +1,5 @@
 ---
-title: "[XLS] INDEX/MATCH tl;dr"
+title: "Excel INDEX/MATCH tl;dr"
 date: 2023-04-10T12:00:00+08:00
 ---
 

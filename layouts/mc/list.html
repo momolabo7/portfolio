@@ -4,15 +4,15 @@
   {{ range .Pages }}
   <article>
     <header>
-      <h1 class="link">
+      <h1>
         <a href="{{ .RelPermalink }}"> {{.Title}} </a>
       </h1>
 
-      <h2>
+      <div>
         <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
           {{ .Lastmod.Format "Jan 2, 2006" }}
         </time>
-      </h2>
+      </div>
       <!-- <div class="blog_tag">{{ index ( .Params.tags) 0 }} </div> -->
     </header>
     <div>
