@@ -77,6 +77,7 @@
 #container {
   width: 900px;
   margin: 0px auto;
+
 }
 
 #title {
@@ -113,19 +114,21 @@ h1, h2, h3, h4, h5 {
   animation: 0.75s linear infinite text_strips;
 }
 
+
+#links > p {
+  margin: 0 auto
+}
+
+#grid {
+  display: flex;
+}
+
 #main_col {
-  width: 675px;
-  vertical-align: baseline;
+  flex: 3;
 }
 
 #side_col {
-  width: 325px;
-  vertical-align: baseline;
-}
-
-
-#link_box > p {
-  margin: 0 auto
+  flex: 1;
 }
 
 a {

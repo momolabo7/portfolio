@@ -31,7 +31,7 @@ a {
   color: inherit;
 }
 
-.link:hover {
+a:hover {
   text-decoration: underline;
 
 }

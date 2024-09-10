@@ -1,41 +1,43 @@
 
-{{ define "main" }}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <title>moom</title>
 
-<table>
-  <tbody>
-    <tr>
-      <td id="main_col">
-        <div id="about_box" class="box">
+  </head>
 
-          {{ with .GetPage "about.md" }} 
-          <h2>{{ .Title }} </h2><br>
-          {{ .Content }} 
-          {{ end }} 
+  <body>
+    <div id="container">
+      <div id="title">momo</div>
+      <div id="grid">
+        <div id="main_col">
+          <div id="about" class="box">
+            {{ with .GetPage "about.md" }} 
+            <h2>{{ .Title }} </h2><br>
+            {{ .Content }} 
+            {{ end }} 
+          </div>
+          <div id="projects" class="box">
+            {{ with .GetPage "projects.md" }} 
+            <h2>{{ .Title }} </h2><br>
+            {{ .Content }} 
+            {{ end }} 
+          </div>
         </div>
-        <div id="project_box" class="box">
-          {{ with .GetPage "projects.md" }} 
-          <h2>{{ .Title }} </h2><br>
-          {{ .Content }} 
-          {{ end }} 
+        <div id="side_col">
+          <div id="links" class="box">
+            {{ with .GetPage "links.md" }}
+            <h2>{{ .Title }} </h2>
+            {{ .Content }} 
+            {{ end }}
+          </div>
         </div>
-
-        
-
-      </td>
-      <td id="side_col">
-        <div id="link_box" class="box">
-          {{ with .GetPage "links.md" }}
-          <h2>{{ .Title }} </h2>
-          {{ .Content }} 
-          {{ end }}
-        </div>
-      </td>
+      </div>
+    </div>
 
 
-
-    </tr>
-  </tbody>
-</table>
-
-{{ end }} 
+  </body>
+</html>
 
