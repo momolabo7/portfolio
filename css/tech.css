@@ -46,9 +46,15 @@ h2 {
   margin: 0 auto;
 }
 
+
+img {
+  max-width:100%
+}
+
 time {
   color:var(--red);
   margin: 0 auto;
+  font-size: 20px;
 }
 
 code {

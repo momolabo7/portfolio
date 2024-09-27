@@ -8,18 +8,68 @@ body {
   text-align: center;
 }
 
+#nav {
+  display: flex;
+  justify-content: center;
+  flex-basis: auto;
+
+}
+
+#nav > div
+{
+  flex: 1;
+
+  border: 2px solid;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+}
+
+#gallery_h
+{
+  column-count: 2;
+  column-gap: 0px;
+}
+
+#gallery_v
+{
+  column-count: 4;
+  column-gap: 0px;
+}
+
+.gallery_img
+{
+  width : 100%;
+}
+
+.gallery_img:hover
+{
+  cursor: pointer;
+}
+
+#nav > div:hover
+{
+  background-color:yellow;
+  cursor: pointer;
+}
+
 #sub_title {
   color: #aaaaaa;
   font-size: 24px;
   text-align: center;
 }
 
-#container {
+#container 
+{
   width: 800px;
   margin: 0px auto;
   border: 2px solid;
+  padding: 10px;
 }
 
+h1 {
+  text-align: center;
+}
 
 #profile
 {
