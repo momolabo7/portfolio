@@ -14,7 +14,7 @@ Recently, I had to derive this particular collision detection algorithm for my b
 
 - The goal is to determine whether the circle is colliding with the line.
 
-![](/img/blog_img/20210428_circle_line_collision/1.jpg)
+![](/img/blog/20210428_circle_line_collision/1.jpg)
 
 ## General strategy
 The general idea is to find the point on the line `$ l $` which will be the shortest distance from the origin of the circle `$ \dot{c} $`. We will call this point `$ \dot{s} $`, and the shortest distance `$ d $`. 
@@ -28,11 +28,11 @@ In other words:
 - Check if `$ \dot{s} $` exists within our line. If it is not, we are not intersecting.
 - Check if `$d$` is greater than `$r$`. If it is not, we are intersecting.
 
-![](/img/blog_img/20210428_circle_line_collision/2.jpg)
+![](/img/blog/20210428_circle_line_collision/2.jpg)
 
 There is a small caveat we need to cover before we continue, regarding checking if `$ \dot{s} $` exists within our line. It would not cover the case illustrated below.
 
-![](/img/blog_img/20210428_circle_line_collision/3.jpg)
+![](/img/blog/20210428_circle_line_collision/3.jpg)
 
 Thankfully, this is conceptually easy to solve. We extend our line ends, `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`, by a factor of  `$r$`. We update our list:
 
@@ -57,7 +57,7 @@ $ \dot{l_{min}'} = \dot{l_{min}} - (\hat{e} * r) $
 
 $ \dot{l_{max}'} = \dot{l_{max}} + (\hat{e} * r) $
 
-![](/img/blog_img/20210428_circle_line_collision/9.jpg)
+![](/img/blog/20210428_circle_line_collision/9.jpg)
 
 ## Find the point $ \dot{s} $
 
@@ -106,11 +106,11 @@ If `$d^2$` < `$r^2$`, then we have a collision!
 
 Now that we have this, we can expend this concept to deal with moving circle vs static circle. What we have visually is something like the following:
 
-![](/img/blog_img/20210428_circle_line_collision/4.jpg)
+![](/img/blog/20210428_circle_line_collision/4.jpg)
 
 As far as collision detection is concerned, we can simply add the moving circle's radius `$r_1$` to the static circle's radius `$r_2$` and get the diagram below:
 
-![](/img/blog_img/20210428_circle_line_collision/5.jpg)
+![](/img/blog/20210428_circle_line_collision/5.jpg)
 
 And we can just apply our circle and line algorithm!
 
@@ -118,17 +118,17 @@ And we can just apply our circle and line algorithm!
 
 Now for the last bit: What if we have two moving circles?
 
-![](/img/blog_img/20210428_circle_line_collision/6.jpg)
+![](/img/blog/20210428_circle_line_collision/6.jpg)
 
 Just like the algorithm we did for 'moving circle vs static circle', we try to link the problem back to collision between a circle and a line. This means that we have to make one of the circles static. 
 
 In this case, we choose to make `$\dot{c_2}$` static. For this, we simply add the _reverse_ of it's velocity `$\vec{v_2}$` to the moving circle's velocity `$\vec{v_1}$`. It's a little unintuitive to think about especially when the circles can move at all kinds of direction (the diagram is the a simplistic example), but it is related to the idea 'relative motion'. 
 
-![](/img/blog_img/20210428_circle_line_collision/7.jpg)
+![](/img/blog/20210428_circle_line_collision/7.jpg)
 
 One way to think about it is to imagine that `$\dot{c_1}$` and `$\dot{c_2}$` are moving trains, and that you are on, in this case, `$\dot{c_2}$`. What you would feel, even though the train is moving, is that you are still, and when you see the train `$\dot{c_1}$` approaching, it is moving with the combined velocity of itself and the reverse of your train (i.e. it's seems to be moving a lot faster than it should).
 
 Now that we have a moving circle and a static circle, we can simply add the moving circle's radius `$r_1$` to the static circle's radius `$r_2$`, just like what we did in 'moving circle vs static circle'!
 
 
-![](/img/blog_img/20210428_circle_line_collision/8.jpg)
+![](/img/blog/20210428_circle_line_collision/8.jpg)

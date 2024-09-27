@@ -1,5 +1,5 @@
 ---
-title: "'Common Sense Change' concept"
+title: "Research: Common Sense Change"
 ---
 
 In mind control media, I have seen lots of this concept where the subject's idea of what's common sense is warped. It is also known as "常識変更" in japanese. 
@@ -24,6 +24,8 @@ Anyway here is a list of scenarios of common sense change:
 - Girl believes that looking at face is disrespectful in conversation and should look at body, breasts, etc. Basically the reverse of "eyes up here!".
   - hook: looking at face is intrusive and embarassing, but it's rude to look away while talking so looking at the body is fine. 
 
+- Girl believes that guys catcalling and making remarks about their body crudely is a great compliment.
+  - hook: todo 
 
 
 

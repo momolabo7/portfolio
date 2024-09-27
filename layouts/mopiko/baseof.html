@@ -2,8 +2,10 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/mopiko.css">
+    <link rel="stylesheet" href="/css/lightbox.css">
 
     <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <script type="text/javascript" src="/js/lightbox.js"></script>
     <title>momoko mopiko</title>
 
   </head>
@@ -14,9 +16,39 @@
       <div id="title">im momoko mopiko!</div>
       <hr class="smol_line"> 
       <div id="sub_title">- an ffxiv character page -</div>
+      <div id="nav"> 
+        <div> about </div>
+        <div> photos </div>
+        <div> hooks </div>
+        <div> etc </div>
+      </div>
+    
       <hr>
-      {{ block "main" .}} {{end}}
-    </div>
+      
+      <a id="about">
+      <h1> ~ about ~ </h1>
+        {{ with .GetPage "mopiko.md" }} 
+          {{ .Content }} 
+        {{ end }} 
+      
+      <a id="photos">
+      <h1> ~ photos ~ </h1>
 
+      <div id="gallery_v">
+        {{ range resources.Match "img/mopiko/gallery/v/*.{png,jpg}" }}
+        <img class="gallery_img" src="{{ .Permalink }}" onclick="lightbox.open( {{.Permalink }} )">
+
+        {{ end }}
+      </div>
+      <div id="gallery_h">
+        {{ range resources.Match "img/mopiko/gallery/h/*.{png,jpg}" }}
+          <img class="gallery_img" src="{{ .Permalink }}" onclick="lightbox.open( {{.Permalink }} )">
+        {{ end }}
+      </div>
   </body>
+  <script type="text/javascript">
+    const container = document.getElementById("container");
+    lightbox.init(container);
+    console.log("Hello");
+  </script>
 </html>

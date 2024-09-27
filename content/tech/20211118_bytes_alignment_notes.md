@@ -11,15 +11,15 @@ Typically you would want to do this when you are reading and writing to a data s
 
 For example, in 32-bit systems, memory is pulled into your CPU in blocks of 4 byte chunks (e.g. 0x00 to 0x03, 0x04 to 0x07, 0x08 to 0x0C). If you do not align your bytes properly, you might end up in a situation where you have to read more than necessary from memory to get a value out. To illustrate this, let's say we have a diagram like below that represents memory of a 32-bit system.
 
-![blank_32_bit_memory](/img/blog_img/20211118/blank_32_bit_memory.png)
+![blank_32_bit_memory](/img/blog/20211118/blank_32_bit_memory.jpg)
 
 And an aligned 4-byte integer value would be packed something like this:
 
-![blank_32_bit_memory](/img/blog_img/20211118/blank_32_bit_memory_aligned_int.png)
+![blank_32_bit_memory](/img/blog/20211118/blank_32_bit_memory_aligned_int.jpg)
 
 When retrieving an aligned 4-byte integer this way,  a 32-bit CPU only needs to do a single read on the 0x04 - 0x07 chunk (the red-dotted box represents 1 read ). However, a misaligned 4-byte integer might end up requiring more reads:
 
-![blank_32_bit_memory](/img/blog_img/20211118/blank_32_bit_memory_unaligned_int.png)
+![blank_32_bit_memory](/img/blog/20211118/blank_32_bit_memory_unaligned_int.jpg)
 
 In terms of efficiency, chances are we want to align our bytes, even if it costs slightly more memory. On top of that, there are also systems which flat out do not support reading of unaligned bytes, so there's that consideration for portability too. This is because it is much easier for the CPU to read aligned bytes than not, thus they might not support reading unaligned bytes.
 
