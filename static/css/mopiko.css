@@ -1,6 +1,27 @@
+:root 
+{
+  --font: "Source Code Pro", monospace;
+  --fg: #4a5759;
+}
+
+@font-face 
+{
+  font-family: "Source Code Pro";
+  src: url("/font/source_code_pro.ttf");
+}
 
 body {
-  font-family: "Verdana";
+  font-family: var(--font);
+  color: var(--fg);
+  background-color: #dedbd2;
+}
+
+#container 
+{
+  background-color: #f7e1d7;
+  width: 900px;
+  margin: 0px auto;
+  padding: 30px;
 }
 
 #title {
@@ -54,18 +75,11 @@ body {
 }
 
 #sub_title {
-  color: #aaaaaa;
+  color: #888888;
   font-size: 24px;
   text-align: center;
 }
 
-#container 
-{
-  width: 800px;
-  margin: 0px auto;
-  border: 2px solid;
-  padding: 10px;
-}
 
 h1 {
   text-align: center;
