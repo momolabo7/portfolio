@@ -1,7 +1,7 @@
 :root {
-  --pink: #ffc8ea;
-  --green: #cef8d2;
-  --dark_green: #276a33;
+  --color0: #fff;
+  --color1: #eee;
+  --color2: #000;
   --font: "montserrat";
 }
 
@@ -23,7 +23,7 @@ img {
 }
 
 .card {
-  border: 2px solid var(--dark_green);
+  border: 2px solid var(--color2);
   text-align: left; 
   width: 100%;
   margin: 0 0 10px;
@@ -31,14 +31,14 @@ img {
 }
 
 .card_body {
-  background-color: var(--green);
-  color: var(--dark_green);
+  background-color: var(--color1);
+  color: var(--color2);
   padding: 20px;
 }
 
 .card_head
 {  
-  background-color: var(--dark_green);
+  background-color: var(--color2);
   padding: 20px;
 }
 
@@ -46,11 +46,11 @@ img {
 {
   font-size: 25px;
   font-weight: bold;
-  color: var(--dark_green);
+  color: var(--color2);
 }
 
 body {
-  background-color: var(--pink);
+  background-color: var(--color0);
   font-family: var(--font);
 }
 
