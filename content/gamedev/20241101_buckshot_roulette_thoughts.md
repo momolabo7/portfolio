@@ -1,6 +1,6 @@
 ---
 title: "Thoughts on Bucketshot Roulette"
-date: 2024-09-07T14:44:00+08:00
+date: 2024-11-04T14:44:00+08:00
 ---
 
 This game has been making rounds in the VTuber space for awhile and I thought it looked really interesting. 
