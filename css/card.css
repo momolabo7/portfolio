@@ -13,6 +13,8 @@
 
 img {
   max-width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #grid
@@ -29,6 +31,7 @@ img {
   margin: 0 0 10px;
   display: inline-block;
 }
+
 
 .card_body {
   background-color: var(--color1);
@@ -55,7 +58,7 @@ body {
 }
 
 #container {
-  width: 100%;
+  width: 90%;
   margin: 0px auto;
 }
 
