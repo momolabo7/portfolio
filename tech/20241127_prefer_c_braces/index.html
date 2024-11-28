@@ -1,0 +1,31 @@
+<html lang=en><head><meta charset=UTF-8><link rel=stylesheet href=/css/tech.css><link rel=stylesheet href=/css/prism.css><script src=/js/prism.js></script><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title>
+<script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div id=title>tech</div><hr><div id=container><div class=box><h1>Always Open Parathesis On Newline!</h1><div><h2><time datetime=2024-11-27T12:00:00+08:00>Nov 27, 2024</time></h2></div><div><p>This post is my argument of preferring to open parathesis on a new line as opposed to putting in on the same line as a for or if statement.</p><p>Basically, I&rsquo;m arguing the case of preferring this:</p><pre><code class=language-cpp>for(int i = 0; i &lt; 10; ++i) 
+{
+  // logic here
+}
+</code></pre><p>over this: (which people might refer to as Java-style)</p><pre><code class=language-cpp>for(int i = 0; i &lt; 10; ++i) {
+  // logic here
+}
+</code></pre><p>There isn&rsquo;t any real reason for doing the latter other than aesthetic reasoning, that the logic you write will be closer to the conditions that rule the scope. It&rsquo;s kind of reasonable; 0 lines away from the condition is arguably neater than 1 line away.</p><p>But there is a really good reason for the former method, and that is diabling the condition with line comments:</p><pre><code class=language-cpp>// for(int i = 0; i &lt; 10; ++i) 
+{
+  // logic here
+}
+</code></pre><p>You can even have ways to enable different conditions. This is especially useful for testing code:</p><pre><code class=language-cpp>// for(int i = 0; i &lt; 10; ++i)  // testing 10 loops
+// for(int i = 0; i &lt; 1; ++i)   // testing 1 loop
+for(int i = 0; i &lt; 10000; ++i)  // testing many loops
+{
+  // logic here
+}
+</code></pre><p>You can argue that the above method works for the Java-style method too:</p><pre><code class=language-cpp>// for(int i = 0; i &lt; 10; ++i) {  // testing 10 loops
+// for(int i = 0; i &lt; 1; ++i)  {  // testing 1 loop
+for(int i = 0; i &lt; 10000; ++i) { // testing many loops
+  // logic here
+}
+</code></pre><p>but the issue is that you can&rsquo;t diable <em>all</em> conditions (which is a use case that happens often when testing code):</p><pre><code class=language-cpp>// for(int i = 0; i &lt; 10; ++i) {  // testing 10 loops
+// for(int i = 0; i &lt; 1; ++i)  {  // testing 1 loop
+// for(int i = 0; i &lt; 10000; ++i) { // testing many loops
+  // logic here
+}
+
+// this gives error!
+</code></pre><p>So that&rsquo;s it, a short explanation to just open parathesis and leave it at a line of its own.</p></div></div></div></body></html>
