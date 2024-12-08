@@ -1,5 +1,5 @@
 ---
-title: "Programming journey reflection"
+title: "About doing a CS Masters"
 date: 2024-10-26T12:00:00+08:00
 ---
 
