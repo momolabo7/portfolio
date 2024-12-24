@@ -1,5 +1,5 @@
 ---
-title: ABOUT
+title: about
 ---
 
 Heyas! Sorry for the mess! 

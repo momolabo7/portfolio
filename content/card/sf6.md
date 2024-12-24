@@ -1,5 +1,5 @@
 ---
-title: SF6
+title: sf6
 ---
 
 I'm Master rank in Street Fighter 6!

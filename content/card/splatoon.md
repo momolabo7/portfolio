@@ -1,5 +1,5 @@
 ---
-title: Splatoon
+title: splatoon
 ---
 
 I'm X-rank in Splatoon 3 

@@ -1,5 +1,5 @@
 ---
-title: COLORS
+title: colors
 ---
 
 i like pastel pink, green and blue!

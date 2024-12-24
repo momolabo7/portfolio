@@ -1,5 +1,5 @@
 ---
-title: Ennegram
+title: ennegram
 ---
 
 5w4

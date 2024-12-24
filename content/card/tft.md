@@ -1,5 +1,5 @@
 ---
-title: TFT
+title: tft
 ---
 
 I hit masters in TFT in set 12!

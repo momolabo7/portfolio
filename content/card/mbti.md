@@ -1,5 +1,5 @@
 ---
-title: MBTI
+title: mbti
 ---
 
 I'm INFP!

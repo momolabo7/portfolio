@@ -1,5 +1,5 @@
 ---
-title: Foods <3
+title: foods
 ---
 
 Lor Mai Kai <3
