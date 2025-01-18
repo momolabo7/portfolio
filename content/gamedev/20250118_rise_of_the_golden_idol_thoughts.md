@@ -1,6 +1,6 @@
 ---
 title: "Thoughts on Rise of the Golden Idol"
-date: 2025-01-18T13:40:00+08:00
+date: 2025-01-18T00:00:00+08:00
 ---
 
 I was looking back at my "Case Of The Golden Idol" review and I was astounded that it was written in 2023! 
