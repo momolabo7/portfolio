@@ -4,6 +4,14 @@
   --bg2: #f2e5bc;
   --fg: #4f3829;
   --grey: #555555;
+  --red: #c14a4a;
+  --orange: #c35e0a;
+  --yellow: #b47109;
+  --green: #6c782e;
+  --aqua: #4c7a5d;
+  --blue: #45707a;
+  --purple: #945e80;
+
 }
 
 @font-face 
@@ -90,4 +98,25 @@ a:hover {
 
 .list_list_divider {
   border: 1.5px dashed grey;
+}
+
+h1
+{
+  color: var(--aqua);
+  font-size: 25px;
+  margin: 0px;
+}
+
+#single_title {
+  display: inline-block;
+  width: 100%;
+  color: var(--fg);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#single_time {
+  font-weight: bold;
+  color: var(--orange);
+  font-size: 20px;
 }
