@@ -20,10 +20,8 @@ Anyway here is a list of scenarios of common sense change:
 
 - Girl believes that undressing panties and bottoms before using the bathroom is normal.
   - hook: bathroom floor is dirty and holding own pants is dirty
-
 - Girl believes that looking at face is disrespectful in conversation and should look at body, breasts, etc. Basically the reverse of "eyes up here!".
   - hook: looking at face is intrusive and embarassing, but it's rude to look away while talking so looking at the body is fine. 
-
 - Girl believes that guys catcalling and making remarks about their body crudely is a great compliment.
   - hook: todo 
 

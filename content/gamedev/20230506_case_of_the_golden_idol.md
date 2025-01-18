@@ -1,11 +1,6 @@
 ---
 title: "Thoughts on Case of the Golden Idol"
 date: 2023-06-08T12:31:00+08:00
-nav: Blog
-authors:
-  - Gerald Wong
-tags:
-  - design
 ---
 
 After playing "Return To Obra Dinn", a few people have asked me to look into "Case of the Golden Idol". 

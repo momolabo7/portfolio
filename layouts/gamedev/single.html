@@ -4,12 +4,14 @@
 
 <div id="single_box">
 
-    <h1>{{ .Title }}</h1>
-
+  <span id="single_title">{{ .Title }}</span>
+  <span id="single_time">
     <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-      <h3>{{ .Lastmod.Format "Jan 2, 2006" }}</h2>
-    </time>
+        {{ .Lastmod.Format "Jan 2, 2006" }}
+      </time>
+    </span>
 
+  <hr>
   {{ .Content }}
 </div>
 
