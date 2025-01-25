@@ -13,20 +13,11 @@ Raspberry PI future stuff to self-host:
 * EmulatorJS for pi
 https://github.com/linuxserver/emulatorjs
 
-Ongoing projects:
+* Research on Synology to buy
 
-* Project LIT
-* Project Momogatari
-* Project Moombot
-* Sketch Dai's Vtuber model
-* Sketch Mopiko Vtuber model
+* look into buying Glove80
 
-FFXIV goals:
-
-* Susano Card
-* POTD
-* Ozma
-
+* VTuber reference sheet
 
 
 
