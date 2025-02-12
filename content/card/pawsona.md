@@ -2,4 +2,4 @@
 title: pawsona
 ---
 
-![](pawsona.png)
+![](pawsona.jpg)
