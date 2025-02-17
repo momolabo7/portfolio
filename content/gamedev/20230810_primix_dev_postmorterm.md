@@ -1,6 +1,6 @@
 
 ---
-title: "Lit Dev Postmorterm"
+title: "Postmorterm: LIT"
 date: 2023-08-29T23:00:00+08:00
 nav: Blog
 authors:

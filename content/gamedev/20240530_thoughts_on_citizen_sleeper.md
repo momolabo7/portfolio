@@ -1,5 +1,5 @@
 ---
-title: "Citizen Sleeper Thoughts"
+title: "Review: Citizen Sleeper"
 date: 2024-05-30T12:00:00+08:00
 nav: Blog
 authors:

@@ -1,5 +1,5 @@
 ---
-title: "Thoughts on Fallout 2"
+title: "Review: Fallout 2"
 date: 2022-12-30T14:44:00+08:00
 nav: Blog
 authors:

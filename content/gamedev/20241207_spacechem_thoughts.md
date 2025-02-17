@@ -1,5 +1,5 @@
 ---
-title: "Thoughts Spacechem"
+title: "Review: Spacechem"
 date: 2024-12-07T13:40:00+08:00
 ---
 
