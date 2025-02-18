@@ -1,0 +1,27 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <title>moom</title>
+
+  </head>
+
+  <body>
+    <div id="content">
+      <div id="title">momo</div>
+        {{ with .GetPage "about.md" }} 
+          {{ .Content }} 
+        {{ end }} 
+        <hr > 
+        {{ with .GetPage "projects.md" }} 
+          {{ .Content }} 
+        {{ end }} 
+      </div>
+    </div>
+
+
+  </body>
+</html>
+
