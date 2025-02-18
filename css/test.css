@@ -1,0 +1,92 @@
+:root 
+{
+  --super_bg: #181818;
+  --bg: #282828;
+  --fg: #ddc7a1;
+  --red: #ea6862;
+  --orange: #e78a4e;
+  --yellow: #d8a657;
+  --green: #a9b667;
+  --aqua: #89b482;
+  --blue: #7daea3;
+  --purple: #d3869b;
+
+  --font: "Source Code Pro", monospace;
+
+  --title: var(--green);
+  --link: var(--red);
+  
+}
+
+@font-face 
+{
+  font-family: "Source Code Pro";
+  src: url("/font/source_code_pro.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+} 
+
+body 
+{
+  background-color: var(--super_bg);
+  font-family: var(--font);
+}
+
+p {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+#content {
+  background-color: var(--bg);
+  color: var(--fg);
+
+  width: 600px;
+  height: 100%;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+#title {
+  color: var(--title);
+  font-size: 60px;
+  text-align: center;
+}
+
+hr {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+h1 {
+  color: var(--yellow);
+  margin: 0 auto;
+}
+
+h2 {
+  color: var(--purple);
+  margin: 0 auto;
+}
+
+
+img {
+  max-width:100%
+}
+
+
+
+
+
