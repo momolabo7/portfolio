@@ -14,7 +14,7 @@
 
   --font: "Source Code Pro", monospace;
 
-  --title: var(--green);
+  --title: var(--yellow);
   --link: var(--red);
   
 }
@@ -47,12 +47,64 @@ section
   border: 2px solid var(--white);
 }
 
-
 .section-white > h1
 {
+  color: var(--white);
   font-weight: normal;
   font-size: 1.1em;
-  color: var(--white);
+  background-color: var(--bg);
+  display: inline-flex;
+  position: absolute;
+  margin-top: -1.4em;
+  padding: 0 6px;
+  margin-left: 5px;
+}
+
+.section-green
+{
+  border: 2px solid var(--green);
+}
+
+.section-green > h1
+{
+  color: var(--green);
+  font-weight: normal;
+  font-size: 1.1em;
+  background-color: var(--bg);
+  display: inline-flex;
+  position: absolute;
+  margin-top: -1.4em;
+  padding: 0 6px;
+  margin-left: 5px;
+}
+
+.section-purple
+{
+  border: 2px solid var(--purple);
+}
+
+.section-purple > h1
+{
+  color: var(--purple);
+  font-weight: normal;
+  font-size: 1.1em;
+  background-color: var(--bg);
+  display: inline-flex;
+  position: absolute;
+  margin-top: -1.4em;
+  padding: 0 6px;
+  margin-left: 5px;
+}
+.section-orange
+{
+  border: 2px solid var(--orange);
+}
+
+.section-orange > h1
+{
+  color: var(--orange);
+  font-weight: normal;
+  font-size: 1.1em;
   background-color: var(--bg);
   display: inline-flex;
   position: absolute;
@@ -82,7 +134,7 @@ p {
   text-align: center;
 }
 
-hr {
+seperator {
   margin-top: 50px;
   margin-bottom: 50px;
 }
