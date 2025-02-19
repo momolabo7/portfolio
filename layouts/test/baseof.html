@@ -15,9 +15,14 @@
           {{ .Content }} 
         {{ end }} 
         <hr > 
-        {{ with .GetPage "projects.md" }} 
-          {{ .Content }} 
-        {{ end }} 
+        <p> some times you just want to make stuff... </p>
+        <br>
+        <section class="section-white"> 
+          {{ with .GetPage "projects.md" }} 
+            <h1> {{ .Title }} </h1>
+            {{ .Content }} 
+          {{ end }} 
+        </section>
       </div>
     </div>
 

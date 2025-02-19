@@ -10,6 +10,7 @@
   --aqua: #89b482;
   --blue: #7daea3;
   --purple: #d3869b;
+  --white: #c6c6c6;
 
   --font: "Source Code Pro", monospace;
 
@@ -33,6 +34,31 @@ body
 {
   background-color: var(--super_bg);
   font-family: var(--font);
+}
+
+section 
+{
+  border-radius: 2px;
+  padding: 10px;
+}
+
+.section-white
+{
+  border: 2px solid var(--white);
+}
+
+
+.section-white > h1
+{
+  font-weight: normal;
+  font-size: 1.1em;
+  color: var(--white);
+  background-color: var(--bg);
+  display: inline-flex;
+  position: absolute;
+  margin-top: -1.4em;
+  padding: 0 6px;
+  margin-left: 5px;
 }
 
 p {
