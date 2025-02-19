@@ -1,5 +1,5 @@
 ---
-title: projects
+title: stuffs
 ---
 
 [LIT](https://momolabo.itch.io/lit) is a puzzle game about adding light colors, written in my custom C/C++ engine.
