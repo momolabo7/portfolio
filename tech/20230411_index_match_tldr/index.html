@@ -1,9 +1,9 @@
 <html lang=en><head><meta charset=UTF-8><link rel=stylesheet href=/css/tech.css><link rel=stylesheet href=/css/prism.css><script src=/js/prism.js></script><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title>
 <script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div id=title>tech</div><hr><div id=container><div class=box><h1>Excel INDEX/MATCH tl;dr</h1><div><h2><time datetime=2023-04-10T12:00:00+08:00>Apr 10, 2023</time></h2></div><div><p>I was playing with Excel recently and for the hundredth time got stumped by how to use the INDEX/MATCH combo.
-For the hundredth time in the past years, I open the same damn website and the same damn explanation which took awhile because my brain actually needed to work to understand what&rsquo;s going on.</p><p>I didn&rsquo;t want to understand.
+For the hundredth time in the past years, I open the same damn website and the same damn explanation which took awhile because my brain actually needed to work to understand what's going on.</p><p>I didn't want to understand.
 I just want it to work.
-Yes, brain is smol.</p><p>So here I&rsquo;m just gonna drop how to use it.
-Below is table A.</p><table><thead><tr><th>name</th><th>letter</th><th>score</th></tr></thead><tbody><tr><td>ackbar</td><td>A</td><td>?</td></tr><tr><td>obi-wan</td><td>B</td><td>?</td></tr><tr><td>han solo</td><td>C</td><td>?</td></tr></tbody></table><p>I want to find the corresponding score to the letter.</p><p>Below is table B, which holds the mapping of letter to score:</p><table><thead><tr><th>letter</th><th>score</th></tr></thead><tbody><tr><td>A</td><td>90</td></tr><tr><td>B</td><td>80</td></tr><tr><td>C</td><td>70</td></tr></tbody></table><p>tl;dr, the formula to put for each row in the &ldquo;score&rdquo; column to get the corresponding score to the letter in the row is:</p><pre><code class=language-cpp>INDEX(
+Yes, brain is smol.</p><p>So here I'm just gonna drop how to use it.
+Below is table A.</p><table><thead><tr><th>name</th><th>letter</th><th>score</th></tr></thead><tbody><tr><td>ackbar</td><td>A</td><td>?</td></tr><tr><td>obi-wan</td><td>B</td><td>?</td></tr><tr><td>han solo</td><td>C</td><td>?</td></tr></tbody></table><p>I want to find the corresponding score to the letter.</p><p>Below is table B, which holds the mapping of letter to score:</p><table><thead><tr><th>letter</th><th>score</th></tr></thead><tbody><tr><td>A</td><td>90</td></tr><tr><td>B</td><td>80</td></tr><tr><td>C</td><td>70</td></tr></tbody></table><p>tl;dr, the formula to put for each row in the "score" column to get the corresponding score to the letter in the row is:</p><pre><code class=language-cpp>INDEX(
   &lt;the_table_of_mappings_at_B&gt;, 
   MATCH(
     &lt;the_cell_value_to_lookup_at_A&gt;, 
@@ -11,4 +11,4 @@ Below is table A.</p><table><thead><tr><th>name</th><th>letter</th><th>score</th
     0),
   &lt;index_of_column_from_table_of_mappings&gt;
 )
-</code></pre><p>Hopefully I won&rsquo;t mess it up again.</p></div></div></div></body></html>
+</code></pre><p>Hopefully I won't mess it up again.</p></div></div></div></body></html>

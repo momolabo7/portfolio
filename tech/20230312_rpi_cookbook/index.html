@@ -2,10 +2,10 @@
 <script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div id=title>tech</div><hr><div id=container><div class=box><h1>My Raspberry PI Cookbook</h1><div><h2><time datetime=2023-03-12T12:00:00+08:00>Mar 12, 2023</time></h2></div><div><p>I figured that I might as well save a Raspberry PI cookbook somewhere.</p><p>Note that these are for Raspberry PI OS.
 Some of these will work on other Linux distributions (especially Debian since Raspbian derives from it).
 te that these are for Raspberry PI OS.</p><p>But you know, Linux being linux and distributions being distributions, not all of them will work for everything.
-Since I only use Raspberry PI right now, I&rsquo;ll just stick to the commands being for the Raspberry PI.</p><p>I will update this cookbook every now and then when I play with my PI.</p><h1 id=user>User</h1><p>Check what groups the current user is under</p><pre><code class=language-sh>groups
+Since I only use Raspberry PI right now, I'll just stick to the commands being for the Raspberry PI.</p><p>I will update this cookbook every now and then when I play with my PI.</p><h1 id=user>User</h1><p>Check what groups the current user is under</p><pre><code class=language-sh>groups
 </code></pre><h1 id=disk-space>Disk space</h1><p>Displaying disk space in human-readable format</p><pre><code class=language-sh>df -h
 </code></pre><h1 id=processes>Processes</h1><p>Displaying processes</p><pre><code class=language-sh>ps
-</code></pre><p>Monitor processes (press &lsquo;q&rsquo; to quit)</p><pre><code class=language-sh>htop
+</code></pre><p>Monitor processes (press 'q' to quit)</p><pre><code class=language-sh>htop
 </code></pre><h1 id=file>File</h1><p>Monitoring a file</p><pre><code class=language-sh># Monitors the last N lines of a file
 # -n is optional
 tail -n [N]  -f [FILENAME]
@@ -18,7 +18,7 @@ grep hello main.c main.h
 </code></pre><p>Grepping a file with regex</p><pre><code class=language-sh>grep -E [PATTERN] [FILES]
 </code></pre><h1 id=network>Network</h1><p>Displays active network connections and their corresponding processes</p><pre><code class=language-sh>sudo netstat -nltp
 </code></pre><h1 id=enable-vnc-and-ssh>Enable VNC and SSH</h1><p>Open the terminal on the RPI, then:</p><pre><code class=language-sh>sudo raspi-config
-</code></pre><p>Select [Interfacing Options] > VNC > Yes > Ok</p><h1 id=enable-ssh-with-publicprivate-key-authentication>Enable SSH with public/private key authentication</h1><p>Let&rsquo;s define device R as the RPI and device C as the computer you want to connect from.
+</code></pre><p>Select [Interfacing Options] > VNC > Yes > Ok</p><h1 id=enable-ssh-with-publicprivate-key-authentication>Enable SSH with public/private key authentication</h1><p>Let's define device R as the RPI and device C as the computer you want to connect from.
 We assume that C has already generated its public/private key pair.</p><p>Open the terminal on R, then:</p><pre><code class=language-sh>sudo raspi-config
 </code></pre><p>Select [Interfacing Options] > SSH > Yes > Ok</p><p>Then, make the following directory:</p><pre><code class=language-sh>install -d -m 700 ~/.ssh
 </code></pre><p>Open your favourite text editor (e.g. nano, vim, nvim) on <code>~/.ssh/authorized_keys</code>. I like vim so:</p><pre><code class=language-sh>sudo vim ~/.ssh/authorized_keys
@@ -28,13 +28,13 @@ Open the following file:</p><pre><code class=language-sh>sudo vim /etc/ssh/sshd_
 </code></pre><p>Add the following line:</p><pre><code class=language-sh>PasswordAuthentication no
 </code></pre><p>For any errors related to this, the log is avaliable at this file:</p><pre><code class=language-sh>/var/log/auth.log
 </code></pre><p>NOTE: You can, of course, use <code>ssh-copy-id</code> command from device C to setup the RSA authentication on device R.
-It basically does the steps related to placing device C&rsquo;s public key into device R&rsquo;s <code>authorized_keys</code> file.
+It basically does the steps related to placing device C's public key into device R's <code>authorized_keys</code> file.
 That assumes that you DO have <code>ssh-copy-id</code> available in device C.</p><h1 id=docker>Docker</h1><h2 id=installation>Installation</h2><p>Run the crazy script that will setup Docker.</p><pre><code class=language-sh>curl -sSL https://get.docker.com | sh
-</code></pre><p>Any user that requires Docker will need to be added to the &lsquo;docker&rsquo; group.
-Let&rsquo;s say my username is &lsquo;momo&rsquo;, I will then do the following:</p><pre><code class=language-sh>sudo usermod -aG docker momo
+</code></pre><p>Any user that requires Docker will need to be added to the 'docker' group.
+Let's say my username is 'momo', I will then do the following:</p><pre><code class=language-sh>sudo usermod -aG docker momo
 </code></pre><p>Log out and log in again for the changes to take effect.
 After you log in, enter the command below display the list of groups you are under.</p><pre><code class=language-sh>groups
-</code></pre><p>Check that &lsquo;docker&rsquo; is in the list displayed.</p><p>To test that Docker is running, do the following:</p><pre><code class=language-sh>docker run hello-world
+</code></pre><p>Check that 'docker' is in the list displayed.</p><p>To test that Docker is running, do the following:</p><pre><code class=language-sh>docker run hello-world
 </code></pre><p>You should see text displayed as follows:</p><pre><code class=language-txt>Hello from Docker!
 This message shows that your installation appears to be working correctly.
 </code></pre><h2 id=useful-commands>Useful commands</h2><p>Clean up any unused resources (including images)</p><pre><code class=language-sh>docker system prune -a
@@ -52,7 +52,7 @@ docker rmi $(docker images -a -q)
 
 # Example: stops all containers
 docker stop $(docker ps -a -q)
-</code></pre><p>Compose: setups up a bunch of container and&mldr;does a bunch of things.
+</code></pre><p>Compose: setups up a bunch of container and...does a bunch of things.
 Docker Compose needs a YML file to run.
 By default, it runes docker-compose.yml in the current directory.</p><pre><code class=language-sh>docker compose up -d 
 </code></pre><h1 id=systemdservice>systemd.service</h1><p>systemd.service is a way to manage your application into services in Debian/Ubuntu based Linux.

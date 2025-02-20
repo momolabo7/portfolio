@@ -1,5 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tests on</title><link>/test/</link><description>Recent content in Tests on</description><generator>Hugo</generator><language>en</language><atom:link href="/test/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/test/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/about/</guid><description>&lt;p>hey! im momo!&lt;/p>
-&lt;p>welcome to my little corner of the internet.&lt;/p></description></item><item><title>stuffs</title><link>/test/stuff/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff/</guid><description>&lt;p>&lt;a href="https://momolabo.itch.io/lit">LIT&lt;/a> is a puzzle game about adding light colors, written in my custom C/C++ engine.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tests on</title><link>/test/</link><description>Recent content in Tests on</description><generator>Hugo</generator><language>en</language><atom:link href="/test/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/test/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/about/</guid><description>&lt;p>&amp;quot;oh, a visitor?&amp;quot;&lt;/p>
+&lt;p>you feel a gaze.&lt;/p>
+&lt;p>&amp;quot;im momo btw. this place is my little slice of the internet. it's small but it's...home. kinda.&amp;quot;&lt;/p></description></item><item><title/><link>/test/stuff/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff/</guid><description>&lt;p>&amp;quot;oh don't mind the mess here, it's just stuff i made&amp;quot;&lt;/p>
+&lt;p>their eyes soften.&lt;/p>
+&lt;p>&amp;quot;i like programming you see. making websites, games and all that&amp;quot;&lt;/p></description></item><item><title/><link>/test/yap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/yap/</guid><description>&lt;p>&amp;quot;talk?&amp;quot;&lt;/p>
+&lt;p>&lt;em>a troubled look.&lt;/em>&lt;/p>
+&lt;p>&amp;quot;it's not like i hate talking. if anything, i love to &lt;a href="../yap">yap&lt;/a>. im just not good at small talk.&amp;quot;&lt;/p>
+&lt;p>&lt;em>you ask about how their stuff was made.&lt;/em>&lt;/p>
+&lt;p>&amp;quot;oh that's a lot to talk about. i have like a &lt;a href="../tech">notebook over there&lt;/a>&amp;quot;&lt;/p>
+&lt;p>&lt;em>you ask about games.&lt;/em>&lt;/p>
+&lt;p>&amp;quot;oh! what &lt;a href="../gamedev">games&lt;/a> do you want to talk about?&amp;quot;&lt;/p></description></item><item><title>stuff i made</title><link>/test/stuff_list/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff_list/</guid><description>&lt;p>&lt;a href="https://momolabo.itch.io/lit">LIT&lt;/a> is a puzzle game about adding light colors, written in my custom C/C++ engine.&lt;/p>
+&lt;hr>
 &lt;p>&lt;a href="https://momolabo.itch.io/dots-and-circles">Dots and Circles&lt;/a> is a simple bullet hell game where you can switch what bullet you can collect and avoid, written in my custom C/C++ engine.&lt;/p>
+&lt;hr>
 &lt;p>&lt;a href="https://momolabo7.github.io/fvf/">fvf&lt;/a> is a tool to decide your favourite font and a single elimination written in my custom JS framework.&lt;/p>
-&lt;p>Here&amp;rsquo;s my &lt;a href="https://momolabo7.github.io/pathfinding-visualizer/">Pathfinding Visualizer&lt;/a> written in ReactJS.&lt;/p></description></item></channel></rss>
+&lt;hr>
+&lt;p>Here's my &lt;a href="https://momolabo7.github.io/pathfinding-visualizer/">Pathfinding Visualizer&lt;/a> written in ReactJS.&lt;/p>
+&lt;hr>
+&lt;p>I have a &lt;a href="../mopiko">site&lt;/a> dedicated to my FFXIV character Momoko Mopiko (it's still WIP).&lt;/p></description></item></channel></rss>

@@ -2,8 +2,8 @@
 <script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div id=title>tech</div><hr><div id=container><div class=box><h1>[C/C++] The 'Glue' Preprocessor Trick</h1><div><h2><time datetime=2021-04-06T12:00:00+08:00>Apr 6, 2021</time></h2></div><div><p>Macro tricks are rare to find nowadays.
 Sometimes, I would code and <em>know</em> of a trick but had forgotten how to go about implementing it because they can look as arcane as Template Metaprogramming.
 Hopefully, I can document some of my knowledge of these tricks in this blog.
-Here, I will introduce what I call the &lsquo;Glue&rsquo; macro trick.</p><p>Let&rsquo;s start with a problem.
-I&rsquo;ll use a simple example from my project.
+Here, I will introduce what I call the 'Glue' macro trick.</p><p>Let's start with a problem.
+I'll use a simple example from my project.
 Suppose I have a simple struct that represents a string, and provide a simple function that acts as a constructor:</p><pre><code class=language-cpp>struct string_t {
     unsigned count;
     char *buffer;
@@ -16,7 +16,7 @@ string_t create_string(char* buffer, unsigned count) {
 }
 </code></pre><p>And the way to easily initialize such a struct might be something like this:</p><pre><code class=language-cpp>char temp_buffer[256] = {};
 string_t str = create_string(temp_buffer, 256);
-</code></pre><p>It&rsquo;s terribly unwieldy. We might end up in an ugly scenario where it looks like this:</p><pre><code class=language-cpp>char temp_buffer1[256] = {};
+</code></pre><p>It's terribly unwieldy. We might end up in an ugly scenario where it looks like this:</p><pre><code class=language-cpp>char temp_buffer1[256] = {};
 string_t str1 = create_string(temp_buffer1, 256);
 
 char temp_buffer2[128] = {};
@@ -37,7 +37,7 @@ create_stack_string(Str4, 32);
 We start off naively by trying to define a macro based on what we want to substitute.</p><pre><code class=language-cpp>#define create_stack_string(name, num) \ 
 char temp_buffer[Num] = {}; \ 
 string_t name = create_string(temp_buffer, num)
-</code></pre><p>This would be good for one call, but subsequent calls would cause an error because <code>temp_buffer</code> would be redefined. What we kind of want is some kind of unique id to attach to <code>temp_buffer</code>. A common way is to use the <code>__LINE__</code> macro definition that will evaluate to the document&rsquo;s line number. It might not work for all cases, but for this case, it is good enough because it&rsquo;s impossible to have two <code>temp_buffers</code> exist in the same line AND scope.</p><p>So we just concatenate <code>__LINE__</code> to <code>temp_buffer</code>. Simple right?</p><pre><code class=language-cpp> #define create_stack_string(Name, Num) char temp_buffer##__LINE__[Num] = {}; string_t Name = create_string(temp_buffer##__LINE__, Num)
+</code></pre><p>This would be good for one call, but subsequent calls would cause an error because <code>temp_buffer</code> would be redefined. What we kind of want is some kind of unique id to attach to <code>temp_buffer</code>. A common way is to use the <code>__LINE__</code> macro definition that will evaluate to the document's line number. It might not work for all cases, but for this case, it is good enough because it's impossible to have two <code>temp_buffers</code> exist in the same line AND scope.</p><p>So we just concatenate <code>__LINE__</code> to <code>temp_buffer</code>. Simple right?</p><pre><code class=language-cpp> #define create_stack_string(Name, Num) char temp_buffer##__LINE__[Num] = {}; string_t Name = create_string(temp_buffer##__LINE__, Num)
 </code></pre><p>Sadly, this does not work.
 According to be C99 specification in section 6.10.3.3, line 2:</p><p><code>If, in the replacement list of a function-like macro, a parameter is immediately precededor followed by a ## preprocessing token, the parameter is replaced by the corresponding argument’s preprocessing token sequence; however, if an argument consists of no preprocessing tokens, the parameter is replaced by a placemarker preprocessing token instead.</code></p><p>That means that when <code>##</code> is encountered, any macros on the left and right of it will not be evaluated.
 That means that this:</p><pre><code class=language-cpp> create_stack_string(str1, 256);
