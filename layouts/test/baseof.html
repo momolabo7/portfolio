@@ -11,22 +11,33 @@
   <body>
     <div id="content">
       <div id="title">momo</div>
+        
         {{ with .GetPage "about.md" }} 
           {{ .Content }} 
         {{ end }} 
+
         <hr > 
-        <p> some times i just want to make stuff... </p>
+
+        {{ with .GetPage "stuff.md" }} 
+          {{ .Content }} 
+        {{ end }} 
+
         <br>
         <section class="section-green"> 
-          {{ with .GetPage "stuff.md" }} 
+          {{ with .GetPage "stuff_list.md" }} 
             <h1> {{ .Title }} </h1>
             {{ .Content }} 
           {{ end }} 
         </section>
-        <hr>
-        <section class="section-purple"> 
-        <section>
-      </div>
+
+        <hr >
+
+        {{ with .GetPage "yap.md" }}
+          {{ .Content }}
+        {{end}}
+
+        
+
     </div>
 
 
