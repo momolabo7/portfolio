@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tests on</title><link>/test/</link><description>Recent content in Tests on</description><generator>Hugo</generator><language>en</language><atom:link href="/test/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/test/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/about/</guid><description>&lt;p>&amp;quot;oh, a visitor?&amp;quot;&lt;/p>
 &lt;p>you feel a gaze.&lt;/p>
-&lt;p>&amp;quot;im momo btw. this place is my little slice of the internet. it's small but it's...home. kinda.&amp;quot;&lt;/p></description></item><item><title/><link>/test/stuff/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff/</guid><description>&lt;p>&amp;quot;oh don't mind the mess here, it's just stuff i made&amp;quot;&lt;/p>
+&lt;p>&amp;quot;im momo. this place is my little slice of the internet. it's small but it's...home. kinda.&amp;quot;&lt;/p></description></item><item><title/><link>/test/resource/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/resource/</guid><description>&lt;p>&lt;em>you point at what looks like a telephone book on the table&lt;/em>&lt;/p>
+&lt;p>&amp;quot;this? it's just a collection of online resouces which i think is cool to look at&amp;quot;&lt;/p>
+&lt;p>&lt;em>you ask why&lt;/em>&lt;/p>
+&lt;p>&amp;quot;things get lost, you know&amp;quot;&lt;/p></description></item><item><title/><link>/test/stuff/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff/</guid><description>&lt;p>the mess at the table draws your attention.&lt;/p>
+&lt;p>&amp;quot;oh don't mind that, it's just stuff i made&amp;quot;&lt;/p>
 &lt;p>their eyes soften.&lt;/p>
-&lt;p>&amp;quot;i like programming you see. making websites, games and all that&amp;quot;&lt;/p></description></item><item><title/><link>/test/yap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/yap/</guid><description>&lt;p>&amp;quot;talk?&amp;quot;&lt;/p>
-&lt;p>&lt;em>a troubled look.&lt;/em>&lt;/p>
-&lt;p>&amp;quot;it's not like i hate talking. if anything, i love to &lt;a href="../yap">yap&lt;/a>. im just not good at small talk.&amp;quot;&lt;/p>
-&lt;p>&lt;em>you ask about how their stuff was made.&lt;/em>&lt;/p>
-&lt;p>&amp;quot;oh that's a lot to talk about. i have like a &lt;a href="../tech">notebook over there&lt;/a>&amp;quot;&lt;/p>
-&lt;p>&lt;em>you ask about games.&lt;/em>&lt;/p>
-&lt;p>&amp;quot;oh! what &lt;a href="../gamedev">games&lt;/a> do you want to talk about?&amp;quot;&lt;/p></description></item><item><title>stuff i made</title><link>/test/stuff_list/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff_list/</guid><description>&lt;p>&lt;a href="https://momolabo.itch.io/lit">LIT&lt;/a> is a puzzle game about adding light colors, written in my custom C/C++ engine.&lt;/p>
+&lt;p>&amp;quot;i like programming you see. websites, games and all that&amp;quot;&lt;/p></description></item><item><title/><link>/test/yap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/yap/</guid><description>&lt;p>&lt;em>you notice a shelf filled with books and papers in messy scribbles&lt;/em>&lt;/p>
+&lt;p>&amp;quot;those? just some scribbles you can read, i don't mind.&amp;quot;&lt;/p>
+&lt;p>&lt;em>you look at the books curiously&lt;/em>&lt;/p>
+&lt;p>&amp;quot;they are mostly about &lt;a href="./gamedev">games&lt;/a>, some &lt;a href="./tech">tech&lt;/a> stuff and the occassional &lt;a href="./yap">rant&lt;/a>&amp;quot;&lt;/p>
+&lt;p>&lt;em>a laugh&lt;/em>&lt;/p>
+&lt;p>&amp;quot;sometimes it's fun to look back at what i was thinking and shake my head&amp;quot;&lt;/p></description></item><item><title>resources</title><link>/test/resource_list/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/resource_list/</guid><description>&lt;p>&lt;a href="https://programmingfonts.com">Programming Fonts&lt;/a> for my programming shopping spree. Also has nice editor color schemes to consider.&lt;/p>
+&lt;hr></description></item><item><title>stuff i made</title><link>/test/stuff_list/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/stuff_list/</guid><description>&lt;p>&lt;a href="https://momolabo.itch.io/lit">LIT&lt;/a> is a puzzle game about adding light colors, written in my custom C/C++ engine.&lt;/p>
 &lt;hr>
 &lt;p>&lt;a href="https://momolabo.itch.io/dots-and-circles">Dots and Circles&lt;/a> is a simple bullet hell game where you can switch what bullet you can collect and avoid, written in my custom C/C++ engine.&lt;/p>
 &lt;hr>
