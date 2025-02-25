@@ -10,13 +10,25 @@
 
   <body>
     <div id="content">
-      <div id="title">momo</div>
+      <pre id="title">
+,---.    ,---.    ,-----.    ,---.    ,---.    ,-----.     
+|    \  /    |  .'  .-,  '.  |    \  /    |  .'  .-,  '.   
+|  ,  \/  ,  | / ,-.|  \ _ \ |  ,  \/  ,  | / ,-.|  \ _ \  
+|  |\_   /|  |;  \  '_ /  | :|  |\_   /|  |;  \  '_ /  | : 
+|  _( )_/ |  ||  _`,/ \ _/  ||  _( )_/ |  ||  _`,/ \ _/  | 
+| (_ o _) |  |: (  '\_/ \   ;| (_ o _) |  |: (  '\_/ \   ; 
+|  (_,_)  |  | \ `"/  \  ) / |  (_,_)  |  | \ `"/  \  ) /  
+|  |      |  |  '. \_/``".'  |  |      |  |  '. \_/``".'   
+'--'      '--'    '-----'    '--'      '--'    '-----'     
+      </pre>
+        
         
         {{ with .GetPage "about.md" }} 
           {{ .Content }} 
         {{ end }} 
 
-        <hr > 
+        <div class="seperator">* * *</div>
+
 
         {{ with .GetPage "stuff.md" }} 
           {{ .Content }} 
@@ -30,11 +42,25 @@
           {{ end }} 
         </section>
 
-        <hr >
+        <div class="seperator">* * *</div>
 
         {{ with .GetPage "yap.md" }}
           {{ .Content }}
         {{end}}
+
+        <div class="seperator">* * *</div>
+
+        {{ with .GetPage "resource.md" }} 
+          {{ .Content }} 
+        {{ end }} 
+
+        <br>
+        <section class="section-purple"> 
+          {{ with .GetPage "resource_list.md" }} 
+            <h1> {{ .Title }} </h1>
+            {{ .Content }} 
+          {{ end }} 
+        </section>
 
         
 

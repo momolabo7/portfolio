@@ -1,5 +1,7 @@
-"oh don't mind the mess here, it's just stuff i made"
+the mess at the table draws your attention.
+
+"oh don't mind that, it's just stuff i made"
 
 their eyes soften.
 
-"i like programming you see. making websites, games and all that"
+"i like programming you see. websites, games and all that"

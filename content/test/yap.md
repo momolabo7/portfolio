@@ -1,15 +1,11 @@
-"talk?"
+*you notice a shelf filled with books and papers in messy scribbles*
 
-*a troubled look.*
+"those? just some scribbles you can read, i don't mind."
 
-"it's not like i hate talking. if anything, i love to [yap](../yap). im just not good at small talk."
+*you look at the books curiously*
 
-*you ask about how their stuff was made.*
+"they are mostly about [games](./gamedev), some [tech](./tech) stuff and the occassional [rant](./yap)"
 
-"oh that's a lot to talk about. i have like a [notebook over there](../tech)"
+*a laugh*
 
-*you ask about games.*
-
-"oh! what [games](../gamedev) do you want to talk about?"
-
-
+"sometimes it's fun to look back at what i was thinking and shake my head"
