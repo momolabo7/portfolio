@@ -43,6 +43,13 @@ section
   padding: 10px;
 }
 
+.section-test
+{
+  border: 2px solid var(--white);
+  text-align:center;
+
+}
+
 .section-white
 {
   border: 2px solid var(--white);
