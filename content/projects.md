@@ -1,7 +1,8 @@
 ---
 Title: Projects
 ---
- 
+
+
 
 [LIT](https://momolabo.itch.io/lit) is a puzzle game about adding light colors. Written in my Eden custom engine.
 
@@ -18,4 +19,6 @@ Title: Projects
 
 This is a [Pathfinding Visualizer](https://momolabo7.github.io/pathfinding-visualizer/) written in ReactJS.
 
+---
 
+I'm also maintaining my own C/C++ monorepo [here](https://github.com/momolabo7/moom). It's used for many of my non-website related project, including LIT and Dots and Circles.

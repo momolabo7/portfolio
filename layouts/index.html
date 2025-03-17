@@ -25,6 +25,27 @@
             {{ .Content }} 
             {{ end }} 
           </div>
+          <div id="blog" class="box">
+            <h2>yappening</h2><br>
+            <p>
+            💬 yaps - 
+            {{ range where site.RegularPages "Section" "yaps" | first 5 }} 
+            <a href= {{ .Permalink }} >{{ .Title }}</a> 
+            {{ end }}
+            </p>
+            <p>
+            🎮 games -
+            {{ range where site.RegularPages "Section" "gamedev" | first 5 }} 
+            <a href= {{ .Permalink }} >{{ .Title }}</a> 
+            {{ end }}
+            </p>
+            <p>
+            🛠️  tech -
+            {{ range where site.RegularPages "Section" "tech" | first 5 }} 
+            <a href= {{ .Permalink }} >{{ .Title }}</a> 
+            {{ end }}
+            </p>
+          </div>
         </div>
         <div id="side_col">
           <div id="links" class="box">

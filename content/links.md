@@ -2,11 +2,11 @@
 Title: Links
 ---
 
-✩ [yaps](yaps)
+✩ [yaps](yaps) 💬
 
-✩ [gamedev](gamedev)
+✩ [gamedev](gamedev) 🎮
 
-✩ [tech](tech) 
+✩ [tech](tech) 🛠️
 
 ✩ [twitter](https://twitter.com/momolabo7) 
 
