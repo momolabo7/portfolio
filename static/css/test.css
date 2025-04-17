@@ -13,18 +13,13 @@
   --white: #9da9a0;
   --grey: #7a8478;
 
-  --font: "Source Code Pro", monospace;
+  --font: monospace;
 
   --title: var(--purple);
   --link: var(--green);
   
 }
 
-@font-face 
-{
-  font-family: "Source Code Pro";
-  src: url("/font/source_code_pro.ttf");
-}
 
 * {
     margin: 0;
@@ -37,10 +32,45 @@ body
   font-family: var(--font);
 }
 
-section 
+
+#content
+{
+  color: var(--white);
+  font-size: 16px;
+}
+
+#terminal
+{
+  padding: 10px;
+}
+
+#terminal-input
+{
+  background-color: inherit;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  color: inherit;
+}
+
+.red
+{
+  color: var(--red);
+}
+.terminal-section 
 {
   border-radius: 2px;
-  padding: 10px;
+}
+
+.purple
+{
+  color: var(--purple);
+}
+
+#title
+{
+  text-align: left;
 }
 
 .section-test
@@ -138,10 +168,7 @@ p {
 #content {
   background-color: var(--bg);
   color: var(--fg);
-
-  max-width: 600px;
   margin: 0px auto;
-  padding: 20px;
 }
 
 #title {

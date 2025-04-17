@@ -95,6 +95,7 @@ body {
   background: var(--bg0);
   background-image: url("/img/bg.png");
   background-size: cover;
+  background-repeat: no-repeat;
   image-rendering: pixelated;
 
   color: var(--fg);
