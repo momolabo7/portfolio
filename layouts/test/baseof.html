@@ -25,6 +25,7 @@
       let history = [];
       let result = {};
 
+
       result.init = function(parent, handler, welcome_msg)
       {
         parent.appendChild(terminal_element);
@@ -35,28 +36,37 @@
 
       result.push_element = function(content)
       {
-        const element = div(content).attr("class", "terminal-section") 
+        const element = div(content); 
         terminal_element.push(element);
       }
 
       result.push_html = function(content)
       {
-        const element = div().attr("class", "terminal-section");
+        const element = div();
         element.html(content);
         terminal_element.push(element);
       }
 
       function init_input()
       {
+        const input_prefix = "$ ";
         const user = 
           input()
-            .attr("id", "terminal-input")
+            .attr("id", "user-input")
             .attr("type", "text")
             .attr("spellcheck", "false")
             .attr("autocomplete", "off");
 
+        const element = div(
+          span(input_prefix),
+          user
+        ).attr("class", "terminal-section terminal-input")
+
         document.addEventListener("keydown", (e) =>
         {
+          if (e.ctrlKey || e.altKey || e.metaKey) 
+            return;
+
           if (e.key.length == 1) {
             user.value += e.key;
           }
@@ -66,7 +76,7 @@
 
             // replace the input with a normal line
             element.remove();
-            result.push_element(div("> " + command));
+            result.push_element(div(input_prefix + command).attr("class", "terminal-section terminal-input"));
             user.value = "";
 
             // do the command
@@ -74,6 +84,7 @@
 
             // then add back the input
             terminal_element.push(element);
+            element.scrollIntoView({behavior: "smooth"});
           }
           else if (e.key === "Backspace")
           {
@@ -81,10 +92,6 @@
           }
         });
 
-        const element = div(
-          span("> "),
-          user
-        ).attr("class", "terminal-section")
 
 
         terminal_element.push(element);
