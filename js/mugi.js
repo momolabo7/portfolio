@@ -80,7 +80,7 @@ function router(routes) {
   return result;
 }
 
-const tag_types = ["div", "img", "h1", "h2", "h3", "h4", "h5", "span", "p", "button", "hr", "span", "br", "a", "table", "tr", "td", "input"]
+const tag_types = ["div", "img", "h1", "h2", "h3", "h4", "h5", "span", "p", "button", "hr", "span", "br", "a", "table", "tr", "td", "input", "section"]
 for (const type of tag_types) {
   window[type] = (...children) => tag(type, ...children)
 }

@@ -1,62 +1,53 @@
-<html lang=en><head><meta charset=UTF-8><script src=/js/mugi.js></script><link rel=stylesheet href=/css/test.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title></head><body><div id=content></div></body><script>const terminal=function(){let t=div().attr("id","terminal"),n=null,o=[],e={};e.init=function(o,i,a){o.appendChild(t),n=i,e.push_html(a),s()},e.push_element=function(e){const n=div(e).attr("class","terminal-section");t.push(n)},e.push_html=function(e){const n=div().attr("class","terminal-section");n.html(e),t.push(n)};function s(){const s=input().attr("id","terminal-input").attr("type","text").attr("spellcheck","false").attr("autocomplete","off");document.addEventListener("keydown",i=>{if(i.key.length==1)s.value+=i.key;else if(i.key==="Enter"){const i=s.value;o.remove(),e.push_element(div("> "+i)),s.value="",n(e,i),t.push(o)}else i.key==="Backspace"&&(s.value=s.value.slice(0,-1))});const o=div(span("> "),s).attr("class","terminal-section");t.push(o)}return e}(),cmd_error=`<br>\r
-<span class="red">Unknown Command</span>\r
-<br>\r
-<span>Type 'help' for avaliable commands.</span>\r
-<br>\r
-<br>\r
-`,cmd_help=`<br>\r
+<html lang=en><head><meta charset=UTF-8><script src=/js/mugi.js></script><link rel=stylesheet href=/css/test.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title></head><body><div id=content></div></body><script>const terminal=function(){let t=div().attr("id","terminal"),n=null,o=[],e={};e.init=function(o,i,a){o.appendChild(t),n=i,e.push_html(a),s()},e.push_element=function(e){const n=div(e);t.push(n)},e.push_html=function(e){const n=div();n.html(e),t.push(n)};function s(){const i="$ ",s=input().attr("id","user-input").attr("type","text").attr("spellcheck","false").attr("autocomplete","off"),o=div(span(i),s).attr("class","terminal-section terminal-input");document.addEventListener("keydown",a=>{if(a.ctrlKey||a.altKey||a.metaKey)return;if(a.key.length==1)s.value+=a.key;else if(a.key==="Enter"){const a=s.value;o.remove(),e.push_element(div(i+a).attr("class","terminal-section terminal-input")),s.value="",n(e,a),t.push(o),o.scrollIntoView({behavior:"smooth"})}else a.key==="Backspace"&&(s.value=s.value.slice(0,-1))}),t.push(o)}return e}(),cmd_error=`<p class="red">Unknown Command</p>\r
+<p>Type 'help' for avaliable commands.</p>\r
+`,cmd_help=`<p class="bold yellow">List of commands:</p>\r
 \r
-<span class="purple">about</span><br>\r
-<span>&nbsp;&nbsp;- me me me!</span><br>\r
-<span class="purple">projects</span><br>\r
-<span>&nbsp;&nbsp;- stuff I'm making</span><br>\r
-<span class="purple">resources</span><br>\r
-<span>&nbsp;&nbsp;- my list of KIV bookmarks!</span><br>\r
-\r
-<br>\r
-\r
-`,cmd_about=`<br>\r
-\r
-<span>\r
+<p class="bold purple indent-1">about</p>\r
+<p class="indent-2">Want to know more about me? S-sure!</p>\r
+<p class="bold purple indent-1">projects</p>\r
+<p class="indent-2">Just a list of stuff I'm working on!</p>\r
+<p class="bold purple indent-1">resources</p>\r
+<p class="indent-2">A messy dump of links that I'm interested in.</p>\r
+`,cmd_about=`<p>\r
 Heya! Welcome to my little slice of the internet. I hope you like what I did to this website, I had fun coding and designing it!\r
-</span><br><br>\r
+</p>\r
+<br>\r
 \r
-<span>\r
+<p>\r
 Oh right, about myself. I'm Momo! If you can't already tell from the website's design, programming is my bread and butter. I am born, raised and happily married in hot tropical Singapore (which really isn't that hot since it's almost sheltered everywhere).\r
-</span>\r
+</p>\r
 \r
-<span>\r
+<br>\r
+<p>\r
 I graduated from DigiPen Institute of Technology Singapore in 2013 with a Bachelor in Computer Science in Game Design (what a mouthful). I worked in the games industry for 6 years and am currently teaching programming and software development project modules in my alma meter. Notably, I had some experience living and working in Japan as a games developer. Even though I had no professional experience as a game designer, I do have tons of opinions about game design in general, having worked with many game designers both as a developer and a teacher. \r
-</span><br><br>\r
+</p>\r
+<br>\r
 \r
-<span>\r
+<p>\r
 Outside of games, I do enjoy dabbling in making tools and a bit of making art and music. I can play the piano and love the occasional singing in karaoke! Generally speaking though, I enjoy putting things together, though I'm rather clumsy physically and tend to stick to writing software, but I'm trying!\r
-</span><br><br>\r
+</p>\r
 \r
-`,welcome=`<br>\r
-<pre>\r
- _ __ ___   ___  _ __ ___   ___  \r
-| '_ \` _ \\ / _ \\| '_ \` _ \\ / _ \\ \r
-| | | | | | (_) | | | | | | (_) |\r
-|_| |_| |_|\\___/|_| |_| |_|\\___/ \r
-</pre>\r
-<br>\r
-<span>Welcome to my website!</span><br>\r
-<br>\r
-<span>Let me know if you need 'help' ;)</span><br>\r
 \r
+\r
+`,welcome=`<p class="banner">\r
+███╗   ███╗ █████╗ ███╗   ███╗ █████╗\r
+████╗ ████║██╔══██╗████╗ ████║██╔══██╗\r
+██╔████╔██║██║  ██║██╔████╔██║██║  ██║\r
+██║╚██╔╝██║██║  ██║██║╚██╔╝██║██║  ██║\r
+██║ ╚═╝ ██║╚█████╔╝██║ ╚═╝ ██║╚█████╔╝\r
+╚═╝     ╚═╝ ╚════╝ ╚═╝     ╚═╝ ╚════╝\r
+</p>\r
 <br>\r
-`,cmd_projects=`\r
-<br>\r
-<span>My big overarching project is C/C++ engine written from scratch (and I do mean from scratch; no libraries) that is used to develop my games and applications.</span><br> \r
-<span>Here are some projects written in that engine:</span><br>\r
-<span>- <a href="https://momolabo.itch.io/lit">LIT</a> is a puzzle game about adding light colors</span><br>\r
-<span>- <a href="https://momolabo.itch.io/dots-and-circles">Dots and Circles</a> is a simple bullet hell game where you can switch what bullet you can collect and avoid.</span><br>\r
-<br>\r
-<span>I also do some web stuff for fun:</span><br>\r
-<span>- <a href="https://momolabo7.github.io/fvf/">Font vs Font</a> helps you decide which font you prefer.</span><br>\r
-<span>- This <a href="https://momolabo7.github.io/pathfinding-visualizer/">Pathfinding Visualizer</a> was written in ReactJS. I do need to rewrite this so that it's smaller.</span><br>\r
-<span>- <a href="../mopiko">This</a> website is dedicated to my FFXIV character.</span><br>\r
-<br>\r
+<p>Welcome to my website!</p>\r
+<p>Let me know if you need 'help' ;)</p>\r
+`,cmd_projects=`<p>My big overarching project is C/C++ engine written from scratch (and I do mean from scratch; no libraries) that is used to develop my games and applications.</p> \r
+<p>Here are some projects written in that engine:</p>\r
+<p>- <a href="https://momolabo.itch.io/lit">LIT</a> is a puzzle game about adding light colors</p>\r
+<p>- <a href="https://momolabo.itch.io/dots-and-circles">Dots and Circles</a> is a simple bullet hell game where you can switch what bullet you can collect and avoid.</p>\r
+\r
+<p>I also do some web stuff for fun:</p>\r
+<p>- <a href="https://momolabo7.github.io/fvf/">Font vs Font</a> helps you decide which font you prefer.</p>\r
+<p>- This <a href="https://momolabo7.github.io/pathfinding-visualizer/">Pathfinding Visualizer</a> was written in ReactJS. I do need to rewrite this so that it's smaller.</p>\r
+<p>- <a href="../mopiko">This</a> website is dedicated to my FFXIV character.</p>\r
 \r
 `;function handler(e,t){t==="help"?e.push_html(cmd_help):t=="about"?e.push_html(cmd_about):t=="projects"?e.push_html(cmd_projects):e.push_html(cmd_error)}terminal.init(content,handler,welcome)</script></html>
