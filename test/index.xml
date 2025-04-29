@@ -18,12 +18,21 @@ I graduated from DigiPen Institute of Technology Singapore in 2013 with a Bachel
 &lt;p class="bold purple indent-1">projects&lt;/p>
 &lt;p class="indent-2">Just a list of stuff I'm working on!&lt;/p>
 &lt;p class="bold purple indent-1">resources&lt;/p>
-&lt;p class="indent-2">A messy dump of links that I'm interested in.&lt;/p></description></item><item><title/><link>/test/projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/projects/</guid><description>&lt;p>My big overarching project is C/C++ engine written from scratch (and I do mean from scratch; no libraries) that is used to develop my games and applications.&lt;/p> 
-&lt;p>Here are some projects written in that engine:&lt;/p>
-&lt;p>- &lt;a href="https://momolabo.itch.io/lit">LIT&lt;/a> is a puzzle game about adding light colors&lt;/p>
-&lt;p>- &lt;a href="https://momolabo.itch.io/dots-and-circles">Dots and Circles&lt;/a> is a simple bullet hell game where you can switch what bullet you can collect and avoid.&lt;/p>
+&lt;p class="indent-2">A messy dump of links that I'm interested in.&lt;/p></description></item><item><title/><link>/test/projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/projects/</guid><description>&lt;p>
 
-&lt;p>I also do some web stuff for fun:&lt;/p></description></item><item><title/><link>/test/welcome/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/welcome/</guid><description>&lt;p class="banner">
+
+
+&lt;p class="purple">LIT&lt;/p>
+ &lt;p class="indent-1">A puzzle game about adding light colors. It's written in my custom C/C++ engine. You can download the game at &lt;a href="https://momolabo.itch.io/lit">itch&lt;/a>!&lt;/p>
+
+&lt;p class="purple">Dots and Circles&lt;/p>
+ &lt;p class="indent-1">A bullet hell game where you can switch what bullet you can collect and avoid. It's written in my custom C/C++ engine. You can download the game at &lt;a href="https://momolabo.itch.io/dots-and-circles">itch&lt;/a>!&lt;/p>
+
+&lt;p class="purple">Font vs Font&lt;/a>&lt;/p>
+&lt;p class="indent-1">A fun tool that helps you decide which font you prefer. &lt;a href="https://momolabo7.github.io/fvf/">You can try it here&lt;/a>!&lt;/p>
+
+&lt;p>&lt;a href="https://momolabo7.github.io/pathfinding-visualizer/">Pathfinding Visualizer&lt;/a>&lt;/p>
+ &lt;p class="indent-1">Written in ReactJS. I do need to rewrite this so that it's smaller.&lt;/p></description></item><item><title/><link>/test/welcome/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/test/welcome/</guid><description>&lt;p class="banner">
 ███╗ ███╗ █████╗ ███╗ ███╗ █████╗
 ████╗ ████║██╔══██╗████╗ ████║██╔══██╗
 ██╔████╔██║██║ ██║██╔████╔██║██║ ██║

@@ -1,20 +1,19 @@
 :root {
   --font: 'Source Code Pro';
+  --font-size: 16px;
+  --font-size-code: var(--font-size);
 
   --bg0: #000000;
-  --bg1: #22222288;
+  --bg1: #181818;
   --bg2: #333333;
   --fg: #eeeeee;
 
-  --green: #A7DFB1;
-  --pink: #dfa7d5;
-  --blue: #A7B9DF;
-  --yellow: #dfcda7;
+  --green: hsl(112 46.7% 76.5%);
+  --pink: hsl(309 46.7% 76.5%);
+  --blue: hsl(176 46.7% 76.5%);
+  --red: hsl(0 46.7% 76.5%);
+  --yellow: hsl(44 46.7% 76.5%);
   --grey: #c3c3c3;
-
-
-  --purple: #d3869b;
-  --purple_bg: #c882c6;
 
   --text_strips_color1: #d0a8cf;
   --text_strips_color2: #c28dc0;
@@ -53,6 +52,10 @@
     background-clip: text;
     color: transparent;
   }
+}
+
+.highlight{
+  font-size: var(--font-size-code);
 }
 
 @keyframes flicker
@@ -100,6 +103,7 @@ body {
 
   color: var(--fg);
   font-family: var(--font);
+  font-size: var(--font-size);
 }
 
 h1, h2, h3, h4, h5 {
@@ -113,6 +117,7 @@ h1, h2, h3, h4, h5 {
   padding: 10px 15px;
   margin: 5px;
 }
+
 
 .box > h2 {
   padding: 0px;
@@ -153,8 +158,9 @@ a:hover {
 
 hr {
 }
+
 /* blog stuff */
-#blog_box {
+#blog {
   border: 2px solid var(--bg2);
   border-radius: 10px;
   background-color: var(--bg1);
@@ -165,25 +171,25 @@ hr {
 
 
 
-.blog_list_divider {
+.blog-divider {
   border: 1.5px dashed grey;
 }
 
-.blog_title {
+.blog-title {
   color: var(--pink);
   text-decoration: none;
+  font-size: 24px;
 }
 
-.blog_date {
-  color: var(--green)
+.blog-date {
+  color: var(--green);
+  font-size: 20px;
 }
 
-.blog_tag {
-  color: var(--blue);
-}
-
-.blog_body{
+.blog-body{
   color: var(--grey);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #music_container

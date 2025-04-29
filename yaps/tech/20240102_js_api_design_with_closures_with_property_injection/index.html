@@ -1,0 +1,52 @@
+<html lang=en><head><meta charset=UTF-8><link rel=stylesheet href=/css/index.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title>
+<script>MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0,processEnvironments:!0},options:{skipHtmlTags:["script","noscript","style","textarea","pre"]}},window.addEventListener("load",e=>{document.querySelectorAll("mjx-container").forEach(function(e){e.parentElement.classList+="has-jax"})})</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type=text/javascript id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js></script></head><body><div id=container><div id=title>tech</div><article id=blog><div class=blog-title>JS API Design Thoughts</div><div class=blog-date><time datetime=2024-01-02T12:00:00+08:00>Jan 2, 2024</time></div><div class=blog-body><p>This is probably one of the wierdest things I had to wrap my head around Javascript recently.
+It's a combination of how closures work, functions being first class objects and that you can add properties into objects.</p><p>Consider this function <code>foo()</code>:</p><div class=highlight><pre tabindex=0 style=color:#b0c4de;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#c678dd>function</span> <span style=color:#c1abea>foo</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#c678dd>function</span> <span style=color:#c1abea>boo</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#c678dd>this</span>.<span style=color:#c1abea>goo</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Now, logically if you run the code like so:</p><div class=highlight><pre tabindex=0 style=color:#b0c4de;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#c678dd>let</span> <span style=color:#c1abea>f</span> <span style=color:#c7bf54>=</span> <span style=color:#c678dd>new</span> <span style=color:#c1abea>foo</span>();
+</span></span><span style=display:flex><span><span style=color:#c1abea>f</span>.<span style=color:#c1abea>boo</span>(); <span style=color:#8a93a5;font-style:italic>// this won&#39;t run
+</span></span></span></code></pre></div><p><code>f.boo()</code> will give an error, naturally.
+There is really no reason to expect that <code>goo()</code> exists...unless someone 'injects' <code>goo</code> into <code>boo</code> somehow like so:</p><div class=highlight><pre tabindex=0 style=color:#b0c4de;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#c678dd>let</span> <span style=color:#c1abea>f</span> <span style=color:#c7bf54>=</span> <span style=color:#c678dd>new</span> <span style=color:#c1abea>foo</span>();
+</span></span><span style=display:flex><span><span style=color:#c1abea>f</span>.<span style=color:#c1abea>boo</span>.<span style=color:#c1abea>goo</span> <span style=color:#c7bf54>=</span> <span style=color:#c678dd>function</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#c1abea>console</span>.<span style=color:#c1abea>log</span>(<span style=color:#63c381>&#34;Hello&#34;</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#c1abea>f</span>.<span style=color:#c1abea>boo</span>(); <span style=color:#8a93a5;font-style:italic>// now this will run
+</span></span></span></code></pre></div><p>At a glance, one might say that this seems dangerous, not useful, etc.
+Well, I haven't really thought much about it's implications, but it does suggest interesting approaches to API design that might not be possible in other languages.</p><p>The game engine Phaser 3 does this: it takes in an object and injects properties into its <code>preload()</code>, <code>update()</code> and <code>create()</code> functions.</p><p>For brevity, we will just talk about the <code>preload()</code> function.</p><div class=highlight><pre tabindex=0 style=color:#b0c4de;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#c678dd>const</span> <span style=color:#c1abea>game</span> <span style=color:#c7bf54>=</span> <span style=color:#c678dd>new</span> <span style=color:#c1abea>Phaser</span>.<span style=color:#c1abea>Game</span>({
+</span></span><span style=display:flex><span>  <span style=color:#c1abea>scene</span><span style=color:#c7bf54>:</span> { 
+</span></span><span style=display:flex><span>    <span style=color:#c1abea>preload</span>() {
+</span></span><span style=display:flex><span>      <span style=color:#8a93a5;font-style:italic>// this.add technically does not exist
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>      <span style=color:#8a93a5;font-style:italic>// but Phaser will inject it upon 
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>      <span style=color:#8a93a5;font-style:italic>// initialization apparently...
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>      <span style=color:#c678dd>this</span>.<span style=color:#c1abea>add</span>.<span style=color:#c1abea>graphics</span>(...); 
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  } 
+</span></span><span style=display:flex><span>})
+</span></span></code></pre></div><p>This becomes interesting when we use closures like so:</p><div class=highlight><pre tabindex=0 style=color:#b0c4de;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#8a93a5;font-style:italic>// Create a function foo() that has the preload() function, which
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic>// Phaser will inject more properties into.
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span><span style=color:#c678dd>function</span> <span style=color:#c1abea>foo</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#c678dd>let</span> <span style=color:#c1abea>x</span> <span style=color:#c7bf54>=</span> <span style=color:#d19a66>10</span>;
+</span></span><span style=display:flex><span>  <span style=color:#c678dd>let</span> <span style=color:#c1abea>y</span> <span style=color:#c7bf54>=</span> <span style=color:#d19a66>20</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#c678dd>function</span> <span style=color:#c1abea>preload</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#8a93a5;font-style:italic>// Again, this.add will be avaliable
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#8a93a5;font-style:italic>// not within this class but later!
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#8a93a5;font-style:italic>//
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#8a93a5;font-style:italic>// Note that this function when called
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#8a93a5;font-style:italic>// at a later point will have access to
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#8a93a5;font-style:italic>// new properties like this.add, as well 
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#8a93a5;font-style:italic>// as x and y!!
+</span></span></span><span style=display:flex><span><span style=color:#8a93a5;font-style:italic></span>    <span style=color:#c678dd>this</span>.<span style=color:#c1abea>add</span>.<span style=color:#c1abea>graphics</span>(<span style=color:#c1abea>x</span>, <span style=color:#c1abea>y</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#c678dd>return</span> { <span style=color:#c1abea>preload</span> };
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#c678dd>const</span> <span style=color:#c1abea>game</span> <span style=color:#c7bf54>=</span> <span style=color:#c678dd>new</span> <span style=color:#c1abea>Phaser</span>.<span style=color:#c1abea>Game</span>({
+</span></span><span style=display:flex><span>  <span style=color:#c1abea>scene</span><span style=color:#c7bf54>:</span> <span style=color:#c1abea>foo</span>
+</span></span><span style=display:flex><span>})
+</span></span></code></pre></div><p>Now we can not only use properties injected into our <code>preload()</code> function,
+but we also have access to our own variables <code>x</code> and <code>y</code>.</p><p>Personally, as much as I hate javascript, I think this property of javascript is interesting to talk about.</p><p>Whether I will eventually like it or not in practice...time will tell.
+For now, I do not immediately hate it, and I already hate a lot of things in javascript!</p></div></div></div></body></html>
