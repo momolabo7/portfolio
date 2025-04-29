@@ -6,7 +6,10 @@
 
 [markup]
   [markup.highlight]
-    codeFences = false
+    codeFences = true
+    noClasses = true
+    anchorLineNos = true
+    style = "doom-one"
   [markup.goldmark]
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.typographer]

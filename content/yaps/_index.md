@@ -1,3 +1,3 @@
 ---
-nav: Blog
+title: "yaps"
 ---

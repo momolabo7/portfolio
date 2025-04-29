@@ -5,6 +5,8 @@ date: 2025-01-30T00:00:00+08:00
 
 This game is really is made for doomscrollers and tea sippers lol. 
 
+<!--more-->
+
 I'm not really good at reading copious amount of text in games, but this game had me hooked in reading. I liked how the game lead you through many different kinds of rabbit holes to figure out different details of each character from different angles of writing. For examples, we can start searching for someone on the web, then turns out they have a different article in a local newspaper that exposes more of their background, and another different article on a business magazine that exposes their business dealings. 
 
 The game design is quite interesting in this sense. There can be characters with no web pressence, which means that you have to search within magazines. There are also characters with literally no pressence in any media at all which requires me to intuit who they are. It's really similar to how you would solve puzzles in Obra Dinn.
