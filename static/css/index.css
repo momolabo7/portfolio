@@ -110,6 +110,20 @@ h1, h2, h3, h4, h5 {
   display: inline;
 }
 
+table, th, td
+{
+  border-collapse: collapse;
+  border: 1px solid;
+  border-color: var(--grey);
+}
+
+th, td 
+{
+  padding: 10px;
+  text-align: left;
+
+}
+
 .box {
   background: var(--bg1);
   border: 2px solid rgb(56, 56, 56);

@@ -35,7 +35,7 @@
             </p>
             <p>
             🎮 games -
-            {{ range where site.RegularPages "Section" "gamedev" | first 5 }} 
+            {{ range where site.RegularPages "Section" "games" | first 5 }} 
             <a href= {{ .Permalink }} >{{ .Title }}</a> 
             {{ end }}
             </p>
