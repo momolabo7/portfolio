@@ -29,20 +29,23 @@
             <h2>yappening</h2><br>
             <p>
             💬 yaps - 
-            {{ range where site.RegularPages "Section" "yaps" | first 5 }} 
-            <a href= {{ .Permalink }} >{{ .Title }}</a> 
+            {{ range $i, $p := ((site.GetPage "blog/yaps").RegularPages | first 5) }}
+            <a href= {{ $p.Permalink }} >{{ $p.Title }}</a> 
+            {{ if ne $i 4 }} • {{ end }}
             {{ end }}
             </p>
             <p>
             🎮 games -
-            {{ range where site.RegularPages "Section" "games" | first 5 }} 
-            <a href= {{ .Permalink }} >{{ .Title }}</a> 
+            {{ range $i, $p := ((site.GetPage "blog/games").RegularPages | first 5) }}
+            <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
+            {{ if ne $i 4 }} • {{ end }}
             {{ end }}
             </p>
             <p>
             🛠️  tech -
-            {{ range where site.RegularPages "Section" "tech" | first 5 }} 
-            <a href= {{ .Permalink }} >{{ .Title }}</a> 
+            {{ range $i, $p := ((site.GetPage "blog/tech").RegularPages | first 5) }}
+            <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
+            {{ if ne $i 4 }} • {{ end }}
             {{ end }}
             </p>
           </div>
