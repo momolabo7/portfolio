@@ -1,0 +1,112 @@
+<html lang=en><head><meta charset=UTF-8><link rel=stylesheet href=/css/index.css><link rel=stylesheet href=/css/syntax.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title></head><body><div id=container><article id=blog><div class=blog-title>Deriving Triangle to Triangle transformation matrix</div><div class=blog-date><time datetime=2022-04-25T23:00:00+08:00>Apr 25, 2022</time></div><div class=blog-body><p>Here's how I derive the transformation matrix for getting from triangle A to triangle B to do shadows in my 2D engine.</p><h2 id=introduction>Introduction</h2><p>Firstly, a disclaimer: I do not actually think this is the best way, but if there's a better way computationally, please let me know!</p><p>This problem came up in my recent project when I was trying to get dynamic 2D shadows into my game, which are made up of many triangles.
+Since I'm using the GPU for this, the most naive way to accomplish this is to continuously create and delete VBOs and VAOs (aka 'meshes') on the fly each frame which, by any programmer's standards, is probably not the best idea outside of prototyping.</p><p>Ideally, we want to have 1 triangle 'mesh' and simply apply a transformation to it that will, potentially, transform it to any other triangle.</p><h2 id=the-problem-in-2d>The problem in 2D</h2><p>Let's first look at the problem in 2D, since this was supposed to start out out that way in the first place.
+We would basically want to find some matrix $A$ that would take 3 source points ($\dot{s0}, \dot{s1}, \dot{s2}$) that represents the source triangle $S$ into 3 destination points ($\dot{d0}, \dot{d1}, \dot{d2}$) that represents the destination triangle $ D $.
+Also note that in our context, our source triangle is predefined.
+This will prove to be surprisingly useful later on.</p><p>Now that we defined our variables, let's find the transformation matrix $ A $.
+We know that $ A $ will need to fulfill the following statements:</p><p>$ A\dot{s0} = \dot{d0}$</p><p>$ A\dot{s1} = \dot{d1}$</p><p>$ A\dot{s2} = \dot{d2}$</p><p>It might be possible to solve this using good old simultenous equations but we can actually use matrices to figure this out.</p><p>First, we will redefine $ S $ into a 3x3 matrix by setting 1 in each vertices' 3rd component like so:</p><p>$ S = \begin{bmatrix}\dot{s0} & \dot{s1} & \dot{s2} \end{bmatrix} = \begin{bmatrix}{s0_{x}} & {s1_{x}} & {s2_{x}} \\ {s0_{y}} & {s1_{y}} & {s2_{y}} \\ 1 & 1 & 1 \end{bmatrix} $</p><p>Then we do the same for $ D $:</p><p>$ D = \begin{bmatrix}\dot{d0} & \dot{d1} & \dot{d2} \end{bmatrix} = \begin{bmatrix}{d0_{x}} & {d1_{x}} & {d2_{x}} \\ {d0_{y}} & {d1_{y}} & {d2_{y}} \\ 1 & 1 & 1 \end{bmatrix} $</p><p>Now that we simply need to figure out $ A $:</p><p>$ AS = D $</p><p>$ ASS^{-1} = DS^{-1} $</p><p>$ A = DS^{-1} $</p><p>At the end of the day, we simply need to figure out $ S^{-1} $ (the inverse of $ S $).
+Since $ S $ is predefined, we can also precompute $ S^{-1} $!</p><p>$ A = \begin{bmatrix}{d0_{x}} & {d1_{x}} & {d2_{x}} \\ {d0_{y}} & {d1_{y}} & {d2_{y}} \\ 1 & 1 & 1 \end{bmatrix} \begin{bmatrix}{s0_{x}} & {s1_{x}} & {s2_{x}} \\ {s0_{y}} & {s1_{y}} & {s2_{y}} \\ 1 & 1 & 1 \end{bmatrix}^{-1} $</p><p>One thing to note is that since we need to find $ S^{-1} $, we must choose a set of points for $ S $ such that there an inverse actually exists.</p><h2 id=the-problem-in-3d>The problem in 3D</h2><p>Now since most GPUs run in 3D space, we have to do the same thing but in 3D.
+This means that $ A $, $S$ and $D$ need to be 4x4 matrices instead.
+That's okay for $A$, but it becomes an issue for $S$ and $D$.</p><p>$ S = \begin{bmatrix}\dot{s0} & \dot{s1} & \dot{s2} & \dot{s3} \end{bmatrix} $</p><p>$ D = \begin{bmatrix}\dot{d0} & \dot{d1} & \dot{d2} & \dot{d3} \end{bmatrix} $</p><p>What is $\dot{s3}$ and $\dot{d3}$?
+A triangle is normally defined by only 3 points.</p><p>Well, turns out that it doesn't matter as long as you choose a $\dot{s3}$ such that there exists $S^{-1}$!
+This is because all we care about is getting $A$.
+Once we do that, we can then set $\dot{d3}$ as $\dot{s3}$ and find $A$ via the same formula in 2D:</p><p>$ A = DS^{-1} $</p><h2 id=a-concrete-example>A concrete example</h2><p>Just so that we can iron out any issues with the explantions above, let's look at an example in the context of my project.</p><p>Currently, I have decided that the vertices that represents triangle $S$ is going to be the following:</p><p>$ \dot{s0} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} $
+$ \dot{s1} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} $
+$ \dot{s2} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} $</p><p>These vertices are stored on the GPU and will be reused to form other triangle shapes required by the project.</p><p>We then need to form the 4x4 matrix $S$, but before that, we will have to pick a $ \dot{s3} $ such that there exists an $S^{-1}$.
+For my use case I decided to define $ \dot{s3} $ as follows:</p><p>$ \dot{s3} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} $</p><p>This will allow us to construct the $S$. We do what we did in the 2D version, but set the 4th component to 1 instead of the 3rd component:</p><p>$ S = \begin{bmatrix}\dot{s0} & \dot{s1} & \dot{s2} & \dot{s3} \end{bmatrix} = \begin{bmatrix} 0 && 0 && 1 && 1\\ 0 && 1 && 0 && 1 \\ 0 && 0 && 0 && 1 \\ 1 && 1 && 1 && 1 \end{bmatrix}$</p><p>And this will give us $S^{-1}$:</p><p>$S^{-1} =
+\begin{bmatrix}
+0 && 0 && 1 && 1\\
+0 && 1 && 0 && 1 \\
+0 && 0 && 0 && 1 \\
+1 && 1 && 1 && 1
+\end{bmatrix}^{-1} =
+\begin{bmatrix}
+-1 && -1 && 1 && 1 \\
+0 && 1 && -1 && 0 \\
+1 && 0 && -1 && 0 \\
+0 && 0 && 1 && 0
+\end{bmatrix}<br>$</p><p>Then let's say I want to render a triangle with these points:</p><p>$ \dot{d0} = \begin{bmatrix} 5 \\ 3 \\ -1 \end{bmatrix} $
+$ \dot{d1} = \begin{bmatrix} 4 \\ 5 \\ -2 \end{bmatrix} $
+$ \dot{d2} = \begin{bmatrix} 2 \\ 13 \\ 10 \end{bmatrix} $</p><p>We just need to form the 4x4 matrix $D$, with $\dot{d3}$ being equal to $\dot{s3}$.</p><p>$D =
+\begin{bmatrix}
+5 && 4 && 2 && 1\\
+3 && 5 && 13 && 1 \\
+-1 && -2 && 10 && 1 \\
+1 && 1 && 1 && 1
+\end{bmatrix}
+$</p><p>And with this, we can now find $A$:</p><p>$ A = DS^{-1} $</p><p>$ A =
+\begin{bmatrix}
+5 && 4 && 2 && 1\\
+3 && 5 && 13 && 1 \\
+-1 && -2 && 10 && 1 \\
+1 && 1 && 1 && 1
+\end{bmatrix}
+\begin{bmatrix}
+-1 && -1 && 1 && 1 \\
+0 && 1 && -1 && 0 \\
+1 && 0 && -1 && 0 \\
+0 && 0 && 1 && 0
+\end{bmatrix} $</p><p>$ A =
+\begin{bmatrix}
+-3 && -1 && 0 && 5 \\
+10 && 2 && -14 && 3 \\
+11 && -1 && -8 && -1 \\
+0 && 0 && 0 && 1
+\end{bmatrix} $</p><p>Always remember to double check if this actually works.
+For this case, we can apply $A$ onto all the vertices of the triangle $S$ and see if we get the vertices of triangle $D$, ignoring the 4th component one we are done with our multiplication.</p><p>$A \dot{s0} =
+\begin{bmatrix}
+-3 && -1 && 0 && 5 \\
+10 && 2 && -14 && 3 \\
+11 && -1 && -8 && -1 \\
+0 && 0 && 0 && 1
+\end{bmatrix}
+\begin{bmatrix}
+0 \\
+0 \\
+0 \\
+1
+\end{bmatrix} =
+\begin{bmatrix}
+5 \\
+3 \\
+-1 \\
+1
+\end{bmatrix} =
+\dot{d0}$</p><p>$A \dot{s1} =
+\begin{bmatrix}
+-3 && -1 && 0 && 5 \\
+10 && 2 && -14 && 3 \\
+11 && -1 && -8 && -1 \\
+0 && 0 && 0 && 1
+\end{bmatrix}
+\begin{bmatrix}
+0 \\
+1 \\
+0 \\
+1
+\end{bmatrix} =
+\begin{bmatrix}
+4 \\
+5 \\
+-2 \\
+1
+\end{bmatrix} =
+\dot{d1}$</p><p>$A \dot{s2} =
+\begin{bmatrix}
+-3 && -1 && 0 && 5 \\
+10 && 2 && -14 && 3 \\
+11 && -1 && -8 && -1 \\
+0 && 0 && 0 && 1
+\end{bmatrix}
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+1
+\end{bmatrix} =
+\begin{bmatrix}
+2 \\
+13 \\
+10 \\
+1
+\end{bmatrix} =
+\dot{d2}$</p><p>Hooray! Looks like it works :)</p></div></div></div></body></html>
