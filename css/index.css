@@ -182,6 +182,19 @@ hr {
 
 
 
+.blog-body > details > summary {
+  color: var(--yellow);
+
+}
+.blog-body > details > p {
+  padding-left: 1rem;
+}
+.blog-body > h1 {
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
 .blog-divider {
   border: 1.5px dashed grey;
 }
