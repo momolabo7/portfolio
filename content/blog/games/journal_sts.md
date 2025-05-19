@@ -8,7 +8,7 @@ date: 2025-05-06T00:00:00+08:00
 * Defect
     * Remember that Defect is really good at burst and ramp.
 
-# Entries
+
 {{< collapsible "Defect | A03 | 1J77DEYNVUZMN | Failed" >}}
 
 * Act 1.
