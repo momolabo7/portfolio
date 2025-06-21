@@ -1,0 +1,61 @@
+<html lang=en><head><meta charset=UTF-8><script src=/js/bbt.js></script><link rel=stylesheet href=/css/test.css><link rel="shortcut icon" type=image/png href=/img/favicon.png><title>moom</title></head><body><div id=content></div></body><script>const terminal=function(){let t=div().attr("id","terminal"),n=null,o=[],e={};e.init=function(o,i,a){o.appendChild(t),n=i,e.push_html(a),s()},e.push_element=function(e){const n=div(e);t.push(n)},e.push_html=function(e){const n=div();n.html(e),t.push(n)};function s(){const i="$ ",s=input().attr("id","user-input").attr("type","text").attr("spellcheck","false").attr("autocomplete","off"),o=div(span(i),s).attr("class","terminal-section terminal-input");document.addEventListener("keydown",a=>{if(a.ctrlKey||a.altKey||a.metaKey)return;if(a.key.length==1)s.value+=a.key;else if(a.key==="Enter"){const a=s.value;o.remove(),e.push_element(div(i+a).attr("class","terminal-section terminal-input")),s.value="",n(e,a),t.push(o),o.scrollIntoView({behavior:"smooth"})}else a.key==="Backspace"&&(s.value=s.value.slice(0,-1))}),t.push(o)}return e}(),cmd_error=`<p class="red">Unknown Command</p>
+<p>Type 'help' for avaliable commands.</p>
+`,cmd_help=`<p class="bold yellow">List of commands:</p>
+
+<p class="bold purple indent-1">about</p>
+<p class="indent-2">Want to know more about me? S-sure!</p>
+<p class="bold purple indent-1">projects</p>
+<p class="indent-2">Just a list of stuff I'm working on!</p>
+<p class="bold purple indent-1">resources</p>
+<p class="indent-2">A messy dump of links that I'm interested in.</p>
+`,cmd_about=`<p>
+Heya! Welcome to my little slice of the internet. I hope you like what I did to this website, I had fun coding and designing it!
+</p>
+<br>
+
+<p>
+Oh right, about myself. I'm Momo! If you can't already tell from the website's design, programming is my bread and butter. I am born, raised and happily married in hot tropical Singapore (which really isn't that hot since it's almost sheltered everywhere).
+</p>
+
+<br>
+<p>
+I graduated from DigiPen Institute of Technology Singapore in 2013 with a Bachelor in Computer Science in Game Design (what a mouthful). I worked in the games industry for 6 years and am currently teaching programming and software development project modules in my alma meter. Notably, I had some experience living and working in Japan as a games developer. Even though I had no professional experience as a game designer, I do have tons of opinions about game design in general, having worked with many game designers both as a developer and a teacher. 
+</p>
+<br>
+
+<p>
+Outside of games, I do enjoy dabbling in making tools and a bit of making art and music. I can play the piano and love the occasional singing in karaoke! Generally speaking though, I enjoy putting things together, though I'm rather clumsy physically and tend to stick to writing software, but I'm trying!
+</p>
+
+
+
+`,welcome=`<p class="banner">
+███╗   ███╗ █████╗ ███╗   ███╗ █████╗
+████╗ ████║██╔══██╗████╗ ████║██╔══██╗
+██╔████╔██║██║  ██║██╔████╔██║██║  ██║
+██║╚██╔╝██║██║  ██║██║╚██╔╝██║██║  ██║
+██║ ╚═╝ ██║╚█████╔╝██║ ╚═╝ ██║╚█████╔╝
+╚═╝     ╚═╝ ╚════╝ ╚═╝     ╚═╝ ╚════╝
+</p>
+<br>
+<p>Welcome to my website!</p>
+<p>Let me know if you need 'help' ;)</p>
+`,cmd_projects=`<p>
+
+
+
+<p class="purple">LIT</p>
+  <p class="indent-1">A puzzle game about adding light colors. It's written in my custom C/C++ engine. You can download the game at <a href="https://momolabo.itch.io/lit">itch</a>!</p>
+
+<p class="purple">Dots and Circles</p>
+  <p class="indent-1">A bullet hell game where you can switch what bullet you can collect and avoid. It's written in my custom C/C++ engine. You can download the game at <a href="https://momolabo.itch.io/dots-and-circles">itch</a>!</p>
+
+<p class="purple">Font vs Font</a></p>
+<p class="indent-1">A fun tool that helps you decide which font you prefer. <a href="https://momolabo7.github.io/fvf/">You can try it here</a>!</p>
+
+<p><a href="https://momolabo7.github.io/pathfinding-visualizer/">Pathfinding Visualizer</a></p>
+  <p class="indent-1">Written in ReactJS. I do need to rewrite this so that it's smaller.</p>
+
+<p><a href="../mopiko" target="_blank">Momoko Mopiko</a></p>
+  <p class="indent-1">Website dedicated to my FFXIV character!</p>
+`;function handler(e,t){t==="help"?e.push_html(cmd_help):t=="about"?e.push_html(cmd_about):t=="projects"?e.push_html(cmd_projects):e.push_html(cmd_error)}terminal.init(content,handler,welcome)</script></html>
