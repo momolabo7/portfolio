@@ -52,10 +52,12 @@ struct String {
     int cap;
     int count;
 };
+
 String CreateString(char* buffer, int cap) {
     String ret = {};
     ret.data = buffer;
     ret.cap = cap;
+    return ret;
 };
 
 struct StringWithBuffer {
@@ -65,6 +67,8 @@ struct StringWithBuffer {
 
 StringWithBuffer CreateStringWithBuffer() {
     StringWithBuffer ret = {};
+    
+    // ???
     ret.str = CreateString(ret.buffer, 256);
 
     return ret; 
@@ -88,10 +92,12 @@ struct String {
     int cap;
     int count;
 };
+
 String CreateString(char* buffer, int cap) {
     String ret = {};
     ret.data = buffer;
     ret.cap = cap;
+    return ret;
 };
 
 struct StringWithBuffer {
