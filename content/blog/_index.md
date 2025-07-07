@@ -1,3 +1,3 @@
 ---
-title: "not a real page!"
+title: "Blog"
 ---

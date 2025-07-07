@@ -12,58 +12,79 @@
     <div id="container">
       <div id="title">momo</div>
       <div id="grid">
-        <div id="main_col">
-          <div id="about" class="box">
-            {{ with .GetPage "about.md" }} 
-            <h2>{{ .Title }} </h2><br>
-            {{ .Content }} 
-            {{ end }} 
-          </div>
-          <div id="projects" class="box">
-            {{ with .GetPage "projects.md" }} 
-            <h2>{{ .Title }} </h2><br>
-            {{ .Content }} 
-            {{ end }} 
-          </div>
-          <div id="blog" class="box">
-            <h2>yappening</h2><br>
-            <p>
-            💬 yaps - 
-            {{ range $i, $p := ((site.GetPage "blog/yaps").RegularPages | first 5) }}
-            <a href= {{ $p.Permalink }} >{{ $p.Title }}</a> 
-            {{ if ne $i 4 }} • {{ end }}
-            {{ end }}
-            </p>
-            <p>
-            🎮 games -
-            {{ range $i, $p := ((site.GetPage "blog/games").RegularPages | first 5) }}
-            <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
-            {{ if ne $i 4 }} • {{ end }}
-            {{ end }}
-            </p>
-            <p>
-            🛠️  tech -
-            {{ range $i, $p := ((site.GetPage "blog/tech").RegularPages | first 5) }}
-            <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
-            {{ if ne $i 4 }} • {{ end }}
-            {{ end }}
-            </p>
-          </div>
-        </div>
-        <div id="side_col">
-          <div id="links" class="box">
-            {{ with .GetPage "links.md" }}
-            <h2>{{ .Title }} </h2>
-            {{ .Content }} 
-            {{ end }}
-          </div>
-          <div id="music" class="box">
-            <h2>music</h2>
-            <div id="music_container">
 
+        <div id="side-col">
+          <div class="box">{{ partial "nav.html" }}</div>
+          <div class="box">
+            <span class="title"> STATUS </span>
+            <div class="content">
+              <div id="statuscafe-content"></div>
+              <script src="/js/status_cafe.js?name=momolabo7" defer></script>
             </div>
           </div>
+
+          <div class="box">
+            <span class="title"> MUSIC </span>
+            <div class="content">
+              <div id="music_container"></div>
+            </div>
+          </div>
+
         </div>
+        <div id="main-col">
+          <div class="box">
+            <span class="title">ABOUT</span>
+            <div class="content">
+              Welcome to my little slice of the internets. 
+              I'm momo, but you can also call me moom!
+              It's a little messy but feel free to make yourself comfortable and take a look around!
+              <br>
+              <br>
+              Some facts about me: <br>
+              - I'm from Singapore! <br>
+              - I love programming and make my computer go *beep boop*! <br>
+              - My main programming languages are C/C++, Python and Javascript.  <br>
+              - I can speak English, Japanese and Mandarin. <br>
+              - I love music and can play the piano <br>
+              - I'm happily married <3 <br>
+              - I'm easily distracted, play too many games and have too many hobbies. You might might find scraps of my interests lying around so watch your step! <br>
+            </div>
+          </div>
+
+          <!--
+          <div class="box no-border-top">
+            {{ with .GetPage "projects.md" }} 
+            <span class="title">{{ .Title }}</span>
+            <div class="content">{{ .Content }}</div>
+            {{ end }} 
+          </div>
+          -->
+
+          <div class="box">
+            <span class="title">YAPPENING</span> 
+            <div class="content">
+              💬 yaps - 
+              {{ range $i, $p := ((site.GetPage "blog/yaps").RegularPages | first 5) }}
+              <a href= {{ $p.Permalink }} >{{ $p.Title }}</a> 
+              {{ if ne $i 4 }} • {{ end }}
+              {{ end }}
+              <br><br>
+              🎮 reviews -
+              {{ range $i, $p := ((site.GetPage "blog/reviews").RegularPages | first 5) }}
+              <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
+              {{ if ne $i 4 }} • {{ end }}
+              {{ end }}
+              <br><br>
+              🛠️  dev -
+              {{ range $i, $p := ((site.GetPage "blog/dev").RegularPages | first 5) }}
+              <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
+              {{ if ne $i 4 }} • {{ end }}
+              {{ end }}
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
 
