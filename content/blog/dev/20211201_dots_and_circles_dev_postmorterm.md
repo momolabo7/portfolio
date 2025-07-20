@@ -20,7 +20,7 @@ With that understanding in my, I came across [Handmade Hero](https://handmadeher
 
 As you can tell by now, this is going to be a bit rant-y, but hopefully a good read for whoever is bored enough to read it. I'll go by chronological order, as much as I can remember them.
 
-## Platform Layer
+# Platform Layer
 
 At first, I decided to use SDL2 for portability. It was working fine, but I wanted to have the hot reloading figure that Casey did in Handmade Hero for development. It's a system where the game code could be reloaded while the whole application is running. I wanted the same system where the application would be able to detect that the game's DLL is modified and reload the code, which will be really useful for iteration.
 
@@ -30,7 +30,7 @@ Writing the platform layer straight from the OS' API was incredibly educational.
 
 For example, for memory management, I previously had no idea about the concept of 'allocate' and 'commit'. It's actually insane how much these libraries hide from us.
 
-## Graphics Programming
+# Graphics Programming
 
 One of the things I quickly decided was to use OpenGL. Graphics programming was something that I really missed out in my time as a game developer. Considering what I was good at and the people I usually interact with at work, I would probably never learn it in a professional capacity. 
 
@@ -44,13 +44,13 @@ Since my game is 2D with no mipmapping, and because I'm more familiar with sprit
 
 This lead to writing a texture packer, and also dealing with the game's assets system.
 
-## Assets System
+# Assets System
 
 This is the part of the game which I flip-flopped many times. It was really hard to decide on an asset system that scales, because the more you try to make it scalable, the more you might lose. For example, I could go into an asset system that loads assets on a separate thread on demand but do I really want player to play games with a missing sound or texture? 
 
 At some point, it seems to me that the best asset system for a game would be an asset system that's really catered for the game. This was when I figured that I had to decide what game to make. Otherwise I would be stuck in this loop forever. 
 
-### Sidetrack: Selecting the game to make
+## Sidetrack: Selecting the game to make
 
 I have went through several cycles of game development and lead teams before, so trying to keep my expectations realistic wasn't too hard. I started off by having a direction, which was to have a simple game. I understand that this was a dangerous statement to make. Before veteran game developers rise their pitchforks against me, hear me out. When I said 'simple game', the emphasis was mostly on the word 'game'. This means that it must have
 
@@ -68,7 +68,7 @@ Despite having a game to reference, there was still much work to be done. I want
 
 But the logic would be simple to implement. It's just processing arrays of bullets, array of particles and even array of numbers to show big scores.
 
-### Back to the Assets System
+## Back to the Assets System
 
 The assets system is straightforward. What I essentially do is to have a single asset file in binary containing all the data my game needs. This asset file is generated outside the game, which means that my PNG files, WAV files, etc are all processed and translated into something that could be easily understood by my game. 
 
@@ -94,7 +94,7 @@ Then I'll change the system. Simple as that, really. If I had continued to solve
 
 Ah, the beauty of having a target game.
 
-## Sound and Audio
+# Sound and Audio
 
 I had to talk about audio because I made a few decisions that seemed harmless but was a little annoying to deal with. I decided that it would be cool that the game would 'pulse' to the beat of the background music. I also made the decision to allow users to change devices. I managed to make both work, until I found that there is a way for users to have the animations not syncing with the music. You see, the problem was that my audio was not updating when there is no device. This is because audio systems (at least, my audio system) updates differently from the rest of the game. 
 
@@ -108,7 +108,7 @@ I learnt a lot from writing one myself though!
 
 We'll definitely do better next time.
 
-## Conclusion
+# Conclusion
 
 The game took two years to complete. It sounds like a long time, but considering everything I learnt, I felt that it was definitely worth every minute. 
 

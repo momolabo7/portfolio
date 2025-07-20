@@ -7,7 +7,7 @@ Recently, I had to derive this particular collision detection algorithm for my b
 
 <!--more-->
 
-## Scenario
+# Scenario
 - We are given a line `$ l $` where `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $` represents the start and end point of the line segment respectively. 
 
 - We are also given a circle, defined by its origin at point `$ \dot{c} $` and its radius `$ r $`. 
@@ -16,7 +16,7 @@ Recently, I had to derive this particular collision detection algorithm for my b
 
 ![](/img/blog/20210428_circle_line_collision/1.jpg)
 
-## General strategy
+# General strategy
 The general idea is to find the point on the line `$ l $` which will be the shortest distance from the origin of the circle `$ \dot{c} $`. We will call this point `$ \dot{s} $`, and the shortest distance `$ d $`. 
 
 Next, we need to figure out whether this point `$\dot{s}$` exists within our line segment. 
@@ -41,7 +41,7 @@ Thankfully, this is conceptually easy to solve. We extend our line ends, `$ \dot
 - Check if `$ \dot{s} $` exists within our line. If it is not, we are not intersecting
 - Check if `$d$` is greater than `$r$`. If it is not, we are intersecting.
 
-## Extend $ \dot{l_{min}} $ and $ \dot{l_{max}} $ by a factor of $ r $
+# Extend $ \dot{l_{min}} $ and $ \dot{l_{max}} $ by a factor of $ r $
 
 First, we need to find the unit vector to extend `$ \dot{l_{min}} $` and `$ \dot{l_{max}} $`. First, get the vector `$ \vec{e} $` that goes from `$ \dot{l_{min}} $` to `$ \dot{l_{max}} $` by subtracting `$ \dot{l_{min}} $` from `$ \dot{l_{max}} $` :
 
@@ -59,14 +59,14 @@ $ \dot{l_{max}'} = \dot{l_{max}} + (\hat{e} * r) $
 
 ![](/img/blog/20210428_circle_line_collision/9.jpg)
 
-## Find the point $ \dot{s} $
+# Find the point $ \dot{s} $
 
 For those familiar with vector arithmetic, to find the point `$ \dot{s} $`, it is simply the projection of the vector formed by `$ (\dot{c} - \dot{l_{min}}) $` onto `$ \vec{v} $`. I would suggest those not familiar with projection to give it a look. Anyway, the formula is simply:
 
 
 $ \dot{s} = \dfrac{((\dot{c} - \dot{l_{min}}) ・\vec{v} }{\vec{|v|}}  *  \hat{v} + \dot{l_{min}} $
 
-## Check if $ \dot{s} $ is between $ \dot{l_{min}} $ and $ \dot{l_{max}} $
+# Check if $ \dot{s} $ is between $ \dot{l_{min}} $ and $ \dot{l_{max}} $
 
 This is easier than it looks. Imaging that we have a line formed by `$ \dot{l_{min}} + t(\vec{v}) $`, where `$t$` represents a scalar value such that if it is 0, we will get `$ \dot{l_{min}} $` and if it is 1, we will get `$ \dot{l_{max}} $`. 
 
@@ -90,7 +90,7 @@ $ t = \dfrac{(s_x - \dot{l_{min}}_x)}{v_x} $
 
 If `$t$` is lesser than 0 or greater than 1, we are not colliding. Otherwise, we go to the final section.
 
-## Check the distance between the circle and the line
+# Check the distance between the circle and the line
 
 Finally, we want to find the shortest distance `$d$` between the circle and the line. With that, we will compare it against the radius of the circle `$r$`. This is simply finding the distance between `$\dot{c}$` and `$\dot{s}$` using our favorite Pythagoras Theorem, and comparing it against `$r$`.
 
@@ -102,7 +102,7 @@ $ r^2 = r * r $
 
 If `$d^2$` < `$r^2$`, then we have a collision!
 
-## Extra 1: Moving circle vs static circle
+# Extra 1: Moving circle vs static circle
 
 Now that we have this, we can expend this concept to deal with moving circle vs static circle. What we have visually is something like the following:
 
@@ -114,7 +114,7 @@ As far as collision detection is concerned, we can simply add the moving circle'
 
 And we can just apply our circle and line algorithm!
 
-## Extra 2: Moving circle vs Moving circle
+# Extra 2: Moving circle vs Moving circle
 
 Now for the last bit: What if we have two moving circles?
 

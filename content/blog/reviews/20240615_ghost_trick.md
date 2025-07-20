@@ -1,5 +1,5 @@
 ---
-title: "Review: Ghost Trick"
+title: "Ghost Trick"
 date: 2024-06-15T12:00:00+08:00
 nav: Blog
 authors:

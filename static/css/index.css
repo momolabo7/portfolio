@@ -56,6 +56,13 @@
   }
 }
 
+blockquote{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-left: 15px;
+  border-left: 3px solid #555;
+} 
 .highlight{
   font-size: var(--font-size-code);
 }
@@ -105,9 +112,6 @@ body {
   font-size: var(--font-size);
 }
 
-h1, h2, h3, h4, h5 {
-  display: inline;
-}
 
 table, th, td
 {
@@ -254,9 +258,8 @@ hr {
 /* blog stuff */
 
 .blog-body > details > summary {
-  color: var(--yellow);
-
 }
+
 .blog-body > details > p {
   padding-left: 1rem;
 }
@@ -264,6 +267,13 @@ hr {
   font-weight: normal;
   font-size: 1.2rem;
   color: var(--blue);
+  margin: 0px;
+}
+
+.blog-body > h2 {
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: var(--yellow);
 }
 
 .blog-divider {

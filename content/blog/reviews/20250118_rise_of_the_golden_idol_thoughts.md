@@ -1,5 +1,5 @@
 ---
-title: "Review: Rise of the Golden Idol"
+title: "Rise of the Golden Idol"
 date: 2025-01-18T00:00:00+08:00
 ---
 

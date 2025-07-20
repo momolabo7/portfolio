@@ -1,5 +1,5 @@
 ---
-title: "Review: Little Nightmares"
+title: "Little Nightmares"
 date: 2024-09-07T14:44:00+08:00
 nav: Blog
 authors:

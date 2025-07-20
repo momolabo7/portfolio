@@ -1,5 +1,5 @@
 ---
-title: "Review: Bucketshot Roulette"
+title: "Bucketshot Roulette"
 date: 2024-11-04T14:44:00+08:00
 ---
 

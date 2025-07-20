@@ -1,5 +1,5 @@
 ---
-title: "Review: Viewfinder"
+title: "Viewfinder"
 date: 2024-04-07T12:00:00+08:00
 nav: Blog
 authors:

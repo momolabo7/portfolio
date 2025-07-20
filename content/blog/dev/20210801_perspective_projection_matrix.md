@@ -19,7 +19,7 @@ If, for whatever reason, your world space and NDC space are in different-handed 
 
 So here's the problem statement: Given a point in the world space $\dot{w} $, find the corresponding point in NDC space $\dot{m}$. 
 
-## Find $\dot{p}$, which is $\dot{e}$ projected onto the near clip plane 
+# Find $\dot{p}$, which is $\dot{e}$ projected onto the near clip plane 
 
 We are start off with a cross section of the world space's frustum below.
 
@@ -82,7 +82,7 @@ $m_y = \dfrac{\dfrac{2n}{t - b} \cdot w_y -\dfrac{t+b}{t-b} \cdot w_z}{w_z} $
 
 We will need it in this form to form the matrix. 
 
-## Bringing out the matrix
+# Bringing out the matrix
 
 At this point, we have to consider putting some of our formula into a matrix, because then, we can concatenate other transforms together. (This means that if you are not using matrices to do your transforms, then you can directly apply the formulas individually and ignore this section). So we want something like this:
 
@@ -124,7 +124,7 @@ $ \begin{bmatrix}\dfrac{2n}{r - l} & 0 & -\dfrac{r+l}{r-1} & 0 \\\ 0& \dfrac{2n}
 
 Nice, have 4 more values to go!
 
-## What about $c_z$?
+# What about $c_z$?
 
 $c_z$ is going to be a little different. We can't use the method we used for $c_x$ and $c_y$ because we are projecting $\dot{w}$ onto the near-clip plane. Projecting any $w_z$ into the near clip plan results in $n$ itself. We kind of want to keep $w_z$ so that we can identify the depth value of each point.
 

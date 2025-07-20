@@ -1,5 +1,5 @@
 ---
-title: "Review: Case of the Golden Idol"
+title: "Case of the Golden Idol"
 date: 2023-06-08T12:31:00+08:00
 ---
 

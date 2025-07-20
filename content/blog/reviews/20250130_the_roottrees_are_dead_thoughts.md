@@ -1,5 +1,5 @@
 ---
-title: "Review: The Roottrees are Dead"
+title: "The Roottrees are Dead"
 date: 2025-01-30T00:00:00+08:00
 ---
 

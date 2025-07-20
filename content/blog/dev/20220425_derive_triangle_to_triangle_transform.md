@@ -7,7 +7,7 @@ Here's how I derive the transformation matrix for getting from triangle A to tri
 
 <!--more-->
 
-## Introduction
+# Introduction
 
 Firstly, a disclaimer: I do not actually think this is the best way, but if there's a better way computationally, please let me know!
 
@@ -16,7 +16,7 @@ Since I'm using the GPU for this, the most naive way to accomplish this is to co
 
 Ideally, we want to have 1 triangle 'mesh' and simply apply a transformation to it that will, potentially, transform it to any other triangle.
 
-##  The problem in 2D
+#  The problem in 2D
 Let's first look at the problem in 2D, since this was supposed to start out out that way in the first place. 
 We would basically want to find some matrix $A$ that would take 3 source points ($\dot{s0}, \dot{s1}, \dot{s2}$) that represents the source triangle $S$ into 3 destination points ($\dot{d0}, \dot{d1}, \dot{d2}$) that represents the destination triangle $ D $.
 Also note that in our context, our source triangle is predefined. 
@@ -56,7 +56,7 @@ $ A = \begin{bmatrix}{d0_{x}} & {d1_{x}} & {d2_{x}} \\\ {d0_{y}} & {d1_{y}} & {d
 
 One thing to note is that since we need to find  $ S^{-1} $, we must choose a set of points for $ S $ such that there an inverse actually exists.
 
-## The problem in 3D
+# The problem in 3D
 
 Now since most GPUs run in 3D space, we have to do the same thing but in 3D. 
 This means that $ A $, $S$ and $D$ need to be 4x4 matrices instead.
@@ -75,7 +75,7 @@ Once we do that, we can then set $\dot{d3}$ as $\dot{s3}$ and find $A$ via the s
 
 $ A = DS^{-1} $
 
-## A concrete example
+# A concrete example
 
 Just so that we can iron out any issues with the explantions above, let's look at an example in the context of my project.
 

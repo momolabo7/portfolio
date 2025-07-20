@@ -1,5 +1,5 @@
 ---
-title: "Review: Secret of Monkey Island"
+title: "Secret of Monkey Island"
 date: 2024-12-24T14:44:00+08:00
 ---
 
