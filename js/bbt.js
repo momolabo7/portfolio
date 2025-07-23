@@ -71,6 +71,7 @@
       return this;
     }
 
+
     result.html = function(raw_html)
     {
       result.innerHTML = raw_html; // @todo: sanitize?
