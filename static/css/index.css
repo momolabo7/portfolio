@@ -252,8 +252,6 @@ a:hover {
   text-decoration: underline;
 }
 
-hr {
-}
 
 /* blog stuff */
 
@@ -348,4 +346,27 @@ hr {
   cursor: pointer;
 }
 
+#jukebox  {
+}
+
+#jukebox > .item {
+  margin: 10px;
+  text-align: center;
+  border: 2px dotted var(--bg3);
+  padding-top: 2px;
+  padding-bottom: 2px;
+
+}
+
+#jukebox > .play {
+  border: 2px solid var(--green);
+  cursor: pointer;
+}
+
+#jukebox > .item:not(.play):hover
+{
+  cursor: pointer;
+  border-color: #fff;
+  border: 2px solid var(--red);
+}
 

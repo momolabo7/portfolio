@@ -8,6 +8,7 @@ title: "Umamusume"
 ---
 
 * [GameTora](https://gametora.com/umamusume/)
+* [Umalator](https://alpha123.github.io/uma-tools/umalator-global/)
 * [English Mega Doc](https://docs.google.com/document/d/11X2P7pLuh-k9E7PhRiD20nDX22rNWtCpC1S4IMx_8pQ/preview?tab=t.0)
 
 # Unique Skill level up target

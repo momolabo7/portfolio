@@ -1,46 +1,76 @@
-const MAX_MUSICS = 6;
-const fav_musics = [];
 
-let is_music_playing = false;
-const fav_music_div = document.getElementById('music_container');
-for(let i = 0; i < MAX_MUSICS; ++i)
+
+async function init_jukebox(parent)
 {
-  const audio = new Audio('fav_music/' + i + '.mp3')
-  audio.loop = true;
-  fav_musics.push(audio);
+  const response = await fetch("songs/playlist.json");
+  const playlist = await response.json();
+  const entries = []
 
-  const music_item = document.createElement('div');
-  music_item.setAttribute('class', 'music_item');
+  function create_entry(song) 
+  {
+    ret = {}
 
+    let audio = new Audio('songs/' + song.path)
+    audio.loop = true;
+    let is_playing = false;
 
-  // overlay play/pause button
-  const play_button = document.createElement('span');
-  play_button.setAttribute('class', 'music_item_overlay');
-  play_button.setAttribute('id', 'fav_music_button_' + i);
-  play_button.innerHTML = '▶';
-  play_button.onclick = () => {
-    if (!is_music_playing)
-    {
-      fav_musics[i].play();
-      play_button.innerHTML = '⏹';
-      is_music_playing = true;
+    function play() {
+      element.push_class("play");
+      audio.play();
     }
-    else
-    {
-      fav_musics[i].pause();
-      play_button.innerHTML = '▶';
-      is_music_playing = false;
+
+    function stop() {
+      element.pop_class("play");
+      audio.pause();
+      audio.currentTime = 0;
     }
-  };
-  music_item.appendChild(play_button);
 
-  const thumbnail = document.createElement('img');
-  thumbnail.setAttribute('class', 'music_item_thumbnail');
-  thumbnail.setAttribute('src', 'fav_music/' + i + '.png'); 
-  music_item.appendChild(thumbnail);
+    const element = div(song.name)
+      .attr("class", "item")
+      .on_click(() => {
+        if (is_playing)
+        {
+          stop();
+        }
+        else 
+        {
+          for (let entry of entries)
+          {
+            entry.stop()
+          }
+          play();
+        }
+        is_playing = !is_playing;
 
-  fav_music_div.appendChild(music_item);
+      });
 
 
 
+    ret.play = play;
+    ret.stop = stop;
+    ret.element = element;
+    return ret;
+  }
+
+
+  function add_entry(song) {
+    const e = create_entry(song);
+    entries.push(e);
+    parent.appendChild(e.element);
+  }
+
+  for(let song of playlist.songs)
+  {
+    add_entry(song);
+  }
 }
+
+init_jukebox(jukebox);
+
+
+
+
+
+
+
+

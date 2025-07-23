@@ -111,7 +111,7 @@ Man, Roblox is insane actually, considering the context. It's not even that risk
 >
 >Let’s say they intended to invest their revenue back into content and thus had a plan to deliver $1m worth of content more in live operations. 
 >
->Meanwhile, let’s say Fortnite has 100m players and generates $$100m in revenue. They can deliver $$100m worth of content more in live operations. 
+>Meanwhile, let’s say Fortnite has 100m players and generates \$100m in revenue. They can deliver \$100m worth of content more in live operations. 
 
 I always thought this was common sense. This was always something I brought up when comparing traditional games with things like gacha games, or games with DLCs, or cash shops. 
 
