@@ -1,16 +1,13 @@
 (function(window) {
   'use strict';
 
-  function ease_out_expo(t) {
-    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-  }
-
 
   function hchat()
   {
 
     const ret = document.createElement("div");
     ret.classList.add("hchat");
+    ret.setAttribute("id", "hchat");
 
     // @note: The dummy node is important for the scrolling of the 
     // initial chats that appea. This will sort of fill the chat are with
@@ -19,6 +16,7 @@
     dummy.classList.add("hchat-dummy");
     ret.appendChild(dummy);
 
+    ret.current_animation_id = null;
 
     ret.push_chat = function(tags, message) 
     {
@@ -83,26 +81,36 @@
       // Animation code
       //
       // Uses "rAF" aka requestAnimationFrame
+      //
+      this.current_animation_id = requestAnimationFrame( () => 
       {
-        const duration = 2000;
+        // cancel any ongoing animation
+        if (this.current_animation_id !== null )
+        {
+          cancelAnimationFrame(this.current_animation_id);
+          this.current_animation_id = null;
+        }
+        const duration = 1000;
         const start = this.scrollLeft;
-        const end = this.scrollWidth;
-        const delta = end - start;
         const startTime = performance.now();
 
         const step = (now) => 
         {
-          // "now" is current timestamp
+          // @note: It's almost impossible to figure out when the correct 
+          // end is calculated. This garuntees that it's always correct
+          // It's just that the animation might not look 100% correct
+          // I have tried delaying 1 frame and it was still buggy as hell.
+          const end = this.scrollWidth - this.clientWidth;
+          const delta = end - start;
           const elapsed = now - startTime;
           const progress = Math.min(elapsed / duration, 1)
 
-          const ease = progress * progress;
+          const ease = progress * (2 - progress);
 
-          // start + (end - start) * percentage
           this.scrollLeft = start + delta * ease;
           if (progress < 1)
           {
-            requestAnimationFrame(step)
+            this.current_animation_id = requestAnimationFrame(step)
           }
           else 
           {
@@ -112,11 +120,14 @@
             // We should be going from left-most node to right, 
             // so we can terminate early once we find a visible node
 
+            //console.log("animation is done");
+            this.current_animation_id = null;
             for (const node of ret.children)
             {
               const right_side_of_node = node.offsetLeft + node.offsetWidth;
               if (right_side_of_node < ret.scrollLeft) {
-                console.log("removed")
+                //console.log("removed")
+                this.scrollLeft -= node.offsetWidth; // re-adjust the scroll
                 ret.removeChild(node)
               }
               else {
@@ -125,10 +136,10 @@
             }
           }
         }
-
-        requestAnimationFrame(step)
-      }
+        this.current_animation_id = requestAnimationFrame(step)
+      });
     }
+    
     
 
     const client = new tmi.Client({
