@@ -6,14 +6,10 @@
 }
 
 
-:root {
-  --font-size: 32px;
-}
-
 
 .hchat
 {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   width: 1600px;
   height: 50px;
@@ -23,29 +19,42 @@
 
 .hchat-node
 {
-  font-family: "Noto Sans", san-serif;
-  padding-right: 10px;
-  align-items: center;
-  font-size: var(--font-size);
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 700;
+  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+
+  padding-right: 16px;
+  font-size: 32px;
+
+  /* manual adjustment :( */
+  position: relative;
+  top: 3px;
 }
 
 .hchat-dummy
 {
   display: inline-block;
-  width: 150%;
+  width: 100%;
 }
-/*
 .hchat-user
 {
+  font-weight: bold;
 }
 
+/*
 .hchat-msg
 {
 }
 */
 
 /* This is for emotes */
-.hchat-node > img 
+.hchat-msg > img 
 {
-  height: var(--font-size);
+  position: relative;
+
+  /* manual adjustment :( */
+  height: 32px;
+  top: 5px;
+  left: -5px;
 }

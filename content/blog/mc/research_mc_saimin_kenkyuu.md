@@ -8,7 +8,7 @@ In this game, the context is that the MC discovered a book that instantly hypnot
 <!--more-->
 
 
-# Scenes with triggers in the game:
+# Game Notes
 ---
 
 * "Fall in love with first person you see waking up". It didn't seem to work at first, but the girl kissed him and tried to find excuses for doing that. It's rather cute! 
@@ -91,7 +91,7 @@ In this game, the context is that the MC discovered a book that instantly hypnot
 
 * Whenever she wears cat ears, she will become a cat.
 
-## Omake
+## Omake 1
 
 * MC makes her follow his commands. She returns to normal at some point. MC accidentally went "put your hands down" and suddenly her hands feel heavy. MC then realizes what happened. MC adds trigger word to sleep and tests it. Usual stuff.
 
@@ -109,10 +109,28 @@ In this game, the context is that the MC discovered a book that instantly hypnot
 
 * Girl gets suspicious of her own behaviour. 
 
-*
+* From here, I don't think it's very interesting what happens so I stopped documenting. 
+
+## Omake 2
 
 
+* Installs keyword into her. Forgets everything
 
+* When in trace, she will always speak politely
+
+* Turns her into a cat, including butt plug
+
+* Make her think she has a rare disease where she is turning into a cat.
+
+* Makes her think cum is medicine
+
+* Makes her cum every morning, as if it's mating season. She will use the cat tail buttplug to cum. 
+
+* Makes her think the clubroom is her house and makes her masterbate since it's 'mating season'
+
+* Went in the direction of pet play or some kind of master/slave play. 
+
+* One ending is that she fully becomes a cat. In another ending, he 'cures' her.
 
 
 
