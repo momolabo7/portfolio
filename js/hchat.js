@@ -2,6 +2,7 @@
   'use strict';
 
 
+
   function hchat()
   {
 
@@ -141,18 +142,39 @@
     }
     
     
+    ret.connect = function(channel_name)
+    {
+      console.log("connecting");
+      this.client = new tmi.Client({
+        channels: [ channel_name ]
+      });
+      this.client.connect();
+      this.client.on('message', (channel, tags, message, self) => {
+        console.log("hello");
+        this.push_chat(tags, message);
+      });
+    }
 
-    const client = new tmi.Client({
-      channels: [ 'momolabo7' ]
-    });
-    client.connect();
-    client.on('message', (channel, tags, message, self) => {
-      ret.push_chat(tags, message);
-    });
+    ret.change_channel = function(channel_name)
+    {
+      this.client.disconnect();
+      this.connect(channel_name);
+    }
 
+    ret.connect("momolabo7");
     return ret;
   }
 
-  content.appendChild(hchat());
+  const hc = hchat(); 
+  content.appendChild(hc);
+
+  // exposed
+  window.hchat = hc;
+
 
 })(window);
+
+function connect() 
+{
+  hchat.change_channel(channel_name.value);
+}
