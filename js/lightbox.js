@@ -1,89 +1,103 @@
 (function(window) {
   'use strict';
 
-  function lightbox()
+
+  function lightbox(element)
   {
     // variables
-    let is_dragging = false;
-    let is_active = false;
-    let start_x = 1;
-    let start_y = 1;
-    let translate_x = 1;
-    let translate_y = 1;
-    let scale = 1;
+    this.is_dragging = false;
+    this.start_x = 1;
+    this.start_y = 1;
+    this.translate_x = 1;
+    this.translate_y = 1;
+    this.scale = 1;
 
-    const box = document.createElement("div")
-    box.classList.add("lightbox");
+    this.box = document.createElement("div")
+    this.box.classList.add("lightbox");
+    this.is_active = false;
 
     const image = document.createElement("img")
     image.setAttribute("id", "lightbox-img");
     image.setAttribute("draggable", "false");
+    this.image = image;
 
     const cross = document.createElement("span")
-    image.setAttribute("id", "lightbox-close");
-    image.setAttribute("draggable", "false");
-    image.onlick = close;
-    image.innerHtml = "&times;"
+    cross.classList.add("lightbox-close");
+    cross.addEventListener('click', this.close.bind(this));
+    cross.innerHTML = "&times;"
+    this.cross = cross;
 
-    box.appendChild(image);
-    box.appendChild(cross);
+    this.box.appendChild(image);
+    this.box.appendChild(cross);
 
 
-    function close() {
-      box.classList.remove('active');
-      is_active = false;
-    }
-
-    function update_transforms() {
-      image.style["transform"] = `scale(${scale}) translate(${translate_x}px, ${translate_y}px)`;
-    }
-
-    // methods
-    box.open = function(src)
-    {
-      box.classList.add('active');
-      image.setAttribute("src", src);
-
-      is_active = true; translate_x = 1;
-      translate_y = 1;
-      scale = 2;
-
-      box.addEventListener('mousedown', (e) => {
-        is_dragging = true;
-        start_x = e.clientX;
-        start_y = e.clientY;
-      });
-
-      box.addEventListener('mousemove', (e) => {
-        if (!is_dragging || !is_active) return;
-        translate_x += e.clientX - start_x;
-        translate_y += e.clientY - start_y;
-        start_x = e.clientX;
-        start_y = e.clientY;
-
-        update_transforms();
-      });
-
-      box.addEventListener('mouseup', () => {
-        is_dragging = false;
-      });
-
-      box.addEventListener('wheel', (e) => {
-        const scaleFactor = e.deltaY > 1 ? 0.9 : 1.1;
-        scale *= scaleFactor;
-
-        update_transforms()
-        e.preventDefault();
-      });
-      update_transforms();
-    }
-    return box; 
+    element.appendChild(this.box);
   }
 
-  const lb = lightbox();
-  container.appendChild(lb);
+  lightbox.prototype.update_transforms = function() {
+    this.image.style["transform"] = `scale(${this.scale}) translate(${this.translate_x}px, ${this.translate_y}px)`;
+  }
 
-  window.lb = lb
+  lightbox.prototype.close = function() 
+  {
+    this.box.classList.remove('active');
+    this.is_active = false;
+  }
+
+  lightbox.prototype.mousedown = function(e)
+  {
+    this.is_dragging = true;
+    this.start_x = e.clientX;
+    this.start_y = e.clientY;
+  }
+
+  lightbox.prototype.mousemove = function(e)
+  {
+    if (!this.is_dragging || !this.is_active) return;
+    this.translate_x += (e.clientX - this.start_x) * (1/this.scale);
+    this.translate_y += (e.clientY - this.start_y) * (1/this.scale);
+    this.start_x = e.clientX;
+    this.start_y = e.clientY;
+
+    this.update_transforms();
+  }
+
+  lightbox.prototype.mouseup = function(e)
+  {
+    this.is_dragging = false;
+  }
+
+  lightbox.prototype.wheel = function(e)
+  {
+    const scaleFactor = e.deltaY > 1 ? 0.9 : 1.1;
+    this.scale *= scaleFactor;
+
+    this.update_transforms()
+    e.preventDefault();
+  }
+
+  lightbox.prototype.open = function(src)
+  {
+    this.box.classList.add('active');
+    this.image.setAttribute("src", src);
+
+    this.is_active = true; 
+    this.translate_x = 1;
+    this.translate_y = 1;
+    this.scale = 2;
+
+    this.box.addEventListener('mousedown', this.mousedown.bind(this));
+    this.box.addEventListener('mousemove', this.mousemove.bind(this));
+    this.box.addEventListener('mouseup', this.mouseup.bind(this));
+    this.box.addEventListener('wheel', this.wheel.bind(this)); 
+    this.update_transforms();
+  }
+
+
+  window.lightbox = function(element) 
+  {
+    return new lightbox(element);
+  }
 
 })(window);
 
