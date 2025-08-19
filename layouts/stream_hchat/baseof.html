@@ -1,8 +1,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <script src="/js/bbt.js"></script>
     <script src="/js/tmi.min.js"></script>
+    <script src="/js/hchat.js"></script>
     <link rel="stylesheet" href="/css/hchat.css">
     <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
@@ -27,6 +27,12 @@
     </div>
   </body>
 
-  <script src="/js/hchat.js"></script>
+  <script type="text/javascript">
+    const hc = hchat(content);
+    function connect() 
+    {
+      hc.change_channel(channel_name.value);
+    }
+  </script>
 </html>
 
