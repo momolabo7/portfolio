@@ -21,6 +21,8 @@ title: "Slay the Spire"
 
 
 # Defect
+
+## Tips
     
 * Playing around frost orbs seems to be good idea
 * Orb damage is random, i.e. MUCH weaker vs multiple mobs

@@ -103,6 +103,11 @@ blockquote{
   animation: 3s infinite flicker, 1s infinite text_strips;
 }
 
+
+img {
+  max-width: 100%;
+}
+
 body {
   background: var(--bg0);
   image-rendering: pixelated;
