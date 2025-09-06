@@ -99,7 +99,7 @@
       const end = document.createElement("span");
       {
         end.classList.add("clickable");
-        end.addEventListener("click", choose_paint.bind(ret, 2));
+        end.addEventListener("click", choose_paint.bind(null, ret, 2));
         const end_circle = document.createElement("div");
         end_circle.classList.add("button-circle-end");
         end.appendChild(end_circle);
@@ -109,7 +109,7 @@
       const obstacle = document.createElement("span");
       {
         obstacle.classList.add("clickable");
-        obstacle.addEventListener("click", choose_paint.bind(ret, 3));
+        obstacle.addEventListener("click", choose_paint.bind(null, ret, 3));
         const obstacle_circle = document.createElement("div");
         obstacle_circle.classList.add("button-circle-obstacle");
         obstacle.appendChild(obstacle_circle);
@@ -119,7 +119,7 @@
       const difficult = document.createElement("span");
       {
         difficult.classList.add("clickable");
-        difficult.addEventListener("click", choose_paint.bind(ret, 4));
+        difficult.addEventListener("click", choose_paint.bind(null, ret, 4));
         const difficult_circle = document.createElement("div");
         difficult_circle.classList.add("button-circle-difficult");
         difficult.appendChild(difficult_circle);
@@ -207,8 +207,8 @@
         cell.classList.add("cell");
         cell.style.width = `${wh_percentage}%`; 
         cell.style.paddingTop = `${wh_percentage}%`
-        //cell.addEventListener("mouseover", this.cell_hover.bind(this, r,c));
-        //cell.addEventListener("click", this.cell_click.bind(this, r,c));
+        cell.addEventListener("mouseover", cell_hover.bind(null, ret, r,c));
+        cell.addEventListener("click", cell_click.bind(null, ret, r,c));
         cell.is_obstacle = false;
         cell.is_difficult = false;
         cell.row = r;
@@ -238,83 +238,83 @@
     element.appendChild(ret.grid);
   }
 
-  pathfinder.prototype.paint_cell = function(row, col)
+  function paint_cell(p, row, col)
   {
-    const cell = this.cells[row][col];
-    switch(this.paint_mode)
+    const cell = p.cells[row][col];
+    switch(p.paint_mode)
     {
       case 0: // 
       {
-        this.clear_cell(cell);
+        clear_cell(p, cell);
       } break;
       case 1:
       {
-        this.set_start_cell(cell);
+        set_start_cell(p, cell);
       } break;
       case 2:
       {
-        this.set_end_cell(cell);
+        set_end_cell(p, cell);
       } break;
       case 3: 
       {
-        this.set_cell_obstacle(cell);
+        set_cell_obstacle(cell);
       } break;
       case 4: 
       {
-        this.set_cell_difficult(cell);
+        set_cell_difficult(cell);
       } break;
     }
   }
 
-  pathfinder.prototype.cell_hover = function(row, col, e)
+  function cell_hover(p, row, col, e)
   {
     if (e.buttons > 0)
     {
-      this.paint_cell(row,col);
+      paint_cell(p, row,col);
     }
   }
 
-  pathfinder.prototype.cell_click = function(row, col, e)
+  function cell_click(p, row, col, e)
   {
-    this.paint_cell(row,col);
+    paint_cell(p, row,col);
   }
 
-  pathfinder.prototype.clear_cell = function(cell)
+  function clear_cell(cell)
   {
     cell.classList.remove(...cell.classList);
     cell.classList.add("cell");
     cell.is_obstacle = cell.is_difficult = false;
   }
 
-  pathfinder.prototype.set_cell_obstacle = function(cell)
+  function set_cell_obstacle(cell)
   {
     cell.classList.add("cell-obstacle");
     cell.is_obstacle = true;
   }
 
-  pathfinder.prototype.set_cell_difficult = function(cell)
+  function set_cell_difficult(p, cell)
   {
     cell.classList.add("cell-difficult");
     cell.is_difficult = true;
   }
   
-  pathfinder.prototype.set_start_cell = function(cell)
+  function set_start_cell(p, cell)
   {
-    this.start_cell.classList.remove("cell-start");
-    this.clear_cell(cell);
+    p.start_cell.classList.remove("cell-start");
+    clear_cell(cell);
     cell.classList.add("cell-start");
-    this.start_cell = cell;
+    p.start_cell = cell;
   }
 
-  pathfinder.prototype.set_end_cell = function(cell)
+  function set_end_cell(p, cell)
   {
-    this.end_cell.classList.remove("cell-end");
-    this.clear_cell(cell);
+    p.end_cell.classList.remove("cell-end");
+    clear_cell(cell);
     cell.classList.add("cell-end");
-    this.end_cell = cell;
+    p.end_cell = cell;
   }
 
-  pathfinder.prototype.rdivision = function()
+  function rdivision(p)
   {
     console.log("lesgo");
   }
