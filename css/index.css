@@ -305,52 +305,6 @@ a:hover {
   margin-bottom: 10px;
 }
 
-#music_container
-{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  margin: 10px auto;
-}
-
-.music_item
-{
-  display: flex;
-  position: relative;
-  aspect-ratio: 1/1;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-}
-
-.music_item_overlay
-{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  text-align: center;
-  opacity: 0.7;
-  font-size: 30px;
-
-  /* @note: needs to be same as music_item.
-   * Honestly this is really stupid and I can't
-   * believe it's 2024 and it's so hard to justify
-   * text vertically */
-  line-height: 53px; 
-}
-
-.music_item_thumbnail
-{
-  width: 100%;
-  display: block;
-  height: auto;
-}
-
-.music_item_overlay:hover {
-  cursor: pointer;
-}
-
 #jukebox  {
 }
 
@@ -366,6 +320,7 @@ a:hover {
 #jukebox > .play {
   border: 2px solid var(--green);
   cursor: pointer;
+  animation: pulse 0.5s ease-in-out infinite;
 }
 
 #jukebox > .item:not(.play):hover
@@ -374,4 +329,11 @@ a:hover {
   border-color: #fff;
   border: 2px solid var(--red);
 }
-
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
