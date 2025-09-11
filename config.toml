@@ -4,9 +4,8 @@
 [markup]
   [markup.highlight]
     codeFences = true
-    noClasses = true
+    noClasses = false
     anchorLineNos = true
-    style = "doom-one"
   [markup.goldmark]
     [markup.goldmark.extensions]
       [markup.goldmark.extensions.typographer]

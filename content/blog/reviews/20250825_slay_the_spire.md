@@ -1,5 +1,5 @@
 ---
-title: "There is no game"
+title: "Slay the Spire"
 date: 2025-09-04T00:00:00+08:00
 ---
 

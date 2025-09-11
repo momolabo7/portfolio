@@ -41,7 +41,7 @@ Focusing on fundamental programming skills was the right choice still, I think. 
 > 
 > But the Network business he imagined isn’t about games being online, it’s about the social network of games (Metcalfe’s law) replacing the content business.
 
-Metlclfe's Law states that the value of a network is proportional to the square of the number of users connected to it. 
+Metcalfe's Law states that the value of a network is proportional to the square of the number of users connected to it. 
 
 It *feels* true to me. 
 

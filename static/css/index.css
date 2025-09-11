@@ -1,5 +1,5 @@
 :root {
-  --font: 'Source Code Pro';
+  --font: Consolas;
   --font-size: 16px;
   --font-size-code: var(--font-size);
 
@@ -7,14 +7,14 @@
   --bg1: #181818;
   --bg2: #333333;
   --bg3: rgb(56,56,56);
-  --fg: #eeeeee;
+  --fg: #dddddd;
 
   --green:  hsl(112 46.7% 76.5%);
   --pink:   hsl(309 46.7% 76.5%);
   --blue:   hsl(176 46.7% 76.5%);
   --red:    hsl(000 46.7% 76.5%);
   --yellow: hsl(044 46.7% 76.5%);
-  --grey: #c3c3c3;
+  --grey: #c0c0c0;
 
   --text_strips_color0: hsl(309 46.7% 76.5%);
   --text_strips_color1: #d0a8cf;
@@ -25,12 +25,6 @@
 {
   font-family: "pixel nes";
   src: url("/font/pixel_nes.otf");
-}
-
-@font-face 
-{
-  font-family: "Source Code Pro";
-  src: url("/font/source_code_pro.ttf");
 }
 
 @keyframes text_strips 
@@ -62,6 +56,7 @@ blockquote{
   margin-left: 10px;
   padding-left: 15px;
   border-left: 3px solid #555;
+  color: var(--grey);
 } 
 .highlight{
   font-size: var(--font-size-code);
@@ -115,6 +110,8 @@ body {
   color: var(--fg);
   font-family: var(--font);
   font-size: var(--font-size);
+  text-rendering: optimizeLegibility;
+
 }
 
 
@@ -178,9 +175,6 @@ box > .content > p
 {
   margin-top: 20px;
 }
-
-
-
 
 .no-border-top
 {
@@ -259,24 +253,19 @@ a:hover {
 
 
 /* blog stuff */
-
-.blog-body > details > summary {
-}
-
 .blog-body > details > p {
   padding-left: 1rem;
 }
+
 .blog-body > h1 {
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: calc(var(--font-size)*1.45);
   color: var(--blue);
-  margin: 0px;
 }
 
 .blog-body > h2 {
   font-weight: normal;
-  font-size: 1.1rem;
-  color: var(--yellow);
+  font-size: calc(var(--font-size)*1.35);
 }
 
 .blog-divider {
@@ -290,19 +279,17 @@ a:hover {
 }
 
 .blog-date {
-  color: var(--green);
-  font-size: 20px;
+  color: var(--yellow);
+  font-size: 18px;
 }
 
 .blog-page > a{
   color: var(--blue);
-  font-size: 20px;
+  font-size: 18px;
 }
 
+
 .blog-body{
-  color: var(--grey);
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 #jukebox  {
