@@ -6,6 +6,9 @@
   {
     const ret = {};
 
+    ret.grid_rows = 30;
+    ret.grid_cols = 30;
+
     // @todo: 
     // - we *should* compress creation of the navigation bars
     //   and standardize how to create each element
@@ -20,13 +23,13 @@
       title.classList.add("title");
       title.appendChild(document.createTextNode("Maze"));
 
-      const rdivision = document.createElement("span");
-      rdivision.classList.add("clickable");
-      rdivision.innerHTML = "Recursive Division";
-      //rdivision.addEventListener("click", this.rdivision.bind(this));
+      const rd = document.createElement("span");
+      rd.classList.add("clickable");
+      rd.innerHTML = "Recursive Division";
+      rd.addEventListener("click", choose_rdivision.bind(null, ret, 0, 0, ret.grid_rows-1, ret.grid_cols-1));
 
       mazebar.appendChild(title);
-      mazebar.appendChild(rdivision);
+      mazebar.appendChild(rd);
 
 
       ret.mazebar = mazebar;
@@ -42,26 +45,26 @@
       title.classList.add("title");
       title.innerHTML = "Commands";
   
-      const clear_path = document.createElement("span");
-      clear_path.classList.add("clickable");
-      clear_path.innerHTML = "Clear Path";
-      clear_path.addEventListener("click", () => {
+      const cp = document.createElement("span");
+      cp.classList.add("clickable");
+      cp.innerHTML = "Clear Path";
+      cp.addEventListener("click", () => {
         console.log("hello");
       });
 
-      const clear_board = document.createElement("span");
-      clear_board.classList.add("clickable");
-      clear_board.innerHTML = "Clear Board";
-      //clear_board.addEventListener("click",  this.clear_board.bind(this));
+      const cb = document.createElement("span");
+      cb.classList.add("clickable");
+      cb.innerHTML = "Clear Board";
+      cb.addEventListener("click",  clear_board.bind(null, ret));
 
-      const clear_obstacles = document.createElement("span");
-      clear_obstacles.classList.add("clickable");
-      clear_obstacles.innerHTML = "Clear Obstacles";
+      const co = document.createElement("span");
+      co.classList.add("clickable");
+      co.innerHTML = "Clear Obstacles";
 
       cmdbar.appendChild(title);
-      cmdbar.appendChild(clear_path);
-      cmdbar.appendChild(clear_board);
-      cmdbar.appendChild(clear_obstacles);
+      cmdbar.appendChild(cp);
+      cmdbar.appendChild(cb);
+      cmdbar.appendChild(co);
 
       ret.cmdbar = cmdbar;
     }
@@ -194,8 +197,6 @@
     ret.grid = document.createElement("div");
     ret.grid.setAttribute("id", "grid");
 
-    ret.grid_rows = 30;
-    ret.grid_cols = 30;
     ret.cells = []
     const wh_percentage = 100 / ret.grid_cols;
     for (let r = 0; r < ret.grid_rows; ++r)
@@ -245,7 +246,7 @@
     {
       case 0: // 
       {
-        clear_cell(p, cell);
+        clear_cell(cell);
       } break;
       case 1:
       {
@@ -314,9 +315,86 @@
     p.end_cell = cell;
   }
 
-  function rdivision(p)
+  function choose_rdivision(p, sr, sc, er, ec)
   {
-    console.log("lesgo");
+    clear_board(p);
+    rdivision(p, sr, sc, er, ec);
+  }
+
+
+  function rdivision(p, sr, sc, er, ec)
+  {
+    //clear_board(p);
+    let ret = [];
+
+    let w = ec - sc + 1;
+    let h = er - sr + 1;
+
+    // @note: minimum sized room is 2 cells
+    if (w > 2 || h > 2) return;
+
+    // @note: we need to generate 2 walls perpendicular to each other
+    // This can be represented by a single midpoint, which we will randomize
+    let mpc = Math.floor(rand(sc + 1, ec - 1));
+    let mpr = Math.floor(rand(sr + 1, er - 1));
+    
+    // @note: We determine where the 4 walls are: up, down, left and right
+    // let 0 = up, 1 = down, left = 2, right = 3.
+    // We need to open up 3 out of the 4 walls, so we will just choose 1 to not open
+    let exclude = Math.floor(rand(0,3));
+
+
+    // @note: now we draw the 4 walls
+    
+    // up
+    {
+    }
+
+    // down
+    {
+    }
+    
+    // left
+    {
+    }
+
+    // right
+    {
+    }
+
+
+
+
+    //rdivision(p, sr, sc, er, wall_c - 1);
+    //rdivision(p, sr, wall_c + 1, er, ec);
+    
+    
+
+
+    /*
+    if (h > 2)
+    {
+      // random a wall that's NOT at the corner
+      let wall_r = Math.floor(rand(sr + 1, er - 1));
+      let hole_c = Math.floor(rand(sc + 1, ec - 1));
+
+      for(let c = 0; c < w; ++c) 
+      {
+        if (c == hole_c) continue;
+        const cell = p.cells[wall_r][c];
+        if(cell == p.start_cell || cell == p.end_cell) continue;
+
+        ret.push(cell);
+        set_cell_obstacle(cell);
+
+      }
+      //rdivision(p, sr, sc, wall_r - 1, ec);
+      //rdivision(p, wall_r + 1, sc, er, ec);
+
+    }
+    */
+    return ret;
+
   }
 
   function choose_paint(p, which)
@@ -329,28 +407,35 @@
     p.paintbar_choices[which].classList.add("selected");
     p.paint_mode = which;
   }
-  
-  pathfinder.prototype.clear_board = function()
-  {
-    for (let r = 0; r < this.grid_rows; ++r)
-    {
-      for (let c = 0; c < this.grid_cols; ++c)
-      {
-        // skip the start and end cell
-        if (r == this.start_row && c == this.start_col) continue;
-        if (r == this.end_row && c == this.end_col) continue;
 
-        const cell = this.cells[r][c];
-        this.clear_cell(cell);
+  
+  function clear_board(p)
+  {
+    for (let r = 0; r < p.grid_rows; ++r)
+    {
+      for (let c = 0; c < p.grid_cols; ++c)
+      {
+        const cell = p.cells[r][c];
+
+        // skip the start and end cell
+        if(cell == p.start_cell || cell == p.end_cell) continue;
+
+
+        clear_cell(cell);
       }
     }
   }
 
-  pathfinder.prototype.clear_path = function()
+
+  function clear_path(p)
   {
   }
 
 
+  // @note: inclusive of max
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   window.pathfinder = function(element) 
   {
