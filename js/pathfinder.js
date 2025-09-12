@@ -344,10 +344,16 @@
     let exclude = Math.floor(rand(0,3));
 
 
-    // @note: now we draw the 4 walls
-    
+    // @note: now we draw the 4 walls...well, 2 wall technically but we see it as 4.
+    for(let r = 0; r < mpr; ++r)
+    {
+      const cell = p.cells[r][];
+      set_cell_obstacle(cell);
+    }
+
     // up
     {
+
     }
 
     // down
