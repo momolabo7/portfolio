@@ -4,10 +4,8 @@
 
   function pathfinder(element)
   {
-    const ret = {};
-
-    ret.grid_rows = 30;
-    ret.grid_cols = 30;
+    this.grid_rows = 30;
+    this.grid_cols = 30;
 
     // @todo: 
     // - we *should* compress creation of the navigation bars
@@ -26,13 +24,13 @@
       const rd = document.createElement("span");
       rd.classList.add("clickable");
       rd.innerHTML = "Recursive Division";
-      rd.addEventListener("click", choose_rdivision.bind(null, ret, 0, 0, ret.grid_rows-1, ret.grid_cols-1));
+      rd.addEventListener("click", this.choose_rdivision.bind(this));
 
       mazebar.appendChild(title);
       mazebar.appendChild(rd);
 
 
-      ret.mazebar = mazebar;
+      this.mazebar = mazebar;
     }
 
 
@@ -55,7 +53,7 @@
       const cb = document.createElement("span");
       cb.classList.add("clickable");
       cb.innerHTML = "Clear Board";
-      cb.addEventListener("click",  clear_board.bind(null, ret));
+      cb.addEventListener("click",  this.clear_board.bind(this));
 
       const co = document.createElement("span");
       co.classList.add("clickable");
@@ -66,7 +64,7 @@
       cmdbar.appendChild(cb);
       cmdbar.appendChild(co);
 
-      ret.cmdbar = cmdbar;
+      this.cmdbar = cmdbar;
     }
 
     // paint bar construction
@@ -82,7 +80,7 @@
       {
         none.classList.add("clickable");
         none.classList.add("selected");
-        none.addEventListener("click", choose_paint.bind(null, ret, 0));
+        none.addEventListener("click", () => this.choose_paint(0));
         const none_circle = document.createElement("div");
         none_circle.classList.add("button-circle-none");
         none.appendChild(none_circle);
@@ -92,7 +90,7 @@
       const start = document.createElement("span");
       {
         start.classList.add("clickable");
-        start.addEventListener("click", choose_paint.bind(null, ret, 1));
+        start.addEventListener("click", () => this.choose_paint(1));
         const start_circle = document.createElement("div");
         start_circle.classList.add("button-circle-start");
         start.appendChild(start_circle);
@@ -102,7 +100,7 @@
       const end = document.createElement("span");
       {
         end.classList.add("clickable");
-        end.addEventListener("click", choose_paint.bind(null, ret, 2));
+        end.addEventListener("click", () => this.choose_paint(2));
         const end_circle = document.createElement("div");
         end_circle.classList.add("button-circle-end");
         end.appendChild(end_circle);
@@ -112,7 +110,7 @@
       const obstacle = document.createElement("span");
       {
         obstacle.classList.add("clickable");
-        obstacle.addEventListener("click", choose_paint.bind(null, ret, 3));
+        obstacle.addEventListener("click", () => this.choose_paint(3));
         const obstacle_circle = document.createElement("div");
         obstacle_circle.classList.add("button-circle-obstacle");
         obstacle.appendChild(obstacle_circle);
@@ -122,7 +120,7 @@
       const difficult = document.createElement("span");
       {
         difficult.classList.add("clickable");
-        difficult.addEventListener("click", choose_paint.bind(null, ret, 4));
+        difficult.addEventListener("click", () => this.choose_paint(4));
         const difficult_circle = document.createElement("div");
         difficult_circle.classList.add("button-circle-difficult");
         difficult.appendChild(difficult_circle);
@@ -136,9 +134,9 @@
       paintbar.appendChild(obstacle);
       paintbar.appendChild(difficult);
 
-      ret.paintbar = paintbar;
-      ret.paint_mode = 0;
-      ret.paintbar_choices = [ none, start, end, obstacle, difficult ]
+      this.paintbar = paintbar;
+      this.paint_mode = 0;
+      this.paintbar_choices = [ none, start, end, obstacle, difficult ]
     }
 
     // pathfind bar construction
@@ -182,258 +180,305 @@
       pathfindbar.appendChild(dijkstra);
       pathfindbar.appendChild(astar);
 
-      ret.pathfindbar = pathfindbar;
+      this.pathfindbar = pathfindbar;
     }
 
-    element.appendChild(ret.cmdbar);
-    element.appendChild(ret.pathfindbar);
-    element.appendChild(ret.mazebar);
-    element.appendChild(ret.paintbar);
+    element.appendChild(this.cmdbar);
+    element.appendChild(this.pathfindbar);
+    element.appendChild(this.mazebar);
+    element.appendChild(this.paintbar);
 
 
     //
     // grid and cell initialization
     //
-    ret.grid = document.createElement("div");
-    ret.grid.setAttribute("id", "grid");
+    this.grid = document.createElement("div");
+    this.grid.setAttribute("id", "grid");
 
-    ret.cells = []
-    const wh_percentage = 100 / ret.grid_cols;
-    for (let r = 0; r < ret.grid_rows; ++r)
+    this.cells = []
+    const wh_percentage = 100 / this.grid_cols;
+    for (let r = 0; r < this.grid_rows; ++r)
     {
       const row = [];
-      for (let c = 0; c < ret.grid_cols; ++c)
+      for (let c = 0; c < this.grid_cols; ++c)
       {
         const cell = document.createElement("div");
         cell.classList.add("cell");
         cell.style.width = `${wh_percentage}%`; 
         cell.style.paddingTop = `${wh_percentage}%`
-        cell.addEventListener("mouseover", cell_hover.bind(null, ret, r,c));
-        cell.addEventListener("click", cell_click.bind(null, ret, r,c));
+        cell.addEventListener("mouseover", this.cell_hover.bind(this, r,c));
+        cell.addEventListener("click", this.cell_click.bind(this, r,c));
         cell.is_obstacle = false;
         cell.is_difficult = false;
         cell.row = r;
         cell.col = c;
 
         row.push(cell);
-        ret.grid.appendChild(cell);
+        this.grid.appendChild(cell);
       }
-      ret.cells.push(row);
+      this.cells.push(row);
     }
 
     // Initialize start and end cell manually
     // @note: this avoids an if statement in the functions
     {
-      const cell = ret.cells[0][0];
+      const cell = this.cells[15][25];
       cell.classList.add("cell-start");
-      ret.start_cell = cell;
+      this.start_cell = cell;
     }
     
     {
-      const cell = ret.cells[1][1];
+      const cell = this.cells[15][5];
       cell.classList.add("cell-end");
-      ret.end_cell = cell;
+      this.end_cell = cell;
     }
     
+    this.animes = [];
 
-    element.appendChild(ret.grid);
+    element.appendChild(this.grid);
   }
 
-  function paint_cell(p, row, col)
+  pathfinder.prototype.paint_cell = function(row, col)
   {
-    const cell = p.cells[row][col];
+    const cell = this.cells[row][col];
     switch(p.paint_mode)
     {
       case 0: // 
       {
-        clear_cell(cell);
+        this.clear_cell(cell);
       } break;
       case 1:
       {
-        set_start_cell(p, cell);
+        this.set_start_cell(cell);
       } break;
       case 2:
       {
-        set_end_cell(p, cell);
+        this.set_end_cell(cell);
       } break;
       case 3: 
       {
-        set_cell_obstacle(cell);
+        this.set_cell_obstacle(cell);
       } break;
       case 4: 
       {
-        set_cell_difficult(cell);
+        this.set_cell_difficult(cell);
       } break;
     }
   }
 
-  function cell_hover(p, row, col, e)
+  pathfinder.prototype.cell_hover = function(row, col, e)
   {
     if (e.buttons > 0)
     {
-      paint_cell(p, row,col);
+      this.paint_cell(row,col);
     }
   }
 
-  function cell_click(p, row, col, e)
+  pathfinder.prototype.cell_click = function(row, col, e)
   {
-    paint_cell(p, row,col);
+    this.paint_cell(row,col);
   }
 
-  function clear_cell(cell)
+  pathfinder.prototype.clear_cell = function(cell)
   {
     cell.classList.remove(...cell.classList);
     cell.classList.add("cell");
     cell.is_obstacle = cell.is_difficult = false;
   }
 
-  function set_cell_obstacle(cell)
+  pathfinder.prototype.set_cell_obstacle = function(cell)
   {
     cell.classList.add("cell-obstacle");
     cell.is_obstacle = true;
   }
 
-  function set_cell_difficult(p, cell)
+  pathfinder.prototype.set_cell_difficult = function(cell)
   {
     cell.classList.add("cell-difficult");
     cell.is_difficult = true;
   }
   
-  function set_start_cell(p, cell)
+  pathfinder.prototype.set_start_cell = function(p, cell)
   {
-    p.start_cell.classList.remove("cell-start");
+    this.start_cell.classList.remove("cell-start");
     clear_cell(cell);
     cell.classList.add("cell-start");
-    p.start_cell = cell;
+    this.start_cell = cell;
   }
 
-  function set_end_cell(p, cell)
+  pathfinder.prototype.set_end_cell = function(pcell)
   {
-    p.end_cell.classList.remove("cell-end");
+    this.end_cell.classList.remove("cell-end");
     clear_cell(cell);
     cell.classList.add("cell-end");
-    p.end_cell = cell;
+    this.end_cell = cell;
   }
 
-  function choose_rdivision(p, sr, sc, er, ec)
+  pathfinder.prototype.update_animes = function(duration_per_anime, prev_time, timestamp) 
   {
-    clear_board(p);
-    rdivision(p, sr, sc, er, ec);
+    if (prev_time === 0) {
+      prev_time = timestamp;
+    }
+    let dt = timestamp - prev_time;
+
+    this.anime_timer += dt;
+    if (this.anime_timer > duration_per_anime) 
+    {
+      this.anime_timer = 0;
+      const current_anime = this.animes[this.anime_current_index++];
+      current_anime.cb(current_anime.e);
+      if (this.anime_current_index >= this.animes.length)
+      {
+        cancelAnimationFrame(this.anime_handle);
+        this.anime_handle = 0; 
+        thisurn;
+      }
+    }
+
+    this.anime_handle = requestAnimationFrame(this.update_animes.bind(this, duration_per_anime, timestamp));
+
   }
 
 
-  function rdivision(p, sr, sc, er, ec)
+  pathfinder.prototype.begin_animes = function() 
   {
-    //clear_board(p);
+    this.animes.length = 0;
+  }
+
+  pathfinder.prototype.end_animes = function() 
+  {
+    this.anime_timer = 0;
+    this.anime_current_index = 0;
+    this.anime_handle = requestAnimationFrame(this.update_animes.bind(this, 10, 0));
+  }
+
+  pathfinder.prototype.push_anime = function(element, callback)
+  {
+    this.animes.push({ e: element, cb: callback });
+  }
+
+
+  //
+  // Choices
+  //
+  function choose_dfs(p)
+  {
+    clear_path();
+  }
+
+
+  pathfinder.prototype.rdivision = function(sr, sc, er, ec)
+  {
+
+    // @note: the algorithm implementation is a bit scuffed.
+    // Currently, walls are ALWAYS on even tiles and holes are on odd tiles.
+    // The reason why we do that is that it is an easy way to make sure that
+    // the walls will never block a hole.
+    // Apparently this is an widely accepted technique online but ew.
     let ret = [];
 
-    let w = ec - sc + 1;
-    let h = er - sr + 1;
 
-    // @note: minimum sized room is 2 cells
-    if (w > 2 || h > 2) return;
+    let width = ec - sc + 1;
+    let height = er - sr + 1;
 
-    // @note: we need to generate 2 walls perpendicular to each other
-    // This can be represented by a single midpoint, which we will randomize
-    let mpc = Math.floor(rand(sc + 1, ec - 1));
-    let mpr = Math.floor(rand(sr + 1, er - 1));
-    
-    // @note: We determine where the 4 walls are: up, down, left and right
-    // let 0 = up, 1 = down, left = 2, right = 3.
-    // We need to open up 3 out of the 4 walls, so we will just choose 1 to not open
-    let exclude = Math.floor(rand(0,3));
+    if (width < 3 || height < 3)
+        return;
 
+    let slice_vertically = (width >= height);
 
-    // @note: now we draw the 4 walls...well, 2 wall technically but we see it as 4.
-    for(let r = 0; r < mpr; ++r)
+    if (slice_vertically)
     {
-      const cell = p.cells[r][];
-      set_cell_obstacle(cell);
-    }
+      // slices_vertically
 
-    // up
-    {
+      // @note: Walls are always EVEN. 
+      // We also never add walls at the edge, so we need to +1 at least to the start column (sc)
+      // If sc is even, then we do +2 instead. 
+      let wall_offset = (sc % 2 == 0) ? 2 : 1;
+      let wall_c = rand_step(sc + wall_offset, ec - 1, 2);
 
-    }
+      // @note: Holes are always ODD. 
+      // Same logic as the walls
+      let hole_offset = (sr % 2 == 0) ? 1 : 2;
+      let hole_r = rand_step(sr + hole_offset, er - 1, 2);
 
-    // down
-    {
-    }
-    
-    // left
-    {
-    }
-
-    // right
-    {
-    }
-
-
-
-
-    //rdivision(p, sr, sc, er, wall_c - 1);
-    //rdivision(p, sr, wall_c + 1, er, ec);
-    
-    
-
-
-    /*
-    if (h > 2)
-    {
-      // random a wall that's NOT at the corner
-      let wall_r = Math.floor(rand(sr + 1, er - 1));
-      let hole_c = Math.floor(rand(sc + 1, ec - 1));
-
-      for(let c = 0; c < w; ++c) 
+      
+      // add wall
+      for (let i = sr; i <= er; ++i) 
       {
-        if (c == hole_c) continue;
-        const cell = p.cells[wall_r][c];
-        if(cell == p.start_cell || cell == p.end_cell) continue;
+        if ( i === hole_r ) continue;
+        const cell = this.cells[i][wall_c];
+        if(cell == this.start_cell || cell == this.end_cell) continue;
 
-        ret.push(cell);
-        set_cell_obstacle(cell);
+        this.push_anime(cell, this.set_cell_obstacle);
 
       }
-      //rdivision(p, sr, sc, wall_r - 1, ec);
-      //rdivision(p, wall_r + 1, sc, er, ec);
+      this.rdivision(sr, sc, er, wall_c - 1);
+      this.rdivision(sr, wall_c + 1, er, ec);
 
     }
-    */
-    return ret;
+    else 
+    {
+      // @note: Same algorithm as the one above
+      let wall_offset = (sr % 2 == 0) ? 2 : 1;
+      let wall_r = rand_step(sr + wall_offset, er - 1, 2);
+
+      let hole_offset = (sc % 2 == 0) ? 1 : 2;
+      let hole_c = rand_step(sc + hole_offset, ec - 1, 2);
+
+      // add wall
+      for (let i = sc; i <= ec; ++i) {
+        if ( i === hole_c ) continue;
+
+        const cell = this.cells[wall_r][i];
+        if(cell == this.start_cell || cell == this.end_cell) continue;
+
+        this.push_anime(cell, this.set_cell_obstacle);
+
+      }
+      this.rdivision(sr, sc, wall_r - 1, ec);
+      this.rdivision(wall_r + 1, sc, er, ec);
+    }
 
   }
 
-  function choose_paint(p, which)
+  pathfinder.prototype.choose_paint = function(which)
   {
-    for(let e of p.paintbar_choices)
+    for(let e of this.paintbar_choices)
     {
       e.classList.remove("selected");
     }
 
-    p.paintbar_choices[which].classList.add("selected");
-    p.paint_mode = which;
+    this.paintbar_choices[which].classList.add("selected");
+    this.paint_mode = which;
   }
 
-  
-  function clear_board(p)
+  pathfinder.prototype.choose_rdivision = function(which)
   {
-    for (let r = 0; r < p.grid_rows; ++r)
+    this.clear_board();
+    this.begin_animes();
+    this.rdivision(0, 0, this.grid_rows-1, this.grid_cols-1);
+    this.end_animes();
+  }
+  
+  pathfinder.prototype.clear_board = function()
+  {
+    for (let r = 0; r < this.grid_rows; ++r)
     {
-      for (let c = 0; c < p.grid_cols; ++c)
+      for (let c = 0; c < this.grid_cols; ++c)
       {
-        const cell = p.cells[r][c];
+        const cell = this.cells[r][c];
 
         // skip the start and end cell
-        if(cell == p.start_cell || cell == p.end_cell) continue;
+        if(cell == this.start_cell || cell == this.end_cell) continue;
 
 
-        clear_cell(cell);
+        this.clear_cell(cell);
       }
     }
   }
 
 
-  function clear_path(p)
+  pathfinder.prototype.clear_path = function()
   {
   }
 
@@ -441,6 +486,15 @@
   // @note: inclusive of max
   function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  // @note: random, but with steps e.g. only every 2 numbers or every 3 numbers are valid)
+  function rand_step(min, max, step)
+  {
+    let range = max - min;
+    let ret = min + Math.floor(rand(0, range) / step) * step;
+    return ret;
+
   }
 
   window.pathfinder = function(element) 

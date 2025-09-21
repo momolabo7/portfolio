@@ -18,7 +18,7 @@
           {{ with .Site.GetPage "/blog/dev" }}
             {{ $allPosts = $allPosts | append .RegularPages }}
           {{ end }}
-          {{ with .Site.GetPage "/blog/games" }}
+          {{ with .Site.GetPage "/blog/reviews" }}
             {{ $allPosts = $allPosts | append .RegularPages }}
           {{ end }}
           {{ with .Site.GetPage "/blog/yaps" }}
