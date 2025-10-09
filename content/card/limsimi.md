@@ -1,5 +1,0 @@
----
-title: limsimiquiz
----
-
-![](limsimi.png)

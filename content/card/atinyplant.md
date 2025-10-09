@@ -1,5 +1,0 @@
----
-title: atinyplant
----
-
-![](atinyplant.jpg)

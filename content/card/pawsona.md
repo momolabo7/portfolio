@@ -1,5 +1,0 @@
----
-title: pawsona
----
-
-![](pawsona.jpg)

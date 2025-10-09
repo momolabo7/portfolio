@@ -4,93 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
-    <script src="/js/bbt.js" defer></script>
     <title>moom</title>
 
   </head>
 
   <body>
     <div id="container">
-      <div id="title">momo</div>
-      <div id="grid">
-
-        <div id="side-col">
-          <div class="box">{{ partial "nav.html" }}</div>
-          <div class="box">
-            <span class="title"> STATUS </span>
-            <div class="content">
-              <div id="statuscafe-content"></div>
-              <script src="/js/status_cafe.js?name=momolabo7" defer></script>
-            </div>
-          </div>
-
-          <div class="box">
-            <span class="title"> MUSIC </span>
-            <div id="jukebox" class="content">
-            </div>
-
-          </div>
-
-        </div>
-        <div id="main-col">
-          <div class="box">
-            <span class="title">ABOUT</span>
-            <div class="content">
-              Welcome to my little slice of the internets. 
-              I'm momo, but you can also call me moom!
-              It's a little messy but feel free to make yourself comfortable and take a look around!
-              <br>
-              <br>
-              Some facts about me: <br>
-              - I'm from Singapore! <br>
-              - I love programming and make my computer go *beep boop*! <br>
-              - My main programming languages are C/C++, Python and Javascript.  <br>
-              - I can speak English, Japanese and Mandarin. <br>
-              - I love music and can play the piano <br>
-              - I'm happily married <3 <br>
-              - I'm easily distracted, play too many games and have too many hobbies. You might might find scraps of my interests lying around so watch your step! <br>
-            </div>
-          </div>
-
-          <!--
-          <div class="box no-border-top">
-            {{ with .GetPage "projects.md" }} 
-            <span class="title">{{ .Title }}</span>
-            <div class="content">{{ .Content }}</div>
-            {{ end }} 
-          </div>
-          -->
-
-          <div class="box">
-            <span class="title">YAPPENING</span> 
-            <div class="content">
-              💬 yaps - 
-              {{ range $i, $p := ((site.GetPage "blog/yaps").RegularPages | first 5) }}
-              <a href= {{ $p.Permalink }} >{{ $p.Title }}</a> 
-              {{ if ne $i 4 }} • {{ end }}
-              {{ end }}
-              <br><br>
-              🎮 reviews -
-              {{ range $i, $p := ((site.GetPage "blog/reviews").RegularPages | first 5) }}
-              <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
-              {{ if ne $i 4 }} • {{ end }}
-              {{ end }}
-              <br><br>
-              🛠️  dev -
-              {{ range $i, $p := ((site.GetPage "blog/dev").RegularPages | first 5) }}
-              <a href= {{ $p.Permalink }} >{{ $p.Title }}</a>
-              {{ if ne $i 4 }} • {{ end }}
-              {{ end }}
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+      brb
     </div>
-
-
-    <script src="/js/index.js"></script>
   </body>
 </html>
 

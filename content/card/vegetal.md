@@ -1,5 +1,0 @@
----
-title: vegetal
----
-
-![](vegetal.jpg)
