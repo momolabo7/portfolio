@@ -19,16 +19,6 @@ jobs:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-         
-      - name: Build
-        run: |
-          hugo --minify 
-          cp ./CNAME ./public/CNAME
-          
       # Runs a set of commands using the runners shell
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
