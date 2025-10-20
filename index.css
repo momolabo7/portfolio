@@ -1,0 +1,63 @@
+body {
+  font-family: Consolas, monospace;
+  background-color: lightgrey;
+  margin: 0 auto;
+}
+
+pre {
+  background-color: #e0e0e0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.work > .date {
+}
+
+.work > .place {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.work {
+  padding-left: 1rem;
+}
+
+footer {
+  color: grey;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.soft {
+  color: grey;
+  font-style: italic;
+}
+
+
+
+#container 
+{
+  color: black;
+  background-color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+ul {
+  list-style: "> ";
+  list-style-position: outside;
+  margin-top: 0;
+}
+
+
+.sketch > canvas {
+  border: solid 2px grey;
+}
+
+.sketch {
+  display: flex;
+  justify-content: center;
+}
