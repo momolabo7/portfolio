@@ -1,0 +1,64 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="p5.min.js"></script>
+    <script src="trigidentity.js"></script>
+    <title>moom</title>
+
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>Deriving Pythegorean Identity</h1>
+      
+      <p>Recall the Pythegorean Identity:
+      $$ cos^2\theta + sin^2\theta = 1^2  $$
+      $$ cot^2\theta + 1^2 = csc^2\theta  $$
+      $$ tan^2\theta + 1^2 = sec^2\theta  $$
+      </p>
+      <p>There's a reason why it's called "Pythegorean Identity". It all starts with the unit circle. The interactive diagram below shows the top right half of a unit circle and visualization of all the trigonometric functions as lines in relation to this unit circle. Move the red circle to observe how each line changes.</p>
+      <div id="sketch" class="sketch"></div>
+      <p>The first thing to look at is the \(cos\) and \(sin\) lines. Using Pytheoras Theorum, we can already identify the most important identity:
+
+$$cos^2\theta + sin^2\theta = 1^2 $$
+
+From the lines, you can also see that:
+
+$$ cot^2\theta + 1^2 = csc^2\theta $$
+
+This is interesting because we can also derive it from the first formula:
+
+$$ cos^2\theta + sin^2\theta = 1^2 $$
+$$ \frac{cos^2\theta}{sin^2\theta} + \frac{sin^2\theta}{sin^2\theta} = \frac{1^2}{sin^2\theta} $$
+$$ cot^2\theta + 1^2 = csc^2\theta $$
+
+Likewise, we can also observe from the lines that:
+
+$$ tan^2\theta + 1^2 = sec^2\theta $$
+
+Similarly, we can also derive it from the first formula!
+
+$$ cos^2\theta + sin^2\theta = 1^2 $$
+$$ \frac{cos^2\theta}{cos^2\theta} + \frac{sin^2\theta}{cos^2\theta} = \frac{1^2}{cos^2\theta} $$
+$$ \frac{sin^2\theta}{cos^2\theta} + \frac{cos^2\theta}{cos^2\theta} = \frac{1^2}{cos^2\theta} $$
+$$ tan^2\theta + 1^2 = sec^2\theta $$
+
+      </p>
+
+      <p> And there you have it, all 3 identities derived! </p>
+
+      <hr>
+      <footer>
+        <div>written from scratch</div>
+        <div>gerald wong</div>
+      </footer>
+    </div>
+
+
+  </body>
+</html>
+

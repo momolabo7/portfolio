@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="/js/tmi.min.js"></script>
+    <script src="/js/hchat.js"></script>
+    <link rel="stylesheet" href="/css/hchat.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <title>moom</title>
+
+    <script type="text/javascript">
+
+
+    </script>
+  </head>
+
+  <body>
+    <div id="content"></div>
+
+    <div class="input">
+      <form action="javascript:connect();">
+        <label>Twitch Channel:</label>
+        <input id="channel_name" type="text" value="momolabo7">
+        <input type="submit" value="Connect">
+      </form>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    const hc = hchat(content);
+    function connect() 
+    {
+      hc.change_channel(channel_name.value);
+    }
+  </script>
+</html>
+
