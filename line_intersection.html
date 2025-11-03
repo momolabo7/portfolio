@@ -1,0 +1,115 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="p5.min.js"></script>
+    <script src="instant_circle_aabb_collision.js"></script>
+    <title>moom</title>
+
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>Instantenous Circle-AABB Collision</h1>
+      <p>
+        This article will explain how to do Instantenous Circle-AABB Collision and some suggested ways to do its response. 
+      </p>
+      <p class="soft"> DISCLAIMER: Note that "Instantenous" means that it is solved at the current instant with no information from the past or the future, which means velocity will not be taken into account. Thus questions like "what if my object is moving too fast?" is irrelevent.
+      </p>
+      
+      <p>
+        First, let's define our circle and AABB for this article.       
+      </p>
+      <p>Our circle is represented by a center of origin \(\dot{c}\) and its radius \(r\).</p>
+      <p>Our AABB is represented by its origin at the top right \(\dot{a}\) and its width \(w\) and height \(h\) that extends rightwards and downwards respectively. That is, the bottom right of the AABB would be:
+
+      $$ \begin{bmatrix} a_x + w \cr a_y + h \end{bmatrix} $$ 
+
+      To check whether the circle and the AABB collide, we first need to find out the shortest distance from the circle's origin to the AABB. Once we find that, we simply check whether that distance is shorter than the circle's radius.
+      </p>
+
+      <p>(It's quite a clever idea actually. It borrows ideas from circle-circle collision and AABB-AABB collision techniques)<p>
+
+      <p>To find the shortest distance from the circle to the AABB, we need to determine the point on the AABB that is the closest to the circle's origin. Because we are an AABB, we can simply use the x and y values of the circle's and clamped it to the AABB's minimum x and y values accordingly. We will call this point \(\dot{s}\):
+
+      $$ s_x = max(a_x, min(c_x,  a_x + w)) $$
+      $$ s_y = max(a_y, min(c_y,  a_y + h)) $$
+      
+      With these \(\dot{c}\) and \(\dot{s}\), we can then form the vector \(\vec{d}\) that represents the shortest displacement from the circle's origin to the AABB.</p>
+
+      <p>You can see how this works below. Let your mouse be \(\dot{c}\). The red circle is \(\dot{s}\). The line from the mouse to the red circle represents \(\vec{d}\).</p>
+
+      <div id="s0" class="sketch"></div>
+
+      <p>Once we find \(\vec{d}\), we can simply figure out whether the circle is colliding with the AABB by comparing its magnitude (i.e. the distance between \(\dot{c}\) to \(\dot{s}\) with the circle's radius \(\dot{r}\). If the magnitude of \(\vec{d}\) is less than \(r\)...
+
+      $$ |\vec{d}| < r $$ 
+
+
+      ...then we are colliding!
+      </p>
+
+      <div id="s1" class="sketch"></div>
+
+
+      <h2>Collision Response</h2>
+      <p>Here we are going to show the common collision response, which is to push the circle and AABB away from each other. In this example, we will show how to push the circle away from the AABB, as if the AABB has infinite mass.</p>
+
+      <p>Generally speaking, the idea is simple; find the shortest displacement vector to push out and add it to the circle.</p>
+
+      <p>There are actually two cases we have to deal with.</p>
+
+      <p>The first case is when the circle's origin \(\dot{c}\) is outside the AABB. As with most vector-finding problems, we can split it to two parts: finding the direction vector and its magnitude. Since we know that \( |\vec{d}| < r \), the magnitude is simply: \(r - |\vec{d}| \).</p>
+
+      <p>Finding the direction is a little more interesting. Since we know that circle's origin is outside the the AABB, \(\dot{s}\) will always be at the surface area of the AABB. Therefore \(-\vec{d}\) itself must be the direction. From here, we can find the vector to push our circle out. We will call this \(\vec{p}\): 
+        $$ \vec{p} = -\hat{d} * (r-|\vec{d}|) $$
+
+        Below, drag around the circle around the edges of AABB. The blue circle will represent the circle after the response, if there is collision.</p>
+
+      <div id="s2" class="sketch"></div>
+
+      <p>Note that when the circle's origin is within the AABB, the blue circle would not appear. This is because in this case, \(\dot{s}\) no longer represents a point on the surface. We have to look for the nearest point on the AABB's surface to push the circle. This brings us to the second case.</p>
+
+      <p>The second case is when the circle's origin \(\dot{c}\) is inside the AABB. Since this is instantenous, we have no idea where the circle comes from. Given that the AABB has 4 sides, we can make an educated guess that the circle most likely come from the least penetrated side.</p>
+
+      <p>To do this, we simply grab the vectors from the center of the circle to the top, left, bottom and right side of the AABB and pick the one with the smallest distance. We then add this to the circle's origin to push it out to the correct surface. We then need to push it out some more by the circle's radius so that it's fully out of the AABB.</p>
+
+      <p>Here's some rough pseudocode:</p>
+
+      <pre>
+        left = aabb.x - circle.x
+        right = aabb.x + aabb.w - circle.x
+        up = aabb.y - circle.y
+        down = aabb.y + aabb.h - circle.y
+
+        lr = abs(left) < abs(right) ? left : right
+        ud = abs(up) < abs(down) ? up : down 
+
+        if (abs(lr) < abs(ud)) {
+          r = lr < 0 ? -circle.r : circle.r
+          circle.x += lr + r;
+        }
+
+        else {
+          r = ud < 0 ? -circle.r : circle.r
+          circle.y += ud + r;
+        }</pre>
+
+      <p>And we are done!</p>
+
+      <div id="s3" class="sketch"></div>
+
+      <hr>
+      <footer>
+        <div>written from scratch</div>
+        <div>gerald wong</div>
+      </footer>
+    </div>
+
+
+  </body>
+</html>
+
