@@ -1,453 +1,153 @@
 (function(window) {
   'use strict';
 
-  function len(v) {
-    return Math.sqrt(v.x * v.x + v.y * v.y)
-  }
+  const s0 = function (p) {
+    const PURPLE = p.color(128, 0, 125)
+    const ORANGE = p.color(255, 140, 0)
 
-  function mul(v, s) {
-    return {
-      x: v.x*s,
-      y: v.y*s,
+
+    function line_intersection(a, b) {
+      let vx = a.p1.x - a.p0.x;
+      let vy = a.p1.y - a.p0.y;
+      let wx = b.p1.x - b.p0.x;
+      let wy = b.p1.y - b.p0.y;
+
+      let s = (vx * (a.p0.y - b.p0.y) + vy * (b.p0.x - a.p0.x)) / (vx * wy - wx * vy);
+      let t = (b.p0.x + s * wx - a.p0.x) / vx;
+
+      let ix = a.p0.x + t * vx;
+      let iy = a.p0.y + t * vy;
+      //ix = b.x0 + s * wx;
+      //iy = b.y0 + s * wy;
+
+      //console.log(ix, iy);
+      return { 
+        x: ix, 
+        y: iy, 
+        on_segment: s >= 0 && s <= 1 && t >= 0 && t <= 1,
+        s,
+        t
+      };
     }
-  }
 
-  function negate(v) {
-    return {
-      x: -v.x,
-      y: -v.y
+    function create_point(x, y) {
+      return { x, y };
+    }
+    function create_line(p0, p1, color) {
+      return { p0, p1, color };
+    }
+
+    function point_in_circle(cx, cy, r, px, py) {
+      let x = cx - px;
+      let y = cy - py;
+      let d2 = x * x + y * y;
+      return d2 < r * r;
+    }
+
+    const points = [];
+    points.push(create_point(50, 50));
+    points.push(create_point(250, 200));
+    points.push(create_point(50, 200));
+    points.push(create_point(250, 50));
+
+    const lines = [];
+    lines.push(create_line(points[0], points[1], PURPLE));
+    lines.push(create_line(points[2], points[3], ORANGE));
+
+    let selected_point = null;
+
+    function draw_stats(s,t) {
+      let x = 5
+      let y = 270
+      let y_offset = 15;
+      p.textSize(15)
+      p.strokeWeight(0)
+      p.textFont('Courier New');
+
+      p.fill(PURPLE);
+      p.text("p", x, y)
+      p.textSize(12)
+      p.text("t", x + 10, y + 5)
+      p.textSize(15)
+      p.text(": " + t.toFixed(2), x + 20, y);
+
+      y += y_offset;
+
+      p.fill(ORANGE);
+      p.text("q", x, y)
+      p.textSize(12)
+      p.text("t", x + 10, y + 5)
+      p.textSize(15)
+      p.text(": " + s.toFixed(2), x + 20, y);
+    }
+
+    p.mousePressed = function () {
+      for (let pt of points) {
+        if (point_in_circle(pt.x, pt.y, 10, p.mouseX, p.mouseY)) {
+          selected_point = pt;
+          break;
+        }
+      }
     };
-  }
 
-  function create_circle(x, y, r)
-  {
-    return {x, y, r}  
-  }
+    p.mouseReleased = function () {
+      selected_point = null;
+    };
 
-  function create_rect(x, y, w, h) {
-    return { x, y, w, h }
-  }
-
-  function is_point_within_circle(c, px, py) 
-  {
-    let vx = px - c.x;
-    let vy = py - c.y;
-    let d2 = vx * vx + vy * vy
-    return d2 < c.r * c.r;
-  }
-
-
-  function is_point_within_rect(r, px, py) 
-  {
-    return px >= r.x && px <= r.x + r.w &&
-      py >= r.y && py <= r.y + r.h 
-  }
-
-  const s0 = function(p) 
-  {
-    let mouse_x = 100;
-    let mouse_y = 100;
-    function get_nearest_point_of_contact(r, px, py)
-    {
-      let x = p.max(r.x, p.min(r.x + r.w, px))
-      let y = p.max(r.y, p.min(r.y + r.h, py))
-      return {x, y};
-    }
-
-
-    let r = create_rect(75, 100, 150, 100);
-
-
-
-
-
-    p.setup = function() {
+    p.setup = function () {
       p.createCanvas(300, 300).parent("s0");
-    }
+    };
 
-    p.draw = function() {
-      if (p.mouseX >= 0 && p.mouseX <= 300 && p.mouseY >= 0 && p.mouseY <= 300) 
-      {
-        mouse_x = p.mouseX;
-        mouse_y = p.mouseY;
+    p.draw = function () {
+      if (selected_point) {
+        selected_point.x = p.mouseX;
+        selected_point.y = p.mouseY;
       }
-
-
-      let n = get_nearest_point_of_contact(r, mouse_x, mouse_y);
-      let nc = {
-        x: n.x - mouse_x,
-        y: n.y - mouse_y
-      };
-      let nc_len = len(nc);
-      let nc_unit = {
-        x: nc.x/nc_len,
-        y: nc.y/nc_len,
-      };
 
       p.background(255);
-      p.fill(0,0,0,0)
 
-      // mouse
-      {
-        p.fill(0,0,0)
-        p.circle(mouse_x, mouse_y, 5);
+      for (let l of lines) {
+        let vx = (l.p1.x - l.p0.x) * 1000
+        let vy = (l.p1.y - l.p0.y) * 1000
+
+        p.stroke(l.color);
+        p.strokeWeight(1.5);
+        p.drawingContext.setLineDash([5, 5]); //create the dashed line pattern here
+        p.line(l.p0.x, l.p0.y, l.p0.x - vx, l.p0.y - vy);
+        p.line(l.p1.x, l.p1.y, l.p1.x + vx, l.p1.y + vy);
+
+        p.drawingContext.setLineDash([0]);
+
+        p.line(l.p0.x, l.p0.y, l.p1.x, l.p1.y);
+
       }
 
-      // AABB
-      {
-        p.fill(0,0,0,40);
-        p.rect(r.x, r.y, r.w, r.h)
-      }
-
-      // draw nearest point on AABB
-      {
-        p.line(mouse_x, mouse_y, n.x, n.y);
-        p.fill(255,0,0)
-        p.circle(n.x, n.y, 10);
-      }
-
-
-
-    }
-
-
-  };
-
-  const s1 = function(p, i) {
-    function get_nearest_point_of_contact(r,c) {
-      let x = p.max(r.x, p.min(r.x + r.w, c.x))
-      let y = p.max(r.y, p.min(r.y + r.h, c.y))
-      return {x, y};
-    }
-
-    let is_dragging = 0;
-
-    let c = create_circle(100, 100, 50);
-    let r = create_rect(120, 170, 150, 100);
-
-    p.mousePressed = function() {
-      if (is_point_within_circle(c, p.mouseX, p.mouseY)) {
-        is_dragging = 1;
-      }
-      else if (is_point_within_rect(r, p.mouseX, p.mouseY)) {
-        is_dragging = 2;
-      }
-    }
-
-    p.mouseReleased = function() {
-      is_dragging = 0;
-    }
-
-
-
-
-    p.setup = function() {
-      p.createCanvas(300, 300).parent("s1");
-    }
-
-
-    p.draw = function() 
-    {
-      let n = get_nearest_point_of_contact(r,c);
-      let nc = {
-        x: n.x - c.x,
-        y: n.y - c.y
-      };
-      let nc_len = len(nc);
-      let nc_unit = {
-        x: nc.x/nc_len,
-        y: nc.y/nc_len,
-      };
-
-      let is_colliding = false;
-      {
-        if (nc_len < c.r) {
-          is_colliding = true;
-        }
-      }
-      p.background(255);
-      p.fill(0,0,0,0)
-
-      if (is_dragging == 1) {
-        c.x = p.mouseX;
-        c.y = p.mouseY;
-      }
-      else if (is_dragging == 2) {
-        r.x = p.mouseX - r.w/2;
-        r.y = p.mouseY - r.h/2;
-      }
-
-
-      // AABB
-      {
-        p.fill(0,0,0,40);
-        p.rect(r.x, r.y, r.w, r.h)
-      }
-
-      // draw nearest point on AABB
-      {
-
-        p.line(c.x, c.y, n.x, n.y);
-        p.fill(255,0,0)
-        p.circle(n.x, n.y, 10);
-      }
-
-
-      // circle 
-      {
-        p.fill(0);
-        p.circle(c.x, c.y, 3)
-        if (is_colliding)
-          p.fill(0, 255, 0, 125)
-        else
-          p.fill(255, 0, 0, 125)
-        p.circle(c.x, c.y, c.r * 2);
-      }
-
-    }
-
-  };
-
-  const s2 = function(p) 
-  {
-    function get_nearest_point_of_contact(r,c) {
-      let x = p.max(r.x, p.min(r.x + r.w, c.x))
-      let y = p.max(r.y, p.min(r.y + r.h, c.y))
-      return {x, y};
-    }
-
-    let is_dragging = 0;
-
-    let c = create_circle(100, 100, 50);
-    let r = create_rect(120, 170, 150, 100);
-
-    p.mousePressed = function() {
-      if (is_point_within_circle(c, p.mouseX, p.mouseY)) {
-        is_dragging = 1;
-      }
-      else if (is_point_within_rect(r, p.mouseX, p.mouseY)) {
-        is_dragging = 2;
-      }
-    }
-
-    p.mouseReleased = function() {
-      is_dragging = 0;
-    }
-
-    p.setup = function() {
-      p.createCanvas(300, 300).parent("s2");
-    }
-
-
-    p.draw = function() {
-
-      if (is_dragging == 1) {
-        c.x = p.mouseX;
-        c.y = p.mouseY;
-      }
-      else if (is_dragging == 2) {
-        r.x = p.mouseX - r.w/2;
-        r.y = p.mouseY - r.h/2;
-      }
-
-      let n = get_nearest_point_of_contact(r,c);
-      let nc = {
-        x: n.x - c.x,
-        y: n.y - c.y
-      };
-      let nc_len = len(nc);
-      let nc_unit = {
-        x: nc.x/nc_len,
-        y: nc.y/nc_len,
-      };
-
-      let is_colliding = false;
-      {
-        if (nc_len < c.r) {
-          is_colliding = true;
-        }
-      }
-      p.background(255);
-      p.fill(0,0,0,0)
-
-
-
-      // AABB
-      {
-        p.fill(0,0,0,40);
-        p.rect(r.x, r.y, r.w, r.h)
-      }
-
-      // draw nearest point on AABB
-      {
-
-        p.line(c.x, c.y, n.x, n.y);
-        p.fill(255,0,0)
-        p.circle(n.x, n.y, 10);
-      }
-
-
-      // circle 
-      {
-        p.fill(0);
-        p.circle(c.x, c.y, 3)
-        if (is_colliding)
-          p.fill(0, 255, 0, 125)
-        else
-          p.fill(255, 0, 0, 125)
-        p.circle(c.x, c.y, c.r * 2);
-      }
-
-      // response
-      if(is_colliding)
-      {
-        let pen = mul(negate(nc_unit), c.r - nc_len)
-        p.fill(0, 0, 255, 80);
-        p.stroke(0,0,0, 80);
-        p.circle(c.x + pen.x, c.y + pen.y, c.r*2);
-        p.stroke(0);
-      }
-
-    }
-  };
-
-  const s3 = function(p) 
-  {
-    function get_nearest_point_of_contact(r,c) {
-      let x = p.max(r.x, p.min(r.x + r.w, c.x))
-      let y = p.max(r.y, p.min(r.y + r.h, c.y))
-      return {x, y};
-    }
-
-    let is_dragging = 0;
-
-    let c = create_circle(100, 100, 50);
-    let r = create_rect(120, 170, 150, 100);
-
-    p.mousePressed = function() {
-      if (is_point_within_circle(c, p.mouseX, p.mouseY)) {
-        is_dragging = 1;
-      }
-      else if (is_point_within_rect(r, p.mouseX, p.mouseY)) {
-        is_dragging = 2;
-      }
-    }
-
-    p.mouseReleased = function() {
-      is_dragging = 0;
-    }
-
-    p.setup = function() {
-      p.createCanvas(300, 300).parent("s3");
-    }
-
-
-    p.draw = function() {
-
-      if (is_dragging == 1) {
-        c.x = p.mouseX;
-        c.y = p.mouseY;
-      }
-      else if (is_dragging == 2) {
-        r.x = p.mouseX - r.w/2;
-        r.y = p.mouseY - r.h/2;
-      }
-
-      let n = get_nearest_point_of_contact(r,c);
-      let nc = {
-        x: n.x - c.x,
-        y: n.y - c.y
-      };
-      let nc_len = len(nc);
-      let nc_unit = {
-        x: nc.x/nc_len,
-        y: nc.y/nc_len,
-      };
-
-      let is_colliding = false;
-      {
-        if (nc_len < c.r) {
-          is_colliding = true;
-        }
-      }
-      p.background(255);
-      p.fill(0,0,0,0)
-
-
-      // AABB
-      {
-        p.fill(0,0,0,40);
-        p.rect(r.x, r.y, r.w, r.h)
-      }
-
-      // draw nearest point on AABB
-      {
-
-        p.line(c.x, c.y, n.x, n.y);
-        p.fill(255,0,0)
-        p.circle(n.x, n.y, 10);
-      }
-
-
-      // circle 
-      {
-        p.fill(0);
-        p.circle(c.x, c.y, 3)
-        if (is_colliding)
-          p.fill(0, 255, 0, 125)
-        else
-          p.fill(255, 0, 0, 125)
-        p.circle(c.x, c.y, c.r * 2);
-      }
-
-      // response
-      if(is_colliding)
-      {
-        p.fill(0, 0, 255, 80);
-        if (Math.abs(nc_len) > 0)
-        {
-          let pen = mul(negate(nc_unit), c.r - nc_len)
-          p.stroke(0,0,0, 80);
-          p.circle(c.x + pen.x, c.y + pen.y, c.r*2);
-          p.stroke(0);
-        }
+      p.stroke(0);
+      p.strokeWeight(1);
+
+      for (let pt of points) {
+        if (pt == selected_point) 
+          p.fill(255, 255, 0);
+        else if (point_in_circle(pt.x, pt.y, 10, p.mouseX, p.mouseY))
+          p.fill(255, 255, 0);
         else 
-        {
-          let left = r.x - c.x;
-          let right = (r.x + r.w) - c.x;
-          let up = r.y - c.y;
-          let down = (r.y + r.h) - c.y;
+          p.fill(255, 255, 255);
 
-          let lr = Math.abs(left) < Math.abs(right) ? left : right;
-          let ud = Math.abs(up) < Math.abs(down) ? up : down;
-          if (Math.abs(lr) < Math.abs(ud))
-          {
-            let r = lr < 0 ? -c.r : c.r;
-            p.line(c.x, c.y, c.x + lr, c.y);
-
-            p.stroke(0,0,0, 80);
-            p.circle(c.x + lr + r, c.y, c.r*2);
-            p.stroke(0);
-          }
-          else {
-            let r = ud < 0 ? -c.r : c.r;
-            p.line(c.x, c.y, c.x, c.y + ud);
-
-            p.stroke(0,0,0, 80);
-            p.circle(c.x, c.y + ud + r, c.r*2);
-            p.stroke(0);
-          }
-
-        }
+        p.circle(pt.x, pt.y, 10);
       }
 
-    }
-  };
 
+      let intersection = line_intersection(lines[0], lines[1]);
+      if (intersection.on_segment)
+        p.fill(0, 255, 0);
+      else
+        p.fill(255, 0, 0);
+      p.circle(intersection.x, intersection.y, 8);
+
+      draw_stats(intersection.s, intersection.t);
+    }
+  }  
   new p5(s0);
-  new p5(s1);
-  new p5(s2);
-  new p5(s3);
 })();
 
 
