@@ -1,0 +1,91 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="p5.min.js"></script>
+    <script src="instant_circle_circle_collision.js"></script>
+    <title>moom</title>
+
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>Instantenous Circle-Circle Collision</h1>
+      <p>
+        This article will explain how to do Instantenous Circle-Circle Collision.
+      </p>
+      <p class="soft"> DISCLAIMER: Note that "Instantenous" means that it is solved at the current instant with no information from the past or the future, which means velocity will not be taken into account. Thus questions like "what if my object is moving too fast?" is irrelevent.
+      </p>
+      
+      <p>
+        First, let's define our circles. In this article, we will use two circles, we will call them \(s\) and \(k\).
+      </p>
+      <p>Circles are represented by a center of origin and a radius. The center of origins for our circles \(s\) and \(k\) centers are denoted with \(\dot{s_o}\) and \(\dot{k_o}\) respectively, and their radiuses are \(s_r\) and \(k_r\) respectively.</p>
+
+      <p>Finding whether two circles are overlapping is simple: we take the distance \(d\) between their center of origins and compare it to their combined radius. If the distance is less than their combined radius, then they are colliding.</p>
+
+      <p>The distance between our two circles is simply the distance between two points: </p>
+
+      $$ d = \sqrt{(\dot{s_o} - \dot{k_o})^2_x + (\dot{s_o} - \dot{k_o})^2_y} $$
+
+      <p>So to check if two circles are overlapping, we just need to check that: </p>
+
+      $$ d < (s_r + k_r) $$
+
+      <p>Personally, I tend to compare the difference against zero like so:</p>
+
+      $$ d - (s_r + k_r) < 0  $$
+ 
+      <p>The difference can be useful in other calculations.</p>
+
+      <h2>Avoiding square root?</h2> 
+
+      <p>In programming, there can be instances where square root is not avaliable or argued to be 'expensive'. 
+
+      <p>If checking for overlapping is all you need, a common trick is to square both sides.</p>
+
+      $$ d^2 < (s_r + k_r)^2 $$
+
+      <p>This will avoid any use of square root.</p>
+
+
+      <h2>Collision Response</h2>
+
+      <p>Here we are going to show the common collision response between two circles where we push them away from each other.</p>
+
+      <p>We need to find the penetration vector \(\vec{p}\) that pushes one circle out of the other. We can solve this by seperating the vector into its basic components: its normalized direction \(\vec{p_{dir}}\) and its magnitude \(|\vec{p}|\). In other words:</p>
+
+      $$  \vec{p} = \vec{p_{dir}} * |\vec{p}| $$
+
+      <p>The normalized direction is simply the vector between the two circle's origins normalized: </p>
+
+      $$  \vec{p_{dir}} = \frac{\vec{(\dot{s_o} - \dot{k_o})}}{d}  $$
+
+      <p>The magnitude is simply the difference between the distance of the two circles and their combined radius, which we did earlier: </p>
+
+      $$ |\vec{p}| = d - (s_r + k_r) $$
+
+      <p>Observe the demo below and drag the circles around. Let the purple circle be \(s\) and the orange circle be \(k\). The black line represents the distance between them, the purple line represents \(s_r\), the orange line represents \(k_r\). When the circles are overlapping, you will see a red line appear representing \(|\vec{p}|\).</p>
+
+      <div id="s0" class="sketch"></div>
+
+      <p>Now that we have our penetration vector \(\vec{p}\), how we want to push our circles back is really up to us. We can divide the vector into half and push both circles away from each other equally, or make it so that one circle moves out of the other circle completely while the other circle remains static.</p>
+
+      <p>The demo below shows an example of how you can use the ratios of both circle's 'mass' value to affect how much to push our circles back, giving the illusion of weight.</p>
+
+      <div id="s1" class="sketch"></div>
+
+      <hr>
+      <footer>
+        <div>written from scratch</div>
+        <div>gerald wong</div>
+      </footer>
+    </div>
+
+
+  </body>
+</html>
+
