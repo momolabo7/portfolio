@@ -1,0 +1,146 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="p5.min.js"></script>
+    <script src="instant_aabb_aabb_collision.js"></script>
+    <title>moom</title>
+
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>Instantenous AABB-AABB Collision</h1>
+      <p>
+        This article will explain how to do Instantenous AABB-AABB Collision.
+      </p>
+      <p class="soft"> DISCLAIMER: Note that "Instantenous" means that it is solved at the current instant with no information from the past or the future, which means velocity will not be taken into account. Thus questions like "what if my object is moving too fast?" is irrelevent.
+      </p>
+      
+      <p>
+        First, let's define our AABBs. 
+        In this article, we will be using 2 AABBs which we will name \(s\) and \(k\).
+      </p>
+      <p>
+        An AABB is an Axis-Aligned Bounding Box, which means that it's a rectangle where it's boundaries are paralell to the axes.
+      </p>
+      <p>
+        There are many ways to define an AABB, but for this article, we will define an AABB to have a center of origin, a half-width and a half-height.
+      </p>
+
+      <p>
+        The center of origins of our AABBs \(s\) and  \(k\) are denoted with \(\dot{s_o}\) and \(\dot{k_o}\) respectively.  Their half-widths will be \(s_{hw}\) and \(k_{hw}\). Their half-heights will be  \(s_{hh}\) and \(k_{hh}\).
+      </p>
+
+      <p>
+        Just to be clear, the half-width extends towards the left and right side of the AABB's center of origin. The half-height extends towards up and down. 
+        This means that doing: 
+            $$ 
+            \dot{s_o}  + \begin{bmatrix} s_{hw} \\ s_{hh} \end{bmatrix}
+            $$
+        will give us one of the corners of the AABB.
+      </p>
+
+
+      <p>
+        Now, there are many ways to determine if two AABBs collide, but one cool and extensible way is to check for collision for each dimension. 
+        If our AABBs are colliding on every dimension (in this case the x and y axes, since we are in 2D), then our AABBs are colliding!
+        This is great because we can extend this concept to AABB living in 3D or even 4D and beyond!
+      </p>
+
+      <p>
+        So let's solve one dimension. We will use the x-axis.
+      </p>
+
+      <p>
+        Turns out, this is simple. We simply need to check if the distance between our AABB's on the x-axis is lesser than their combined half-widths.
+        If it is, then they are colliding on the x-axis.
+
+        $$ | s_{ox} - k_{ox} | < s_{hw} + k_{hw} $$
+      </p>
+        
+
+      <p>
+        In fact, we can rearrange the formula to find how much they are penetrating on the x-axis like (we will call this \(p_x\):
+        $$ p_x = (s_{hw} + k_{hw}) - | s_{ox} - k_{ox} | $$
+
+      </p>
+      <p>
+        In this rearrangement, if \( p_x > 0 \) then the AABBs are overlapping on the x-axis.
+      </p> 
+
+      
+
+      <p class="soft">
+        You might notice that this is similar to Circle-Circle collision.
+      </p>
+
+      <p>
+        Observe the demo below. 
+        The orange and purple lines represent our AABBs projected onto their x-axis, forming a line.
+      </p>
+
+      <p>
+        In the demo, the orange AABB is unmovable and we need to figure out how much the purple AABB needs to be pushed out (aka \(p_x\)), represented by the cyan arrow.
+      </p>
+
+      <p>
+        Feel free to move the orange and purple lines and observe the changes.
+      </p>
+      <p>
+        Note that the direction of the push-back vector is depending on whether the purple AABB is on the left or right side of the orange AABB!
+      </p>
+      
+
+      <div id="s0" class="sketch"></div>
+
+      <p>
+        
+
+      <p>
+        Now, we do the same for the y-axis (and other axes if you are on more dimensions).
+        If the AABBs are penetrating on <b>all</b> axes, then we can determine that they are overlapping.
+      </p>
+
+      <p>
+        Move the orange and purple AABBs below and observe how they penetrate on the x and y axes.
+      </p>
+
+
+      <div id="s1" class="sketch"></div>
+
+      <h2>Determining where to push out</h2>
+
+      <p>
+        At this point, we would have found 2 push-back vectors for the x and y axes (or more if you have more dimensions).
+      </p>
+      <p>
+        Since we are doing instantenous collision on this current frame, we do not have information about where the AABBs were before collision.
+      </p>
+      <p>
+        A naive method would be to push on all axes, but this quickly becomes a problem -- it would always push out diagonally towards the corner, which would be visually wrong unless the incoming AABB is directly heading towards the corner which is unlikely...at least more unlikely than other scenarios.
+      </p>
+      <p>
+        That leaves us with two possible option -- we will push either direction, but which direction should we choose?
+        When we think about it, we should always push out from the side with __least penetration__. It will be the side where the incoming AABB would most likely come from.
+      </p>
+
+      <p>
+        Observe and play around with the demo below. Watch how we decide which side to push the purple AABB out of the orange AABB:
+      </p>
+      <div id="s2" class="sketch"></div>
+
+      <hr>
+      <footer>
+        <div>written from scratch</div>
+        <div>gerald wong</div>
+      </footer>
+    </div>
+
+
+  </body>
+</html>
+
