@@ -3,12 +3,6 @@
 
   let s0 = function (p) 
   {
-    const PURPLE = p.color(128, 0, 125)
-    const ORANGE = p.color(255, 140, 0)
-    const ORANGE_DARK = p.color(200, 100, 0)
-    const RED = p.color(255, 0, 0)
-    const PURPLE_A = p.color(128, 0, 125, 125)
-    const ORANGE_A = p.color(255, 140, 0, 125)
 
     function scale(v, n) {
       return { x: v.x * n, y : v.y*n}
@@ -62,6 +56,13 @@
     };
 
     p.setup = function () {
+      p.PURPLE = p.color(128, 0, 125)
+      p.ORANGE = p.color(255, 140, 0)
+      p.ORANGE_DARK = p.color(200, 100, 0)
+      p.RED = p.color(255, 0, 0)
+      p.PURPLE_A = p.color(128, 0, 125, 125)
+      p.ORANGE_A = p.color(255, 140, 0, 125)
+
       p.createCanvas(300, 300)
     };
 
@@ -85,14 +86,14 @@
       p.background(255);
 
       p.strokeWeight(2)
-      p.stroke(PURPLE)
-      p.fill(PURPLE_A)
+      p.stroke(p.PURPLE)
+      p.fill(p.PURPLE_A)
       p.circle(c0.x, c0.y, c0.r*2);
 
 
 
-      p.stroke(ORANGE)
-      p.fill(ORANGE_A)
+      p.stroke(p.ORANGE)
+      p.fill(p.ORANGE_A)
       p.circle(c1.x, c1.y, c1.r*2);
 
       // lines and stats
@@ -118,14 +119,14 @@
         p.stroke(0)
         p.line(c0.x, c0.y, c1.x, c1.y)
 
-        p.stroke(PURPLE)
+        p.stroke(p.PURPLE)
         p.line(c0rs.x, c0rs.y, c0re.x, c0re.y)
 
-        p.stroke(ORANGE_DARK)
+        p.stroke(p.ORANGE_DARK)
         p.line(c1rs.x, c1rs.y, c1re.x, c1re.y)
 
         if ( diff > 0) {
-          p.stroke(RED)
+          p.stroke(p.RED)
           p.line(intersect_start.x, intersect_start.y, intersect_end.x, intersect_end.y)
         }
 
@@ -140,11 +141,11 @@
           p.strokeWeight(0)
           p.textFont('Courier New');
 
-          p.fill(PURPLE);
+          p.fill(p.PURPLE);
           p.text("s radius: " + c0.r.toFixed(2), x, y += y_offset);
-          p.fill(ORANGE);
+          p.fill(p.ORANGE);
           p.text("k radius: " + c1.r.toFixed(2), x, y += y_offset);
-          p.fill(RED);
+          p.fill(p.RED);
           p.text("diff    : " + diff.toFixed(2), x, y += y_offset);
           p.fill(0);
           p.text("distance: " + d.toFixed(2), x, y += y_offset);
@@ -190,14 +191,6 @@
       // 5. Return the (potentially changed) value
       return val;
     }
-    const PURPLE = p.color(128, 0, 125)
-    const ORANGE = p.color(255, 140, 0)
-    const ORANGE_DARK = p.color(200, 100, 0)
-    const RED = p.color(255, 0, 0)
-    const PURPLE_A = p.color(128, 0, 125, 140)
-    const ORANGE_A = p.color(255, 140, 0, 140)
-    const PURPLE_B = p.color(128, 0, 125, 200)
-    const ORANGE_B = p.color(255, 140, 0, 200)
 
     let slider0 = 50;
     let slider1 = 50;
@@ -260,6 +253,14 @@
     };
 
     p.setup = function () {
+      p.PURPLE = p.color(128, 0, 125)
+      p.ORANGE = p.color(255, 140, 0)
+      p.ORANGE_DARK = p.color(200, 100, 0)
+      p.RED = p.color(255, 0, 0)
+      p.PURPLE_A = p.color(128, 0, 125, 140)
+      p.ORANGE_A = p.color(255, 140, 0, 140)
+      p.PURPLE_B = p.color(128, 0, 125, 200)
+      p.ORANGE_B = p.color(255, 140, 0, 200)
       let canvas = p.createCanvas(300, 300)
     };
 
@@ -299,11 +300,11 @@
       p.background(255);
 
       p.strokeWeight(2)
-      p.stroke(PURPLE_A)
+      p.stroke(p.PURPLE_A)
       p.fill(0,0,0,0)
       p.circle(c0.x, c0.y, c0.r*2)
 
-      p.stroke(ORANGE_A)
+      p.stroke(p.ORANGE_A)
       p.fill(0,0,0,0)
       p.circle(c1.x, c1.y, c1.r*2);
 
@@ -326,12 +327,12 @@
         let c0p = scale(nv, s_pen)
         let c1p = scale(nv, k_pen)
 
-        p.stroke(PURPLE_B)
-        p.fill(PURPLE_B)
+        p.stroke(p.PURPLE_B)
+        p.fill(p.PURPLE_B)
         p.circle(c0.x - c0p.x, c0.y - c0p.y, c0.r*2);
 
-        p.stroke(ORANGE_B)
-        p.fill(ORANGE_B)
+        p.stroke(p.ORANGE_B)
+        p.fill(p.ORANGE_B)
         p.circle(c1.x - c1p.x, c1.y - c1p.y, c1.r*2);
       }
 
@@ -344,9 +345,9 @@
         p.strokeWeight(0)
         p.textFont('Courier New');
 
-        p.fill(PURPLE);
+        p.fill(p.PURPLE);
         p.text("s mass: ", x, y);
-        p.fill(ORANGE);
+        p.fill(p.ORANGE);
         p.text("k mass: ", x, y+=y_offset);
 
         slider0 = update_slider(slider0, 0, 100, 80, 260, 100);
