@@ -45,10 +45,8 @@
 
 
     p.setup = function() {
-      p.textAlign(p.CENTER, p.CENTER);
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent("sketch");
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
       p.textFont('Courier New');
-      console.log("Hi");
     }
 
     function is_point_in_circle(px, py, cx, cy, r) 
@@ -126,6 +124,7 @@
 
 
       p.background(255);
+      p.textAlign(p.CENTER, p.CENTER);
       p.fill(0, 0, 0, 0);
       p.circle(CIRCLE_X, CIRCLE_Y, CIRCLE_RADIUS*2);
 
@@ -284,7 +283,7 @@
     }
   };
   
-  new p5(sketch);
+  new p5(sketch, "sketch");
 })();
 
 

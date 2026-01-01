@@ -2,8 +2,6 @@
   'use strict';
 
   const s0 = function (p) {
-    const PURPLE = p.color(128, 0, 125)
-    const ORANGE = p.color(255, 140, 0)
 
 
     function line_intersection(a, b) {
@@ -45,14 +43,8 @@
     }
 
     const points = [];
-    points.push(create_point(50, 50));
-    points.push(create_point(250, 200));
-    points.push(create_point(50, 200));
-    points.push(create_point(250, 50));
 
     const lines = [];
-    lines.push(create_line(points[0], points[1], PURPLE));
-    lines.push(create_line(points[2], points[3], ORANGE));
 
     let selected_point = null;
 
@@ -64,7 +56,7 @@
       p.strokeWeight(0)
       p.textFont('Courier New');
 
-      p.fill(PURPLE);
+      p.fill(p.PURPLE);
       p.text("p", x, y)
       p.textSize(12)
       p.text("t", x + 10, y + 5)
@@ -73,7 +65,7 @@
 
       y += y_offset;
 
-      p.fill(ORANGE);
+      p.fill(p.ORANGE);
       p.text("q", x, y)
       p.textSize(12)
       p.text("t", x + 10, y + 5)
@@ -95,7 +87,15 @@
     };
 
     p.setup = function () {
-      p.createCanvas(300, 300).parent("s0");
+      p.PURPLE = p.color(128, 0, 125)
+      p.ORANGE = p.color(255, 140, 0)
+      points.push(create_point(50, 50));
+      points.push(create_point(250, 200));
+      points.push(create_point(50, 200));
+      points.push(create_point(250, 50));
+      lines.push(create_line(points[0], points[1], p.PURPLE));
+      lines.push(create_line(points[2], points[3], p.ORANGE));
+      p.createCanvas(300, 300)
     };
 
     p.draw = function () {
@@ -147,7 +147,7 @@
       draw_stats(intersection.s, intersection.t);
     }
   }  
-  new p5(s0);
+  new p5(s0, "s0");
 })();
 
 
