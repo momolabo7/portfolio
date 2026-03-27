@@ -1,6 +1,7 @@
 (function(window) {
   'use strict';
 
+<<<<<<< HEAD
   const GRUVBOX = {
     bg:      [251, 241, 199],  // #fbf1c7
     fg:      [60,  56,  54],   // #3c3836
@@ -20,6 +21,20 @@
   }
 
   let s2 = function (p) {
+=======
+  let s2 = function (p) {
+    let PURPLE;
+    let ORANGE;
+    let ORANGE_DARK;
+    let CYAN;
+    let PURPLE_A;
+    let ORANGE_A;
+    let PURPLE_B;
+    let ORANGE_B;
+    let FADED_RED;
+    let FADED_GREEN;
+
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     let aabbs = []
     let selected = null
 
@@ -62,9 +77,25 @@
     };
 
     p.setup = function () {
+<<<<<<< HEAD
       p.createCanvas(300, 300);
       aabbs.push(create_aabb(120, 100, 50, 50, color.orange))
       aabbs.push(create_aabb(180, 150, 40, 40, with_alpha(color.purple, 140)))
+=======
+      PURPLE = p.color(128, 0, 125)
+      ORANGE = p.color(255, 140, 0)
+      ORANGE_DARK = p.color(200, 100, 0)
+      CYAN = p.color(0, 200, 200)
+      PURPLE_A = p.color(128, 0, 125, 140)
+      ORANGE_A = p.color(255, 140, 0, 140)
+      PURPLE_B = p.color(128, 0, 125, 200)
+      ORANGE_B = p.color(255, 140, 0, 200)
+      FADED_RED = p.color(255, 0, 0, 80)
+      FADED_GREEN = p.color(0, 255, 0, 80)
+      p.createCanvas(300, 300);
+      aabbs.push(create_aabb(120, 100, 50, 50, ORANGE))
+      aabbs.push(create_aabb(180, 150, 40, 40, PURPLE_A))
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     };
 
     function max(a, b) {
@@ -120,9 +151,20 @@
       let ry = aabbs[1].hh + aabbs[0].hh;
       let diff_y = ry - Math.abs(dy);
 
+<<<<<<< HEAD
       p.background(...color.bg)
       p.rectMode(p.CENTER);
 
+=======
+      p.background(255, 255, 255)
+      p.rectMode(p.CENTER);
+
+      /*if (diff_x > 0 && diff_y > 0)
+        p.fill(FADED_GREEN)
+      else
+        p.fill(FADED_RED)
+      */
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
       p.fill(0,0,0,0)
       // draw aabbs
       for(let aabb of aabbs) 
@@ -225,6 +267,17 @@
 
   let s0 = function (p) {
     let selected = null
+<<<<<<< HEAD
+=======
+    let PURPLE;
+    let ORANGE;
+    let ORANGE_DARK;
+    let CYAN;
+    let PURPLE_A;
+    let ORANGE_A;
+    let PURPLE_B;
+    let ORANGE_B;
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     const lines = []
 
     function draw_arrow(base, vec, c) {
@@ -323,10 +376,26 @@
     };
 
     p.setup = function () {
+<<<<<<< HEAD
       p.createCanvas(300, 300);
 
       lines.push(create_line(120, 100, 50, color.orange))
       lines.push(create_line(180, 150, 40, color.purple))
+=======
+      PURPLE = p.color(128, 0, 125)
+      ORANGE = p.color(255, 140, 0)
+      ORANGE_DARK = p.color(200, 100, 0)
+      CYAN = p.color(0, 200, 200)
+      PURPLE_A = p.color(128, 0, 125, 140)
+      ORANGE_A = p.color(255, 140, 0, 140)
+      PURPLE_B = p.color(128, 0, 125, 200)
+      ORANGE_B = p.color(255, 140, 0, 200)
+
+      p.createCanvas(300, 300);
+
+      lines.push(create_line(120, 100, 50, ORANGE))
+      lines.push(create_line(180, 150, 40, PURPLE))
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     };
 
     function max(a, b) {
@@ -406,6 +475,19 @@
 
 
   let s1 = function (p) {
+<<<<<<< HEAD
+=======
+    let PURPLE;
+    let ORANGE;
+    let ORANGE_DARK;
+    let CYAN;
+    let PURPLE_A;
+    let ORANGE_A;
+    let PURPLE_B;
+    let ORANGE_B;
+    let FADED_RED;
+    let FADED_GREEN;
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     let aabbs = []
     let selected = null
 
@@ -447,9 +529,26 @@
     };
 
     p.setup = function () {
+<<<<<<< HEAD
       p.createCanvas(300, 300);
       aabbs.push(create_aabb(120, 100, 50, 50, color.orange))
       aabbs.push(create_aabb(180, 150, 40, 40, color.purple))
+=======
+      PURPLE = p.color(128, 0, 125)
+      ORANGE = p.color(255, 140, 0)
+      ORANGE_DARK = p.color(200, 100, 0)
+      CYAN = p.color(0, 200, 200)
+      PURPLE_A = p.color(128, 0, 125, 140)
+      ORANGE_A = p.color(255, 140, 0, 140)
+      PURPLE_B = p.color(128, 0, 125, 200)
+      ORANGE_B = p.color(255, 140, 0, 200)
+      FADED_RED = p.color(255, 0, 0, 80)
+      FADED_GREEN = p.color(0, 255, 0, 80)
+
+      p.createCanvas(300, 300);
+      aabbs.push(create_aabb(120, 100, 50, 50, ORANGE))
+      aabbs.push(create_aabb(180, 150, 40, 40, PURPLE))
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     };
 
     function max(a, b) {
@@ -505,7 +604,11 @@
       let ry = aabbs[1].hh + aabbs[0].hh;
       let diff_y = ry - Math.abs(dy);
 
+<<<<<<< HEAD
       p.background(color.bg)
+=======
+      p.background(255, 255, 255)
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
       p.rectMode(p.CENTER);
 
       if (diff_x > 0 && diff_y > 0)

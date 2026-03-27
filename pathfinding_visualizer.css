@@ -1,0 +1,243 @@
+body {
+  max-width: 800px;
+  margin: 0px auto;
+  background-color: pink;
+  height: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.pathfinder {
+  padding-top: 10px;
+
+}
+
+.header {
+  background-color: rebeccapurple;
+  padding: 10px 16px;
+  color: white;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.grid {
+  border: solid grey;
+  background-color: grey;
+  draggable: false;
+  padding: 8px 8px 8px 8px;
+}
+
+.cell {
+  /* width and height is determined in js */
+  outline: 1px solid rgb(110, 220, 253);
+  display: inline-block;
+  draggable: false;
+  position: relative;
+  background-color: white;
+}
+
+.cell.obstacle{
+  animation-name: paintToObstacle;
+  animation-timing-function: ease-out;
+  animation-duration: 0.25s;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+
+.cell.difficult {
+  background-image: repeating-linear-gradient( 
+  45deg,                      /* Direction: Straight Diagonal */
+  transparent,                /* Start of the gap */
+  transparent 7px,            /* End of the gap (7px wide) */
+  grey 7px,                /* Start of the line color */
+  grey 9px                 /* End of the line (2px thick line) */
+  )
+}
+
+
+.cell.start {
+  animation-name: paintToStart;
+  animation-timing-function: ease-out;
+  animation-duration: 0.25s;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.cell.end {
+  animation-name: paintToEnd;
+  animation-timing-function: ease-out;
+  animation-duration: 0.25s;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.cell.visited {
+  animation-name: paintToVisited;
+  animation-timing-function: ease-out;
+  animation-duration: 0.25s;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.cell.considering {
+  animation-name: paintToConsidering;
+  animation-timing-function: ease-out;
+  animation-duration: 0.25s;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+
+.cell.path {
+  animation-name: paintToPath;
+  animation-timing-function: ease-out;
+  animation-duration: 0.25s;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+
+@keyframes paintToObstacle {
+  from{background-color: white;}
+  to {background-color: grey;}
+}
+
+
+@keyframes paintToStart {
+  from{background-color: white;}
+  to {background-color: orange;}
+}
+@keyframes paintToEnd {
+  from{background-color: white;}
+  to {background-color: purple;}
+}
+@keyframes paintToVisited {
+  from{background-color: rgb(149, 181, 187);}
+  to {background-color: rgb(38, 162, 184);}
+}
+@keyframes paintToConsidering {
+  from{background-color: white;}
+  to {background-color:  rgb(149, 181, 187);}
+}
+
+@keyframes paintToPath {
+  from{background-color:rgb(38, 162, 184);}
+  to {background-color:  rgb(66, 204, 47);}
+}
+
+
+
+.bars .bar {
+  overflow: hidden;
+  background-color: #333;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+ 
+.bars .title   
+{
+  text-align: left;
+  float: left;
+  padding: 8px 16px;
+  width: 60px;
+  background-color: #444;
+}
+
+.bars .clickable {
+  float: left;
+  padding: 8px 16px;
+}
+
+.bars .clickable:hover {
+  background-color: skyblue;
+  cursor: pointer;
+  color: black;
+}
+
+.bars .selected {
+  background-color: lightgreen;
+  color: black;
+}
+
+.button-circle-obstacle {
+  width: 1rem;
+  height: 1rem;
+  background-color: grey;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.button-circle-difficult {
+  width: 1rem;
+  height: 1rem;
+  background-color: black;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.button-circle-start {
+  width: 1rem;
+  height: 1rem;
+  background-color: orange;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.button-circle-end {
+  width: 1rem;
+  height: 1rem;
+  background-color: purple;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.button-circle-none {
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+  border-radius: 50%;
+} 
+
+
+
+
+#test {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

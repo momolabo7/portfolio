@@ -21,6 +21,10 @@
 
   let s0 = function (p) 
   {
+<<<<<<< HEAD
+=======
+
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
     function scale(v, n) {
       return { x: v.x * n, y : v.y*n}
     }
@@ -73,6 +77,13 @@
     };
 
     p.setup = function () {
+      p.PURPLE = p.color(128, 0, 125)
+      p.ORANGE = p.color(255, 140, 0)
+      p.ORANGE_DARK = p.color(200, 100, 0)
+      p.RED = p.color(255, 0, 0)
+      p.PURPLE_A = p.color(128, 0, 125, 125)
+      p.ORANGE_A = p.color(255, 140, 0, 125)
+
       p.createCanvas(300, 300)
     };
 
@@ -96,14 +107,24 @@
       p.background(...color.bg);
 
       p.strokeWeight(2)
+<<<<<<< HEAD
       p.stroke(color.purple)
       p.fill(with_alpha(color.purple, 125))
+=======
+      p.stroke(p.PURPLE)
+      p.fill(p.PURPLE_A)
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
       p.circle(c0.x, c0.y, c0.r*2);
 
 
 
+<<<<<<< HEAD
       p.stroke(color.orange)
       p.fill(with_alpha(color.orange,125))
+=======
+      p.stroke(p.ORANGE)
+      p.fill(p.ORANGE_A)
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
       p.circle(c1.x, c1.y, c1.r*2);
 
       // lines and stats
@@ -129,6 +150,7 @@
         p.stroke(color.fg);
         p.line(c0.x, c0.y, c1.x, c1.y)
 
+<<<<<<< HEAD
         p.stroke(color.purple)
         p.line(c0rs.x, c0rs.y, c0re.x, c0re.y)
 
@@ -137,6 +159,16 @@
 
         if ( diff > 0) {
           p.stroke(color.red)
+=======
+        p.stroke(p.PURPLE)
+        p.line(c0rs.x, c0rs.y, c0re.x, c0re.y)
+
+        p.stroke(p.ORANGE_DARK)
+        p.line(c1rs.x, c1rs.y, c1re.x, c1re.y)
+
+        if ( diff > 0) {
+          p.stroke(p.RED)
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
           p.line(intersect_start.x, intersect_start.y, intersect_end.x, intersect_end.y)
         }
 
@@ -151,11 +183,19 @@
           p.strokeWeight(0)
           p.textFont('Courier New');
 
+<<<<<<< HEAD
           p.fill(color.purple);
           p.text("s radius: " + c0.r.toFixed(2), x, y += y_offset);
           p.fill(color.orange);
           p.text("k radius: " + c1.r.toFixed(2), x, y += y_offset);
           p.fill(color.red);
+=======
+          p.fill(p.PURPLE);
+          p.text("s radius: " + c0.r.toFixed(2), x, y += y_offset);
+          p.fill(p.ORANGE);
+          p.text("k radius: " + c1.r.toFixed(2), x, y += y_offset);
+          p.fill(p.RED);
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
           p.text("diff    : " + diff.toFixed(2), x, y += y_offset);
           p.fill(color.fg);
           p.text("distance: " + d.toFixed(2), x, y += y_offset);
@@ -263,6 +303,14 @@
     };
 
     p.setup = function () {
+      p.PURPLE = p.color(128, 0, 125)
+      p.ORANGE = p.color(255, 140, 0)
+      p.ORANGE_DARK = p.color(200, 100, 0)
+      p.RED = p.color(255, 0, 0)
+      p.PURPLE_A = p.color(128, 0, 125, 140)
+      p.ORANGE_A = p.color(255, 140, 0, 140)
+      p.PURPLE_B = p.color(128, 0, 125, 200)
+      p.ORANGE_B = p.color(255, 140, 0, 200)
       let canvas = p.createCanvas(300, 300)
     };
 
@@ -302,11 +350,19 @@
       p.background(...color.bg);
 
       p.strokeWeight(2)
+<<<<<<< HEAD
       p.stroke(with_alpha(color.purple, 125))
       p.fill(0,0,0,0)
       p.circle(c0.x, c0.y, c0.r*2)
 
       p.stroke(with_alpha(color.orange, 125))
+=======
+      p.stroke(p.PURPLE_A)
+      p.fill(0,0,0,0)
+      p.circle(c0.x, c0.y, c0.r*2)
+
+      p.stroke(p.ORANGE_A)
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
       p.fill(0,0,0,0)
       p.circle(c1.x, c1.y, c1.r*2);
 
@@ -329,12 +385,21 @@
         let c0p = scale(nv, s_pen)
         let c1p = scale(nv, k_pen)
 
+<<<<<<< HEAD
         p.stroke(with_alpha(color.purple, 200))
         p.fill(with_alpha(color.purple, 200))
         p.circle(c0.x - c0p.x, c0.y - c0p.y, c0.r*2);
 
         p.stroke(with_alpha(color.orange, 200))
         p.fill(with_alpha(color.orange, 200))
+=======
+        p.stroke(p.PURPLE_B)
+        p.fill(p.PURPLE_B)
+        p.circle(c0.x - c0p.x, c0.y - c0p.y, c0.r*2);
+
+        p.stroke(p.ORANGE_B)
+        p.fill(p.ORANGE_B)
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
         p.circle(c1.x - c1p.x, c1.y - c1p.y, c1.r*2);
       }
 
@@ -347,9 +412,15 @@
         p.strokeWeight(0)
         p.textFont('Courier New');
 
+<<<<<<< HEAD
         p.fill(color.purple);
         p.text("s mass: ", x, y);
         p.fill(color.orange);
+=======
+        p.fill(p.PURPLE);
+        p.text("s mass: ", x, y);
+        p.fill(p.ORANGE);
+>>>>>>> dffa8b63b938687b06f88cec9f73af5e3fb6bfc4
         p.text("k mass: ", x, y+=y_offset);
 
         slider0 = update_slider(slider0, 0, 100, 80, 260, 100);
