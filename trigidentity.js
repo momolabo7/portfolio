@@ -2,6 +2,24 @@
   'use strict';
 
   let sketch = function(p) {
+    const GRUVBOX = {
+      bg:      [251, 241, 199],  // #fbf1c7
+      fg:      [60,  56,  54],   // #3c3836
+      red:     [204, 36,  29],   // #cc241d
+      green:   [152, 151, 26],   // #98971a
+      yellow:  [215, 153, 33],   // #d79921
+      blue:    [69,  133, 136],  // #458588
+      purple:  [177, 98,  134],  // #b16286
+      aqua:    [104, 157, 106],  // #689d6a
+      orange:  [214, 93,  14],   // #d65d0e
+      gray:    [146, 131, 116],  // #928374
+    };
+    const color = GRUVBOX;
+
+    function with_alpha(rgb, a) {
+      return [...rgb, a];
+    }
+
     const CANVAS_WIDTH = 400;
     const CANVAS_HEIGHT = 400;
     const SMALL_STROKE = 4;
@@ -45,7 +63,7 @@
 
 
     p.setup = function() {
-      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+      p.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent("sketch");
       p.textFont('Courier New');
     }
 
@@ -106,13 +124,13 @@
         // then we just check whether that is in the same direction 
         // as our canvas' z-direction. We can use dot product, but since
         // we just have z-axis value to deal with, we can just compare the sign.
-        // 
-        // Cross product always gives back the penpendicular vector
+          // 
+          // Cross product always gives back the penpendicular vector
         // via the right hand rule.
-        // P5's x goes right and y goes down, 
-        // so by right hand rule, z goes inwards.
-        //
-        // a is the vector from circle origin to mouse and b is x-axis
+          // P5's x goes right and y goes down, 
+          // so by right hand rule, z goes inwards.
+          //
+          // a is the vector from circle origin to mouse and b is x-axis
         // We can say a x b gives a direction of a rotating towards b
         // So if a x b is +ve, a is on the CCW of b, -ve would be CW
 
@@ -123,8 +141,9 @@
       }
 
 
-      p.background(255);
+      p.background(color.bg);
       p.textAlign(p.CENTER, p.CENTER);
+      p.stroke(color.fg);
       p.fill(0, 0, 0, 0);
       p.circle(CIRCLE_X, CIRCLE_Y, CIRCLE_RADIUS*2);
 
@@ -134,14 +153,16 @@
         let c = p.cos(angle/2);
         let s = p.sin(angle/2);
         p.strokeWeight(3);
+        p.stroke(color.fg);
         p.arc(CIRCLE_X, CIRCLE_Y, 80, 80, -angle, 0);
         p.strokeWeight(0.5);
+        p.fill(color.fg);
         p.text("θ", CIRCLE_X + c*50, CIRCLE_Y - s*50);
       }
 
       // secent (must use secent variable)
       {
-        const secent_color = [255, 140, 0]
+        const secent_color = color.orange
         p.strokeWeight(BIG_STROKE);
         p.stroke(secent_color)
         pline(0, 0, secent, 0)
@@ -158,7 +179,7 @@
 
       // cosecent (must use cosecent variable)
       {
-        const cosecent_color = [80, 200, 200]
+        const cosecent_color = color.aqua; 
         p.strokeWeight(BIG_STROKE);
         p.stroke(cosecent_color)
         pline(0, 0, 0, cosecent);
@@ -174,7 +195,7 @@
 
       // hypothenuse  
       {
-        const hypothenuse_color = [125, 125, 125]
+        const hypothenuse_color = color.gray 
         p.strokeWeight(SMALL_STROKE);
         p.stroke(hypothenuse_color);
         p.fill(hypothenuse_color);
@@ -184,7 +205,7 @@
         if (angle > p.PI/180*5 && angle < p.PI/180*85) 
         {
           p.strokeWeight(0)
-          p.fill(255, 255, 255);
+          p.fill(color.bg);
           p.circle(CIRCLE_X + cosine/2 * UNIT, CIRCLE_Y - sine/2 * UNIT, 16)
           p.strokeWeight(0.5)
           p.stroke(hypothenuse_color);
@@ -196,7 +217,7 @@
 
       // cosine
       {
-        const cosine_color = [80, 80, 255]
+        const cosine_color = color.blue
         p.stroke(cosine_color);
         p.strokeWeight(SMALL_STROKE);
         p.fill(cosine_color)
@@ -212,7 +233,7 @@
       }
       // sine
       {
-        const sine_color = [255, 80, 80]
+        const sine_color = color.red;
 
         p.strokeWeight(SMALL_STROKE);
         p.stroke(sine_color);
@@ -229,7 +250,7 @@
 
       // tangent (must use tangent variable)
       {
-        const tangent_color = [80, 180, 80]
+        const tangent_color = color.yellow
         const x0 = cosine;
         const y0 = sine;
         const x1 = x0 + sine * tangent;
@@ -254,8 +275,8 @@
         const y1 = y0 + cosine * cotangent;
 
         p.strokeWeight(SMALL_STROKE);
-        p.stroke(255, 80, 255)
-        p.fill(255, 80, 255)
+        p.stroke(color.purple)
+        p.fill(color.purple)
         pline(x0, y0, x1, y1)
         if (cotangent * UNIT > 50) {
           p.strokeWeight(0.5)
@@ -264,26 +285,24 @@
         }
       }
 
-      p.stroke(0);
+      p.stroke(235, 219, 178);
       p.strokeWeight(SMALL_STROKE);
       if (is_hovering_on_point || is_dragging)
       {
-        p.fill(255, 125, 125)
+        p.fill(250, 189, 47)
         p.circle(point_x, point_y, POINT_RADIUS*1.2);
       }
       else 
       {
-        p.fill(255, 0, 0)
+        p.fill(251, 73, 52)
         p.circle(point_x, point_y, POINT_RADIUS);
       }
 
       // center of circle
-      p.fill(0);
+      p.fill(235, 219, 178);
       p.circle(CIRCLE_X, CIRCLE_Y, 10);
     }
   };
-  
-  new p5(sketch, "sketch");
+
+  new p5(sketch);
 })();
-
-
