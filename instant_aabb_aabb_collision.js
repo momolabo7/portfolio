@@ -1,18 +1,27 @@
 (function(window) {
   'use strict';
 
-  let s2 = function (p) {
-    const PURPLE = p.color(128, 0, 125)
-    const ORANGE = p.color(255, 140, 0)
-    const ORANGE_DARK = p.color(200, 100, 0)
-    const CYAN = p.color(0, 200, 200)
-    const PURPLE_A = p.color(128, 0, 125, 140)
-    const ORANGE_A = p.color(255, 140, 0, 140)
-    const PURPLE_B = p.color(128, 0, 125, 200)
-    const ORANGE_B = p.color(255, 140, 0, 200)
-    const FADED_RED = p.color(255, 0, 0, 80)
-    const FADED_GREEN = p.color(0, 255, 0, 80)
+  const GRUVBOX = {
+    bg:      [251, 241, 199],  // #fbf1c7
+    fg:      [60,  56,  54],   // #3c3836
+    red:     [204, 36,  29],   // #cc241d
+    green:   [152, 151, 26],   // #98971a
+    yellow:  [215, 153, 33],   // #d79921
+    blue:    [69,  133, 136],  // #458588
+    purple:  [177, 98,  134],  // #b16286
+    aqua:    [104, 157, 106],  // #689d6a
+    orange:  [214, 93,  14],   // #d65d0e
+    gray:    [146, 131, 116],  // #928374
+  };
+  const color = GRUVBOX;
 
+  function with_alpha(rgb, a) {
+    return [...rgb, a];
+  }
+
+  let s2 = function (p) {
+    let aabbs = []
+    let selected = null
 
 
     function create_aabb(x, y, hw, hh, c) {
@@ -23,10 +32,6 @@
 
 
 
-    let aabbs = [
-      create_aabb(120, 100, 50, 50, ORANGE),
-      create_aabb(180, 150, 40, 40, PURPLE_A),
-    ]
 
     function is_mouse_on_aabb(l) {
       return (
@@ -39,7 +44,6 @@
 
 
 
-    let selected = null
     p.mousePressed = function () {
       for(let aabb of aabbs) {
         if (is_mouse_on_aabb(aabb))
@@ -58,8 +62,9 @@
     };
 
     p.setup = function () {
-      p.rectMode(p.CENTER);
-      p.createCanvas(300, 300).parent("s2");
+      p.createCanvas(300, 300);
+      aabbs.push(create_aabb(120, 100, 50, 50, color.orange))
+      aabbs.push(create_aabb(180, 150, 40, 40, with_alpha(color.purple, 140)))
     };
 
     function max(a, b) {
@@ -115,14 +120,10 @@
       let ry = aabbs[1].hh + aabbs[0].hh;
       let diff_y = ry - Math.abs(dy);
 
-      p.background(255, 255, 255)
+      p.background(...color.bg)
+      p.rectMode(p.CENTER);
 
-      /*if (diff_x > 0 && diff_y > 0)
-        p.fill(FADED_GREEN)
-      else
-        p.fill(FADED_RED)
-          */
-          p.fill(0,0,0,0)
+      p.fill(0,0,0,0)
       // draw aabbs
       for(let aabb of aabbs) 
       {
@@ -140,7 +141,7 @@
 
       // Projection lines
       p.push()
-      p.stroke(125);
+      p.stroke(color.gray);
       p.strokeWeight(2)
       p.line(0,250, 300, 250);
       p.line(50, 0, 50, 300);
@@ -158,11 +159,11 @@
         vec_x = sign(dx) * diff_x
         let end_x = start_x + vec_x;
 
-        draw_arrow(p.createVector(start_x,start_y), p.createVector(vec_x,0), CYAN);
+        draw_arrow(p.createVector(start_x,start_y), p.createVector(vec_x,0), color.aqua);
 
         // trace
         p.push()
-        p.stroke(CYAN)
+        p.stroke(color.aqua)
         p.strokeWeight(2)
         p.drawingContext.setLineDash([10,10]);
         p.line(start_x, start_y, start_x, end_y)
@@ -183,11 +184,11 @@
         vec_y = sign(dy) * diff_y
         let end_y = start_y + vec_y;
 
-        draw_arrow(p.createVector(start_x,start_y), p.createVector(0,vec_y), CYAN);
+        draw_arrow(p.createVector(start_x,start_y), p.createVector(0,vec_y), color.aqua);
 
         // trace
         p.push()
-        p.stroke(CYAN)
+        p.stroke(color.aqua)
         p.strokeWeight(2)
         p.drawingContext.setLineDash([10,10]);
         p.line(start_x, start_y, end_x, start_y)
@@ -198,17 +199,21 @@
       // push back drawing
       if (diff_x > 0 && diff_y > 0)
       {
-        const original_aabb = structuredClone(aabbs[1])
+        let x = aabbs[1].x
+        let y = aabbs[1].y
+        let hw = aabbs[1].hw
+        let hh = aabbs[1].hh
+
         if (diff_x < diff_y)
-          original_aabb.x += vec_x;
+          x += vec_x;
         else 
-          original_aabb.y += vec_y;
+          y += vec_y;
         p.push()
-        p.stroke(PURPLE)
-        p.fill(FADED_GREEN)
+        p.stroke(color.purple)
+        p.fill(with_alpha(color.green))
         p.strokeWeight(4)
         p.drawingContext.setLineDash([10,10]);
-        p.rect(original_aabb.x, original_aabb.y, original_aabb.hw*2, original_aabb.hh*2);
+        p.rect(x, y, hw*2, hh*2);
         p.pop()
       }
 
@@ -218,16 +223,9 @@
 
   }
 
-  new p5(s2);
   let s0 = function (p) {
-    const PURPLE = p.color(128, 0, 125)
-    const ORANGE = p.color(255, 140, 0)
-    const ORANGE_DARK = p.color(200, 100, 0)
-    const CYAN = p.color(0, 200, 200)
-    const PURPLE_A = p.color(128, 0, 125, 140)
-    const ORANGE_A = p.color(255, 140, 0, 140)
-    const PURPLE_B = p.color(128, 0, 125, 200)
-    const ORANGE_B = p.color(255, 140, 0, 200)
+    let selected = null
+    const lines = []
 
     function draw_arrow(base, vec, c) {
       p.push();
@@ -294,10 +292,6 @@
       }
     }
 
-    let lines = [
-      create_line(120, 100, 50, ORANGE),
-      create_line(180, 150, 40, PURPLE),
-    ]
 
     function is_mouse_on_line(l) {
       const hh = 10;
@@ -311,7 +305,6 @@
 
 
 
-    let selected = null
     p.mousePressed = function () {
       for(let l of lines) {
         if (is_mouse_on_line(l))
@@ -330,7 +323,10 @@
     };
 
     p.setup = function () {
-      p.createCanvas(300, 300).parent("s0");
+      p.createCanvas(300, 300);
+
+      lines.push(create_line(120, 100, 50, color.orange))
+      lines.push(create_line(180, 150, 40, color.purple))
     };
 
     function max(a, b) {
@@ -353,7 +349,7 @@
 
     p.draw = function () 
     {
-      p.background(255, 255, 255)
+      p.background(...color.bg)
       if (selected) {
         selected.x = p.mouseX;
       }
@@ -370,7 +366,7 @@
 
 
       // Projection line
-      p.stroke(125);
+      p.stroke(color.gray);
       p.strokeWeight(2)
       p.line(0,200, 300, 200);
 
@@ -386,11 +382,11 @@
           let start_x = lines[0].x < lines[1].x ? lines[1].x - lines[1].hw : lines[1].x + lines[1].hw;
           let vec = sign(d) * diff
 
-          draw_arrow(p.createVector(start_x,y), p.createVector(vec,0), CYAN);
+          draw_arrow(p.createVector(start_x,y), p.createVector(vec,0), color.aqua);
 
           // trace
           p.push()
-          p.stroke(CYAN)
+          p.stroke(color.aqua)
           p.strokeWeight(2)
           p.drawingContext.setLineDash([10,10]);
           p.line(start_x, y, start_x, 100)
@@ -406,23 +402,12 @@
 
   }
 
-  new p5(s0);
 
 
 
   let s1 = function (p) {
-    const PURPLE = p.color(128, 0, 125)
-    const ORANGE = p.color(255, 140, 0)
-    const ORANGE_DARK = p.color(200, 100, 0)
-    const CYAN = p.color(0, 200, 200)
-    const PURPLE_A = p.color(128, 0, 125, 140)
-    const ORANGE_A = p.color(255, 140, 0, 140)
-    const PURPLE_B = p.color(128, 0, 125, 200)
-    const ORANGE_B = p.color(255, 140, 0, 200)
-    const FADED_RED = p.color(255, 0, 0, 80)
-    const FADED_GREEN = p.color(0, 255, 0, 80)
-
-
+    let aabbs = []
+    let selected = null
 
     function create_aabb(x, y, hw, hh, c) {
       return {
@@ -432,10 +417,6 @@
 
 
 
-    let aabbs = [
-      create_aabb(120, 100, 50, 50, ORANGE),
-      create_aabb(180, 150, 40, 40, PURPLE),
-    ]
 
     function is_mouse_on_aabb(l) {
       return (
@@ -448,7 +429,6 @@
 
 
 
-    let selected = null
     p.mousePressed = function () {
       for(let aabb of aabbs) {
         if (is_mouse_on_aabb(aabb))
@@ -467,8 +447,9 @@
     };
 
     p.setup = function () {
-      p.rectMode(p.CENTER);
-      p.createCanvas(300, 300).parent("s1");
+      p.createCanvas(300, 300);
+      aabbs.push(create_aabb(120, 100, 50, 50, color.orange))
+      aabbs.push(create_aabb(180, 150, 40, 40, color.purple))
     };
 
     function max(a, b) {
@@ -524,12 +505,13 @@
       let ry = aabbs[1].hh + aabbs[0].hh;
       let diff_y = ry - Math.abs(dy);
 
-      p.background(255, 255, 255)
+      p.background(color.bg)
+      p.rectMode(p.CENTER);
 
       if (diff_x > 0 && diff_y > 0)
-        p.fill(FADED_GREEN)
+        p.fill(with_alpha(color.green, 80))
       else
-        p.fill(FADED_RED)
+        p.fill(with_alpha(color.red, 80))
 
       // draw aabbs
       for(let aabb of aabbs) 
@@ -548,7 +530,7 @@
 
       // Projection lines
       p.push()
-      p.stroke(125);
+      p.stroke(color.gray);
       p.strokeWeight(2)
       p.line(0,250, 300, 250);
       p.line(50, 0, 50, 300);
@@ -567,11 +549,11 @@
         let vec = sign(dx) * diff_x
         let end_x = start_x + vec;
 
-        draw_arrow(p.createVector(start_x,start_y), p.createVector(vec,0), CYAN);
+        draw_arrow(p.createVector(start_x,start_y), p.createVector(vec,0), color.aqua);
 
         // trace
         p.push()
-        p.stroke(CYAN)
+        p.stroke(color.aqua)
         p.strokeWeight(2)
         p.drawingContext.setLineDash([10,10]);
         p.line(start_x, start_y, start_x, end_y)
@@ -591,11 +573,11 @@
         let vec = sign(dy) * diff_y
         let end_y = start_y + vec;
 
-        draw_arrow(p.createVector(start_x,start_y), p.createVector(0,vec), CYAN);
+        draw_arrow(p.createVector(start_x,start_y), p.createVector(0,vec), color.aqua);
 
         // trace
         p.push()
-        p.stroke(CYAN)
+        p.stroke(color.aqua)
         p.strokeWeight(2)
         p.drawingContext.setLineDash([10,10]);
         p.line(start_x, start_y, end_x, start_y)
@@ -609,9 +591,9 @@
 
   }
 
-  new p5(s1);
+  new p5(s0, "s0");
+  new p5(s1, "s1");
+  new p5(s2, "s2");
 
 
 })();
-
-
