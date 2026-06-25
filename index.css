@@ -45,6 +45,7 @@ pre {
   background-repeat: no-repeat;
 }
 
+
 .projects .item {
 
   padding-left: 1rem;
@@ -77,7 +78,7 @@ pre {
   
 }
 
-.timeline .place {
+.place {
   font-size: 1.1rem;
   font-weight: bold;
 }
@@ -110,9 +111,9 @@ footer {
 }
 
 ul {
-  list-style: "> ";
   list-style-position: outside;
   margin-top: 0;
+  padding-left: 2rem;
 }
 
 
